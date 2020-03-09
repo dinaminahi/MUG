@@ -12,7 +12,8 @@ const gameSchema = {
     playersMinAge: Number,
     playersCount: { min: Number, max: Number},
     playTimeMinutes: { min: Number, max: Number},
-    instructionUrl: String
+    instructionUrl: String,
+    photoUrl: String
 }
     
 const Game = mongoose.model('Game', eventSchema);
