@@ -16,7 +16,7 @@ const gameSchema = {
     photoUrl: String
 }
     
-const Game = mongoose.model('Game', eventSchema);
+const Game = mongoose.model('Game', gameSchema);
 
 const game = new Game({
   id: 1,
