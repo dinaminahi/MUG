@@ -4,18 +4,17 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { PageHomeComponent } from "./page-home/page-home.component";
-import { PageAboutComponent } from "./page-about/page-about.component";
-import { PageEventsComponent } from "./page-events/page-events.component";
-import { PageGamesComponent } from "./page-games/page-games.component";
-import { PageContactsComponent } from "./page-contacts/page-contacts.component";
-import { PageNewsComponent } from "./page-news/page-news.component";
-import { PageUsersComponent } from "./page-users/page-users.component";
-import { PageLoginComponent } from "./page-login/page-login.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { LayoutHeaderComponent } from './layout-header/layout-header.component';
-import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
-import { LayoutBodyComponent } from './layout-body/layout-body.component';
+import { PageHomeComponent } from "./pages/page-home/page-home.component";
+import { PageAboutComponent } from "./pages/page-about/page-about.component";
+import { PageEventsComponent } from "./pages/page-events/page-events.component";
+import { PageGamesComponent } from "./pages/page-games/page-games.component";
+import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
+import { PageNewsComponent } from "./pages/page-news/page-news.component";
+import { PageUsersComponent } from "./pages/page-users/page-users.component";
+import { PageLoginComponent } from "./pages/page-login/page-login.component";
+import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
+import { LayoutHeaderComponent } from "./layout/layout-header/layout-header.component";
+import { LayoutFooterComponent } from "./layout/layout-footer/layout-footer.component";
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { LayoutBodyComponent } from './layout-body/layout-body.component';
     PageLoginComponent,
     PageNotFoundComponent,
     LayoutHeaderComponent,
-    LayoutFooterComponent,
-    LayoutBodyComponent
+    LayoutFooterComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
