@@ -31,10 +31,10 @@ const game = new Game({
   });
 
   
-  game.save(function(err) {
-    if (!err) {
-      console.log('Success');
-    }
-  });
+//   game.save(function(err) {
+//     if (!err) {
+//       console.log('Success');
+//     }
+//   });
 
 module.exports = router;
