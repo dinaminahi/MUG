@@ -15,6 +15,14 @@ import { PageLoginComponent } from "./pages/page-login/page-login.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 import { LayoutHeaderComponent } from "./layout/layout-header/layout-header.component";
 import { LayoutFooterComponent } from "./layout/layout-footer/layout-footer.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LayoutModule } from "@angular/cdk/layout";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatIconModule } from "@angular/material/icon";
+import { MatListModule } from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -31,7 +39,18 @@ import { LayoutFooterComponent } from "./layout/layout-footer/layout-footer.comp
     LayoutHeaderComponent,
     LayoutFooterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    FlexLayoutModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
