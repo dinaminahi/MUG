@@ -8,5 +8,5 @@ import { from } from "rxjs";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "some-project";
+  title = "MUG-project";
 }
