@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css?family=Aclonica|Lato&display=swap");
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 280px; /* bottom = footer height */
+}
+
+#bottom-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 280px;
+  width: 100%;
+  background-color: #424242;
+  color: #cccccc;
+}
+
+.columns {
+  display: flex;
+  flex: 1;
+  text-align: center;
+  padding: 40px 20px 0 20px;
+  font-family: "Lato", sans-serif;
+  flex-direction: row;
+
+  .logo-footer {
+    flex: 1;
+    order: 1;
+    font-family: "Aclonica", sans-serif;
+
+    #logo {
+      letter-spacing: 2px;
+      font-size: 2.4em;
+      font-weight: 500;
+      margin-top: 0;
+    }
+
+    i {
+      padding: 0 10px;
+      color: transparentize($color: #cccccc, $amount: 0.7);
+    }
+  }
+
+  .links {
+    display: flex;
+    width: 35%;
+    order: 2;
+    justify-content: space-around;
+    border-style: none solid none solid;
+    border-width: 1px;
+    border-color: #cccccc;
+    letter-spacing: 1px;
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: transparentize($color: #cccccc, $amount: 0.55);
+      padding: 7px 0;
+    }
+
+    h3 {
+      font-weight: 500;
+      font-size: 1.4em;
+      margin-top: 0;
+    }
+
+    .category {
+      width: 50%;
+      order: 1;
+    }
+
+    .management {
+      width: 50%;
+      order: 2;
+    }
+  }
+
+  .buttons {
+    width: 35%;
+    order: 3;
+    position: relative;
+
+    p {
+      color: transparentize($color: #cccccc, $amount: 0.7);
+      position: absolute;
+      bottom: 0;
+      right: 85px;
+    }
+
+    .footer-btn {
+        background-color: transparent;
+        border-radius: 28px;
+        border: 1px solid #cccccc;
+        display: block;
+        cursor: pointer;
+        color: #cccccc;
+        font-family: "Lato", sans-serif;
+        font-size: 14px;
+        padding: 10px 47px;
+        position: absolute;
+        left: 85px;
+    }
+
+    #sign-up-btn {
+        bottom: 60px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+    #bottom-footer {
+        height: 550px;
+    }
+
+    .columns {
+        flex-direction: column;
+    
+        .links {
+            width: 100%;
+            border-style: solid none solid none;
+            border-width: 1px;
+            margin: 20px 0;
+            padding: 20px 0;
+        }
+
+        .buttons {
+            width: 100%;
+
+            p {
+                position: static;
+              }
+          
+              .footer-btn {
+                  position: static;
+                  margin: 10px auto;
+              }
+          
+              #sign-up-btn {
+                  bottom: 60px;
+              }
+        }
+    }
+}
