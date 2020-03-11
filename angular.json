@@ -3,7 +3,7 @@
   "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "MUG-project": {
+    "mug-project": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
