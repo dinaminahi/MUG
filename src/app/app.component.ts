@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-
 import { from } from "rxjs";
 
 @Component({
@@ -7,6 +6,8 @@ import { from } from "rxjs";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
+
 export class AppComponent {
   title = "MUG-project";
 }
+
