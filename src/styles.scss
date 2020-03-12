@@ -1,5 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// .mat-toolbar-row {
+//   background-color: rgb(56, 40, 40);
+//   color: rgb(197, 84, 31);
+
+//   :hover {
+//     color: white;
+//   }
+// }
