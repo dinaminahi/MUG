@@ -1,40 +1,59 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/MUG-DB');
+const MongoClient = require("mongodb").MongoClient;
+const ObjectID = require("mongodb").ObjectID;
 
 const gameSchema = {
-    id: Number,
-    name: String,
-    category: [],
-    description: String,
-    playersMinAge: Number,
-    playersCount: { min: Number, max: Number},
-    playTimeMinutes: { min: Number, max: Number},
-    instructionUrl: String,
-    photoUrl: String
-}
-    
-const Game = mongoose.model('Game', gameSchema);
+  id: Number,
+  name: String,
+  category: [],
+  description: String,
+  playersMinAge: Number,
+  playersCount: { min: Number, max: Number },
+  playTimeMinutes: { min: Number, max: Number },
+  instructionUrl: String,
+  photoUrl: String
+};
 
-const game = new Game({
-  id: 1,
-  name: 'Ticket to Ride Junior: Європа',
-  category: ['Стратегії', 'Сімейні', 'Новачкам'],
-  description: 'Варіант відомої гри «Квиток на поїзд. Європа», створений спеціально для дітей у віці від 6 років. Завдяки цій грі діти зможуть познайомитися з головними визначними пам\'ятками Європи, такими як Ейфелева вежа в Парижі і Біг-Бен в Лондоні, Колізей в Римі та Саграда-Фамілія в Барселоні. Діти будуть прокладати залізничні гілки від Мадрида до Москви і від Дубліна до Анкари, відвідуючи, звичайно ж, і нашу улюблену столицю Київ.',
-  playersMinAge: 6,
-  playersCount: { min: 2, max: 4},
-  playTimeMinutes: { min:15, max: 30},
-  instructionUrl: 'https://geekach.com.ua/content/files/pravila-nastolnoy-igry-bilet-na-poezd-junior-evropa-na-russkom-jazyke_65354990.pdf',
-  photoUrl: 'https://geekach.com.ua/content/images/24/bilet-na-poezd-junior-evropa-ticket-to-ride-junior-europe-18967549422113.png',
+const connection = closure => {
+  const uri =
+    "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority";
+  return MongoClient.connect(uri, (err, client) => {
+    if (err) return console.log(err);
+    let db = client.db("MUG-DB");
+    closure(db);
   });
+};
 
-  
-//   game.save(function(err) {
-//     if (!err) {
-//       console.log('Success');
-//     }
-//   });
+// Error handling
+const sendError = (err, res) => {
+  response.status = 501;
+  response.message = typeof err == "object" ? err.message : err;
+  res.status(501).json(response);
+};
+
+// Response handling
+let response = {
+  status: 200,
+  data: [],
+  message: null
+};
+
+// Get users
+router.get("/events", (req, res) => {
+  connection(db => {
+    db.collection("events")
+      .find()
+      .toArray()
+      .then(events => {
+        response.data = events;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
+});
 
 module.exports = router;
