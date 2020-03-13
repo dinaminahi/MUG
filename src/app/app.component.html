@@ -1,37 +1,49 @@
 <div class="wrapper">
   <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>MUG</span>      
-      <div fxShow="true" fxHide.lt-md>
-        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-        <app-layout-header></app-layout-header>        
-      </div>      
-      <span class="menu-spacer"></span>
-      <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
-    </mat-toolbar-row>
+    <div class="container">
+      <mat-toolbar-row>
+        <button
+          mat-icon-button
+          (click)="sidenav.toggle()"
+          fxShow="true"
+          fxHide.gt-sm
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>MUG</span>
+        <div fxShow="true" fxHide.lt-md>
+          <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+          <app-layout-header></app-layout-header>
+        </div>
+        <span class="menu-spacer"></span>
+        <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
+      </mat-toolbar-row>
+    </div>
   </mat-toolbar>
 
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>        
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
         <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>
         <a mat-list-item routerLink="/about" routerLinkActive="active">About</a>
-        <a mat-list-item routerLink="/events" routerLinkActive="active">Events</a>
+        <a mat-list-item routerLink="/events" routerLinkActive="active"
+          >Events</a
+        >
         <a mat-list-item routerLink="/games" routerLinkActive="active">Games</a>
         <a mat-list-item routerLink="/news" routerLinkActive="active">News</a>
         <a mat-list-item routerLink="/users" routerLinkActive="active">Users</a>
-        <a mat-list-item routerLink="/contacts" routerLinkActive="active">Contacts</a>
+        <a mat-list-item routerLink="/contacts" routerLinkActive="active"
+          >Contacts</a
+        >
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
-        <h1>Game events site</h1>      
-        <router-outlet></router-outlet>      
-        <app-layout-footer></app-layout-footer>
+      <div class="page-content container">
+        <h1>Game events site</h1>
+        <router-outlet></router-outlet>
+      </div>
+      <app-layout-footer></app-layout-footer>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-

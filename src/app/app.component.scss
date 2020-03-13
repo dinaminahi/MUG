@@ -1,6 +1,12 @@
 .menu-spacer {
   flex: 1 1 auto;
 }
-.wrapper {
-  height: calc(100% - 64px);
+
+.container > .mat-toolbar-row {
+  padding: 0;
+}
+
+.page-content {
+  padding-top: 20px;
+  padding-bottom: 30px;
 }

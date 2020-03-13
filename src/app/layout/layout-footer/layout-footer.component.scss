@@ -1,20 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Aclonica|Lato&display=swap");
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin: 0 0 280px; /* bottom = footer height */
-}
-
 #bottom-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 280px;
-  width: 100%;
   background-color: #424242;
   color: #cccccc;
 }
@@ -23,7 +9,7 @@ body {
   display: flex;
   flex: 1;
   text-align: center;
-  padding: 40px 20px 0 20px;
+  padding: 40px 20px;
   font-family: "Lato", sans-serif;
   flex-direction: row;
 
@@ -92,57 +78,52 @@ body {
     }
 
     .footer-btn {
-        background-color: transparent;
-        border-radius: 28px;
-        border: 1px solid #cccccc;
-        display: block;
-        cursor: pointer;
-        color: #cccccc;
-        font-family: "Lato", sans-serif;
-        font-size: 14px;
-        padding: 10px 47px;
-        position: absolute;
-        left: 85px;
+      background-color: transparent;
+      border-radius: 28px;
+      border: 1px solid #cccccc;
+      display: block;
+      cursor: pointer;
+      color: #cccccc;
+      font-family: "Lato", sans-serif;
+      font-size: 14px;
+      padding: 10px 47px;
+      position: absolute;
+      left: 85px;
     }
 
     #sign-up-btn {
-        bottom: 60px;
+      bottom: 60px;
     }
   }
 }
 
 @media (max-width: 768px) {
+  .columns {
+    flex-direction: column;
 
-    #bottom-footer {
-        height: 550px;
+    .links {
+      width: 100%;
+      border-style: solid none solid none;
+      border-width: 1px;
+      margin: 20px 0;
+      padding: 20px 0;
     }
 
-    .columns {
-        flex-direction: column;
-    
-        .links {
-            width: 100%;
-            border-style: solid none solid none;
-            border-width: 1px;
-            margin: 20px 0;
-            padding: 20px 0;
-        }
+    .buttons {
+      width: 100%;
 
-        .buttons {
-            width: 100%;
+      p {
+        position: static;
+      }
 
-            p {
-                position: static;
-              }
-          
-              .footer-btn {
-                  position: static;
-                  margin: 10px auto;
-              }
-          
-              #sign-up-btn {
-                  bottom: 60px;
-              }
-        }
+      .footer-btn {
+        position: static;
+        margin: 10px auto;
+      }
+
+      #sign-up-btn {
+        bottom: 60px;
+      }
     }
+  }
 }
