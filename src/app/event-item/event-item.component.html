@@ -1,0 +1,19 @@
+<div class="event-item">
+  <h2>{{ event?.eventName }}</h2>
+  <div>id: {{ event?.id }}</div>
+  <div>gameId: {{ event?.gameId }}</div>
+  <div>description: {{ event?.description }}</div>
+  <div>location: {{ event?.location }}</div>
+  <div>dateTime: {{ event?.dateTime }}</div>
+  <div>duration: {{ event?.duration }}</div>
+  <div>
+    <div>Players:</div>
+    <div>age: {{ event?.players.age.min }} - {{ event?.players.age.max }}</div>
+    <div>
+      count: {{ event?.players.count.min }} - {{ event?.players.count.max }};
+    </div>
+    <div>current: {{ event?.players.current }}</div>
+    <div>invitationList: {{ event?.players.invitationList }}</div>
+    <div>experienceNeeded: {{ event?.players.experienceNeeded }}</div>
+  </div>
+</div>

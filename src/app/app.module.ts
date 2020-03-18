@@ -24,9 +24,11 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
-import { CarouselComponent } from './carousel/carousel.component';
-import { HttpClientModule } from '@angular/common/http';
-import { DataService } from './data.service';
+import { CarouselComponent } from "./carousel/carousel.component";
+import { HttpClientModule } from "@angular/common/http";
+import { DataService } from "./data.service";
+import { GameComponent } from "./game/game.component";
+import { EventItemComponent } from './event-item/event-item.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { DataService } from './data.service';
     PageNotFoundComponent,
     LayoutHeaderComponent,
     LayoutFooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    GameComponent,
+    EventItemComponent
   ],
   imports: [
     BrowserModule,
