@@ -29,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import { LayoutContactsComponent } from './layout/layout-contacts/layout-contacts.component';
 import { LayoutTeamComponent } from './layout/layout-team/layout-team.component';
+import { LayoutFeaturesComponent } from './layout/layout-features/layout-features.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LayoutTeamComponent } from './layout/layout-team/layout-team.component'
     LayoutFooterComponent,
     CarouselComponent,
     LayoutContactsComponent,
-    LayoutTeamComponent
+    LayoutTeamComponent,
+    LayoutFeaturesComponent
   ],
   imports: [
     BrowserModule,
