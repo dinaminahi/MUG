@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "game": {
+      "id": 4,
+      "name": "UNO ",
+      "category": ["Новачкам", "Швидкі", "Дорожні"],
+      "description": "Колода карт «Уно» складається з цифрових карт чотирьох кольорів, спеціальних карт з картинками чотирьох кольорів і чорних карт-джокерів двох видів. В процесі партії гравці намагаються якомога швидше скинути карти з руки.",
+      "playersMinAge": 7,
+      "playersCount": { "min": 2, "max": 10 },
+      "playTimeMinutes": { "min": 25, "max": 30 },
+      "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uno-uno-na-russkom-jazyke-50553094.pdf",
+      "photoUrl": "https://geekach.com.ua/content/images/19/uno-56592878621741.jpg"
+    },
+    "description": "Шукаю хорошу компанію на суботу вечір на \"Уно\", збираємось в мене вдома. З мене піца, з вас - пиво",
+    "location": {},
+    "dateTime": 0,
+    "duration": "2 - 3 години",
+    "players": {
+      "age": { "min": 25, "max": 35 },
+      "count": { "min": 3, "max": 5, "current": 3 },
+      "invitationList": [23, 45, 56],
+      "experienceNeeded": true
+    }
+  },
+  {
+    "id": 2,
+    "game": {
+      "id": 3,
+      "name": "Жах Аркхема",
+      "category": ["Пригоди", "Для підлітків", "Гікам", "Соло"],
+      "description": "Третє видання культового кооперативу про боротьбу з древнім злом в лавкрафтовському Аркхемі. Базова гра містить чотири сценарії, в яких сищики поборються з Азатотом, Хастуром, Шуб-Ніггуратом і, зрозуміло, Ктулху, попутно збираючи докази, закриваючи ворота й знищуючи різних монстрів. ",
+      "playersMinAge": 14,
+      "playersCount": { "min": 1, "max": 6 },
+      "playTimeMinutes": { "min": 120, "max": 180 },
+      "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uzhas-arkxema.-tretja-redakcija-na-russkom-jazyke-42957111.pdf",
+      "photoUrl": "https://geekach.com.ua/content/images/46/uzhas-arkkhema.-tretya-redaktsiya-70476917528169.jpg"
+    },
+    "description": "Двоє студентів шукають ще +- 3 любителів теми \"Ктулху\" щоб пограти в неділю вдень настолку в кафе \"Дзига\"",
+    "location": {},
+    "dateTime": 0,
+    "duration": "до закриття кафе",
+    "players": {
+      "age": { "min": 20, "max": 25 },
+      "count": { "min": 2, "max": 4, "current": 1 },
+      "invitationList": [],
+      "experienceNeeded": true
+    }
+  },
+  {
+    "id": 3,
+    "game": {
+      "id": 2,
+      "name": "Каркассон. Амазонка",
+      "category": ["Стратегії", "Логічні", "Сімейні", "Новачкам"],
+      "description": "Тематична версія знаменитої гри «Каркассон», переносить учасників в джунглі Південної Америки - Carcassonne: Amazonas. Базові принципи гри залишилися колишніми, але з'явилося одне нововведення, яке робить гру не схожою на інші «Каркассони» - це гонка по річці Амазонці.",
+      "playersMinAge": 8,
+      "playersCount": { "min": 2, "max": 5 },
+      "playTimeMinutes": { "min": 30, "max": 45 },
+      "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-karkasson.-amazonka-na-russkom-jazyke_53578135.pdf",
+      "photoUrl": "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-40249393870792.png"
+    },
+    "description": "Молода сім\"я, любителі настолок. Шукаємо подібну пару для спільного проведення вечора за грою. Можна прийти з дітьми, їх буде чим зайняти :)",
+    "location": {},
+    "dateTime": 0,
+    "duration": "до 22:00",
+    "players": {
+      "age": { "min": 30, "max": 35 },
+      "count": { "min": 2, "max": 2, "current": 0 },
+      "invitationList": [40, 58],
+      "experienceNeeded": false
+    }
+  }
+]
