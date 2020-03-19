@@ -3,18 +3,13 @@ export class EventItem {
   gameId: number;
   eventName: string;
   description: string;
-
-  location: {
-    /* location object structure to be defined */
-  };
-  dateTime: {
-    /* the Date() object instance */
-  };
+  location: any;
+  dateTime: Date;
   duration: string;
   players: {
     age: { min: number; max: number };
     count: { min: number; max: number; current: number };
-    invitationList: [number, number, number]; // Manually invited users id's (optional),
+    invitationList: [number, number, number];
     experienceNeeded: boolean;
   };
 }

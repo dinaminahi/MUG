@@ -1,6 +1,6 @@
 <div class="event-item">
-  <span>Дата: {{ event?.dateTime }}</span>
-  <span>Час: (треба додати в .json)</span>
+  <span>Дата: {{ event?.dateTime | date:'yyyy.MM.dd' }}</span>
+  <span>Час: {{ event?.dateTime | date:'HH:mm:ss' }}</span>
   <span>Локація: {{ event?.location }}</span>
   <div class="img">Фото гри/події</div>
   <h2 class="header">{{ event?.eventName }}</h2>
