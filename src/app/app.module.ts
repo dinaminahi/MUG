@@ -27,6 +27,7 @@ import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from './carousel/carousel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
+import { LayoutContactsComponent } from './layout/layout-contacts/layout-contacts.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DataService } from './data.service';
     PageNotFoundComponent,
     LayoutHeaderComponent,
     LayoutFooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    LayoutContactsComponent
   ],
   imports: [
     BrowserModule,
