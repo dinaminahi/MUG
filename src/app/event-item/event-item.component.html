@@ -1,0 +1,34 @@
+<div class="event-item">
+  <div class="img">Фото гри/події</div>
+  <div class="event-header">
+    <span>Дата: {{ event?.dateTime | date: "yyyy.MM.dd" }}</span>
+    <span>Час: {{ event?.dateTime | date: "HH:mm:ss" }}</span>
+    <span>Локація: {{ event?.location }}</span>
+  </div>
+  <h2>{{ event?.eventName }}</h2>
+  <!-- <div>id: {{ event?.id }}</div>
+  <div>gameId: {{ event?.gameId }}</div> -->
+  <div class="description">{{ event?.description }}</div>
+
+  <button>JOIN</button>
+  <button>MORE INFO</button>
+
+  <!-- <div>Тривалість: {{ event?.duration }}</div> -->
+  <div class="players">
+    <span class="age">
+      age: {{ event?.players.age.min }} - {{ event?.players.age.max }}
+    </span>
+    <span class="count">
+      count: {{ event?.players.count.min }} - {{ event?.players.count.max }};
+    </span>
+    <span>current: {{ event?.players.current }}</span>
+    <span>invitationList: {{ event?.players.invitationList }}</span>
+    <!-- <div>experienceNeeded: {{ event?.players.experienceNeeded }}</div> -->
+  </div>
+
+  <!-- <img [src]="game?.photoUrl" alt="{{ game?.name }}" /> -->
+
+  <!-- <div *ngFor="let game of 'assets/game-object.json' | fetch">
+    <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
+  </div> -->
+</div>
