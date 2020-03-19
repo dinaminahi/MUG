@@ -14,23 +14,9 @@
     </mat-toolbar-row>
   </mat-toolbar>
   lorem*20
-  <mat-sidenav-container fxFlexFill>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-        <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>
-        <a mat-list-item routerLink="/about" routerLinkActive="active">About</a>
-        <a mat-list-item routerLink="/events" routerLinkActive="active">Events</a>
-        <a mat-list-item routerLink="/games" routerLinkActive="active">Games</a>
-        <a mat-list-item routerLink="/news" routerLinkActive="active">News</a>
-        <a mat-list-item routerLink="/users" routerLinkActive="active">Users</a>
-        <a mat-list-item routerLink="/contacts" routerLinkActive="active">Contacts</a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content fxFlexFill>
-      <h1>Game events site</h1>
-      <router-outlet></router-outlet>
-      <app-layout-footer></app-layout-footer>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+
 </div>
+
+<h1>Game events site</h1>
+<router-outlet></router-outlet>
+<app-layout-footer></app-layout-footer>
