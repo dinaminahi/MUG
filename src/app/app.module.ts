@@ -27,6 +27,7 @@ import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from './carousel/carousel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DataService } from './data.service';
     PageNotFoundComponent,
     LayoutHeaderComponent,
     LayoutFooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,
