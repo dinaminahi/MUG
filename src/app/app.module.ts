@@ -28,6 +28,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import { LayoutContactsComponent } from './layout/layout-contacts/layout-contacts.component';
+import { LayoutTeamComponent } from './layout/layout-team/layout-team.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LayoutContactsComponent } from './layout/layout-contacts/layout-contact
     LayoutHeaderComponent,
     LayoutFooterComponent,
     CarouselComponent,
-    LayoutContactsComponent
+    LayoutContactsComponent,
+    LayoutTeamComponent
   ],
   imports: [
     BrowserModule,
