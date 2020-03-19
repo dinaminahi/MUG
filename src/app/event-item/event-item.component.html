@@ -1,9 +1,11 @@
 <div class="event-item">
-  <span>Дата: {{ event?.dateTime | date:'yyyy.MM.dd' }}</span>
-  <span>Час: {{ event?.dateTime | date:'HH:mm:ss' }}</span>
-  <span>Локація: {{ event?.location }}</span>
   <div class="img">Фото гри/події</div>
-  <h2 class="header">{{ event?.eventName }}</h2>
+  <div class="event-header">
+    <span>Дата: {{ event?.dateTime | date: "yyyy.MM.dd" }}</span>
+    <span>Час: {{ event?.dateTime | date: "HH:mm:ss" }}</span>
+    <span>Локація: {{ event?.location }}</span>
+  </div>
+  <h2>{{ event?.eventName }}</h2>
   <!-- <div>id: {{ event?.id }}</div>
   <div>gameId: {{ event?.gameId }}</div> -->
   <div class="description">{{ event?.description }}</div>
