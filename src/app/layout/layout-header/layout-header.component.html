@@ -3,45 +3,41 @@
 </mdb-navbar>
 
 <div style="height: 30vh"> </div> -->
+
+
 <!--Navbar-->
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" mdbStickyHeader [containerInside]="false">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#">MUG</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="/home" routerLinkActive="active">MUG</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
-
     <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+    <ul class="navbar-nav mr-auto h4-responsive">
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/home" routerLinkActive="active">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/events" routerLinkActive="active">Events</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/games" routerLinkActive="active">Games</a>
       </li>
-
-      <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Basic dropdown<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
-          <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/news" routerLinkActive="active">News</a>
       </li>
-
-    </ul>
-    <!-- Links -->
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/about" routerLinkActive="active">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/contacts" routerLinkActive="active">Contacts</a>
+      </li>
+    </ul> <!-- Links -->
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
+      <!-- social actyviy if needed -->
+      <!-- <li class="nav-item">
         <a class="nav-link">
           <mdb-icon fab icon="twitter"></mdb-icon>
         </a>
@@ -50,17 +46,19 @@
         <a class="nav-link">
           <mdb-icon fab icon="google-plus"></mdb-icon>
         </a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link">
           <div class="btn-group" mdbDropdown>
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
+              <a class="dropdown-item" href="#">Log In</a>
+              <a class="dropdown-item" href="#">Sign Up</a>
+
+              <!-- for logged in users -->
+              <!-- <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Profile</a> -->
+
             </div>
           </div>
         </a>
