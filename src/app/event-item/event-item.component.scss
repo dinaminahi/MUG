@@ -1,8 +1,48 @@
 .event-item {
   border-radius: 3px;
   border: #ccc solid 1px;
-  padding: 20px;
-  margin-bottom: 10px;
-  width: 500px;
-  background-color: #e2e2e2;
+  padding: 30px;
+  margin: 20px;
+  width: 700px;
+  background-color: #fff;
+  font-size: 15px;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  h2 {
+    font-size: 60px;
+    color: #ff6347;
+    margin: 30px 0;
+  }
+  span {
+    margin: 10px;
+  }
+  div.img {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    background-color: #ff6347;
+    float: right;
+  }
+}
+
+div.description {
+  margin: 30px 0;
+}
+
+.players {
+  margin-bottom: 20px;
+  float: right;
+}
+
+button {
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
 }

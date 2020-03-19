@@ -1,19 +1,32 @@
 <div class="event-item">
-  <h2>{{ event?.eventName }}</h2>
-  <div>id: {{ event?.id }}</div>
-  <div>gameId: {{ event?.gameId }}</div>
-  <div>description: {{ event?.description }}</div>
-  <div>location: {{ event?.location }}</div>
-  <div>dateTime: {{ event?.dateTime }}</div>
-  <div>duration: {{ event?.duration }}</div>
-  <div>
-    <div>Players:</div>
-    <div>age: {{ event?.players.age.min }} - {{ event?.players.age.max }}</div>
-    <div>
+  <span>Дата: {{ event?.dateTime }}</span>
+  <span>Час: (треба додати в .json)</span>
+  <span>Локація: {{ event?.location }}</span>
+  <div class="img">Фото гри/події</div>
+  <h2 class="header">{{ event?.eventName }}</h2>
+  <!-- <div>id: {{ event?.id }}</div>
+  <div>gameId: {{ event?.gameId }}</div> -->
+  <div class="description">{{ event?.description }}</div>
+
+  <button>JOIN</button>
+  <button>MORE INFO</button>
+
+  <!-- <div>Тривалість: {{ event?.duration }}</div> -->
+  <div class="players">
+    <span class="age">
+      age: {{ event?.players.age.min }} - {{ event?.players.age.max }}
+    </span>
+    <span class="count">
       count: {{ event?.players.count.min }} - {{ event?.players.count.max }};
-    </div>
-    <div>current: {{ event?.players.current }}</div>
-    <div>invitationList: {{ event?.players.invitationList }}</div>
-    <div>experienceNeeded: {{ event?.players.experienceNeeded }}</div>
+    </span>
+    <span>current: {{ event?.players.current }}</span>
+    <span>invitationList: {{ event?.players.invitationList }}</span>
+    <!-- <div>experienceNeeded: {{ event?.players.experienceNeeded }}</div> -->
   </div>
+
+  <!-- <img [src]="game?.photoUrl" alt="{{ game?.name }}" /> -->
+
+  <!-- <div *ngFor="let game of 'assets/game-object.json' | fetch">
+    <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
+  </div> -->
 </div>
