@@ -32,6 +32,6 @@ export class PageEventsComponent implements OnInit {
     //  .subscribe((data: EventItem) => (this.event = data));
 
 
-    console.log(this.events);
+    console.log("test", this.events);
   }
 }
