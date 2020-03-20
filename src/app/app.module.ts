@@ -33,6 +33,9 @@ import { LayoutFeaturesComponent } from './layout/layout-features/layout-feature
 import { LayoutEventsRuletteComponent } from './layout/layout-events-rulette/layout-events-rulette.component';
 import { HowItWorksComponent } from './layout/how-it-works/how-it-works.component';
 import { LayoutHeroComponent } from './layout/layout-hero/layout-hero.component';
+import { GameComponent } from "./game/game.component";
+import { EventItemComponent } from './event-item/event-item.component';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { LayoutHeroComponent } from './layout/layout-hero/layout-hero.component'
     LayoutFeaturesComponent,
     LayoutEventsRuletteComponent,
     HowItWorksComponent,
-    LayoutHeroComponent
+    LayoutHeroComponent,
+    GameComponent,
+    EventItemComponent
+
   ],
   imports: [
     BrowserModule,

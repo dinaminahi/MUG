@@ -1,0 +1,19 @@
+<div class="game-item">
+  <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
+  <h2>{{ game?.name }}</h2>
+  <h3>Категорія: {{ game?.category }}</h3>
+  <p>{{ game?.description }}</p>
+  <div>
+    <p>Мінімальний вік гравців: {{ game?.playersMinAge }}</p>
+    <p>
+      Кількість гравців: {{ game?.playersCount.min }} -
+      {{ game?.playersCount.max }}
+    </p>
+    <p>
+      Час гри: {{ game?.playTimeMinutes.min }} - {{ game?.playTimeMinutes.max }}
+    </p>
+    <p>
+      <a>Інструкція: {{ game?.instructionUrl }}</a>
+    </p>
+  </div>
+</div>
