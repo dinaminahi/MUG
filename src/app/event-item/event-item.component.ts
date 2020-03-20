@@ -18,7 +18,13 @@ export class EventItemComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
+    // this.http
+    //  .get("assets/event-object.json")
+    //  .subscribe((data: EventItem) => (this.event = data));
 
+    // this.http
+    //   .get("assets/game-object.json")
+    //   .subscribe((data: Game) => (this.game = data));
   }
 
   onSelect(event) {
