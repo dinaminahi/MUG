@@ -1,0 +1,48 @@
+<header>
+    <div class="main-header"></div>
+</header>
+
+
+<div *ngFor="let event of events">
+    <div *ngIf="eventId === event.id">
+        <div class="event-detail container">
+            <div class="row">
+                <div class="col-sm-8 pl-5 py-5">
+                    <h1 class="title mb-4">{{ event.eventName }}</h1>
+                    <p><i class="fas fa-clock event-icon mr-2 fa-lg"></i>Date and time</p>
+                    <h3 class="mb-4">{{ event.dateTime }}</h3>
+                    <p><i class="fas fa-map-marker-alt event-icon mr-2 fa-lg"></i>Address</p>
+                    <h3>{{ event.location }}</h3>
+                    <p class="mt-5">Share with friends</p>
+                    <p><i class="fab fa-facebook-square fa-2x mr-3"></i><i class="fab fa-instagram fa-2x mr-3"></i><i class="fab fa-twitter-square fa-2x mr-3"></i><i class="fab fa-linkedin fa-2x"></i></p>
+                </div>
+                <div class="col-sm-4 pr-5  position-relative subscribe my-auto">
+                    <h2 class="text-center mb-4">Subscribe now</h2>
+                    <p class="text-center">Click to add to your calendar</p>
+                    <div class="text-center mt-4">
+                        <button class="add-btn">Add to calendar</button>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="container event-description">
+            <div class="row">
+                <div class="col-sm-8 pl-5 py-5">
+                    <h2>Event details</h2>
+                    <p >{{event.description}}</p>
+                    <h5 class="mt-4">Age of players</h5>
+                    <p class="pl-3">{{ event.players.age.min }} - {{ event.players.age.max }}</p>
+                    <h5 class="mt-4">Amount of players</h5>
+                    <p class="pl-3">{{ event.players.count.min }} - {{ event.players.count.max }}</p>
+                    <h5 class="mt-4">Do you need experience for this event?</h5>
+                    <p class="pl-3">{{ event.players.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</p>
+                </div>
+                <div class="col-sm-4 pr-5 organisor">
+  
+                </div>
+              </div>
+           
+        </div>
+
+    </div>
+</div>

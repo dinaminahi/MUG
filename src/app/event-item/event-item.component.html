@@ -11,7 +11,7 @@
   <div class="description">{{ event?.description }}</div>
 
   <button>JOIN</button>
-  <button>MORE INFO</button>
+  <button (click)="onSelect(event)">MORE INFO</button>
 
   <!-- <div>Тривалість: {{ event?.duration }}</div> -->
   <div class="players">
@@ -23,12 +23,5 @@
     </span>
     <span>current: {{ event?.players.current }}</span>
     <span>invitationList: {{ event?.players.invitationList }}</span>
-    <!-- <div>experienceNeeded: {{ event?.players.experienceNeeded }}</div> -->
   </div>
-
-  <!-- <img [src]="game?.photoUrl" alt="{{ game?.name }}" /> -->
-
-  <!-- <div *ngFor="let game of 'assets/game-object.json' | fetch">
-    <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
-  </div> -->
 </div>

@@ -35,6 +35,7 @@ import { HowItWorksComponent } from './layout/how-it-works/how-it-works.componen
 import { LayoutHeroComponent } from './layout/layout-hero/layout-hero.component';
 import { GameComponent } from "./game/game.component";
 import { EventItemComponent } from './event-item/event-item.component';
+import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { EventItemComponent } from './event-item/event-item.component';
     HowItWorksComponent,
     LayoutHeroComponent,
     GameComponent,
-    EventItemComponent
+    EventItemComponent,
+    EventDetailInfoComponent
 
   ],
   imports: [
