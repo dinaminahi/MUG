@@ -1,20 +1,28 @@
-<div class="container z-depth-1 my-5 p-5">
-  <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
-    [animation]="'slide'">
-    <mdb-carousel-item *ngFor="let item of slides; let i = index">
-      <div class="col-md-4" [ngClass]="{ 'd-none d-md-block': cardIndex !== 0 }"
-        *ngFor="let card of item; let cardIndex = index">
-        <mdb-card class="my-1">
-          <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
-          <mdb-card-body>
-            <mdb-card-title>
-              <h4>{{ card.title }}</h4>
-            </mdb-card-title>
-            <p>{{ card.description }}</p>
-            <a href="#" mdbBtn color="primary" class="waves-light" mdbWavesEffect>{{ card.buttonText }}</a>
-          </mdb-card-body>
-        </mdb-card>
-      </div>
-    </mdb-carousel-item>
-  </mdb-carousel>
+<div class="container  z-depth-1 my-5 p-5 ">
+  <section class="text-center">
+    <!-- Section heading -->
+    <h2 class="blue-grey-text font-weight-bold mb-4 pb-2 text-uppercase">NEAREST EVENTS</h2>
+    <P lass="blue-grey-text">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Facilis culpa quidem animi minus recusandae esse possimus doloribus consectetur excepturi. Rerum?</P>
+    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
+      [animation]="'slide'">
+      <mdb-carousel-item *ngFor="let item of slides; let i = index">
+        <div class="col-md-4" [ngClass]="{ 'd-none d-md-block': cardIndex !== 0 }"
+          *ngFor="let card of item; let cardIndex = index">
+          <mdb-card class="my-1">
+            <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body class=" unique-color-dark">
+              <mdb-card-title>
+                <h1 class="text-warning">{{ card.title }}</h1>
+              </mdb-card-title>
+              <p lass=" white-text">{{ card.description }}</p>
+              <!-- <a href="#" mdbBtn color="primary" class="waves-light" mdbWavesEffect>{{ card.buttonText }}</a> -->
+              <button type="submit"
+                class="btn btn-primary btn-md btn-block ml-0 mb-0 btn-outline-warning btn-mdb-color waves-effect">{{ card.buttonText }}</button>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </mdb-carousel-item>
+    </mdb-carousel>
+  </section>
 </div>

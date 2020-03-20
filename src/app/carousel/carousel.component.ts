@@ -10,7 +10,7 @@ export class CarouselComponent implements OnInit {
 
   cards = [
     {
-      title: "Card Title 1",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -18,7 +18,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 2",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -26,7 +26,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 3",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -34,7 +34,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 4",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -42,7 +42,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 5",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -50,7 +50,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 6",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -58,7 +58,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 7",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -66,7 +66,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 8",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
@@ -74,7 +74,7 @@ export class CarouselComponent implements OnInit {
         "https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
     },
     {
-      title: "Card Title 9",
+      title: "EVENT NAME",
       description:
         "Some quick example text to build on the card title and make up the bulk of the card content",
       buttonText: "Button",
