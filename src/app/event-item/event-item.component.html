@@ -13,7 +13,7 @@
     <div class="description text-muted">{{ event?.description }}</div>
 
     <button class="btn btn-info btn-md waves-effect">JOIN</button>
-    <button class="btn btn-info btn-md waves-effect">MORE INFO</button>
+    <button (click)="onSelect(event)" class="btn btn-info btn-md waves-effect">MORE INFO</button>
   </section>
   <div class="players  text-center dark-grey-text">
     <span class="age">

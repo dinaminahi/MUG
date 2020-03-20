@@ -1,5 +1,6 @@
 export class EventItem {
   id: number;
+  eventName: string;
   game: {
     id: number;
     name: string;

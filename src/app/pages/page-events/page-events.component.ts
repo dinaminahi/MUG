@@ -31,7 +31,6 @@ export class PageEventsComponent implements OnInit {
     //  .get("assets/event-object.json")
     //  .subscribe((data: EventItem) => (this.event = data));
 
-
     console.log(this.events);
   }
 }

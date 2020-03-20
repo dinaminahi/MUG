@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "eventName": "UNO game",
     "game": {
       "id": 4,
       "name": "UNO ",
@@ -13,8 +14,8 @@
       "photoUrl": "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg"
     },
     "description": "Шукаю хорошу компанію на суботу вечір на \"Уно\", збираємось в мене вдома. З мене піца, з вас - пиво",
-    "location": {},
-    "dateTime": 0,
+    "location": "491 Del Monte Lane Dyersburg, TN",
+    "dateTime": "06/08/2020",
     "duration": "2 - 3 години",
     "players": {
       "age": { "min": 25, "max": 35 },
@@ -25,6 +26,7 @@
   },
   {
     "id": 2,
+    "eventName": "KTULHU game",
     "game": {
       "id": 3,
       "name": "Жах Аркхема",
@@ -37,8 +39,8 @@
       "photoUrl": "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg"
     },
     "description": "Двоє студентів шукають ще +- 3 любителів теми \"Ктулху\" щоб пограти в неділю вдень настолку в кафе \"Дзига\"",
-    "location": {},
-    "dateTime": 0,
+    "location": "26 Rockwell Avenue Linden, NJ",
+    "dateTime": "06/08/2020",
     "duration": "до закриття кафе",
     "players": {
       "age": { "min": 20, "max": 25 },
@@ -49,6 +51,7 @@
   },
   {
     "id": 3,
+    "eventName": "Some game",
     "game": {
       "id": 2,
       "name": "Каркассон. Амазонка",
@@ -61,8 +64,8 @@
       "photoUrl": "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
     },
     "description": "Молода сім\"я, любителі настолок. Шукаємо подібну пару для спільного проведення вечора за грою. Можна прийти з дітьми, їх буде чим зайняти :)",
-    "location": {},
-    "dateTime": 0,
+    "location": "55 North Oxford Court Rolling Meadows, IL",
+    "dateTime": "06/08/2020",
     "duration": "до 22:00",
     "players": {
       "age": { "min": 30, "max": 35 },
