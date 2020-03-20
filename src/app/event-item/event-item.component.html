@@ -1,20 +1,21 @@
-<div class="event-item">
-  <div class="img">Фото гри/події</div>
-  <div class="event-header">
+<div class="event-item  my-3 z-depth-1">
+  <div class="event-header text-center  mx-md-4 dark-grey-text">
     <span>Дата: {{ event?.dateTime | date: "yyyy.MM.dd" }}</span>
     <span>Час: {{ event?.dateTime | date: "HH:mm:ss" }}</span>
     <span>Локація: {{ event?.location }}</span>
   </div>
-  <h2>{{ event?.eventName }}</h2>
-  <!-- <div>id: {{ event?.id }}</div>
-  <div>gameId: {{ event?.gameId }}</div> -->
-  <div class="description">{{ event?.description }}</div>
+  <section class="text-center mx-md-4 dark-grey-text">
+    <div class="image-wrap view overlay">
+      <img [src]="event?.game?.photoUrl" alt="" />
+    </div>
+    <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
 
-  <button>JOIN</button>
-  <button>MORE INFO</button>
+    <div class="description text-muted">{{ event?.description }}</div>
 
-  <!-- <div>Тривалість: {{ event?.duration }}</div> -->
-  <div class="players">
+    <button class="btn btn-info btn-md waves-effect">JOIN</button>
+    <button (click)="onSelect(event)" class="btn btn-info btn-md waves-effect">MORE INFO</button>
+  </section>
+  <div class="players  text-center dark-grey-text">
     <span class="age">
       age: {{ event?.players.age.min }} - {{ event?.players.age.max }}
     </span>
@@ -23,12 +24,5 @@
     </span>
     <span>current: {{ event?.players.current }}</span>
     <span>invitationList: {{ event?.players.invitationList }}</span>
-    <!-- <div>experienceNeeded: {{ event?.players.experienceNeeded }}</div> -->
   </div>
-
-  <!-- <img [src]="game?.photoUrl" alt="{{ game?.name }}" /> -->
-
-  <!-- <div *ngFor="let game of 'assets/game-object.json' | fetch">
-    <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
-  </div> -->
 </div>

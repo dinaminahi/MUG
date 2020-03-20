@@ -13,3 +13,30 @@
     "experienceNeeded": true
   }
 }
+
+{
+
+"id": 1,
+    "game": {
+      "id": 4,
+      "name": "UNO ",
+      "category": ["Новачкам", "Швидкі", "Дорожні"],
+      "description": "Колода карт «Уно» складається з цифрових карт чотирьох кольорів, спеціальних карт з картинками чотирьох кольорів і чорних карт-джокерів двох видів. В процесі партії гравці намагаються якомога швидше скинути карти з руки.",
+      "playersMinAge": 7,
+      "playersCount": { "min": 2, "max": 10 },
+      "playTimeMinutes": { "min": 25, "max": 30 },
+      "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uno-uno-na-russkom-jazyke-50553094.pdf",
+      "photoUrl": "https://geekach.com.ua/content/images/19/uno-56592878621741.jpg"
+    },
+    "description": "Шукаю хорошу компанію на суботу вечір на \"Уно\", збираємось в мене вдома. З мене піца, з вас - пиво",
+    "location": {},
+    "dateTime": 0,
+    "duration": "2 - 3 години",
+    "players": {
+      "age": { "min": 25, "max": 35 },
+      "count": { "min": 3, "max": 5, "current": 3 },
+      "invitationList": [23, 45, 56],
+      "experienceNeeded": true
+    }
+  }
+}
