@@ -32,6 +32,7 @@ import { LayoutTeamComponent } from './layout/layout-team/layout-team.component'
 import { LayoutFeaturesComponent } from './layout/layout-features/layout-features.component';
 import { LayoutEventsRuletteComponent } from './layout/layout-events-rulette/layout-events-rulette.component';
 import { HowItWorksComponent } from './layout/how-it-works/how-it-works.component';
+import { LayoutHeroComponent } from './layout/layout-hero/layout-hero.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { HowItWorksComponent } from './layout/how-it-works/how-it-works.componen
     LayoutTeamComponent,
     LayoutFeaturesComponent,
     LayoutEventsRuletteComponent,
-    HowItWorksComponent
+    HowItWorksComponent,
+    LayoutHeroComponent
   ],
   imports: [
     BrowserModule,
