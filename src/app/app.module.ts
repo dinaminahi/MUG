@@ -30,6 +30,8 @@ import { DataService } from './data.service';
 import { LayoutContactsComponent } from './layout/layout-contacts/layout-contacts.component';
 import { LayoutTeamComponent } from './layout/layout-team/layout-team.component';
 import { LayoutFeaturesComponent } from './layout/layout-features/layout-features.component';
+import { LayoutEventsRuletteComponent } from './layout/layout-events-rulette/layout-events-rulette.component';
+import { HowItWorksComponent } from './layout/how-it-works/how-it-works.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { LayoutFeaturesComponent } from './layout/layout-features/layout-feature
     CarouselComponent,
     LayoutContactsComponent,
     LayoutTeamComponent,
-    LayoutFeaturesComponent
+    LayoutFeaturesComponent,
+    LayoutEventsRuletteComponent,
+    HowItWorksComponent
   ],
   imports: [
     BrowserModule,
