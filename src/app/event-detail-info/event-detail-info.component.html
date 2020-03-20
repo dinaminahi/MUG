@@ -2,7 +2,6 @@
     <div class="main-header"></div>
 </header>
 
-
 <div *ngFor="let event of events">
     <div *ngIf="eventId === event.id">
         <div class="event-detail container">
@@ -37,12 +36,19 @@
                     <h5 class="mt-4">Do you need experience for this event?</h5>
                     <p class="pl-3">{{ event.players.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</p>
                 </div>
-                <div class="col-sm-4 pr-5 organisor">
-  
+                <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">
+                    <img class="mr-4" src="https://i.pinimg.com/280x280_RS/6a/c9/71/6ac9713db5467404cf7bdfd86817c7ae.jpg" align="left"  alt="Photo of event author">
+                     <p>Event organiser</p>
+                     <h3>Grechukh Diana</h3>
+                     <p class="mt-5">Phone number</p>
+                     <p class="mb-3"><a href="#">+380978658585</a></p>
+                     <p>Email</p>
+                     <p class="mb-3"><a href="#">Diankagrechukh@gmail.com</a></p>
+                     <p>Website</p>
+                     <p><a  href="www.google.com">My site</a></p>
                 </div>
               </div>
            
         </div>
-
     </div>
 </div>
