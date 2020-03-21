@@ -15,7 +15,7 @@
     },
     "description": "Шукаю хорошу компанію на суботу вечір на \"Уно\", збираємось в мене вдома. З мене піца, з вас - пиво",
     "location": "491 Del Monte Lane Dyersburg, TN",
-    "dateTime": "06/08/2020",
+    "dateTime": "2020-03-01T10:45:00",
     "duration": "2 - 3 години",
     "players": {
       "age": { "min": 25, "max": 35 },
@@ -40,7 +40,7 @@
     },
     "description": "Двоє студентів шукають ще +- 3 любителів теми \"Ктулху\" щоб пограти в неділю вдень настолку в кафе \"Дзига\"",
     "location": "26 Rockwell Avenue Linden, NJ",
-    "dateTime": "06/08/2020",
+    "dateTime": "2020-03-01T10:45:00",
     "duration": "до закриття кафе",
     "players": {
       "age": { "min": 20, "max": 25 },
@@ -65,7 +65,7 @@
     },
     "description": "Молода сім\"я, любителі настолок. Шукаємо подібну пару для спільного проведення вечора за грою. Можна прийти з дітьми, їх буде чим зайняти :)",
     "location": "55 North Oxford Court Rolling Meadows, IL",
-    "dateTime": "06/08/2020",
+    "dateTime": "2020-03-01T10:45:00",
     "duration": "до 22:00",
     "players": {
       "age": { "min": 30, "max": 35 },
@@ -88,7 +88,7 @@
       "photoUrl": "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg"
     },
     "description": "Шукаю хорошу компанію на суботу вечір на \"Уно\", збираємось в мене вдома. З мене піца, з вас - пиво",
-    "location": {},
+    "location": "491 Del Monte Lane Dyersburg, TN",
     "dateTime": 0,
     "duration": "2 - 3 години",
     "players": {
@@ -112,7 +112,7 @@
       "photoUrl": "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg"
     },
     "description": "Двоє студентів шукають ще +- 3 любителів теми \"Ктулху\" щоб пограти в неділю вдень настолку в кафе \"Дзига\"",
-    "location": {},
+    "location": "26 Rockwell Avenue Linden, NJ",
     "dateTime": 0,
     "duration": "до закриття кафе",
     "players": {
@@ -136,7 +136,7 @@
       "photoUrl": "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
     },
     "description": "Молода сім\"я, любителі настолок. Шукаємо подібну пару для спільного проведення вечора за грою. Можна прийти з дітьми, їх буде чим зайняти :)",
-    "location": {},
+    "location": "55 North Oxford Court Rolling Meadows, IL",
     "dateTime": 0,
     "duration": "до 22:00",
     "players": {

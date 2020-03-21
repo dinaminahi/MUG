@@ -1,8 +1,20 @@
 .event-item {
-  overflow: hidden;
+  //overflow: hidden;
+  position: relative;
+  // background: #faf6f6;
+
+  &:after {
+    content: "";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
 
   .event-header {
     padding: 20px 0;
+    position: relative;
+    font-size: 15px;
   }
 
   .image-wrap {
@@ -29,6 +41,37 @@
   }
 }
 
+.attenders-icons {
+  margin: 10px 0;
+  position: relative;
+  text-align: left;
+  display: inline-block;
+
+  .max {
+  }
+  .current {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  i {
+    font-size: 1.5rem;
+    color: #c2c1bf;
+    text-shadow: -1px -1px #7f7f7f;
+    margin: 0 4px 0 0;
+
+    &.filled {
+      color: #ff7315;
+      text-shadow: 1px 1px #666;
+      position: relative;
+      top: -1px;
+      left: -1px;
+    }
+  }
+}
+
 .players {
   border-top: #e2e2e2 solid 1px;
   padding-top: 10px;
@@ -42,4 +85,81 @@ button {
   background-color: white;
   color: black;
   border: 2px solid #e7e7e7;
+}
+
+button:hover {
+  background-color: #ff7315;
+  color: e7e7e7;
+  border: 2px solid #e7e7e7;
+  z-index: 2;
+}
+
+.description {
+  margin-top: 20px;
+  padding: 0 30px 20px;
+  display: none;
+
+  // animation: mymove 9s forwards;
+}
+
+.description:before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  height: 10px;
+  width: 100%;
+  top: -10px;
+  left: 0;
+}
+
+.footer-meta {
+  margin-top: 10px;
+  margin: 10px -30px -20px;
+  font-size: 12px;
+  background: #f4f4f4;
+  padding: 10px 20px;
+  color: #444;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #ddd;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .label {
+    margin-right: 10px;
+  }
+
+  i {
+    width: 20px;
+    margin-right: 2px;
+    text-align: center;
+  }
+}
+
+// box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.event-item:hover .description {
+  display: block;
+  position: absolute;
+  z-index: 5;
+  background: #fff;
+  width: 100%;
+
+  // animation-timing-function: ease-in-out;
+}
+
+.heart {
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+}
+
+.heart:hover,
+.heart:active {
+  color: red;
 }
