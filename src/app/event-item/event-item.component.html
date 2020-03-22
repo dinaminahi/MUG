@@ -15,18 +15,9 @@
       <img [src]="event?.game?.photoUrl" alt="" />
     </div>
     <div class="attenders-icons">
-      <div class="max">
-        <i
-          class="fas fa-user-alt"
-          *ngFor="let item of [].constructor(event?.players.count.max)"
-        ></i>
-      </div>
-      <div class="current">
-        <i
-          class="fas fa-user-alt filled"
-          *ngFor="let item of [].constructor(event?.players.count.current)"
-        ></i>
-      </div>
+      <app-participants-count
+        [count]="event?.players.count"
+      ></app-participants-count>
     </div>
     <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
 

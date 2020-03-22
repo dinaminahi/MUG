@@ -1,7 +1,5 @@
 .event-item {
-  //overflow: hidden;
   position: relative;
-  // background: #faf6f6;
 
   &:after {
     content: "";
@@ -43,33 +41,6 @@
 
 .attenders-icons {
   margin: 10px 0;
-  position: relative;
-  text-align: left;
-  display: inline-block;
-
-  .max {
-  }
-  .current {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  i {
-    font-size: 1.5rem;
-    color: #c2c1bf;
-    text-shadow: -1px -1px #7f7f7f;
-    margin: 0 4px 0 0;
-
-    &.filled {
-      color: #ff7315;
-      text-shadow: 1px 1px #666;
-      position: relative;
-      top: -1px;
-      left: -1px;
-    }
-  }
 }
 
 .players {
