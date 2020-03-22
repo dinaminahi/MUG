@@ -12,9 +12,9 @@ import { EventItem } from "../event-item/event-item";
 })
 export class EventDetailInfoComponent implements OnInit {
 
-  events: EventItem[]; 
- public eventId;
-
+  eventId: number;
+  expectedEvent: EventItem;
+  geo: object;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -23,7 +23,9 @@ export class EventDetailInfoComponent implements OnInit {
      this.eventId = id;
      this.http
      .get("assets/events-extended.json")
-     .subscribe((data: EventItem[]) => (this.events = data));
+     .subscribe((data: EventItem[]) => { 
+       this.expectedEvent = data.find(event => event.id = this.eventId);
+       this.geo = this.expectedEvent.location.geo;
+      });
   }
-
 }

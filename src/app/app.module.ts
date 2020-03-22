@@ -36,6 +36,9 @@ import { LayoutHeroComponent } from './layout/layout-hero/layout-hero.component'
 import { GameComponent } from "./game/game.component";
 import { EventItemComponent } from './event-item/event-item.component';
 import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core'
+import { from } from 'rxjs';
 
 
 @NgModule({
@@ -61,7 +64,8 @@ import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.
     LayoutHeroComponent,
     GameComponent,
     EventItemComponent,
-    EventDetailInfoComponent
+    EventDetailInfoComponent,
+    MapComponent
 
   ],
   imports: [
@@ -76,7 +80,10 @@ import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.
     MatListModule,
     FlexLayoutModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBhhn-SgQJin5c_6vFZg6jTriwBxQYuoJg'
+    })
   ],
   providers: [DataService],
   bootstrap: [AppComponent],

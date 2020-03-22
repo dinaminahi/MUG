@@ -14,7 +14,13 @@
       "photoUrl": "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg"
     },
     "description": "Шукаю хорошу компанію на суботу вечір на \"Уно\", збираємось в мене вдома. З мене піца, з вас - пиво",
-    "location": "491 Del Monte Lane Dyersburg, TN",
+    "location": {
+      "address": "491 Del Monte Lane Dyersburg, TN",
+      "geo": {
+        "longitude": -81.340390,
+        "latitude": 48.465860
+      }
+    },
     "dateTime": "06/08/2020",
     "duration": "2 - 3 години",
     "players": {
@@ -39,7 +45,13 @@
       "photoUrl": "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg"
     },
     "description": "Двоє студентів шукають ще +- 3 любителів теми \"Ктулху\" щоб пограти в неділю вдень настолку в кафе \"Дзига\"",
-    "location": "26 Rockwell Avenue Linden, NJ",
+    "location": {
+      "address":  "26 Rockwell Avenue Linden, NJ",
+      "geo": {
+        "longitude": -73.988870,
+        "latitude": 40.304760
+      }
+    },
     "dateTime": "06/08/2020",
     "duration": "до закриття кафе",
     "players": {
@@ -64,7 +76,13 @@
       "photoUrl": "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
     },
     "description": "Молода сім\"я, любителі настолок. Шукаємо подібну пару для спільного проведення вечора за грою. Можна прийти з дітьми, їх буде чим зайняти :)",
-    "location": "55 North Oxford Court Rolling Meadows, IL",
+    "location": {
+      "address": "55 North Oxford Court Rolling Meadows, IL",
+      "geo": {
+        "longitude": -88.025990,
+        "latitude": 42.078450
+      }
+    },
     "dateTime": "06/08/2020",
     "duration": "до 22:00",
     "players": {
