@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
 import { EventItem } from "../event-item/event-item";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class EventDetailInfoComponent implements OnInit {
  public eventId;
 
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -26,4 +27,7 @@ export class EventDetailInfoComponent implements OnInit {
      .subscribe((data: EventItem[]) => (this.events = data));
   }
 
+  gotoEvents() {
+    this.router.navigate(['/events']);
+  }
 }
