@@ -8,7 +8,9 @@
       <i class="far fa-clock"></i>
       {{ event?.dateTime | date: "HH:mm" }}</span
     >
-    <span class="heart"><i class="fas fa-heart"></i></span>
+
+    <!-- <span class="heart"><i class="fas fa-heart"></i></span> -->
+    <app-add-to-favorites></app-add-to-favorites>
   </div>
   <section class="text-center mx-md-4 dark-grey-text">
     <div class="image-wrap view overlay">

@@ -1,19 +1,28 @@
-<div class="game-item">
-  <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
-  <h2>{{ game?.name }}</h2>
-  <h3>Категорія: {{ game?.category }}</h3>
-  <p>{{ game?.description }}</p>
-  <div>
-    <p>Мінімальний вік гравців: {{ game?.playersMinAge }}</p>
-    <p>
-      Кількість гравців: {{ game?.playersCount.min }} -
-      {{ game?.playersCount.max }}
-    </p>
-    <p>
-      Час гри: {{ game?.playTimeMinutes.min }} - {{ game?.playTimeMinutes.max }}
-    </p>
-    <p>
-      <a>Інструкція: {{ game?.instructionUrl }}</a>
-    </p>
+<div class="game-item container">
+  <div class="img">
+    <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
   </div>
+  <section class="wraper-text">
+    <h2 class="font-weight-bold">{{ game?.name }}</h2>
+    <h3><b>Категорія: </b>{{ game?.category }}</h3>
+
+    <div class="description">{{ game?.description }}</div>
+    <div>
+      <div>Мінімальний вік гравців: {{ game?.playersMinAge }}</div>
+      <div>
+        Кількість гравців: {{ game?.playersCount.min }} -
+        {{ game?.playersCount.max }}
+      </div>
+      <div>
+        Час гри: {{ game?.playTimeMinutes.min }} -
+        {{ game?.playTimeMinutes.max }}
+      </div>
+      <div>
+        <a>Інструкція: {{ game?.instructionUrl }}</a>
+      </div>
+    </div>
+    <a class="btn btn-amber btn-md ml-0" href="#" role="button"
+      >Play thise game<i class="fas fa-trophy ml-2"></i
+    ></a>
+  </section>
 </div>

@@ -37,6 +37,7 @@ import { GameComponent } from "./game/game.component";
 import { EventItemComponent } from "./event-item/event-item.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
+import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ParticipantsCountComponent } from "./participants-count/participants-co
     GameComponent,
     EventItemComponent,
     EventDetailInfoComponent,
-    ParticipantsCountComponent
+    ParticipantsCountComponent,
+    AddToFavoritesComponent
   ],
   imports: [
     BrowserModule,

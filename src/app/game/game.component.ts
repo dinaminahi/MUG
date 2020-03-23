@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Url } from "url";
-
+// import { Router } from "@angular/router";
 import { from } from "rxjs";
 
 import { HttpClient } from "@angular/common/http";
@@ -12,7 +12,7 @@ import { Game } from "./game";
   styleUrls: ["./game.component.scss"]
 })
 export class GameComponent implements OnInit {
-  game: Game;
+  @Input() game: Game;
 
   constructor(private http: HttpClient) {}
 

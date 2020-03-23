@@ -59,7 +59,7 @@
       "description": "Тематична версія знаменитої гри «Каркассон», переносить учасників в джунглі Південної Америки - Carcassonne: Amazonas. Базові принципи гри залишилися колишніми, але з'явилося одне нововведення, яке робить гру не схожою на інші «Каркассони» - це гонка по річці Амазонці.",
       "playersMinAge": 8,
       "playersCount": { "min": 2, "max": 5 },
-      "playTimeMinutes": { "min": 30, "max": 45 },
+      "playTimeMinutes": { "min": 35, "max": 45 },
       "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-karkasson.-amazonka-na-russkom-jazyke_53578135.pdf",
       "photoUrl": "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
     },
