@@ -36,6 +36,9 @@ import { LayoutHeroComponent } from './layout/layout-hero/layout-hero.component'
 import { GameComponent } from "./game/game.component";
 import { EventItemComponent } from './event-item/event-item.component';
 import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
+import { FilterCategoryComponent } from './filter-category/filter-category.component';
+import { EventsFilterPipe } from './events-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -61,8 +64,9 @@ import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.
     LayoutHeroComponent,
     GameComponent,
     EventItemComponent,
-    EventDetailInfoComponent
-
+    EventDetailInfoComponent,
+    FilterCategoryComponent,
+    EventsFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.
     MatListModule,
     FlexLayoutModule,
     HttpClientModule,
+    FormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [DataService],

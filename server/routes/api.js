@@ -19,11 +19,15 @@ const gameSchema = {
 const connection = closure => {
   const uri =
     "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority";
-  return MongoClient.connect(uri, (err, client) => {
-    if (err) return console.log(err);
-    let db = client.db("MUG-DB");
-    closure(db);
-  });
+  return MongoClient.connect(
+    uri,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    (err, client) => {
+      if (err) return console.log(err);
+      let db = client.db("MUG-DB");
+      closure(db);
+    }
+  );
 };
 
 // Error handling
@@ -40,7 +44,76 @@ let response = {
   message: null
 };
 
-// Get users
+// Get events
+
+router.get("/events_extended/:eventId", (req, res) => {
+  let eventId = Number(req.params.eventId);
+  connection(db => {
+    db.collection("events")
+      .aggregate([  
+        { $match: { id: eventId } },
+        {
+          $lookup: {
+            from: "games",
+            localField: "gameId",
+            foreignField: "id",
+            as: "game"
+          }
+        },
+        { $unwind : "$game" }
+      ])
+      .next()      
+      .then(events => {
+        response.data = events;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.get("/events_extended", (req, res) => {
+  connection(db => {
+    db.collection("events")
+      .aggregate([
+        {
+          $lookup: {
+            from: "games",
+            localField: "gameId",
+            foreignField: "id",
+            as: "game"
+          }
+        },
+        { $unwind : "$game" }
+      ])
+      .toArray()
+      .then(events => {
+        response.data = events;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.get("/events/:eventId", (req, res) => {
+  let eventId = Number(req.params.eventId);
+  connection(db => {
+    db.collection("events")
+      .find({ id: eventId })
+      .toArray()
+      .then(events => {
+        response.data = events;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
+});
+
 router.get("/events", (req, res) => {
   connection(db => {
     db.collection("events")
