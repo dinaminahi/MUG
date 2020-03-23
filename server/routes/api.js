@@ -50,7 +50,7 @@ router.get("/events_extended/:eventId", (req, res) => {
   let eventId = Number(req.params.eventId);
   connection(db => {
     db.collection("events")
-      .aggregate([  
+      .aggregate([
         { $match: { id: eventId } },
         {
           $lookup: {
@@ -60,9 +60,9 @@ router.get("/events_extended/:eventId", (req, res) => {
             as: "game"
           }
         },
-        { $unwind : "$game" }
+        { $unwind: "$game" }
       ])
-      .next()      
+      .next()
       .then(events => {
         response.data = events;
         res.json(response);
@@ -85,7 +85,7 @@ router.get("/events_extended", (req, res) => {
             as: "game"
           }
         },
-        { $unwind : "$game" }
+        { $unwind: "$game" }
       ])
       .toArray()
       .then(events => {
@@ -121,6 +121,35 @@ router.get("/events", (req, res) => {
       .toArray()
       .then(events => {
         response.data = events;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.get("/categories", (req, res) => {
+  connection(db => {
+    db.collection("games")
+      .aggregate([
+        { $group: { _id: null, category: { $addToSet: "$category" } } },
+        {
+          $addFields: {
+            category: {
+              $reduce: {
+                input: "$category",
+                initialValue: [],
+                in: { $setUnion: ["$$value", "$$this"] }
+              }
+            }
+          }
+        },
+        { $project: { _id: 0, category: "$category" } }
+      ])
+      .next()
+      .then(categories => {
+        response.data = categories;
         res.json(response);
       })
       .catch(err => {

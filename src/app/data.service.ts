@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class DataService {
+  categories: string[];
   events: EventItem[];
   event: EventItem;
   constructor(private _http: HttpClient) {}
@@ -15,7 +16,7 @@ export class DataService {
       .get<{ status: number; data: EventItem; message: string }>(
         `/api/events_extended/${id}`
       )
-      .pipe(map(event => (this.event = event.data)));
+      .pipe(map(response => (this.event = response.data)));
   }
 
   public getEvents(): Observable<EventItem[]> {
@@ -23,6 +24,14 @@ export class DataService {
       .get<{ status: number; data: EventItem[]; message: string }>(
         "/api/events_extended"
       )
-      .pipe(map(events => (this.events = events.data)));
+      .pipe(map(response => (this.events = response.data)));
+  }
+
+  public getCategories(): Observable<string[]> {
+    return this._http
+      .get<{ status: number; data: {category: string[]}; message: string }>(
+        "/api/categories"
+      )
+      .pipe(map(response => (this.categories = response.data.category)));
   }
 }
