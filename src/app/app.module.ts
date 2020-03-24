@@ -34,6 +34,9 @@ import { LayoutEventsRuletteComponent } from "./layout/layout-events-rulette/lay
 import { HowItWorksComponent } from "./layout/how-it-works/how-it-works.component";
 import { LayoutHeroComponent } from "./layout/layout-hero/layout-hero.component";
 import { GameComponent } from "./game/game.component";
+import { FilterCategoryComponent } from "./filter-category/filter-category.component";
+import { EventsFilterPipe } from "./events-filter.pipe";
+import { FormsModule } from "@angular/forms";
 import { EventItemComponent } from "./event-item/event-item.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
@@ -63,6 +66,8 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     GameComponent,
     EventItemComponent,
     EventDetailInfoComponent,
+    FilterCategoryComponent,
+    EventsFilterPipe,
     ParticipantsCountComponent,
     AddToFavoritesComponent
   ],
@@ -78,6 +83,7 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     MatListModule,
     FlexLayoutModule,
     HttpClientModule,
+    FormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [DataService],

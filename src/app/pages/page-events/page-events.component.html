@@ -1,8 +1,12 @@
 <p>page-events works!</p>
-<div class="container">
-  <div class="event-list">
+<div class="container row">
+  <div class="filters col-3">
+    <h3>Filters</h3>
+    <app-filter-category [options]="categories" (toggle)="onCategoriesChange($event)"></app-filter-category>
+  </div>
+  <div class="event-list col-9">
     <div class="row">
-      <div class="col-lg-4 col-md-6" *ngFor="let event of events">
+      <div class="col-lg-4 col-md-6" *ngFor="let event of events | eventsFilter:selectedCategories">
         <app-event-item [event]="event"></app-event-item>
       </div>
     </div>
