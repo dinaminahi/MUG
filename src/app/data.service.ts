@@ -11,8 +11,7 @@ export class DataService {
   constructor(private _http: HttpClient) {}
 
   getEvents() {
-    return this._http
-      .get("assets/events-extended.json");
+    return this._http.get("assets/events-extended.json");
     //  .subscribe((data: EventItem[]) => (this.events = data));
 
     //     return this._http.get<{status: number, data: [], message: string }>("/api/events").pipe(

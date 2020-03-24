@@ -24,19 +24,20 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
-import { CarouselComponent } from './carousel/carousel.component';
-import { HttpClientModule } from '@angular/common/http';
-import { DataService } from './data.service';
-import { LayoutContactsComponent } from './layout/layout-contacts/layout-contacts.component';
-import { LayoutTeamComponent } from './layout/layout-team/layout-team.component';
-import { LayoutFeaturesComponent } from './layout/layout-features/layout-features.component';
-import { LayoutEventsRuletteComponent } from './layout/layout-events-rulette/layout-events-rulette.component';
-import { HowItWorksComponent } from './layout/how-it-works/how-it-works.component';
-import { LayoutHeroComponent } from './layout/layout-hero/layout-hero.component';
+import { CarouselComponent } from "./carousel/carousel.component";
+import { HttpClientModule } from "@angular/common/http";
+import { DataService } from "./data.service";
+import { LayoutContactsComponent } from "./layout/layout-contacts/layout-contacts.component";
+import { LayoutTeamComponent } from "./layout/layout-team/layout-team.component";
+import { LayoutFeaturesComponent } from "./layout/layout-features/layout-features.component";
+import { LayoutEventsRuletteComponent } from "./layout/layout-events-rulette/layout-events-rulette.component";
+import { HowItWorksComponent } from "./layout/how-it-works/how-it-works.component";
+import { LayoutHeroComponent } from "./layout/layout-hero/layout-hero.component";
 import { GameComponent } from "./game/game.component";
-import { EventItemComponent } from './event-item/event-item.component';
-import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
-
+import { EventItemComponent } from "./event-item/event-item.component";
+import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
+import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
+import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +62,9 @@ import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.
     LayoutHeroComponent,
     GameComponent,
     EventItemComponent,
-    EventDetailInfoComponent
-
+    EventDetailInfoComponent,
+    ParticipantsCountComponent,
+    AddToFavoritesComponent
   ],
   imports: [
     BrowserModule,
