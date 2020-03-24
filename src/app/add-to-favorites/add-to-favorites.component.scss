@@ -1,0 +1,12 @@
+.heart {
+  cursor: pointer;
+  font-size: 25px;
+  position: absolute;
+  color: #3a3535;
+  margin-left: 20px;
+}
+
+.heart:hover,
+.heart:active {
+  color: red;
+}

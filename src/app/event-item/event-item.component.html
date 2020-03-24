@@ -1,28 +1,72 @@
 <div class="event-item  my-3 z-depth-1">  
   <div class="event-header text-center  mx-md-4 dark-grey-text">
-    <span>Дата: {{ event?.dateTime | date: "yyyy.MM.dd" }}</span>
-    <span>Час: {{ event?.dateTime | date: "HH:mm:ss" }}</span>
-    <span>Локація: {{ event?.location }}</span>
+    <span
+      ><i class="far fa-calendar-alt"></i>
+      {{ event?.dateTime | date: "dd.MM.yyyy" }}</span
+    >
+    <span>
+      <i class="far fa-clock"></i>
+      {{ event?.dateTime | date: "HH:mm" }}</span
+    >
+
+    <!-- <span class="heart"><i class="fas fa-heart"></i></span> -->
+    <app-add-to-favorites></app-add-to-favorites>
   </div>
   <section class="text-center mx-md-4 dark-grey-text">
     <div class="image-wrap view overlay">
       <img [src]="event?.game?.photoUrl" alt="" />
     </div>
+    <div class="attenders-icons">
+      <app-participants-count
+        [count]="event?.players.count"
+      ></app-participants-count>
+    </div>
     <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
 
-    <div class="description text-muted">{{ event?.description }}</div>
-
-    <button class="btn btn-info btn-md waves-effect">JOIN</button>
-    <button (click)="onSelect(event)" class="btn btn-info btn-md waves-effect">MORE INFO</button>
+    <button class="btn">JOIN</button>
+    <button (click)="onSelect(event)" class="btn">
+      MORE INFO
+    </button>
   </section>
   <div class="players  text-center dark-grey-text">
-    <span class="age">
-      age: {{ event?.players.age.min }} - {{ event?.players.age.max }}
-    </span>
-    <span class="count">
-      count: {{ event?.players.count.min }} - {{ event?.players.count.max }};
-    </span>
-    <span>current: {{ event?.players.current }}</span>
-    <span>invitationList: {{ event?.players.invitationList }}</span>
+    <span
+      ><i class="fas fa-map-marker" title="Локація"></i>
+      {{ event?.location }}</span
+    >
+    <div class="description z-depth-1 text-muted">
+      <div>
+        {{ event?.description }}
+      </div>
+
+      <div class="footer-meta text-left">
+        <div>
+          <span class="label">
+            <i class="far fa-clock" title="Тривалісь зустрічі"></i>Тривалісь
+            зустрічі:</span
+          ><b> {{ event?.duration }}</b>
+        </div>
+        <div class="age">
+          <span class="label">
+            <i class="fas fa-baby"></i>
+            <i class="fas fa-child" title="Вік гравців"></i> Вік гравців:</span
+          ><b> {{ event?.players.age.min }} - {{ event?.players.age.max }}</b>
+        </div>
+        <div class="count">
+          <span class="label">
+            <i class="fas fa-users" title="Кількість гравців"></i> Кількість
+            гравців:</span
+          ><b>
+            {{ event?.players.count.min }} - {{ event?.players.count.max }}</b
+          >
+        </div>
+        <div class="organizer">
+          <span class="label">
+            <i class="far fa-address-card" title="Організатор"></i
+            >Організатор:</span
+          ><b> Джавала Любомира</b>
+          <!-- organizer: {{ event?.players.organizer }} -->
+        </div>
+      </div>
+    </div>
   </div>
 </div>
