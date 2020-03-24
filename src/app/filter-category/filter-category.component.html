@@ -1,6 +1,27 @@
-<div class="filter-name">Категрія</div>
-<div>
-  <div *ngFor="let item of options">
-    <label><input type="checkbox" [(ngModel)]="item.checked" (change)="onToggle()" /> {{ item.label }}</label>
+<div class="filter-block">
+  <button
+    mdbBtn
+    color="secondary"
+    class="waves-light btn-light btn-block arrow-r"
+    type="button"
+    (click)="filterList.toggle()"
+    mdbWavesEffect
+  >
+    Категорія
+  </button>
+
+  <div class="filter-body-wrapper" mdbCollapse [isCollapsed]="false" #filterList="bs-collapse">
+    <div class="filter-body">
+      <div *ngFor="let item of options">
+        <label
+          ><input
+            type="checkbox"
+            [(ngModel)]="item.checked"
+            (change)="onToggle()"
+          />
+          {{ item.label }}</label
+        >
+      </div>
+    </div>
   </div>
 </div>

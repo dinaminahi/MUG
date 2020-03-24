@@ -2,12 +2,14 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
+import { Game } from "./game/game";
 import { Observable } from "rxjs";
 
 @Injectable()
 export class DataService {
   categories: string[];
   events: EventItem[];
+  games: Game[];
   event: EventItem;
   constructor(private _http: HttpClient) {}
 
@@ -29,9 +31,15 @@ export class DataService {
 
   public getCategories(): Observable<string[]> {
     return this._http
-      .get<{ status: number; data: {category: string[]}; message: string }>(
+      .get<{ status: number; data: { category: string[] }; message: string }>(
         "/api/categories"
       )
       .pipe(map(response => (this.categories = response.data.category)));
+  }
+
+  public getGames(): Observable<Game[]> {
+    return this._http
+      .get<{ status: number; data: Game[]; message: string }>("/api/games")
+      .pipe(map(response => (this.games = response.data)));
   }
 }

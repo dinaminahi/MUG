@@ -158,4 +158,19 @@ router.get("/categories", (req, res) => {
   });
 });
 
+router.get("/games", (req, res) => {
+  connection(db => {
+    db.collection("games")
+      .find()
+      .toArray()
+      .then(games => {
+        response.data = games;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
+});
+
 module.exports = router;
