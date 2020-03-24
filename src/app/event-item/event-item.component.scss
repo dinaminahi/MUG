@@ -37,6 +37,15 @@
   span + span {
     margin-left: 20px;
   }
+
+  span {
+    position: relative;
+  }
+
+  .heart-icon {
+    position: absolute;
+    top: -3px;
+  }
 }
 
 .attenders-icons {
