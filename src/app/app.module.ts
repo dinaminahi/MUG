@@ -41,6 +41,7 @@ import { EventItemComponent } from "./event-item/event-item.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
 import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.component';
+import { GameDetailInfoComponent } from './game-detail-info/game-detail-info.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     FilterCategoryComponent,
     EventsFilterPipe,
     ParticipantsCountComponent,
-    AddToFavoritesComponent
+    AddToFavoritesComponent,
+    GameDetailInfoComponent
   ],
   imports: [
     BrowserModule,

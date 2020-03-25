@@ -1,12 +1,28 @@
-<div class="container">
+<!-- <div class="container">
   <div class="games-list">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-lg-4 col-md-6">
+        <app-game></app-game>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <app-game></app-game>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <app-game></app-game>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <app-game></app-game>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <app-game></app-game>
+      </div>
+      <div class="col-lg-4 col-md-6">
         <app-game></app-game>
       </div>
     </div>
   </div>
-</div>
-<!-- <div class="col-lg-4 col-md-6" *ngFor="let game of games">
-  <app-game [game]="game"></app-game>
 </div> -->
+
+<div class="col-lg-4 col-md-6" *ngFor="let game of games">
+  <app-game [game]="game"></app-game>
+</div>

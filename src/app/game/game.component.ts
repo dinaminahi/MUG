@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Url } from "url";
-// import { Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { from } from "rxjs";
-
 import { HttpClient } from "@angular/common/http";
 import { Game } from "./game";
 
@@ -14,11 +13,15 @@ import { Game } from "./game";
 export class GameComponent implements OnInit {
   @Input() game: Game;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.http
       .get("assets/game-object.json")
       .subscribe((data: Game) => (this.game = data));
+  }
+
+  onSelect(game) {
+    this.router.navigate(["/games", game.id]);
   }
 }

@@ -38,6 +38,7 @@
     padding: 20px 20px 10px;
     font-size: 1.5rem;
     background: #f4f4f4;
+    z-index: 10;
   }
 }
 
@@ -112,17 +113,18 @@
 }
 .game-meta {
   background: #f4f4f4;
-  padding: 15px 20px;
+  padding: 15px;
   margin: 0 -20px 0;
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-around;
 
   & > div {
     padding-bottom: 30px;
     white-space: nowrap;
 
     & + div {
-      margin-left: 40px;
+      margin-left: 25px;
     }
   }
 
@@ -149,8 +151,23 @@
   }
 }
 
-.description {
-  padding: 20px 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #f4f4f4;
+.button {
+  display: inline-block;
+  margin: 10px;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
 }
+
+.button:hover {
+  background-color: #ff7315;
+  color: e7e7e7;
+  border: 2px solid #e7e7e7;
+  z-index: 2;
+}
+
+// .description {
+//   padding: 20px 0;
+//   margin-bottom: 20px;
+//   border-bottom: 1px solid #f4f4f4;
+// }

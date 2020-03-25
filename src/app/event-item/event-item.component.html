@@ -1,4 +1,4 @@
-<div class="event-item  my-3 z-depth-1">  
+<div class="event-item  my-3 z-depth-1">
   <div class="event-header text-center  mx-md-4 dark-grey-text">
     <span
       ><i class="far fa-calendar-alt"></i>
@@ -14,7 +14,7 @@
       <app-add-to-favorites class="heart-icon"></app-add-to-favorites>
     </span>
   </div>
-  <section class="text-center mx-md-4 dark-grey-text">
+  <section class="text-center dark-grey-text">
     <div class="image-wrap view overlay">
       <img [src]="event?.game?.photoUrl" alt="" />
     </div>
@@ -25,8 +25,8 @@
     </div>
     <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
 
-    <button class="btn">JOIN</button>
-    <button (click)="onSelect(event)" class="btn">
+    <button class="btn btn-primary">JOIN</button>
+    <button (click)="onSelect(event)" class="btn btn-primary">
       MORE INFO
     </button>
   </section>

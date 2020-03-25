@@ -2,7 +2,7 @@
   <div class="category-icons">
     <!-- {{ game?.category }} -->
     <i class="fas fa-dice-five"></i>
-    <i class="fas fa-dragon"></i>
+    <!-- <i class="fas fa-dragon"></i> -->
     <i class="fas fa-dungeon"></i>
     <i class="fas fa-balance-scale"></i>
     <span class="arrow"></span>
@@ -45,7 +45,13 @@
       </div>
     </div>
 
-    <div class="description">{{ game?.description }}</div>
-    <a class="btn btn-primary" href="#" role="button">More info</a>
+    <!-- <div class="description">{{ game?.description }}</div> -->
+    <!-- <div class="button"> -->
+    <button (click)="onSelect(game)" class="btn btn-primary">
+      MORE INFO
+    </button>
+    <!-- </div> -->
   </section>
 </div>
+
+<!-- (click)="onSelect(event)" -->
