@@ -15,7 +15,7 @@ export class PageGamesComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get("assets/events-extended.json")
+      .get("assets/game-object.json")
       .subscribe((data: Game[]) => (this.games = data));
   }
 }

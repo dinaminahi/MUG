@@ -20,7 +20,7 @@ export class GameDetailInfoComponent implements OnInit {
     let id = parseInt(this.route.snapshot.paramMap.get("id"));
     this.gameId = id;
     this.http
-      .get("assets/events-extended.json")
+      .get("assets/game-object.json")
       .subscribe((data: Game[]) => (this.games = data));
   }
 }
