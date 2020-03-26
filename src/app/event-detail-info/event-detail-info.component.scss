@@ -1,93 +1,110 @@
-
 h2 {
-    font-size: 38px;
+  font-size: 38px;
 }
 
 h1 {
-    font-size: 38px;
-    font-weight: bold;
+  font-size: 38px;
+  font-weight: bold;
 }
 
 h5 {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .main-header {
-    background-image: url('https://cdn.thewirecutter.com/wp-content/uploads/2018/03/boardgamesforadults-2x1-7452.jpg');
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: cover;
-    height: 40vh;
-    position: relative;
-    z-index: 0;
-  }
-
-  .event-detail {
-      border-radius: 10px;
-      box-shadow: 0px 0px 23px -6px rgba(0,0,0,0.45);
-      position: relative;
-      margin-top: -60px;
-      z-index: 1;
-      background-color: white;
-      color: #1A1B1E;
-
-      .event-icon {
-          color: #ff3860;
-      }
-      
-      p {
-          color: #c7c7d6;
-      }
-      
-      .fa-facebook-square, .fa-instagram, .fa-twitter-square, .fa-linkedin{
-          color: #1A1B1E;
-      }
-  }
-
-  .subscribe {
-    .add-btn {
-        background:linear-gradient(to right, #ff3860 5%, #ffc08f 100%);
-        background-color:#ff3860;
-        border-radius:28px;
-        border: none;
-        display:inline-block;
-        cursor:pointer;
-        color:#ffffff;
-        font-family:Arial;
-        font-size:17px;
-        padding:15px 76px;
-        text-decoration:none;
-    }
-    .add-btn:hover {
-        background:linear-gradient(to right, #ffc08f 5%, #ff3860 100%);
-        background-color:#ffc08f;
-    }
-    .add-btn:active {
-        position:relative;
-        top:1px;
-    }
-  }
-
-.event-description {
-    margin: 80px auto;
-    color: #1A1B1E;
+  background-image: url("https://cdn.thewirecutter.com/wp-content/uploads/2018/03/boardgamesforadults-2x1-7452.jpg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  height: 40vh;
+  position: relative;
+  z-index: 0;
 }
 
+.event-detail {
+  border-radius: 10px;
+  box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.45);
+  position: relative;
+  margin-top: -60px;
+  z-index: 1;
+  background-color: white;
+  color: #1a1b1e;
 
-.organisor {
+  .goToGame-btn {
+     color: #c7c7d6;
+     text-decoration: underline;
+     font-size: 14px;
+     font-weight: normal;
+  }
+  .event-icon {
+    color: #ff3860;
+  }
+
+  p {
+    color: #c7c7d6;
+  }
+
+  .fa-facebook-square,
+  .fa-instagram,
+  .fa-twitter-square,
+  .fa-linkedin {
+    color: #1a1b1e;
+  }
+}
+
+.subscribe {
+  .add-btn {
+    background: linear-gradient(to right, #ff3860 5%, #ffc08f 100%);
+    background-color: #ff3860;
+    border-radius: 28px;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 15px 76px;
+    text-decoration: none;
+  }
+  .add-btn:hover {
+    background: linear-gradient(to right, #ffc08f 5%, #ff3860 100%);
+    background-color: #ffc08f;
+  }
+  .add-btn:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+.event-description {
+  margin: 80px auto;
+  color: #1a1b1e;
+
+  p {
+    color: #c7c7d6;
+  }
+
+  .event-description-text,
+  span {
+    color: #1a1b1e;
+  }
+
+  .back-btn {
+    color: #007bff;
+  }
+
+  .organisor {
     border-radius: 10px;
-    box-shadow: 0px 0px 23px -6px rgba(0,0,0,0.15);
-    color: #1A1B1E;
+    box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.15);
 
-     img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-      }
-      p {
-          color: #c7c7d6;
-        margin-bottom: 0;
-      }
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    p {
+      margin-bottom: 0;
+    }
 
       h3 {
           font-size: 20px;
@@ -104,4 +121,5 @@ h5 {
     }
 
     margin-bottom: 50px;
+}
 }

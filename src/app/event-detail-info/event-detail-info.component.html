@@ -2,52 +2,67 @@
     <div class="main-header"></div>
 </header>
 
+<<<<<<< HEAD
 
         <div class="event-detail container">
             <div class="row">
                 <div class="col-sm-8 pl-5 py-5">
                     <h1 class="title mb-4">{{ expectedEvent.eventName }}</h1>
+=======
+<div *ngFor="let event of events">
+    <div *ngIf="eventId === event.id" class="m-4">
+        <div class="event-detail container">
+            <div class="row">
+                <div class="col-sm-8 pl-5 py-5">
+                    <h1 class="title mb-4">{{ event.eventName }}   <a href="#" class="goToGame-btn">about game</a></h1> 
+                   
+>>>>>>> event-full-item2
                     <p><i class="fas fa-clock event-icon mr-2 fa-lg"></i>Date and time</p>
                     <h3 class="mb-4">{{ expectedEvent.dateTime }}</h3>
                     <p><i class="fas fa-map-marker-alt event-icon mr-2 fa-lg"></i>Address</p>
                     <h3>{{ expectedEvent.location.address }}</h3>
                     <p class="mt-5">Share with friends</p>
-                    <p><i class="fab fa-facebook-square fa-2x mr-3"></i><i class="fab fa-instagram fa-2x mr-3"></i><i class="fab fa-twitter-square fa-2x mr-3"></i><i class="fab fa-linkedin fa-2x"></i></p>
+                    <p><i class="fab fa-facebook-square fa-2x mr-3"></i><i class="fab fa-instagram fa-2x mr-3"></i><i
+                            class="fab fa-twitter-square fa-2x mr-3"></i><i class="fab fa-linkedin fa-2x"></i></p>
                 </div>
                 <div class="col-sm-4 pr-5  position-relative subscribe my-auto">
                     <h2 class="text-center mb-4">Subscribe now</h2>
                     <p class="text-center">Click to add to your calendar</p>
                     <div class="text-center mt-4">
-                        <button class="add-btn">Add to calendar</button>
+                        <button class="add-btn mb-5">Add to calendar</button>
                     </div>
                 </div>
-              </div>
+            </div>
         </div>
         <div class="container event-description">
             <div class="row">
-                <div class="col-sm-8 pl-5 py-5">
+                <div class="col-sm-8 pl-3 py-5">
                     <h2>Event details</h2>
-                    <p >{{expectedEvent.description}}</p>
-                    <h5 class="mt-4">Age of players</h5>
-                    <p class="pl-3">{{ expectedEvent.players.age.min }} - {{ expectedEvent.players.age.max }}</p>
-                    <h5 class="mt-4">Amount of players</h5>
-                    <p class="pl-3">{{ expectedEvent.players.count.min }} - {{ expectedEvent.players.count.max }}</p>
-                    <h5 class="mt-4">Do you need experience for this event?</h5>
-                    <p class="pl-3">{{ expectedEvent.players.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</p>
+                    <p class="event-description-text">{{event.description}}</p>
+                    <p class="mt-4">Age of players: <span class="pl-4">{{ event.players.age.min }} -
+                            {{ event.players.age.max }}</span></p>
+                    <p class="mt-2">Amount of players: <span class="pl-4">{{ event.players.count.min }} -
+                            {{ event.players.count.max }}</span></p>
+                    <p class="mt-2">Event duration: <span class="pl-4">{{ event.duration }}</span></p>
+                    <p class="mt-2">Do you need experience for this event?<span
+                            class="pl-4">{{ event.players.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
+                    </p>
                 </div>
                 <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">
-                    <img class="mr-4" src="https://i.pinimg.com/280x280_RS/6a/c9/71/6ac9713db5467404cf7bdfd86817c7ae.jpg" align="left"  alt="Photo of event author">
-                     <p>Event organiser</p>
-                     <h3>Grechukh Diana</h3>
-                     <p class="mt-5">Phone number</p>
-                     <p class="mb-3"><a href="#">+380978658585</a></p>
-                     <p>Email</p>
-                     <p class="mb-3"><a href="#">Diankagrechukh@gmail.com</a></p>
-                     <p>Website</p>
-                     <p><a  href="www.google.com">My site</a></p>
+                    <img class="mr-4"
+                        src="https://i.pinimg.com/280x280_RS/6a/c9/71/6ac9713db5467404cf7bdfd86817c7ae.jpg" align="left"
+                        alt="Photo of event author">
+                    <p>Event organiser</p>
+                    <h3>Grechukh Diana</h3>
+                    <p class="mt-5">Phone number</p>
+                    <p class="mb-3"><a href="#">+380978658585</a></p>
+                    <p>Email</p>
+                    <p class="mb-3"><a href="#">Diankagrechukh@gmail.com</a></p>
+                    <p>Website</p>
+                    <p><a href="www.google.com">My site</a></p>
                 </div>
-              </div>
-           
+            </div>
+            <a class="mt-4 back-btn" (click)="gotoEvents()">Back</a>
         </div>
         <div class="container map pb-5 px-0">
          <app-map [geo]="geo"></app-map>
