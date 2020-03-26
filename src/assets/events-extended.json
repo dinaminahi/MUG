@@ -76,7 +76,13 @@
       "photoUrl": "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
     },
     "description": "Молода сім\"я, любителі настолок. Шукаємо подібну пару для спільного проведення вечора за грою. Можна прийти з дітьми, їх буде чим зайняти :)",
-    "location": "55 North Oxford Court Rolling Meadows, IL",
+    "location": {
+      "address": "55 North Oxford Court Rolling Meadows, IL",
+      "geo": {
+        "longitude": -88.025990,
+        "latitude": 42.078450
+      }
+    },
     "dateTime": "2020-03-01T10:45:00",
     "duration": "до 22:00",
     "players": {
@@ -88,6 +94,7 @@
   },
   {
     "id": 4,
+    "eventName": "Merchant game",
     "game": {
       "id": 5,
       "name": "Merchant Cove",
@@ -100,7 +107,13 @@
       "photoUrl": "https://boardgameshop.nl/wp-content/uploads/2019/09/Merchants-Cove-Overview.png"
     },
     "description": "В Merchant Cove кожен гравець намагається стати найуспішнішим торговцем в місті. Для цього ви повинні виробляти ті товари, які будуть користуватися попитом, опинятися в потрібному місці в потрібний час, а часом і вдаватися до допомоги осіб з сумнівною репутацією (за що потім доведеться заплатити ...). У нашій базовій версії буде 4 торговця - Коваль, Алхімік, Хрономансер і Капітан. Цікаво? Приєднюйся до нас!",
-    "location": "м.Львів, проспект Шевченка, 28",
+    "location": {
+      "address": "55 North Oxford Court Rolling Meadows, IL",
+      "geo": {
+        "longitude": -88.025990,
+        "latitude": 42.078450
+      }
+    },
     "dateTime": "2020-03-01T19:15:00",
     "duration": "2 - 3 години",
     "players": {
@@ -112,6 +125,7 @@
   },
   {
     "id": 5,
+    "eventName": "Pangea game",
     "game": {
       "id": 3,
       "name": "Pangea",
@@ -124,7 +138,13 @@
       "photoUrl": "https://cf.geekdo-images.com/imagepage/img/csI-RZK_pGFRQ9MWnXrIq3bgxQ0=/fit-in/900x600/filters:no_upscale()/pic4644345.jpg"
     },
     "description": "Хочете забезпечити виживання свого виду в ході Масового пермського вимирання. Тоді вам до нас!",
-    "location": "м.Львів, проспект Свободи, 15",
+    "location": {
+      "address": "55 North Oxford Court Rolling Meadows, IL",
+      "geo": {
+        "longitude": -88.025990,
+        "latitude": 42.078450
+      }
+    },
     "dateTime": "2020-04-18T18:30:00",
     "duration": "до закриття кафе",
     "players": {
@@ -136,6 +156,7 @@
   },
   {
     "id": 6,
+    "eventName": "Root",
     "game": {
       "id": 2,
       "name": "Root",
@@ -148,7 +169,13 @@
       "photoUrl": "https://cache.escapistmagazine.com/2019/07/08084352/Card-Fan-Hi-rez-e1562596062659.jpg"
     },
     "description": "Ліс став занадто гамірним місцем. Тому туди увійшли війська Маркіси де Коте, щоб втихомирити голосистих пташок та галасливих звіряток. Багатьом це не сподобалося, і почалася неабияка сутичка. Ви з нами?",
-    "location": "м. Львів, проспект В'ячеслава Чорновола, 2Б",
+    "location": {
+      "address": "55 North Oxford Court Rolling Meadows, IL",
+      "geo": {
+        "longitude": -88.025990,
+        "latitude": 42.078450
+      }
+    },
     "dateTime": "2020-05-07T19:00:00",
     "duration": "до 23:00",
     "players": {
@@ -173,8 +200,14 @@
       "photoUrl": "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg"
     },
     "description": "Шукаю хорошу компанію на суботу вечір на \"Уно\", збираємось в мене вдома. З мене піца, з вас - пиво",
-    "location": "491 Del Monte Lane Dyersburg, TN",
-    "dateTime": "2020-03-01T10:45:00",
+    "location": {
+      "address": "55 North Oxford Court Rolling Meadows, IL",
+      "geo": {
+        "longitude": -88.025990,
+        "latitude": 42.078450
+      }
+    },
+   "dateTime": "2020-03-01T10:45:00",
     "duration": "2 - 3 години",
     "players": {
       "age": { "min": 25, "max": 35 },
@@ -198,7 +231,13 @@
       "photoUrl": "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg"
     },
     "description": "Двоє студентів шукають ще +- 3 любителів теми \"Ктулху\" щоб пограти в неділю вдень настолку в кафе \"Дзига\"",
-    "location": "26 Rockwell Avenue Linden, NJ",
+    "location": {
+      "address": "55 North Oxford Court Rolling Meadows, IL",
+      "geo": {
+        "longitude": -88.025990,
+        "latitude": 42.078450
+      }
+    },
     "dateTime": "2020-03-01T10:45:00",
     "duration": "до закриття кафе",
     "players": {

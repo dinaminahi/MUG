@@ -25,8 +25,9 @@ export class EventDetailInfoComponent implements OnInit {
      this.http
      .get("assets/events-extended.json")
      .subscribe((data: EventItem[]) => { 
-       this.expectedEvent = data.find(event => event.id = this.eventId);
+       this.expectedEvent = data.find(event => event.id === this.eventId);
        this.geo = this.expectedEvent.location.geo;
+       console.log(this.expectedEvent);
       });
   }
 
