@@ -1,57 +1,60 @@
-<div class="game-item container">
-  <div class="category-icons">
-    <!-- {{ game?.category }} -->
-    <i class="fas fa-dice-five"></i>
-    <!-- <i class="fas fa-dragon"></i> -->
-    <i class="fas fa-dungeon"></i>
-    <i class="fas fa-balance-scale"></i>
-    <span class="arrow"></span>
-  </div>
+<div class="game-item">
   <div class="favorite">
     <app-add-to-favorites></app-add-to-favorites>
   </div>
-  <div class="img">
-    <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
-  </div>
-  <section class="game-content">
-    <h2 class="game-title">
-      <span>{{ game?.name }}</span>
-    </h2>
-
-    <div class="game-meta text-left">
-      <div>
-        <span class="label">
-          <i class="far fa-clock" title="Тривалісь гри"></i>
-          <span class="label-text">Тривалісь гри</span>
-        </span>
-        <b>
-          {{ game?.playTimeMinutes.min }} - {{ game?.playTimeMinutes.max }}
-        </b>
-      </div>
-      <div class="age">
-        <span class="label">
-          <i class="fas fa-baby"></i>
-          <i class="fas fa-child" title="Мінімальний вік гравців"></i>
-          <span class="label-text">Мінімальний вік гравців</span>
-        </span>
-        <b>{{ game?.playersMinAge }}</b>
-      </div>
-      <div class="count">
-        <span class="label">
-          <i class="fas fa-users" title="Кількість гравців"></i>
-          <span class="label-text">Кількість гравців</span>
-        </span>
-        <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
-      </div>
+  <a href="javascript:void(0)" (click)="onSelect(game)" class="game-item-link">
+    <div class="category-icons">
+      <!-- {{ game?.category }} -->
+      <i class="fas fa-dice-five"></i>
+      <!-- <i class="fas fa-dragon"></i> -->
+      <i class="fas fa-dungeon"></i>
+      <i class="fas fa-balance-scale"></i>
+      <span class="arrow"></span>
     </div>
 
-    <!-- <div class="description">{{ game?.description }}</div> -->
-    <!-- <div class="button"> -->
-    <button (click)="onSelect(game)" class="btn btn-secondary btn-sm">
+    <div class="img-wrap">
+      <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
+    </div>
+    <section class="game-content">
+      <h2 class="game-title">
+        <span>{{ game?.name }}</span>
+      </h2>
+
+      <div class="game-meta text-left">
+        <div class="duration" title="Тривалісь гри">
+          <span class="label">
+            <i class="far fa-clock"></i>
+            <span class="label-text">Тривалісь гри</span>
+          </span>
+          <b>
+            {{ game?.playTimeMinutes.min }} - {{ game?.playTimeMinutes.max }}
+          </b>
+        </div>
+        <div class="age" title="Мінімальний вік гравців">
+          <span class="label">
+            <i class="fas fa-baby"></i>
+            <i class="fas fa-child"></i>
+            <span class="label-text">Мінімальний вік гравців</span>
+          </span>
+          <b>{{ game?.playersMinAge }}</b>
+        </div>
+        <div class="count" title="Кількість гравців">
+          <span class="label">
+            <i class="fas fa-users"></i>
+            <span class="label-text">Кількість гравців</span>
+          </span>
+          <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
+        </div>
+      </div>
+
+      <!-- <div class="description">{{ game?.description }}</div> -->
+      <!-- <div class="button"> -->
+      <!-- <button (click)="onSelect(game)" class="btn btn-secondary btn-sm">
       MORE INFO
-    </button>
-    <!-- </div> -->
-  </section>
+    </button> -->
+      <!-- </div> -->
+    </section>
+  </a>
 </div>
 
 <!-- (click)="onSelect(event)" -->
