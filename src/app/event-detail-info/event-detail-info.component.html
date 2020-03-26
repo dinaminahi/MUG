@@ -2,7 +2,6 @@
     <div class="main-header"></div>
 </header>
 
-
         <div class="event-detail container">
             <div class="row">
                 <div class="col-sm-8 pl-5 py-5">
@@ -28,14 +27,14 @@
             <div class="row">
                 <div class="col-sm-8 pl-3 py-5">
                     <h2>Event details</h2>
-                    <p class="event-description-text">{{event.description}}</p>
-                    <p class="mt-4">Age of players: <span class="pl-4">{{ event.players.age.min }} -
-                            {{ event.players.age.max }}</span></p>
-                    <p class="mt-2">Amount of players: <span class="pl-4">{{ event.players.count.min }} -
-                            {{ event.players.count.max }}</span></p>
-                    <p class="mt-2">Event duration: <span class="pl-4">{{ event.duration }}</span></p>
+                    <p class="event-description-text">{{expectedEvent.description}}</p>
+                    <p class="mt-4">Age of players: <span class="pl-4">{{ expectedEvent.players.age.min }} -
+                            {{ expectedEvent.players.age.max }}</span></p>
+                    <p class="mt-2">Amount of players: <span class="pl-4">{{ expectedEvent.players.count.min }} -
+                            {{ expectedEvent.players.count.max }}</span></p>
+                    <p class="mt-2">Event duration: <span class="pl-4">{{ expectedEvent.duration }}</span></p>
                     <p class="mt-2">Do you need experience for this event?<span
-                            class="pl-4">{{ event.players.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
+                            class="pl-4">{{ expectedEvent.players.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
                     </p>
                 </div>
                 <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">
