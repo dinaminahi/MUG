@@ -3,12 +3,12 @@ body,
 header,
 .view {
   height: 100%;
+
 }
 
 .btn {
   border-radius: 50px;
 }
-
 
 .bg {
   background-image: url("src/img/bg_x.jpg");
@@ -16,4 +16,20 @@ header,
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.section-button {
+  // padding-top: 5%;
+
+  p.font-size {
+    font-size: 25px;
+    line-height: 5vh;
+  }
+}
+
+h1 {
+  font-size: 90px;
+  line-height: 7vh;
+  -webkit-text-stroke: 2px black;
+  // padding-top: 7%;
 }
