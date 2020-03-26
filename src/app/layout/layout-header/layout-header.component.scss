@@ -1,7 +1,12 @@
-.navbar-brand {
-  padding-right: 3.5vw;
-}
+// .navbar-brand {
+//   padding-right: 3.5vw;
+// }
 
 li {
   padding: 0 0.5vw;
+  letter-spacing: 0.15rem;
+}
+
+.nav-link:hover {
+  opacity: 0.65;
 }
