@@ -1,55 +1,56 @@
 <!--Navbar-->
 
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark stylish-color-dark scrolling-navbar " mdbStickyHeader>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark stylish-color-dark scrolling-navbar" mdbStickyHeader>
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class=" navbar-brand" routerLink="/home" routerLinkActive="active">MUG</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="deep-orange-text navbar-brand" routerLink="/home" routerLinkActive="active">MUG</a>
+  </mdb-navbar-brand>
 
   <!-- Collapsible content -->
-  <links class="links ">
+  <links class="links">
     <!-- Links -->
-    <ul class=" navbar-nav mr-auto h4-responsive">
+    <ul class=" navbar-nav m-auto h4-responsive">
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light" mdbWavesEffect routerLink="/home"
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/home"
           routerLinkActive="active">Home</a>
       </li>
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light" mdbWavesEffect routerLink="/events"
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/events"
           routerLinkActive="active">Events</a>
       </li>
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light" mdbWavesEffect routerLink="/games"
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/games"
           routerLinkActive="active">Games</a>
       </li>
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light" mdbWavesEffect routerLink="/news"
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/news"
           routerLinkActive="active">News</a>
       </li>
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light" mdbWavesEffect routerLink="/about"
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/about"
           routerLinkActive="active">About</a>
       </li>
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light" mdbWavesEffect routerLink="/contacts"
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/contacts"
           routerLinkActive="active">Contacts</a>
       </li>
     </ul> <!-- Links -->
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <!-- social actyviy if needed -->
-      <!-- <li class="nav-item">
-        <a class="nav-link">
-          <mdb-icon fab icon="twitter"></mdb-icon>
-        </a>
-      </li>
+
+      <!-- !!!!!!!!!!!!!!!!!!! user img if user logged in -->
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item avatar">
+          <a class="nav-link p-0" href="#">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+              alt="avatar image" height="40">
+          </a>
+        </li>
+      </ul>
+      <!-- user img -->
       <li class="nav-item">
         <a class="nav-link">
-          <mdb-icon fab icon="google-plus"></mdb-icon>
-        </a>
-      </li> -->
-      <li class="nav-item">
-        <a class="nav-link">
-          <div class="btn-group" mdbDropdown>
+          <div class="btn-group deep-orange-text nav-link-lt" mdbDropdown>
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
               <a class="dropdown-item" href="#">Log In</a>
