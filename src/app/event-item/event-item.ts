@@ -19,7 +19,13 @@ export class EventItem {
     photoUrl: string;
   };
   description: string;
-  location: any;
+  location: {
+    address: string,
+    geo: {
+      longitude: number,
+      latitude: number
+    }
+  };
   dateTime: Date;
   duration: string;
   players: {
