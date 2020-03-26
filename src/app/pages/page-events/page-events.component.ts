@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
-// Import the DataService
 import { DataService } from "../../data.service";
-import { HttpClient } from "@angular/common/http";
-import { from } from "rxjs";
 import { EventItem } from "../../event-item/event-item";
+import { CheckboxItem } from "../../filter-category/checkbox-item";
 
 @Component({
   selector: "app-page-events",
@@ -11,24 +9,37 @@ import { EventItem } from "../../event-item/event-item";
   styleUrls: ["./page-events.component.scss"]
 })
 export class PageEventsComponent implements OnInit {
-  // Define a events property to hold our event data
+  selectedCategories = [];
+
+  categories: CheckboxItem[] = [];
+  //   { value: "Новачкам", label: "Новачкам" },
+  //   { value: "Швидкі", label: "Швидкі" },
+  //   { value: "Дорожні", label: "Дорожні" },
+  //   { value: "Пригоди", label: "Пригоди" },
+  //   { value: "Для підлітків", label: "Для підлітків" },
+  //   { value: "Гікам", label: "Гікам" },
+  //   { value: "Соло", label: "Соло" },
+  //   { value: "Стратегії", label: "Стратегії" },
+  //   { value: "Логічні", label: "Логічні" },
+  //   { value: "Сімейні", label: "Сімейні" }
+  // ];
+
   events: EventItem[];
 
   // Create an instance of the DataService through dependency injection
-  constructor(private http: HttpClient) {}
-  //  constructor(private _dataService: DataService) {
-  // Access the Data Service's getEvents() method we defined
-  //    this._dataService.getEvents().subscribe(res => (this.events = res));
-  // this._dataService.getEvents().subscribe(res => (this.events = res));
-  //  }
+  constructor(private _dataService: DataService) {
+    this._dataService.getEvents().subscribe(res => (this.events = res));
+    this._dataService.getCategories().subscribe(
+      res =>
+        (this.categories = res.map(category => {
+          return { value: category, label: category };
+        }))
+    );
+  }
 
-  ngOnInit(): void {
-    this.http
-      .get("assets/events-extended.json")
-      .subscribe((data: EventItem[]) => (this.events = data));
+  ngOnInit(): void {}
 
-    // this.http
-    //  .get("assets/event-object.json")
-    //  .subscribe((data: EventItem) => (this.event = data));
+  onCategoriesChange(value) {
+    this.selectedCategories = value;
   }
 }

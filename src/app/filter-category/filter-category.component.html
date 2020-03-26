@@ -1,0 +1,6 @@
+<div class="filter-name">Категрія</div>
+<div>
+  <div *ngFor="let item of options">
+    <label><input type="checkbox" [(ngModel)]="item.checked" (change)="onToggle()" /> {{ item.label }}</label>
+  </div>
+</div>

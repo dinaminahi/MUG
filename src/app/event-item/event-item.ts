@@ -4,7 +4,7 @@ export class EventItem {
   game: {
     id: number;
     name: string;
-    category: [];
+    category: string[];
     description: string;
     playersMinAge: number;
     playersCount: {
