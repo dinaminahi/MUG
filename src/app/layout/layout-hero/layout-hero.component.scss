@@ -8,6 +8,7 @@ header,
 
 .btn {
   border-radius: 50px;
+  letter-spacing: 5px;
 }
 
 .bg {
@@ -19,11 +20,12 @@ header,
 }
 
 .section-button {
-  // padding-top: 5%;
+  padding-top: 5%;
 
   p.font-size {
     font-size: 25px;
     line-height: 5vh;
+    letter-spacing: 2.5px;
   }
 }
 
