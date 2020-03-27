@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { PageAboutComponent } from "./pages/page-about/page-about.component";
-import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
+// import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 import { PageEventsComponent } from "./pages/page-events/page-events.component";
 import { PageGamesComponent } from "./pages/page-games/page-games.component";
 import { PageHomeComponent } from "./pages/page-home/page-home.component";
@@ -14,7 +14,7 @@ import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.
 
 export const routes: Routes = [
   { path: "about", component: PageAboutComponent },
-  { path: "contacts", component: PageContactsComponent },
+  // { path: "contacts", component: PageContactsComponent },
   { path: "events", component: PageEventsComponent },
   { path: "events/:id", component: EventDetailInfoComponent },
   { path: "games", component: PageGamesComponent },

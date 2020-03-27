@@ -1,7 +1,6 @@
 <!--Navbar-->
 
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark stylish-color-dark scrolling-navbar" mdbStickyHeader>
-
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="deep-orange-text navbar-brand" routerLink="/home" routerLinkActive="active">MUG</a>
   </mdb-navbar-brand>
@@ -31,19 +30,19 @@
           routerLinkActive="active">About</a>
       </li>
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/contacts"
-          routerLinkActive="active">Contacts</a>
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect pageScroll [routerLink]="['home']"
+          href="#contacts-elem">Contacts</a>
       </li>
-    </ul> <!-- Links -->
+    </ul>
+    <!-- Links -->
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
-
       <!-- !!!!!!!!!!!!!!!!!!! user img if user logged in -->
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item avatar">
           <a class="nav-link p-0" href="#">
             <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
-              alt="avatar image" height="40">
+              alt="avatar image" height="40" />
           </a>
         </li>
       </ul>
@@ -59,7 +58,6 @@
               <!-- for logged in users -->
               <!-- <div class="divider dropdown-divider"></div>
               <a class="dropdown-item" href="#">Profile</a> -->
-
             </div>
           </div>
         </a>
@@ -67,6 +65,5 @@
     </ul>
   </links>
   <!-- Collapsible content -->
-
 </mdb-navbar>
 <!--/.Navbar-->

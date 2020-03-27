@@ -34,16 +34,18 @@ import { LayoutEventsRuletteComponent } from "./layout/layout-events-rulette/lay
 import { HowItWorksComponent } from "./layout/how-it-works/how-it-works.component";
 import { LayoutHeroComponent } from "./layout/layout-hero/layout-hero.component";
 import { GameComponent } from "./game/game.component";
-import { EventItemComponent } from './event-item/event-item.component';
-import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
-import { MapComponent } from './map/map.component';
-import { AgmCoreModule } from '@agm/core'
-import { from } from 'rxjs';
+import { EventItemComponent } from "./event-item/event-item.component";
+import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
+import { MapComponent } from "./map/map.component";
+import { AgmCoreModule } from "@agm/core";
+import { from } from "rxjs";
 import { FilterCategoryComponent } from "./filter-category/filter-category.component";
 import { EventsFilterPipe } from "./events-filter.pipe";
 import { FormsModule } from "@angular/forms";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
-import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.component';
+import { AddToFavoritesComponent } from "./add-to-favorites/add-to-favorites.component";
+import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
+import { NgxPageScrollModule } from "ngx-page-scroll";
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     AddToFavoritesComponent
   ],
   imports: [
+    NgxPageScrollModule,
+    NgxPageScrollCoreModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -89,7 +93,7 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBhhn-SgQJin5c_6vFZg6jTriwBxQYuoJg'
+      apiKey: "AIzaSyBhhn-SgQJin5c_6vFZg6jTriwBxQYuoJg"
     }),
     FormsModule,
     MDBBootstrapModule.forRoot()
