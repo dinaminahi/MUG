@@ -1,6 +1,28 @@
 .game-item {
   position: relative;
 
+  .favorite {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    right: 10px;
+    font-size: 2.5rem;
+    background-color: #f4f4f4;
+    border: solid 1px #3a3535;
+    box-shadow: 0 0 0 1px #f4f4f4;
+    border-radius: 100%;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-wrap {
+      transform: scale(0.7);
+    }
+  }
+
   .game-item-link {
     display: block;
     text-decoration: none;
@@ -16,8 +38,70 @@
     }
   }
 
+  $categoryIconsWidth: 30px;
+
+  .category-icons {
+    background-color: #3a3535;
+    border: #fff 1px solid;
+    border-top: none;
+    box-shadow: 0 0 0 1px #3a3535;
+    position: absolute;
+    top: 1px;
+    left: 10px;
+    width: $categoryIconsWidth;
+    padding: 10px 0;
+    z-index: 2;
+
+    .arrow {
+      &,
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: calc(100% + 1px);
+        left: -2px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: ($categoryIconsWidth/2 + 1) ($categoryIconsWidth/2 + 1) 0
+          ($categoryIconsWidth/2 + 1);
+        border-color: #3a3535 transparent transparent transparent;
+      }
+
+      &:before {
+        top: -($categoryIconsWidth/2 + 2);
+        left: -$categoryIconsWidth/2;
+        border-color: #fff transparent transparent transparent;
+        border-width: $categoryIconsWidth/2 $categoryIconsWidth/2 0
+          $categoryIconsWidth/2;
+      }
+
+      &:after {
+        top: -($categoryIconsWidth/2 + 3);
+        left: -($categoryIconsWidth/2 - 1);
+        border-color: #3a3535 transparent transparent transparent;
+        border-width: ($categoryIconsWidth/2 - 1) ($categoryIconsWidth/2 - 1) 0
+          ($categoryIconsWidth/2 - 1);
+      }
+    }
+
+    i {
+      display: block;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #f4f4f4;
+      & + i {
+        margin-top: 15px;
+      }
+    }
+  }
+
   .img-wrap {
-    height: 200px;
+    height: 140px;
+
+    @media (max-width: 576px) {
+      height: 200px;
+    }
 
     img {
       width: 100%;
@@ -38,12 +122,12 @@
   .game-title {
     text-align: center;
     margin: 0;
-    font-size: 1.2rem;
     font-size: 0;
     line-height: 0;
     z-index: 10;
+
     span {
-      font-size: 1.2rem;
+      font-size: 0.8rem;
       line-height: 1.2;
       background: #3a3535;
       border-top: #fff solid 1px;
@@ -56,83 +140,8 @@
   }
 }
 
-$categoryIconsWidth: 40px;
-
-.category-icons {
-  background-color: #3a3535;
-  border: #fff 1px solid;
-  border-top: none;
-  box-shadow: 0 0 0 1px #3a3535;
-  position: absolute;
-  top: 1px;
-  left: 20px;
-  width: $categoryIconsWidth;
-  padding: 10px 0;
-  z-index: 2;
-
-  .arrow {
-    &,
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      top: calc(100% + 1px);
-      left: -2px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: ($categoryIconsWidth/2 + 1) ($categoryIconsWidth/2 + 1) 0
-        ($categoryIconsWidth/2 + 1);
-      border-color: #3a3535 transparent transparent transparent;
-    }
-
-    &:before {
-      top: -($categoryIconsWidth/2 + 2);
-      left: -$categoryIconsWidth/2;
-      border-color: #fff transparent transparent transparent;
-      border-width: $categoryIconsWidth/2 $categoryIconsWidth/2 0
-        $categoryIconsWidth/2;
-    }
-
-    &:after {
-      top: -($categoryIconsWidth/2 + 3);
-      left: -($categoryIconsWidth/2 - 1);
-      border-color: #3a3535 transparent transparent transparent;
-      border-width: ($categoryIconsWidth/2 - 1) ($categoryIconsWidth/2 - 1) 0
-        ($categoryIconsWidth/2 - 1);
-    }
-  }
-
-  i {
-    display: block;
-    font-size: 1rem;
-    text-align: center;
-    color: #f4f4f4;
-    & + i {
-      margin-top: 15px;
-    }
-  }
-}
-
-.favorite {
-  position: absolute;
-  z-index: 2;
-  top: 10px;
-  right: 10px;
-  font-size: 1.5rem;
-  background-color: #f4f4f4;
-  border: solid 1px #3a3535;
-  box-shadow: 0 0 0 1px #f4f4f4;
-  border-radius: 100%;
-  padding: 10px;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .game-meta {
-  padding: 5px 20px 10px;
+  padding: 0 20px 10px;
   margin: 0;
   color: #ffbb33;
   display: flex;
@@ -150,11 +159,12 @@ $categoryIconsWidth: 40px;
   .label {
     position: relative;
     width: 30px;
-    margin-right: 10px;
+    font-size: 0.8rem;
+    margin-right: 5px;
     vertical-align: middle;
 
     i {
-      font-size: 1.2rem;
+      font-size: 0.8rem;
     }
 
     .label-text {
@@ -167,6 +177,10 @@ $categoryIconsWidth: 40px;
       line-height: 1.2;
       opacity: 0.8;
       white-space: normal;
+    }
+
+    & + b {
+      font-size: 0.7rem;
     }
   }
 }
