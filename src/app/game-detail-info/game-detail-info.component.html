@@ -63,7 +63,7 @@
               </div>
             </div> -->
 
-            <div class="img">
+            <div class="img-wrap">
               <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
             </div>
             <section class="game-content">
@@ -100,25 +100,38 @@
               <h2 class="game-title">
                 <span>{{ game?.name }}</span>
               </h2>
+              <!-- <div class="category" *ngFor="let item of game?.category">
+                {{ (game?.category)[item] }} -->
               <div class="category">
-                {{ game?.category }}
+                <span>{{ (game?.category)[1] }}</span>
+                <span>{{ (game?.category)[2] }}</span>
+                <span>{{ (game?.category)[3] }}</span>
                 <div>
                   <i class="fas fa-dice-five"></i>
                   <i class="fas fa-dungeon"></i>
                   <i class="fas fa-balance-scale"></i>
                 </div>
               </div>
-              <div class="description">
-                <b>Короткий опис гри: </b>{{ game?.description }}
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="description">
+                    <b>Короткий опис гри: </b>{{ game?.description }}
+                  </div>
+                  <div class="instructionUrl">
+                    <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
+                  </div>
+                </div>
+                <div
+                  class="col-md-4 organisor position-relative subscribe my-auto"
+                >
+                  <!-- <div class="button"> -->
+                  <button class="btn btn-secondary btn-sm">
+                    Create an event with this game
+                  </button>
+                  <!-- </div> -->
+                </div>
               </div>
-              <div class="instructionUrl">
-                <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
-              </div>
-              <!-- <div class="button"> -->
-              <button class="btn btn-secondary btn-sm">
-                Create an event with this game
-              </button>
-              <!-- </div> -->
             </section>
           </div>
 
