@@ -10,20 +10,36 @@
   }
 
   .event-header {
-    padding: 20px 0;
+    padding: 15px 12px;
     position: relative;
-    font-size: 15px;
+    font-size: 13px;
+    text-align: center;
   }
 
+  // .image-wrap {
+  //   height: 180px;
+  //   padding: 10px;
+
+  //   img {
+  //     max-width: 100%;
+  //     height: 100%;
+  //     margin: 0 auto;
+  //     display: block;
+  //   }
+
   .image-wrap {
-    height: 180px;
-    padding: 10px;
+    margin: 0;
+    position: relative;
+    height: 0;
+    padding: 3/5 * 100% 0 0;
+    overflow: hidden;
+    z-index: 1;
 
     img {
+      position: absolute;
+      top: 0;
+      left: 0;
       max-width: 100%;
-      height: 100%;
-      margin: 0 auto;
-      display: block;
     }
   }
 
@@ -32,50 +48,57 @@
   }
 
   h2 {
-    margin-top: 20px;
+    margin: 10px;
+    font-size: 15px;
   }
   span + span {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 
-  span {
+  .heart-wrapper {
     position: relative;
+    width: 25px;
+    display: inline-block;
+    height: 14px;
   }
 
   .heart-icon {
     position: absolute;
     top: -3px;
+    left: 0;
   }
 }
 
 .attenders-icons {
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 .players {
   border-top: #e2e2e2 solid 1px;
-  padding-top: 10px;
-  margin: 20px 0;
+  padding: 10px 5px 0;
+  margin: 10px 0;
+  font-size: 12px;
   clear: both;
 }
 
 button {
   display: inline-block;
-  margin: 10px;
+  margin: 0px 10px;
   background-color: white;
   color: black;
   border: 2px solid #e7e7e7;
+  font-size: 12px;
 }
 
 button:hover {
   background-color: #ff7315;
-  color: e7e7e7;
+  color: #e7e7e7;
   border: 2px solid #e7e7e7;
   z-index: 2;
 }
 
 .description {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 0 30px 20px;
   display: none;
 }
@@ -100,8 +123,8 @@ button:hover {
 
   div {
     display: flex;
-    // justify-content: left;
-    justify-content: space-between;
+    justify-content: left;
+    // justify-content: space-between;
     border-bottom: 1px dotted #ddd;
 
     &:last-child {
@@ -123,6 +146,7 @@ button:hover {
 .event-item:hover .description {
   display: block;
   position: absolute;
+  left: 0;
   z-index: 5;
   background: #fff;
   width: 100%;
