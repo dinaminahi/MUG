@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
 import { EventItem } from "../event-item/event-item";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,18 +13,25 @@ import { EventItem } from "../event-item/event-item";
 })
 export class EventDetailInfoComponent implements OnInit {
 
-  events: EventItem[]; 
- public eventId;
+  eventId: number;
+  expectedEvent: EventItem;
+  geo: object;
 
-
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
      this.eventId = id;
      this.http
      .get("assets/events-extended.json")
-     .subscribe((data: EventItem[]) => (this.events = data));
+     .subscribe((data: EventItem[]) => { 
+       this.expectedEvent = data.find(event => event.id === this.eventId);
+       this.geo = this.expectedEvent.location.geo;
+       console.log(this.expectedEvent);
+      });
   }
 
+  gotoEvents() {
+    this.router.navigate(['/events']);
+  }
 }
