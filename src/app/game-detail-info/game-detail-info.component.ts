@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Game } from "../game/game";
+import { Router } from "@angular/router";
 import { from } from "rxjs";
 
 @Component({
@@ -14,7 +15,11 @@ export class GameDetailInfoComponent implements OnInit {
   games: Game[];
   public gameId: number;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get("id"));
@@ -22,5 +27,8 @@ export class GameDetailInfoComponent implements OnInit {
     this.http
       .get("assets/game-object.json")
       .subscribe((data: Game[]) => (this.games = data));
+  }
+  gotoGames() {
+    this.router.navigate(["/games"]);
   }
 }

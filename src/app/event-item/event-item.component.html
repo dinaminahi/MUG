@@ -24,11 +24,12 @@
       ></app-participants-count>
     </div>
     <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
-
-    <button class="btn btn-secondary btn-sm">JOIN</button>
-    <button (click)="onSelect(event)" class="btn btn-secondary btn-sm">
-      MORE INFO
-    </button>
+    <div class="button-wrapper">
+      <button class="subm">JOIN</button>
+      <button (click)="onSelect(event)" class="subm">
+        MORE INFO
+      </button>
+    </div>
   </section>
   <div class="players  text-center dark-grey-text">
     <span

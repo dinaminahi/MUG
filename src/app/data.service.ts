@@ -11,6 +11,7 @@ export class DataService {
   events: EventItem[];
   games: Game[];
   event: EventItem;
+  game: Game;
   constructor(private _http: HttpClient) {}
 
   public getEventById(id: number): Observable<EventItem> {

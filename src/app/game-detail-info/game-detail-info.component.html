@@ -111,14 +111,15 @@
               <div class="description">
                 <b>Короткий опис гри: </b>{{ game?.description }}
               </div>
-              <div class="instructionUrl">
+              <!-- <div class="instructionUrl">
                 <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
+              </div> -->
+              <div class="button-wrapper">
+                <button class="subm">
+                  Create an event with this game
+                </button>
+                <button class="back" (click)="gotoGames()">Back</button>
               </div>
-              <!-- <div class="button"> -->
-              <button class="btn btn-secondary btn-sm">
-                Create an event with this game
-              </button>
-              <!-- </div> -->
             </section>
           </div>
 
