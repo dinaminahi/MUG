@@ -44,6 +44,7 @@ import { EventsFilterPipe } from "./events-filter.pipe";
 import { FormsModule } from "@angular/forms";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
 import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.component';
+import { GameDetailInfoComponent } from './game-detail-info/game-detail-info.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     FilterCategoryComponent,
     EventsFilterPipe,
     ParticipantsCountComponent,
-    AddToFavoritesComponent
+    AddToFavoritesComponent,
+    GameDetailInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { PageNewsComponent } from "./pages/page-news/page-news.component";
 import { PageUsersComponent } from "./pages/page-users/page-users.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
+import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 
 export const routes: Routes = [
   { path: "about", component: PageAboutComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: "events", component: PageEventsComponent },
   { path: "events/:id", component: EventDetailInfoComponent },
   { path: "games", component: PageGamesComponent },
+  { path: "games/:id", component: GameDetailInfoComponent },
   { path: "home", component: PageHomeComponent },
   { path: "login", component: PageLoginComponent },
   { path: "news", component: PageNewsComponent },

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../data.service";
 import { Game } from "../../game/game";
 
 @Component({
-  selector: 'app-page-games',
-  templateUrl: './page-games.component.html',
-  styleUrls: ['./page-games.component.scss']
+  selector: "app-page-games",
+  templateUrl: "./page-games.component.html",
+  styleUrls: ["./page-games.component.scss"]
 })
 export class PageGamesComponent implements OnInit {
   games: Game[];
@@ -13,7 +13,5 @@ export class PageGamesComponent implements OnInit {
     this._dataService.getGames().subscribe(res => (this.games = res));
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
