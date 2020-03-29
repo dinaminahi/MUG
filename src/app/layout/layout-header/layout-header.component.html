@@ -2,7 +2,8 @@
 
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark stylish-color-dark scrolling-navbar" mdbStickyHeader>
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="deep-orange-text navbar-brand" routerLink="/home" routerLinkActive="active">MUG</a>
+  <mdb-navbar-brand><a class="deep-orange-text navbar-brand font-weight-bold" routerLink="/home"
+      routerLinkActive="active">MUG</a>
   </mdb-navbar-brand>
 
   <!-- Collapsible content -->
@@ -50,15 +51,15 @@
       <li class="nav-item">
         <a class="nav-link">
           <div class="btn-group deep-orange-text nav-link-lt" mdbDropdown>
-            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
-            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+            <mdb-icon fas icon="user" mdbDropdownToggle routerLink="/login" routerLinkActive="active"></mdb-icon>
+            <!-- <div class="dropdown-menu dropdown-menu-right dropdown-primary">
               <a class="dropdown-item" href="#">Log In</a>
-              <a class="dropdown-item" href="#">Sign Up</a>
+              <a class="dropdown-item" href="#">Sign Up</a> -->
 
-              <!-- for logged in users -->
-              <!-- <div class="divider dropdown-divider"></div>
+            <!-- for logged in users -->
+            <!-- <div class="divider dropdown-divider"></div>
               <a class="dropdown-item" href="#">Profile</a> -->
-            </div>
+            <!-- </div> -->
           </div>
         </a>
       </li>
