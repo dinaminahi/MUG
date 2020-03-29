@@ -1,0 +1,21 @@
+[
+  { "name": "adventure", "label": "Пригоди", "iconClass": "fas fa-dice-five" },
+  { "name": "teens", "label": "Для підлітків", "iconClass": "fas fa-dragon" },
+  { "name": "geeks", "label": "Гікам", "iconClass": "fas fa-dungeon" },
+  { "name": "solo", "label": "Соло", "iconClass": "fas fas fa-dice-one" },
+  { "name": "simple", "label": "Новачкам", "iconClass": "fas fa-chess-pawn" },
+  { "name": "road", "label": "Дорожні", "iconClass": "fas fa-car" },
+  { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
+  { "name": "logical", "label": "Логічні", "iconClass": "fas fa-chess" },
+  { "name": "family", "label": "Сімейні", "iconClass": "fas fa-users" },
+  {
+    "name": "economic",
+    "label": "Економічні",
+    "iconClass": "fas fa-balance-scale"
+  },
+  {
+    "name": "cards",
+    "label": "Карткові",
+    "iconClass": "fab fa-accusoft"
+  }
+]

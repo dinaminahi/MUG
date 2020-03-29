@@ -5,12 +5,16 @@
     </div>
   </div>
   <a href="javascript:void(0)" (click)="onSelect(game)" class="game-item-link">
-    <div class="category-icons">
+    <div class="category-icons icons-block">
+      <app-game-category-icons
+        [categories]="game?.category"
+      ></app-game-category-icons>
+
       <!-- {{ game?.category }} -->
-      <i class="fas fa-dice-five"></i>
+      <!-- <i class="fas fa-dice-five"></i> -->
       <!-- <i class="fas fa-dragon"></i> -->
-      <i class="fas fa-dungeon"></i>
-      <i class="fas fa-balance-scale"></i>
+      <!-- <i class="fas fa-dungeon"></i>
+      <i class="fas fa-balance-scale"></i> -->
       <span class="arrow"></span>
     </div>
 

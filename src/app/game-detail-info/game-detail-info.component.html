@@ -19,6 +19,7 @@
             <div class="favorite">
               <app-add-to-favorites></app-add-to-favorites>
             </div>
+
             <!-- <div class="carousel">
               <div
                 id="carouselExampleControls"
@@ -101,12 +102,10 @@
                 <span>{{ game?.name }}</span>
               </h2>
               <div class="category">
-                {{ game?.category }}
-                <div>
-                  <i class="fas fa-dice-five"></i>
-                  <i class="fas fa-dungeon"></i>
-                  <i class="fas fa-balance-scale"></i>
-                </div>
+                <app-game-category-icons
+                  [categories]="game?.category"
+                ></app-game-category-icons>
+                <!-- {{ game?.category }} -->
               </div>
               <div class="description">
                 <b>Короткий опис гри: </b>{{ game?.description }}
