@@ -52,6 +52,9 @@ import { GameDetailInfoComponent } from './game-detail-info/game-detail-info.com
 import { TeamComponent } from './about-layout/team/team.component';
 import { AboutUsComponent } from './about-layout/about-us/about-us.component';
 import { AboutUsHeaderComponent } from './about-layout/about-us-header/about-us-header.component';
+import { PageCreateAccountComponent } from './pages/page-create-account/page-create-account.component';
+import { LayoutPartnersComponent } from './layout/layout-partners/layout-partners.component';
+import { PageAccountComponent } from './pages/page-account/page-account.component';
 
 
 @NgModule({
@@ -86,7 +89,10 @@ import { AboutUsHeaderComponent } from './about-layout/about-us-header/about-us-
     GameDetailInfoComponent,
     TeamComponent,
     AboutUsComponent,
-    AboutUsHeaderComponent
+    AboutUsHeaderComponent,
+    PageCreateAccountComponent,
+    LayoutPartnersComponent,
+    PageAccountComponent
   ],
   imports: [
     NgxPageScrollModule,
