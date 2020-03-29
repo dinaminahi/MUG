@@ -49,6 +49,9 @@ import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
 import { NgxPageScrollModule } from "ngx-page-scroll";
 
 import { GameDetailInfoComponent } from './game-detail-info/game-detail-info.component';
+import { TeamComponent } from './about-layout/team/team.component';
+import { AboutUsComponent } from './about-layout/about-us/about-us.component';
+import { AboutUsHeaderComponent } from './about-layout/about-us-header/about-us-header.component';
 
 
 @NgModule({
@@ -80,7 +83,10 @@ import { GameDetailInfoComponent } from './game-detail-info/game-detail-info.com
     EventsFilterPipe,
     ParticipantsCountComponent,
     AddToFavoritesComponent,
-    GameDetailInfoComponent
+    GameDetailInfoComponent,
+    TeamComponent,
+    AboutUsComponent,
+    AboutUsHeaderComponent
   ],
   imports: [
     NgxPageScrollModule,
