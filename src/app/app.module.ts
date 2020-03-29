@@ -4,6 +4,14 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+
+import { AgmCoreModule } from '@agm/core'
+import { from } from 'rxjs';
+import { HttpClientModule } from "@angular/common/http";
+import { DataService } from "./data.service";
+
 import { PageHomeComponent } from "./pages/page-home/page-home.component";
 import { PageAboutComponent } from "./pages/page-about/page-about.component";
 import { PageEventsComponent } from "./pages/page-events/page-events.component";
@@ -25,8 +33,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from "./carousel/carousel.component";
-import { HttpClientModule } from "@angular/common/http";
-import { DataService } from "./data.service";
+
 import { LayoutContactsComponent } from "./layout/layout-contacts/layout-contacts.component";
 import { LayoutTeamComponent } from "./layout/layout-team/layout-team.component";
 import { LayoutFeaturesComponent } from "./layout/layout-features/layout-features.component";
@@ -37,13 +44,11 @@ import { GameComponent } from "./game/game.component";
 import { EventItemComponent } from './event-item/event-item.component';
 import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
 import { MapComponent } from './map/map.component';
-import { AgmCoreModule } from '@agm/core'
-import { from } from 'rxjs';
 import { FilterCategoryComponent } from "./filter-category/filter-category.component";
 import { EventsFilterPipe } from "./events-filter.pipe";
-import { FormsModule } from "@angular/forms";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
 import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.component';
+import { PageAddEventComponent } from './pages/page-add-event/page-add-event.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +78,8 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     FilterCategoryComponent,
     EventsFilterPipe,
     ParticipantsCountComponent,
-    AddToFavoritesComponent
+    AddToFavoritesComponent,
+    PageAddEventComponent
   ],
   imports: [
     BrowserModule,
@@ -89,9 +95,11 @@ import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.com
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBhhn-SgQJin5c_6vFZg6jTriwBxQYuoJg'
+      apiKey: 'AIzaSyBqKA2arVjPzhzD-UvFu1fgRkepQdA7D9c',
+      libraries: ['places']
     }),
     FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [DataService],

@@ -11,12 +11,14 @@ import { PageNewsComponent } from "./pages/page-news/page-news.component";
 import { PageUsersComponent } from "./pages/page-users/page-users.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
+import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component"
 
 export const routes: Routes = [
   { path: "about", component: PageAboutComponent },
   { path: "contacts", component: PageContactsComponent },
   { path: "events", component: PageEventsComponent },
   { path: "events/:id", component: EventDetailInfoComponent },
+  { path: "addevent", component: PageAddEventComponent },
   { path: "games", component: PageGamesComponent },
   { path: "home", component: PageHomeComponent },
   { path: "login", component: PageLoginComponent },
