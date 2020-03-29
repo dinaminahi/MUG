@@ -34,6 +34,7 @@ export class PageAddEventComponent implements OnInit {
       eventName: ['', Validators.required],
       game: '',
       dateTime: '',
+      duration: '',
       location: this.fb.group({
         address: '',
         longitude:  [],
@@ -50,7 +51,7 @@ export class PageAddEventComponent implements OnInit {
          max: []
        }),
        current: [],
-       experiance: false
+       experiance: ''
       })
     });
   }
