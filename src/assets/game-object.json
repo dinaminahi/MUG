@@ -16,7 +16,7 @@
     "playersCount": { "min": 2, "max": 4 },
     "playTimeMinutes": { "min": 15, "max": 30 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-bilet-na-poezd-junior-evropa-na-russkom-jazyke_65354990.pdf",
-    "photoUrl": "https://hod-konem.com/imgs/bg2575.jpg"
+    "photoUrl": ["https://hod-konem.com/imgs/bg2575.jpg"]
   },
   {
     "id": 3,
@@ -31,7 +31,9 @@
     "playersCount": { "min": 2, "max": 5 },
     "playTimeMinutes": { "min": 35, "max": 45 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-karkasson.-amazonka-na-russkom-jazyke_53578135.pdf",
-    "photoUrl": "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
+    "photoUrl": [
+      "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
+    ]
   },
   {
     "id": 2,
@@ -55,7 +57,9 @@
     "playersCount": { "min": 1, "max": 6 },
     "playTimeMinutes": { "min": 120, "max": 180 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uzhas-arkxema.-tretja-redakcija-na-russkom-jazyke-42957111.pdf",
-    "photoUrl": "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg"
+    "photoUrl": [
+      "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg"
+    ]
   },
   {
     "id": 1,
@@ -78,7 +82,9 @@
     "playersCount": { "min": 2, "max": 10 },
     "playTimeMinutes": { "min": 25, "max": 30 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uno-uno-na-russkom-jazyke-50553094.pdf",
-    "photoUrl": "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg"
+    "photoUrl": [
+      "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg"
+    ]
   },
   {
     "id": 4,
@@ -97,7 +103,17 @@
     "playersCount": { "min": 2, "max": 4 },
     "playTimeMinutes": { "min": 45, "max": 75 },
     "instructionUrl": "https://finalfrontiergames.com/?page_id=1669",
-    "photoUrl": "https://boardgameshop.nl/wp-content/uploads/2019/09/Merchants-Cove-Overview.png"
+    "photoUrl": [
+      "assets/img/game/merchant-cove/merchant_cove.jpg",
+      "assets/img/game/merchant-cove/merchant_cove1.jpg",
+      "assets/img/game/merchant-cove/merchant_cove2.jpg",
+      "assets/img/game/merchant-cove/merchant_cove3.jpg",
+      "assets/img/game/merchant-cove/merchant_cove4.jpg",
+      "assets/img/game/merchant-cove/merchant_cove5.jpg",
+      "assets/img/game/merchant-cove/merchant_cove6.jpg",
+      "assets/img/game/merchant-cove/merchant_cove7.jpg",
+      "assets/img/game/merchant-cove/merchant_cove8.png"
+    ]
   },
   {
     "id": 5,
@@ -116,7 +132,17 @@
     "playersCount": { "min": 2, "max": 4 },
     "playTimeMinutes": { "min": 90, "max": 120 },
     "instructionUrl": "https://www.kickstarter.com/projects/redimpgames/pangea-0",
-    "photoUrl": "https://cf.geekdo-images.com/imagepage/img/csI-RZK_pGFRQ9MWnXrIq3bgxQ0=/fit-in/900x600/filters:no_upscale()/pic4644345.jpg"
+    "photoUrl": [
+      "assets/img/game/pangea/pangea.jpg",
+      "assets/img/game/pangea/pangea1.png",
+      "assets/img/game/pangea/pangea2.jpg",
+      "assets/img/game/pangea/pangea3.jpg",
+      "assets/img/game/pangea/pangea4.jpg",
+      "assets/img/game/pangea/pangea5.jpg",
+      "assets/img/game/pangea/pangea6.png",
+      "assets/img/game/pangea/pangea7.png",
+      "assets/img/game/pangea/pangea8.jpg"
+    ]
   },
   {
     "id": 6,
@@ -131,6 +157,8 @@
     "playersCount": { "min": 2, "max": 5 },
     "playTimeMinutes": { "min": 30, "max": 45 },
     "instructionUrl": "https://www.kickstarter.com/projects/2074786394/root-a-game-of-woodland-might-and-right",
-    "photoUrl": "https://cache.escapistmagazine.com/2019/07/08084352/Card-Fan-Hi-rez-e1562596062659.jpg"
+    "photoUrl": [
+      "https://cache.escapistmagazine.com/2019/07/08084352/Card-Fan-Hi-rez-e1562596062659.jpg"
+    ]
   }
 ]
