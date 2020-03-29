@@ -1,5 +1,5 @@
-<div class="event-item  my-3 z-depth-1">  
-  <div class="event-header text-center  mx-md-4 dark-grey-text">
+<div class="event-item  my-3 z-depth-1">
+  <div class="event-header dark-grey-text">
     <span
       ><i class="far fa-calendar-alt"></i>
       {{ event?.dateTime | date: "dd.MM.yyyy" }}</span
@@ -10,11 +10,11 @@
     >
 
     <!-- <span class="heart"><i class="fas fa-heart"></i></span> -->
-    <span>
+    <span class="heart-wrapper">
       <app-add-to-favorites class="heart-icon"></app-add-to-favorites>
     </span>
   </div>
-  <section class="text-center mx-md-4 dark-grey-text">
+  <section class="text-center dark-grey-text">
     <div class="image-wrap view overlay">
       <img [src]="event?.game?.photoUrl" alt="" />
     </div>
@@ -24,11 +24,12 @@
       ></app-participants-count>
     </div>
     <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
-
-    <button class="btn">JOIN</button>
-    <button (click)="onSelect(event)" class="btn">
-      MORE INFO
-    </button>
+    <div class="button-wrapper">
+      <button class="subm">JOIN</button>
+      <button (click)="onSelect(event)" class="subm">
+        MORE INFO
+      </button>
+    </div>
   </section>
   <div class="players  text-center dark-grey-text">
     <span
