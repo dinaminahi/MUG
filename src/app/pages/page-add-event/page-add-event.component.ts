@@ -22,25 +22,43 @@ export class PageAddEventComponent implements OnInit {
    public latLongs: any = []; //////////
    public latlong: any = {}; //////////
    public searchControl: FormControl;
-
+   isSubmitted = true;
 
   myForm: FormGroup;
   //to choose game for event, later it will be from json file or db
   games = ['Uno', 'Merchant Cove', 'Pangea'];
 
-  constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { 
-      
+  get game() {
+    return this.myForm.get('game');
+  } 
+
+  get description() {
+    return this.myForm.get('description');
+  } 
+
+  get address() {
+    return this.myForm.get(['location', 'address']);
+  } 
+
+  get dateTime() {
+    return this.myForm.get('dateTime');
+  } 
+
+  constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+
+  ngOnInit(): void {
+
     this.myForm = this.fb.group({
-      eventName: ['', Validators.required],
-      game: '',
-      dateTime: '',
-      duration: '',
+      eventName: [''],
+      game: ['', Validators.required],
+      dateTime: ['', Validators.required],
+      duration: [''],
       location: this.fb.group({
-        address: '',
+        address: ['', Validators.required],
         longitude:  [],
         latitude: []
      }),
-      description: '',
+      description: ['', Validators.required],
       players: this.fb.group({
        age: this.fb.group({
          min: [],
@@ -50,14 +68,13 @@ export class PageAddEventComponent implements OnInit {
          min: [],
          max: []
        }),
-       current: [],
-       experiance: ''
+       current: 0,
+       following: [[]],
+       experiance: ['new']
       })
     });
-  }
 
 
-  ngOnInit(): void {
     this.zoom = 8;
     this.latitude = 40.588;
     this.longitude = -88.890;
