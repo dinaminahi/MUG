@@ -16,7 +16,11 @@
     "playersCount": { "min": 2, "max": 4 },
     "playTimeMinutes": { "min": 15, "max": 30 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-bilet-na-poezd-junior-evropa-na-russkom-jazyke_65354990.pdf",
-    "photoUrl": ["https://hod-konem.com/imgs/bg2575.jpg"]
+    "photoUrl": [
+      "https://hod-konem.com/imgs/bg2575.jpg",
+      "assets/img/game/ticket-to-ride-junior-evropa/ticket-to-ride-junior-evropa1.jpg",
+      "assets/img/game/ticket-to-ride-junior-evropa/ticket-to-ride-junior-evropa2.jpg"
+    ]
   },
   {
     "id": 3,
@@ -32,7 +36,8 @@
     "playTimeMinutes": { "min": 35, "max": 45 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-karkasson.-amazonka-na-russkom-jazyke_53578135.pdf",
     "photoUrl": [
-      "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png"
+      "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png",
+      "assets/img/game/carcassonne-amazonas/carcassonneamazonas.jpg"
     ]
   },
   {
@@ -58,7 +63,13 @@
     "playTimeMinutes": { "min": 120, "max": 180 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uzhas-arkxema.-tretja-redakcija-na-russkom-jazyke-42957111.pdf",
     "photoUrl": [
-      "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg"
+      "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg",
+      "assets/img/game/arkham-horror/arkham-horror1.png",
+      "assets/img/game/arkham-horror/arkham-horror2.png",
+      "assets/img/game/arkham-horror/arkham-horror3.png",
+      "assets/img/game/arkham-horror/arkham-horror4.jpg",
+      "assets/img/game/arkham-horror/arkham-horror5.jpg",
+      "assets/img/game/arkham-horror/arkham-horror6.jpg"
     ]
   },
   {
@@ -83,7 +94,8 @@
     "playTimeMinutes": { "min": 25, "max": 30 },
     "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uno-uno-na-russkom-jazyke-50553094.pdf",
     "photoUrl": [
-      "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg"
+      "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg",
+      "assets/img/game/uno/uno1.jpg"
     ]
   },
   {
@@ -104,6 +116,7 @@
     "playTimeMinutes": { "min": 45, "max": 75 },
     "instructionUrl": "https://finalfrontiergames.com/?page_id=1669",
     "photoUrl": [
+      "https://boardgameshop.nl/wp-content/uploads/2019/09/Merchants-Cove-Overview.png",
       "assets/img/game/merchant-cove/merchant_cove.jpg",
       "assets/img/game/merchant-cove/merchant_cove1.jpg",
       "assets/img/game/merchant-cove/merchant_cove2.jpg",
@@ -158,7 +171,10 @@
     "playTimeMinutes": { "min": 30, "max": 45 },
     "instructionUrl": "https://www.kickstarter.com/projects/2074786394/root-a-game-of-woodland-might-and-right",
     "photoUrl": [
-      "https://cache.escapistmagazine.com/2019/07/08084352/Card-Fan-Hi-rez-e1562596062659.jpg"
+      "https://cache.escapistmagazine.com/2019/07/08084352/Card-Fan-Hi-rez-e1562596062659.jpg",
+      "assets/img/game/root/root1.jpg",
+      "assets/img/game/root/root2.jpg",
+      "assets/img/game/root/root3.jpg"
     ]
   }
 ]
