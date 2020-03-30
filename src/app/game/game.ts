@@ -13,5 +13,5 @@ export class Game {
     max: number;
   };
   instructionUrl: string;
-  photoUrl: string;
+  photoUrl: string[];
 }

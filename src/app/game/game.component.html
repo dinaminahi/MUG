@@ -10,16 +10,11 @@
         [categories]="game?.category"
       ></app-game-category-icons>
 
-      <!-- {{ game?.category }} -->
-      <!-- <i class="fas fa-dice-five"></i> -->
-      <!-- <i class="fas fa-dragon"></i> -->
-      <!-- <i class="fas fa-dungeon"></i>
-      <i class="fas fa-balance-scale"></i> -->
       <span class="arrow"></span>
     </div>
 
     <div class="img-wrap">
-      <img [src]="game?.photoUrl" alt="{{ game?.name }}" />
+      <img [src]="(game?.photoUrl)[0]" alt="{{ game?.name }}" />
     </div>
     <section class="game-content">
       <h2 class="game-title">
@@ -52,15 +47,6 @@
           <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
         </div>
       </div>
-
-      <!-- <div class="description">{{ game?.description }}</div> -->
-      <!-- <div class="button"> -->
-      <!-- <button (click)="onSelect(game)" class="btn btn-secondary btn-sm">
-      MORE INFO
-    </button> -->
-      <!-- </div> -->
     </section>
   </a>
 </div>
-
-<!-- (click)="onSelect(event)" -->
