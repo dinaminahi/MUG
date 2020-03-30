@@ -1,3 +1,38 @@
 .container {
     margin: 100px auto;
 }
+
+.main-heading {
+    font-size: 36px;
+}
+
+label {
+    font-size: 20px;
+}
+
+.num-input {
+    width: 80px;
+    display: inline;
+}
+
+.create-btn {
+    background: linear-gradient(to right, #ff3860 5%, #ffc08f 100%);
+    background-color: #ff3860;
+    border-radius: 28px;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 15px 76px;
+    text-decoration: none;
+  }
+  .create-btn:hover {
+    background: linear-gradient(to right, #ffc08f 5%, #ff3860 100%);
+    background-color: #ffc08f;
+  }
+  .create-btn:active {
+    position: relative;
+    top: 1px;
+  }
