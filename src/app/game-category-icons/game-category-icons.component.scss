@@ -1,0 +1,26 @@
+.icon-wrap {
+  i {
+    & + b {
+      margin-left: 5px;
+    }
+  }
+  & + .icon-wrap {
+    margin-left: 15px;
+  }
+}
+
+:host-context(.icons-block) {
+  .icon-wrap {
+    i {
+      display: block;
+      margin-bottom: 10px;
+    }
+    b {
+      display: none;
+    }
+
+    & + .icon-wrap {
+      margin: 0px;
+    }
+  }
+}

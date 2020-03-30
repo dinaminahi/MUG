@@ -4,6 +4,7 @@ import { switchMap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Game } from "../game/game";
 import { Router } from "@angular/router";
+// import { GameCategoryIconsComponent } from "../game-category-icons";
 import { from } from "rxjs";
 
 @Component({

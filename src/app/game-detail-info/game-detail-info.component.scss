@@ -43,17 +43,6 @@
   text-align: center;
   padding: 10px;
   font-size: 1.2rem;
-
-  i {
-    display: inline-block;
-    font-size: 1.7rem;
-    text-align: center;
-    color: #3a3535;
-    & + i {
-      margin-top: 20px;
-      margin-left: 40px;
-    }
-  }
 }
 
 .favorite {
