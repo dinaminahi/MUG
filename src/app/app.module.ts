@@ -47,6 +47,7 @@ import { ParticipantsCountComponent } from "./participants-count/participants-co
 import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
 import { NgxPageScrollModule } from "ngx-page-scroll";
 
+
 import { TeamComponent } from "./about-layout/team/team.component";
 import { AboutUsComponent } from "./about-layout/about-us/about-us.component";
 import { AboutUsHeaderComponent } from "./about-layout/about-us-header/about-us-header.component";
@@ -57,6 +58,7 @@ import { AddToFavoritesComponent } from "./add-to-favorites/add-to-favorites.com
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 import { GameCategoryIconsComponent } from "./game-category-icons/game-category-icons.component";
 import { GamesCarouselComponent } from "./games-carousel/games-carousel.component";
+
 
 @NgModule({
   declarations: [
