@@ -25,7 +25,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from "./carousel/carousel.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { DataService } from "./data.service";
 import { LayoutContactsComponent } from "./layout/layout-contacts/layout-contacts.component";
 import { LayoutTeamComponent } from "./layout/layout-team/layout-team.component";
@@ -41,7 +41,7 @@ import { AgmCoreModule } from "@agm/core";
 import { from } from "rxjs";
 import { FilterCategoryComponent } from "./filter-category/filter-category.component";
 import { EventsFilterPipe } from "./events-filter.pipe";
-import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
 
 import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
@@ -58,6 +58,11 @@ import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.com
 import { GameCategoryIconsComponent } from "./game-category-icons/game-category-icons.component";
 import { GamesCarouselComponent } from "./games-carousel/games-carousel.component";
 import { GoogleMapsModule } from "@angular/google-maps";
+import { SigninComponent } from "./components/signin/signin.component";
+import { SignupComponent } from "./components/signup/signup.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+
+import { AuthInterceptor } from "./shared/authconfig.interceptor";
 
 @NgModule({
   declarations: [
@@ -96,9 +101,13 @@ import { GoogleMapsModule } from "@angular/google-maps";
     LayoutPartnersComponent,
     PageAccountComponent,
     GameCategoryIconsComponent,
-    GamesCarouselComponent
+    GamesCarouselComponent,
+    SigninComponent,
+    SignupComponent,
+    UserProfileComponent
   ],
   imports: [
+    ReactiveFormsModule,
     GoogleMapsModule,
     NgxPageScrollModule,
     NgxPageScrollCoreModule,
@@ -120,7 +129,14 @@ import { GoogleMapsModule } from "@angular/google-maps";
     FormsModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
