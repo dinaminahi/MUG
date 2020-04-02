@@ -3,7 +3,10 @@
     "id": 1,
     "personal": {
       "photoUrl": "https://i.dlpng.com/static/png/6721831_preview.png",
-      "name": "Roman",
+      "name": "Romka",
+      "firstName": "Roman",
+      "lastName": "Bilbo",
+      "phone": 123456789,
       "email": "Roman.gmail.com",
       "location": {
         "address": "26 Rockwell Avenue Linden, NJ",
@@ -31,7 +34,10 @@
     "id": 2,
     "personal": {
       "photoUrl": "http://pngimg.com/uploads/avatar/avatar_PNG47.png",
-      "name": "Juliia",
+      "name": "Juli",
+      "firstName": "Juliia",
+      "lastName": "Telia",
+      "phone": 1231234123,
       "email": "Juliia.gmail.com",
       "location": {
         "address": "55 North Oxford Court Rolling Meadows, IL",
