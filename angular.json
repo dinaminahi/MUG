@@ -7,11 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": [
-            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-            "src/styles.scss",
-            "scss"
-          ],
+          "style": "scss",
           "styleext": "scss"
         }
       },
