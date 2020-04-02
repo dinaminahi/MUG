@@ -4,8 +4,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { FormsModule } from "@angular/forms";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { AgmCoreModule } from '@agm/core'
 import { from } from 'rxjs';

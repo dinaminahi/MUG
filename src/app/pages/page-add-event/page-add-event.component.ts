@@ -55,9 +55,11 @@ export class PageAddEventComponent implements OnInit {
       duration: [''],
       location: this.fb.group({
         address: ['', Validators.required],
-        longitude:  [],
-        latitude: []
-     }),
+        geo: this.fb.group({
+          longitude:  [],
+          latitude: []
+        })
+       }),
       description: ['', Validators.required],
       players: this.fb.group({
        age: this.fb.group({
@@ -98,8 +100,8 @@ export class PageAddEventComponent implements OnInit {
             longitude: place.geometry.location.lng()
           };
 
-          this.myForm.value.location.longitude = latlong.longitude;
-          this.myForm.value.location.latitude = latlong.latitude;
+          this.myForm.value.location.geo.longitude = latlong.longitude;
+          this.myForm.value.location.geo.latitude = latlong.latitude;
 
           this.myForm.value.location.address = place.formatted_address;
 
