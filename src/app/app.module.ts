@@ -14,6 +14,7 @@ import { DataService } from "./data.service";
 import { PageHomeComponent } from "./pages/page-home/page-home.component";
 import { PageAboutComponent } from "./pages/page-about/page-about.component";
 import { PageEventsComponent } from "./pages/page-events/page-events.component";
+import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component";
 import { PageGamesComponent } from "./pages/page-games/page-games.component";
 import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 import { PageNewsComponent } from "./pages/page-news/page-news.component";
@@ -46,8 +47,23 @@ import { MapComponent } from './map/map.component';
 import { FilterCategoryComponent } from "./filter-category/filter-category.component";
 import { EventsFilterPipe } from "./events-filter.pipe";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
-import { AddToFavoritesComponent } from './add-to-favorites/add-to-favorites.component';
-import { PageAddEventComponent } from './pages/page-add-event/page-add-event.component';
+
+import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
+import { NgxPageScrollModule } from "ngx-page-scroll";
+
+import { TeamComponent } from "./about-layout/team/team.component";
+import { AboutUsComponent } from "./about-layout/about-us/about-us.component";
+import { AboutUsHeaderComponent } from "./about-layout/about-us-header/about-us-header.component";
+import { PageCreateAccountComponent } from "./pages/page-create-account/page-create-account.component";
+import { LayoutPartnersComponent } from "./layout/layout-partners/layout-partners.component";
+import { PageAccountComponent } from "./pages/page-account/page-account.component";
+import { AddToFavoritesComponent } from "./add-to-favorites/add-to-favorites.component";
+import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
+import { GameCategoryIconsComponent } from "./game-category-icons/game-category-icons.component";
+import { GamesCarouselComponent } from "./games-carousel/games-carousel.component";
+import { SigninComponent } from "./components/signin/signin.component";
+import { SignupComponent } from "./components/signup/signup.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 
 @NgModule({
   declarations: [
@@ -78,9 +94,23 @@ import { PageAddEventComponent } from './pages/page-add-event/page-add-event.com
     EventsFilterPipe,
     ParticipantsCountComponent,
     AddToFavoritesComponent,
-    PageAddEventComponent
+    PageAddEventComponent,
+    GameDetailInfoComponent,
+    TeamComponent,
+    AboutUsComponent,
+    AboutUsHeaderComponent,
+    PageCreateAccountComponent,
+    LayoutPartnersComponent,
+    PageAccountComponent,
+    GameCategoryIconsComponent,
+    GamesCarouselComponent,
+    SigninComponent,
+    SignupComponent,
+    UserProfileComponent
   ],
   imports: [
+    NgxPageScrollModule,
+    NgxPageScrollCoreModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

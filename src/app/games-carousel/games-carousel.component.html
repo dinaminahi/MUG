@@ -1,0 +1,9 @@
+<mdb-carousel
+  class="carousel slide carousel-fade"
+  [type]="'carousel-thumbnails'"
+  [animation]="'fade'"
+>
+  <mdb-carousel-item *ngFor="let photo of imgs">
+    <img class="d-block w-100 h-100" [src]="photo" alt="{{ title }}" />
+  </mdb-carousel-item>
+</mdb-carousel>

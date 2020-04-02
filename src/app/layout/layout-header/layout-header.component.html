@@ -1,9 +1,9 @@
 <!--Navbar-->
 
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark stylish-color-dark scrolling-navbar" mdbStickyHeader>
-
+<mdb-navbar SideClass="navbar navbar-expand-lg stylish-color-dark scrolling-navbar" mdbStickyHeader>
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="deep-orange-text navbar-brand" routerLink="/home" routerLinkActive="active">MUG</a>
+  <mdb-navbar-brand><a class="deep-orange-text navbar-brand font-weight-bold" routerLink="/home"
+      routerLinkActive="active">MUG</a>
   </mdb-navbar-brand>
 
   <!-- Collapsible content -->
@@ -31,19 +31,19 @@
           routerLinkActive="active">About</a>
       </li>
       <li class="nav-item">
-        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/contacts"
-          routerLinkActive="active">Contacts</a>
+        <a class="text-warning nav-link waves-light nav-link-lt" mdbWavesEffect pageScroll [routerLink]="['home']"
+          href="#contacts-elem">Contacts</a>
       </li>
-    </ul> <!-- Links -->
+    </ul>
+    <!-- Links -->
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
-
       <!-- !!!!!!!!!!!!!!!!!!! user img if user logged in -->
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item avatar">
-          <a class="nav-link p-0" href="#">
+          <a class="nav-link p-0" routerLink="/account" routerLinkActive="active">
             <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
-              alt="avatar image" height="40">
+              alt="avatar image" height="40" />
           </a>
         </li>
       </ul>
@@ -51,22 +51,20 @@
       <li class="nav-item">
         <a class="nav-link">
           <div class="btn-group deep-orange-text nav-link-lt" mdbDropdown>
-            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
-            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+            <mdb-icon fas icon="user" routerLink="/login" routerLinkActive="active"></mdb-icon>
+            <!-- <div class="dropdown-menu dropdown-menu-right dropdown-primary">
               <a class="dropdown-item" href="#">Log In</a>
-              <a class="dropdown-item" href="#">Sign Up</a>
+              <a class="dropdown-item" href="#">Sign Up</a> -->
 
-              <!-- for logged in users -->
-              <!-- <div class="divider dropdown-divider"></div>
+            <!-- for logged in users -->
+            <!-- <div class="divider dropdown-divider"></div>
               <a class="dropdown-item" href="#">Profile</a> -->
-
-            </div>
+            <!-- </div> -->
           </div>
         </a>
       </li>
     </ul>
   </links>
   <!-- Collapsible content -->
-
 </mdb-navbar>
 <!--/.Navbar-->

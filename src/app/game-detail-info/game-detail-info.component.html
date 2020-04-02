@@ -1,0 +1,80 @@
+<header>
+  <div class="main-header"></div>
+</header>
+
+<div *ngFor="let game of games">
+  <div *ngIf="gameId === game.id">
+    <div class="game-detail container">
+      <div class="row">
+        <div class="col">
+          <div class="game-item">
+            <div class="favorite">
+              <app-add-to-favorites></app-add-to-favorites>
+            </div>
+
+            <app-games-carousel
+              [imgs]="game?.photoUrl"
+              [title]="game?.name"
+            ></app-games-carousel>
+
+            <section class="game-content">
+              <div class="game-meta text-left">
+                <div>
+                  <span class="label">
+                    <i class="far fa-clock" title="Тривалісь гри"></i>
+                    <span class="label-text">Тривалісь гри</span>
+                  </span>
+                  <b>
+                    {{ game?.playTimeMinutes.min }} -
+                    {{ game?.playTimeMinutes.max }}
+                  </b>
+                </div>
+                <div class="age">
+                  <span class="label">
+                    <i class="fas fa-baby"></i>
+                    <i class="fas fa-child" title="Мінімальний вік гравців"></i>
+                    <span class="label-text">Мінімальний вік гравців</span>
+                  </span>
+                  <b>{{ game?.playersMinAge }}</b>
+                </div>
+                <div class="count">
+                  <span class="label">
+                    <i class="fas fa-users" title="Кількість гравців"></i>
+                    <span class="label-text">Кількість гравців</span>
+                  </span>
+                  <b
+                    >{{ game?.playersCount.min }} -
+                    {{ game?.playersCount.max }}</b
+                  >
+                </div>
+              </div>
+              <h2 class="game-title">
+                <span>{{ game?.name }}</span>
+              </h2>
+              <div class="category">
+                <app-game-category-icons
+                  [categories]="game?.category"
+                ></app-game-category-icons>
+                <!-- {{ game?.category }} -->
+              </div>
+              <div class="description">
+                <b>Короткий опис гри: </b>{{ game?.description }}
+              </div>
+              <!-- <div class="instructionUrl">
+                <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
+              </div> -->
+              <div class="button-wrapper">
+                <button class="subm">
+                  Create an event with this game
+                </button>
+                <button class="back" (click)="gotoGames()">Back</button>
+              </div>
+            </section>
+          </div>
+
+          <!-- (click)="onSelect(event)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 export class Game {
   id: number;
   name: string;
-  category: string[];
+  category: object[];
   description: string;
   playersMinAge: number;
   playersCount: {
@@ -13,5 +13,5 @@ export class Game {
     max: number;
   };
   instructionUrl: string;
-  photoUrl: string;
+  photoUrl: string[];
 }
