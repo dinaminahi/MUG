@@ -58,6 +58,9 @@ import { AddToFavoritesComponent } from "./add-to-favorites/add-to-favorites.com
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 import { GameCategoryIconsComponent } from "./game-category-icons/game-category-icons.component";
 import { GamesCarouselComponent } from "./games-carousel/games-carousel.component";
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -97,7 +100,10 @@ import { GamesCarouselComponent } from "./games-carousel/games-carousel.componen
     LayoutPartnersComponent,
     PageAccountComponent,
     GameCategoryIconsComponent,
-    GamesCarouselComponent
+    GamesCarouselComponent,
+    SigninComponent,
+    SignupComponent,
+    UserProfileComponent
   ],
   imports: [
     NgxPageScrollModule,
