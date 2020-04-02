@@ -21,9 +21,11 @@ body {
     @media (min-width: 576px) {
       height: 300px;
     }
+
     @media (min-width: 768px) {
       height: 350px;
     }
+
     @media (min-width: 992px) {
       height: 400px;
     }
@@ -36,6 +38,7 @@ body {
       height: auto !important;
     }
   }
+
   .carousel-indicators {
     li {
       width: auto !important;

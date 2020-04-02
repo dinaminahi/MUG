@@ -37,7 +37,7 @@ import { GameComponent } from "./game/game.component";
 import { EventItemComponent } from "./event-item/event-item.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
 import { MapComponent } from "./map/map.component";
-import { AgmCoreModule } from "@agm/core";
+// import { AgmCoreModule } from "@agm/core";
 import { from } from "rxjs";
 import { FilterCategoryComponent } from "./filter-category/filter-category.component";
 import { EventsFilterPipe } from "./events-filter.pipe";
@@ -46,7 +46,6 @@ import { ParticipantsCountComponent } from "./participants-count/participants-co
 
 import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
 import { NgxPageScrollModule } from "ngx-page-scroll";
-
 
 import { TeamComponent } from "./about-layout/team/team.component";
 import { AboutUsComponent } from "./about-layout/about-us/about-us.component";
@@ -58,10 +57,9 @@ import { AddToFavoritesComponent } from "./add-to-favorites/add-to-favorites.com
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 import { GameCategoryIconsComponent } from "./game-category-icons/game-category-icons.component";
 import { GamesCarouselComponent } from "./games-carousel/games-carousel.component";
-import { SigninComponent } from './components/signin/signin.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-
+import { SigninComponent } from "./components/signin/signin.component";
+import { SignupComponent } from "./components/signup/signup.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 
 @NgModule({
   declarations: [
@@ -120,9 +118,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     FlexLayoutModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyBhhn-SgQJin5c_6vFZg6jTriwBxQYuoJg"
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: ""
+    // }),
     FormsModule,
     MDBBootstrapModule.forRoot()
   ],
