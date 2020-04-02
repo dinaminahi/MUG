@@ -25,7 +25,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from "./carousel/carousel.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { DataService } from "./data.service";
 import { LayoutContactsComponent } from "./layout/layout-contacts/layout-contacts.component";
 import { LayoutTeamComponent } from "./layout/layout-team/layout-team.component";
@@ -60,6 +60,9 @@ import { GamesCarouselComponent } from "./games-carousel/games-carousel.componen
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+
+import { AuthInterceptor } from "./shared/authconfig.interceptor";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -104,6 +107,7 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     UserProfileComponent
   ],
   imports: [
+    ReactiveFormsModule,
     NgxPageScrollModule,
     NgxPageScrollCoreModule,
     BrowserModule,
@@ -124,7 +128,14 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     FormsModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
