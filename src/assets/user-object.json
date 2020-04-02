@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "personal": {
+      "photoUrl": "https://i.dlpng.com/static/png/6721831_preview.png",
+      "name": "Roman",
+      "email": "Roman.gmail.com",
+      "location": {
+        "address": "26 Rockwell Avenue Linden, NJ",
+        "latitude": -73.98887,
+        "longitude": 40.30476
+      },
+      "dateOfBirth": "06/08/2013",
+      "description": "Фанат кооперативних ігор, завжди беру на зустріч з собою пиво на всю компанію"
+    },
+    "events": {
+      "subscribed": [2, 5],
+      "interested": [1, 2, 3, 5]
+    },
+    "games": {
+      "favorited": ["Каркассон. Амазонка"],
+      "experience": {
+        "novice": ["Merchant game"],
+        "middle": ["Каркассон. Амазонка"],
+        "advanced": []
+      }
+    },
+    "rating": 15
+  },
+  {
+    "id": 2,
+    "personal": {
+      "photoUrl": "http://pngimg.com/uploads/avatar/avatar_PNG47.png",
+      "name": "Juliia",
+      "email": "Juliia.gmail.com",
+      "location": {
+        "address": "55 North Oxford Court Rolling Meadows, IL",
+        "latitude": -88.02599,
+        "longitude": 42.07845
+      },
+      "dateOfBirth": "15/05/2008",
+      "description": "Завжди рада новим знайомствам"
+    },
+    "events": {
+      "subscribed": [3],
+      "interested": [1, 2, 4]
+    },
+    "games": {
+      "favorited": ["KTULHU game"],
+      "experience": {
+        "novice": ["Pangea game"],
+        "middle": [],
+        "advanced": ["KTULHU game"]
+      }
+    },
+    "rating": 25
+  }
+]
