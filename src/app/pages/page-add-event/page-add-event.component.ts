@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
-import { EventItem } from '../../event-item/event-item';
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 import { Validators} from "@angular/forms"
 import { MapsAPILoader } from '@agm/core';
