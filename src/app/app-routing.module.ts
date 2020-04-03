@@ -11,6 +11,7 @@ import { PageNewsComponent } from "./pages/page-news/page-news.component";
 import { PageUsersComponent } from "./pages/page-users/page-users.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
+import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component"
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 import { PageCreateAccountComponent } from "./pages/page-create-account/page-create-account.component";
 import { PageAccountComponent } from "./pages/page-account/page-account.component";
@@ -21,6 +22,7 @@ export const routes: Routes = [
   // { path: "contacts", component: PageContactsComponent },
   { path: "events", component: PageEventsComponent },
   { path: "events/:id", component: EventDetailInfoComponent },
+  { path: "addevent", component: PageAddEventComponent },
   { path: "games", component: PageGamesComponent },
   { path: "games/:id", component: GameDetailInfoComponent },
   { path: "home", component: PageHomeComponent },

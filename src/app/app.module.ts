@@ -4,9 +4,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+
+import { AgmCoreModule } from '@agm/core'
+import { from } from 'rxjs';
+import { HttpClientModule } from "@angular/common/http";
+import { DataService } from "./data.service";
+
 import { PageHomeComponent } from "./pages/page-home/page-home.component";
 import { PageAboutComponent } from "./pages/page-about/page-about.component";
 import { PageEventsComponent } from "./pages/page-events/page-events.component";
+import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component";
 import { PageGamesComponent } from "./pages/page-games/page-games.component";
 import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 import { PageNewsComponent } from "./pages/page-news/page-news.component";
@@ -25,8 +33,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from "./carousel/carousel.component";
-import { HttpClientModule } from "@angular/common/http";
-import { DataService } from "./data.service";
+
 import { LayoutContactsComponent } from "./layout/layout-contacts/layout-contacts.component";
 import { LayoutTeamComponent } from "./layout/layout-team/layout-team.component";
 import { LayoutFeaturesComponent } from "./layout/layout-features/layout-features.component";
@@ -34,14 +41,11 @@ import { LayoutEventsRuletteComponent } from "./layout/layout-events-rulette/lay
 import { HowItWorksComponent } from "./layout/how-it-works/how-it-works.component";
 import { LayoutHeroComponent } from "./layout/layout-hero/layout-hero.component";
 import { GameComponent } from "./game/game.component";
-import { EventItemComponent } from "./event-item/event-item.component";
-import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
-import { MapComponent } from "./map/map.component";
-// import { AgmCoreModule } from "@agm/core";
-import { from } from "rxjs";
+import { EventItemComponent } from './event-item/event-item.component';
+import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
+import { MapComponent } from './map/map.component';
 import { FilterCategoryComponent } from "./filter-category/filter-category.component";
 import { EventsFilterPipe } from "./events-filter.pipe";
-import { FormsModule } from "@angular/forms";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
 
 import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
@@ -90,6 +94,7 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     EventsFilterPipe,
     ParticipantsCountComponent,
     AddToFavoritesComponent,
+    PageAddEventComponent,
     GameDetailInfoComponent,
     TeamComponent,
     AboutUsComponent,
@@ -118,10 +123,12 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     FlexLayoutModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    // AgmCoreModule.forRoot({
-    //   apiKey: ""
-    // }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBqKA2arVjPzhzD-UvFu1fgRkepQdA7D9c',
+      libraries: ['places']
+    }),
     FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [DataService],
