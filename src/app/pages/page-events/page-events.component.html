@@ -1,4 +1,13 @@
 <div class="container-fluid">
+  <div class="map-wrapper">
+    <agm-map>
+      <agm-marker
+        *ngFor="let event of events"
+        [latitude]="event.location.geo.latitude"
+        [longitude]="event.location.geo.longitude"
+      ></agm-marker>
+    </agm-map>
+  </div>
   <div class="row">
     <div class="event-list order-md-2 col-md-9 my-3">
       <h2 class="panel-heading">Sort by:</h2>

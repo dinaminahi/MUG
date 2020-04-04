@@ -37,7 +37,9 @@ export class PageEventsComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => console.log(this.events), 2000);
+  }
 
   onCategoriesChange(value) {
     this.selectedCategories = value;
