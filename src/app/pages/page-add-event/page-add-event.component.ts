@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 import { Validators} from "@angular/forms"
 import { MapsAPILoader } from '@agm/core';
+import { DataService } from "../../data.service";
+
 import { } from "googlemaps";
 
 
@@ -23,12 +25,15 @@ export class PageAddEventComponent implements OnInit {
    public searchControl: FormControl;
    isSubmitted = true;
 
+   public eventsCount: number;
+  
+
   myForm: FormGroup;
   //to choose game for event, later it will be from json file or db
   games = ['Uno', 'Merchant Cove', 'Pangea'];
 
-  get game() {
-    return this.myForm.get('game');
+  get gameA() {
+    return this.myForm.get('gameA');
   } 
 
   get description() {
@@ -43,20 +48,22 @@ export class PageAddEventComponent implements OnInit {
     return this.myForm.get('dateTime');
   } 
 
-  constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+  constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private _dataService: DataService) { }
 
   ngOnInit(): void {
 
     this.myForm = this.fb.group({
+      id: [],
       eventName: [''],
-      game: ['', Validators.required],
+      gameId: 3,
+      gameA: ['', Validators.required],
       dateTime: ['', Validators.required],
       duration: [''],
       location: this.fb.group({
         address: ['', Validators.required],
         geo: this.fb.group({
-          longitude:  [],
-          latitude: []
+          latitude: [],
+          longitude:  []
         })
        }),
       description: ['', Validators.required],
@@ -65,7 +72,7 @@ export class PageAddEventComponent implements OnInit {
          min: [],
          max: []
        }),
-       amount: this.fb.group({
+       count: this.fb.group({
          min: [],
          max: []
        }),
@@ -106,13 +113,17 @@ export class PageAddEventComponent implements OnInit {
 
           this.latLongs.push(latlong);
           this.searchControl.reset();
+          this._dataService.getEvents().subscribe(res => {
+            this.eventsCount = res.length;
+          }); 
          });
       });
     });
   }
 
   onSubmit() {
-    console.log(this.myForm.value);
+    this.myForm.value.id = this.eventsCount++;
+    this._dataService.addEvent(this.myForm.value);
   }
 
   private setCurrentPosition() {

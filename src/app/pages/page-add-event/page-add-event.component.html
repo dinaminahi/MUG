@@ -22,7 +22,7 @@
                 autocapitalize="off" spellcheck="false" class="form-control"
                 placeholder="{{ myForm.value.location.address }}"
                 [class.is-invalid]="address.invalid && address.touched">
-            <small [class.d-none]="address.valid || address.untouched" class="text-danger">Please spevify the location
+            <small [class.d-none]="address.valid || address.untouched" class="text-danger">Please specify the location
                 of event</small>
         </div>
 
@@ -45,11 +45,11 @@
 
             <div class="form-group">
                 <label>Choose the game</label>
-                <select formControlName="game" class="custom-select" [class.is-invalid]="game.invalid && game.touched">
+                <select formControlName="gameA" class="custom-select" [class.is-invalid]="gameA.invalid && gameA.touched">
                     <option value="" disabled>I want to play</option>
                     <option *ngFor="let game of games">{{ game }}</option>
                 </select>
-                <small [class.d-none]="game.valid || game.untouched" class="text-danger">Please, choose the game</small>
+                <small [class.d-none]="gameA.valid || gameA.untouched" class="text-danger">Please, choose the game</small>
             </div>
 
             <div formGroupName="players">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12 text-center">
                             <label>Players amount</label>
-                            <div formGroupName="amount">
+                            <div formGroupName="count">
                                 <input type="number" class="num-input form-control mr-5" formControlName="min" placeholder="min">
                                 <input type="number" class="num-input form-control" formControlName="max" placeholder="max">
                             </div>

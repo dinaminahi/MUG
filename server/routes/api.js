@@ -1,5 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
 
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
@@ -172,5 +176,17 @@ router.get("/games", (req, res) => {
       });
   });
 });
+
+router.post("/addevent", (req, res) => {
+   connection(db => {
+      db.collection("events").insertOne(req.body);
+   });
+  console.log(req.body);
+});
+
+// connection(db => { 
+//   db.collection("events").deleteOne({id: 10});
+// })
+
 
 module.exports = router;

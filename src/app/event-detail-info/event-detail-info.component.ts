@@ -4,6 +4,7 @@ import { switchMap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { EventItem } from "../event-item/event-item";
 import { Router } from "@angular/router";
+import { DataService } from "../data.service";
 
 @Component({
   selector: "app-event-detail-info",
@@ -18,19 +19,19 @@ export class EventDetailInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private _dataService: DataService
   ) {}
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get("id"));
     this.eventId = id;
-    this.http
-      .get("assets/events-extended.json")
-      .subscribe((data: EventItem[]) => {
-        this.expectedEvent = data.find(event => event.id === this.eventId);
-        this.geo.push(this.expectedEvent.location.geo);
-        console.log(this.geo);
-      });
+    this._dataService.getEventById(this.eventId).subscribe(res => {
+      this.expectedEvent = res;
+      this.geo.push(this.expectedEvent.location.geo);
+      console.log(this.expectedEvent);
+    });
+
   }
 
   gotoEvents() {
