@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { DataService } from "../data.service";
+import { from } from "rxjs";
 
 @Component({
   selector: "app-add-to-favorites",
@@ -6,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./add-to-favorites.component.scss"]
 })
 export class AddToFavoritesComponent implements OnInit {
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
 }

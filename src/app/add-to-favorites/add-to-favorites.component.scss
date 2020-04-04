@@ -4,9 +4,11 @@
   line-height: 25px;
   text-align: center;
   color: #666;
+  border: none;
+  background: none;
 }
 
 .heart:hover,
 .heart:active {
-  color: red;
+  color: #444;
 }
