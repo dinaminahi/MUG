@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class EventDetailInfoComponent implements OnInit {
   eventId: number;
   expectedEvent: EventItem;
-  geo: object;
+  public geo = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +28,8 @@ export class EventDetailInfoComponent implements OnInit {
       .get("assets/events-extended.json")
       .subscribe((data: EventItem[]) => {
         this.expectedEvent = data.find(event => event.id === this.eventId);
-        this.geo = this.expectedEvent.location.geo;
-        console.log(this.expectedEvent);
+        this.geo.push(this.expectedEvent.location.geo);
+        console.log(this.geo);
       });
   }
 
