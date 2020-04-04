@@ -1,9 +1,26 @@
+.page-heading-message {
+  background-color: #3a3535;
+  color: #f4f4f4;
+  padding: 30px;
+  text-align: center;
+  margin: 5px 0 20px;
+  h2 {
+    margin: 0;
+    font-weight: normal;
+  }
+}
+
 .panel-heading {
   margin: 0;
+  span {
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+  }
 }
 
 .map-wrapper {
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 agm-map {
@@ -12,7 +29,7 @@ agm-map {
 
 app-event-item {
   display: block;
-  &.selected {
-    outline: #fa571a solid 3px;
-  }
+  // &.selected {
+  //   outline: #fa571a solid 3px;
+  // }
 }

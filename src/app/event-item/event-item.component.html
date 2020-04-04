@@ -1,4 +1,4 @@
-<div class="event-item  my-3 z-depth-1">
+<div class="event-item my-3 z-depth-1">
   <div class="event-header dark-grey-text">
     <span
       ><i class="far fa-calendar-alt"></i>
@@ -8,8 +8,6 @@
       <i class="far fa-clock"></i>
       {{ event?.dateTime | date: "HH:mm" }}</span
     >
-
-    <!-- <span class="heart"><i class="fas fa-heart"></i></span> -->
     <span class="heart-wrapper">
       <app-add-to-favorites class="heart-icon"></app-add-to-favorites>
     </span>
@@ -31,10 +29,12 @@
       </button>
     </div>
   </section>
-  <div class="players  text-center dark-grey-text">
-    <span
-      ><i class="fas fa-map-marker" title="Локація"></i>
-      {{ event?.location.address }}</span
+  <div class="footer text-center dark-grey-text">
+    <span class="address"
+      ><span
+        ><i class="fas fa-map-marker" title="Локація"></i>
+        {{ event?.location.address }}</span
+      ></span
     >
     <div class="description z-depth-1 text-muted">
       <div>
