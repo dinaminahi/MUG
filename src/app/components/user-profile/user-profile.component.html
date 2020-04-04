@@ -8,34 +8,43 @@
                 <p class="h4 mb-4">Personal information</p>
 
                 <div class="form-group">
-                    <label for="name">Username:</label>
+                    <div class="userPhoto mb-3"> 
+                        <img src="{{personalInfoForm}}" alt="Your photo">
+                    </div>
+                    <input type="file" name="image" width="100px">
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Username</label>
                     <input type="text" id="name" class="form-control" formControlName="name">
                 </div>
                 <div class="form-group">
-                    <label for="firstName">First name:</label>
-                    <input type="text" id="firstName" class="form-control" formControlName="firstName">
+                    <label for="firstName">First name*</label>
+                    <input type="text" id="firstName" class="form-control" formControlName="firstName"  [class.is-invalid]="firstName.invalid && firstName.touched">
+                    <p [class.d-none]="firstName.valid || firstName.untouched" class="text-danger">First name is
+                        required</p>
                 </div>
                 <div class="form-group">
-                    <label for="lastName">Last name:</label>
+                    <label for="lastName">Last name*</label>
                     <input type="text" id="lastName" class="form-control" formControlName="lastName">
                 </div>
                 <div class="form-group">
-                    <label for="dateOfBirth">Date of birth:</label>
-                    <input type="datetime-local" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
+                    <label for="dateOfBirth">Date of birth</label>
+                    <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
                 </div>
                 <div class="form-group">
-                    <label>Few words about yourself:</label>
+                    <label>Few words about yourself</label>
                     <textarea formControlName="description" rows="3" class="form-control"></textarea>
                 </div>
 
                 <p class="h4 mb-4 mt-5">Contact information</p>
   
                 <div class="form-group">
-                    <label for="phone">Phone number:</label>
+                    <label for="phone">Phone number*</label>
                     <input type="text" id="phone" class="form-control" formControlName="phone">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label for="email">Email*</label>
                     <input type="text" id="email" class="form-control" formControlName="email">
                 </div>
                 <div class="form-group" formGroupName="location">

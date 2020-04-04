@@ -25,21 +25,22 @@ export class UserProfileComponent implements OnInit {
   //  //to choose game for event, later it will be from json file or db
   //  games = ['Uno', 'Merchant Cove', 'Pangea'];
 
-  //  get game() {
-  //    return this.PersonalInfoForm.get('game');
-  //  } 
 
-  //  get description() {
-  //    return this.PersonalInfoForm.get('description');
-  //  } 
+  get firstName() {
+    return this.personalInfoForm.get(['personal', 'firstName']);
+  } 
 
-  //  get address() {
-  //    return this.PersonalInfoForm.get(['location', 'address']);
-  //  } 
+  get lastName() {
+    return this.personalInfoForm.get(['personal', 'lastName']);
+  } 
 
-  //  get dateTime() {
-  //    return this.PersonalInfoForm.get('dateTime');
-  //  } 
+  get phone() {
+    return this.personalInfoForm.get(['personal', 'phone']);
+  } 
+
+  get email() {
+    return this.personalInfoForm.get(['personal', 'email']);
+  } 
 
   constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
 
@@ -50,10 +51,10 @@ export class UserProfileComponent implements OnInit {
       personal: this.fb.group({
         photoUrl: '',
         name: '',
-        firstName: '',
-        lastName: '',
-        phone: '',
-        email: '',
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        phone: ['', Validators.required],
+        email: ['', Validators.required],
         location: this.fb.group({
           address: '',
           geo: this.fb.group({
