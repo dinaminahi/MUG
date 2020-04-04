@@ -6,25 +6,29 @@
       "name": "Romka",
       "firstName": "Roman",
       "lastName": "Bilbo",
-      "phone": 123456789,
-      "email": "Roman.gmail.com",
+      "phone": "123456789",
+      "email": "roman@gmail.com",
       "location": {
         "address": "26 Rockwell Avenue Linden, NJ",
-        "latitude": -73.98887,
-        "longitude": 40.30476
+        "geo": {
+          "latitude": -73.98887,
+          "longitude": 40.30476
+        }
       },
-      "dateOfBirth": "06/08/2013",
+      "dateOfBirth": "06/08/1989",
       "description": "Фанат кооперативних ігор, завжди беру на зустріч з собою пиво на всю компанію"
     },
     "events": {
       "subscribed": [2, 5],
-      "interested": [1, 2, 3, 5]
+      "interested": [1, 2, 3, 5],
+      "created": []
     },
     "games": {
-      "favorited": ["Каркассон. Амазонка"],
-      "experience": {
-        "novice": ["Merchant game"],
-        "middle": ["Каркассон. Амазонка"],
+      "favorited": [2],
+      "skillLevel": {
+        "novice": [4],
+        "beginner": [],
+        "intermediate": [2],
         "advanced": []
       }
     },
@@ -37,26 +41,30 @@
       "name": "Juli",
       "firstName": "Juliia",
       "lastName": "Telia",
-      "phone": 1231234123,
-      "email": "Juliia.gmail.com",
+      "phone": "1231234123",
+      "email": "juliia@gmail.com",
       "location": {
         "address": "55 North Oxford Court Rolling Meadows, IL",
-        "latitude": -88.02599,
-        "longitude": 42.07845
+        "geo": {
+          "latitude": -88.02599,
+          "longitude": 42.07845
+        }
       },
-      "dateOfBirth": "15/05/2008",
+      "dateOfBirth": "15/05/2003",
       "description": "Завжди рада новим знайомствам"
     },
     "events": {
       "subscribed": [3],
-      "interested": [1, 2, 4]
+      "interested": [1, 2, 4],
+      "created": []
     },
     "games": {
-      "favorited": ["KTULHU game"],
-      "experience": {
-        "novice": ["Pangea game"],
-        "middle": [],
-        "advanced": ["KTULHU game"]
+      "favorited": [5],
+      "skillLevel": {
+        "novice": [4],
+        "beginner": [6],
+        "intermediate": [5],
+        "advanced": []
       }
     },
     "rating": 25
