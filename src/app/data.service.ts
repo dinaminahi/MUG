@@ -43,4 +43,10 @@ export class DataService {
       .get<{ status: number; data: Game[]; message: string }>("/api/games")
       .pipe(map(response => (this.games = response.data)));
   }
+
+  public getGameById(id: number): Observable<Game> {
+    return this._http
+      .get<{ status: number; data: Game; message: string }>(`/api/games/${id}`)
+      .pipe(map(response => (this.game = response.data)));
+  }
 }
