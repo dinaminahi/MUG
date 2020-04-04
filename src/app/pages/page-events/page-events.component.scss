@@ -1,3 +1,18 @@
 .panel-heading {
   margin: 0;
 }
+
+.map-wrapper {
+  margin: 20px 0;
+}
+
+agm-map {
+  height: 400px;
+}
+
+app-event-item {
+  display: block;
+  &.selected {
+    outline: #fa571a solid 3px;
+  }
+}

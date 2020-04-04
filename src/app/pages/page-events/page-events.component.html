@@ -1,22 +1,36 @@
 <div class="container-fluid">
   <div class="map-wrapper">
-    <agm-map>
+    <agm-map
+      [latitude]="geo.latitude"
+      [longitude]="geo.longitude"
+      [zoom]="geo.zoom"
+      [fitBounds]="true"
+    >
       <agm-marker
-        *ngFor="let event of events"
+        *ngFor="let event of events | eventsFilter: selectedCategories"
         [latitude]="event.location.geo.latitude"
         [longitude]="event.location.geo.longitude"
-      ></agm-marker>
+        (markerClick)="highlightItem(event)"
+        [iconUrl]="event === selectedEvent ? icons.active : icons.default"
+        [agmFitBounds]="true"
+      >
+        <div><i class="fa fa-truck" aria-hidden="true"></i></div>
+      </agm-marker>
     </agm-map>
   </div>
   <div class="row">
     <div class="event-list order-md-2 col-md-9 my-3">
-      <h2 class="panel-heading">Sort by:</h2>
+      <h2 class="panel-heading">Sort by: {{ selectedCategories }}</h2>
       <div class="row">
         <div
           class="col-lg-4 col-6"
           *ngFor="let event of events | eventsFilter: selectedCategories"
         >
-          <app-event-item [event]="event"></app-event-item>
+          <app-event-item
+            [event]="event"
+            [ngClass]="{ selected: event === selectedEvent }"
+            (click)="highlightItem(event)"
+          ></app-event-item>
         </div>
       </div>
     </div>

@@ -10,6 +10,23 @@ import { CheckboxItem } from "../../filter-category/checkbox-item";
 })
 export class PageEventsComponent implements OnInit {
   selectedCategories = [];
+  geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };
+  icons = {
+    default: {
+      url: "assets/icons/meeple-blue.svg",
+      scaledSize: {
+        width: 30,
+        height: 30
+      }
+    },
+    active: {
+      url: "assets/icons/meeple-orange.svg",
+      scaledSize: {
+        width: 30,
+        height: 30
+      }
+    }
+  };
 
   categories: CheckboxItem[] = [];
   //   { value: "Новачкам", label: "Новачкам" },
@@ -25,6 +42,7 @@ export class PageEventsComponent implements OnInit {
   // ];
 
   events: EventItem[];
+  selectedEvent: EventItem;
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
@@ -37,11 +55,17 @@ export class PageEventsComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    setTimeout(() => console.log(this.events), 2000);
-  }
+  ngOnInit(): void {}
 
   onCategoriesChange(value) {
     this.selectedCategories = value;
+  }
+
+  highlightItem(event) {
+    if (this.selectedEvent === event) {
+      this.selectedEvent = null;
+    } else {
+      this.selectedEvent = event;
+    }
   }
 }
