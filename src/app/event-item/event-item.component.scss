@@ -55,6 +55,11 @@
   h2 {
     margin: 10px;
     font-size: 15px;
+    line-height: 1.2;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   :host-context(.selected) & {
