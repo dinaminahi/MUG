@@ -13,7 +13,6 @@
                     </div>
                     <input type="file" name="image" width="100px">
                 </div>
-
                 <div class="form-group">
                     <label for="name">Username</label>
                     <input type="text" id="name" class="form-control" formControlName="name">
@@ -26,7 +25,9 @@
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last name*</label>
-                    <input type="text" id="lastName" class="form-control" formControlName="lastName">
+                    <input type="text" id="lastName" class="form-control" formControlName="lastName" [class.is-invalid]="lastName.invalid && lastName.touched">
+                    <p [class.d-none]="lastName.valid || lastName.untouched" class="text-danger">Last name is
+                        required</p>
                 </div>
                 <div class="form-group">
                     <label for="dateOfBirth">Date of birth</label>
@@ -41,11 +42,15 @@
   
                 <div class="form-group">
                     <label for="phone">Phone number*</label>
-                    <input type="text" id="phone" class="form-control" formControlName="phone">
+                    <input type="text" id="phone" class="form-control" formControlName="phone" [class.is-invalid]="lastName.invalid && lastName.touched">
+                    <p [class.d-none]="phone.valid || phone.untouched" class="text-danger">Phone is
+                        required</p>
                 </div>
                 <div class="form-group">
                     <label for="email">Email*</label>
-                    <input type="text" id="email" class="form-control" formControlName="email">
+                    <input type="text" id="email" class="form-control" formControlName="email" [class.is-invalid]="email.invalid && email.touched">
+                    <p [class.d-none]="email.valid || email.untouched" class="text-danger">Email is
+                        required</p>
                 </div>
                 <div class="form-group" formGroupName="location">
                     <label>Location:</label>
