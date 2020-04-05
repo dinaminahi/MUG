@@ -3,13 +3,18 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
 const app = express();
+const cors = require('cors')
+const bodyParser = require('body-parser');
 
 // API file for interacting with MongoDB
 const api = require('./server/routes/api');
 
 // Parsers
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(cors());
 
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist/MUG-project')));
@@ -19,7 +24,7 @@ app.use('/api', api);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/MUG-project/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/MUG-project/index.html'));
 });
 
 //Set Port
