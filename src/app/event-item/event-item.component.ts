@@ -12,18 +12,10 @@ import { from } from "rxjs";
 })
 export class EventItemComponent implements OnInit {
   @Input() event: EventItem;
-  // event: EventItem;
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit() {
-    // this.http
-    //  .get("assets/event-object.json")
-    //  .subscribe((data: EventItem) => (this.event = data));
-    // this.http
-    //   .get("assets/game-object.json")
-    //   .subscribe((data: Game) => (this.game = data));
-  }
+  ngOnInit() {}
 
   onSelect(event) {
     this.router.navigate(["/events", event.id]);

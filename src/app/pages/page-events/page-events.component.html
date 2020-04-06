@@ -1,22 +1,61 @@
-<div class="container-fluid">
+<div class="page-heading-message">
+  <div class="container">
+    <h2>Find the <b>next event</b> you want <b>to attend</b></h2>
+  </div>
+</div>
+
+<div class="container">
   <div class="row">
-    <div class="event-list order-md-2 col-md-9 my-3">
-      <h2 class="panel-heading">Sort by:</h2>
-      <div class="row">
-        <div
-          class="col-lg-4 col-6"
-          *ngFor="let event of events | eventsFilter: selectedCategories"
+    <div class="col-md-9 order-md-2">
+      <div class="map-wrapper">
+        <agm-map
+          [latitude]="geo.latitude"
+          [longitude]="geo.longitude"
+          [zoom]="geo.zoom"
+          [fitBounds]="true"
         >
-          <app-event-item [event]="event"></app-event-item>
-        </div>
+          <agm-marker
+            *ngFor="let event of events | eventsFilter: selectedCategories"
+            [latitude]="event.location.geo.latitude"
+            [longitude]="event.location.geo.longitude"
+            (markerClick)="highlightItem(event)"
+            [iconUrl]="event === selectedEvent ? icons.active : icons.default"
+            [agmFitBounds]="true"
+          >
+            <div><i class="fa fa-truck" aria-hidden="true"></i></div>
+          </agm-marker>
+        </agm-map>
       </div>
     </div>
-    <div class="filters order-md-1 col-md-3">
-      <h3>Filters</h3>
-      <app-filter-category
-        [options]="categories"
-        (toggle)="onCategoriesChange($event)"
-      ></app-filter-category>
+    <div class="col-md-3 order-md-1">
+      <div class="filters">
+        <app-filter-category
+          [options]="categories"
+          (toggle)="onCategoriesChange($event)"
+        ></app-filter-category>
+      </div>
+    </div>
+  </div>
+
+  <div class="event-list">
+    <h2 class="panel-heading">
+      Events
+      <span *ngIf="selectedCategories.length"
+        >sorted by: {{ selectedCategories }}
+      </span>
+    </h2>
+
+    <div class="row">
+      <div
+        class="col-xl-3 col-lg-4 col-sm-6"
+        *ngFor="let event of events | eventsFilter: selectedCategories"
+      >
+        <app-event-item
+          [event]="event"
+          [ngClass]="{ selected: event === selectedEvent }"
+          (click)="highlightItem(event)"
+        ></app-event-item>
+      </div>
     </div>
   </div>
 </div>
