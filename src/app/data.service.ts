@@ -49,4 +49,10 @@ export class DataService {
        console.log(data);
      });
   }
+  
+  public getGameById(id: number): Observable<Game> {
+    return this._http
+      .get<{ status: number; data: Game; message: string }>(`/api/games/${id}`)
+      .pipe(map(response => (this.game = response.data)));
+  }
 }

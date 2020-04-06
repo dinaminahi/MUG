@@ -6,52 +6,49 @@ import { DataService } from "../../data.service";
 
 import { } from "googlemaps";
 
-
 @Component({
-  selector: 'app-page-add-event',
-  templateUrl: './page-add-event.component.html',
-  styleUrls: ['./page-add-event.component.scss']
+  selector: "app-page-add-event",
+  templateUrl: "./page-add-event.component.html",
+  styleUrls: ["./page-add-event.component.scss"]
 })
+
 export class PageAddEventComponent implements OnInit {
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
-   @ViewChild('search')
-   public searchElementRef: ElementRef;
-
-   public zoom: number;  //////////////
-   public longitude: number;
-   public latitude: number;
-   public latLongs: any = []; //////////
-   public latlong: any = {}; //////////
-   public searchControl: FormControl;
-   isSubmitted = true;
+  public zoom: number; //////////////
+  public longitude: number;
+  public latitude: number;
+  public latLongs: any = []; //////////
+  public latlong: any = {}; //////////
+  public searchControl: FormControl;
+  isSubmitted = true;
 
    public eventsCount: number;
   
-
   myForm: FormGroup;
   //to choose game for event, later it will be from json file or db
-  games = ['Uno', 'Merchant Cove', 'Pangea'];
+  games = ["Uno", "Merchant Cove", "Pangea"];
 
   get gameA() {
     return this.myForm.get('gameA');
   } 
 
   get description() {
-    return this.myForm.get('description');
-  } 
+    return this.myForm.get("description");
+  }
 
   get address() {
-    return this.myForm.get(['location', 'address']);
-  } 
+    return this.myForm.get(["location", "address"]);
+  }
 
   get dateTime() {
-    return this.myForm.get('dateTime');
-  } 
+    return this.myForm.get("dateTime");
+  }
 
   constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private _dataService: DataService) { }
 
   ngOnInit(): void {
-
     this.myForm = this.fb.group({
       id: [],
       eventName: [''],
@@ -60,13 +57,13 @@ export class PageAddEventComponent implements OnInit {
       dateTime: ['', Validators.required],
       duration: [''],
       location: this.fb.group({
-        address: ['', Validators.required],
+        address: ["", Validators.required],
         geo: this.fb.group({
           latitude: [],
           longitude:  []
         })
-       }),
-      description: ['', Validators.required],
+      }),
+      description: ["", Validators.required],
       players: this.fb.group({
        age: this.fb.group({
          min: [],
@@ -82,10 +79,9 @@ export class PageAddEventComponent implements OnInit {
       })
     });
 
-
     this.zoom = 8;
     this.latitude = 40.588;
-    this.longitude = -88.890;
+    this.longitude = -88.89;
 
     this.searchControl = new FormControl();
     this.setCurrentPosition();
@@ -127,12 +123,12 @@ export class PageAddEventComponent implements OnInit {
   }
 
   private setCurrentPosition() {
-    if( 'geolocation' in navigator ) {
-      navigator.geolocation.getCurrentPosition( (position) => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
-      })
+      });
     }
   }
 }

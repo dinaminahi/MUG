@@ -280,6 +280,22 @@ router.get("/games", (req, res) => {
   });
 });
 
+router.get("/games/:gameId", (req, res) => {
+  let gameId = Number(req.params.gameId);
+  connection(db => {
+    db.collection("games")
+      .find({ id: gameId })
+      .toArray()
+      .then(games => {
+        response.data = games;
+        res.json(response);
+      })
+      .catch(err => {
+        sendError(err, res);
+      });
+  });
+});
+
 router.post("/addevent", (req, res) => {
   connection(db => {
     db.collection("events").insertOne(req.body);
@@ -290,6 +306,5 @@ router.post("/addevent", (req, res) => {
 // connection(db => { 
 //   db.collection("events").deleteOne({id: 10});
 // })
-
 
 module.exports = router;

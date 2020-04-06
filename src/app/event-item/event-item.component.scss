@@ -1,5 +1,6 @@
 .event-item {
   position: relative;
+  padding: 10px;
 
   &:after {
     content: "";
@@ -10,22 +11,26 @@
   }
 
   .event-header {
-    padding: 15px 12px;
+    padding: 5px 0 15px;
     position: relative;
     font-size: 13px;
-    text-align: center;
+
+    span {
+      i {
+        margin-right: 3px;
+      }
+
+      & + span {
+        margin-left: 20px;
+      }
+    }
+
+    .heart-wrapper {
+      position: absolute;
+      top: 5px;
+      right: 2px;
+    }
   }
-
-  // .image-wrap {
-  //   height: 180px;
-  //   padding: 10px;
-
-  //   img {
-  //     max-width: 100%;
-  //     height: 100%;
-  //     margin: 0 auto;
-  //     display: block;
-  //   }
 
   .image-wrap {
     margin: 0;
@@ -50,22 +55,19 @@
   h2 {
     margin: 10px;
     font-size: 15px;
-  }
-  span + span {
-    margin-left: 15px;
-  }
-
-  .heart-wrapper {
-    position: relative;
-    width: 25px;
-    display: inline-block;
-    height: 14px;
+    line-height: 1.2;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .heart-icon {
-    position: absolute;
-    top: -3px;
-    left: 0;
+  :host-context(.selected) & {
+    outline: #fa571a solid 3px;
+
+    .description {
+      outline: #fa571a solid 3px;
+    }
   }
 }
 
@@ -73,12 +75,25 @@
   margin: 8px 0;
 }
 
-.players {
+.footer {
   border-top: #e2e2e2 solid 1px;
-  padding: 10px 5px 0;
-  margin: 10px 0;
+  padding: 10px 15px 0;
+  margin: 10px -10px 0;
   font-size: 12px;
   clear: both;
+
+  .address {
+    margin: -10px 0;
+    line-height: 1.1;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      margin-right: 3px;
+    }
+  }
 }
 
 .button-wrapper {
@@ -105,23 +120,23 @@
 
 .description {
   margin-top: 10px;
-  padding: 0 30px 20px;
+  padding: 10px 30px 30px;
   display: none;
-}
 
-.description:before {
-  content: "";
-  position: absolute;
-  background-color: #fff;
-  height: 10px;
-  width: 100%;
-  top: -10px;
-  left: 0;
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    height: 10px;
+    width: 100%;
+    top: -10px;
+    left: 0;
+  }
 }
 
 .footer-meta {
   margin-top: 10px;
-  margin: 10px -30px -20px;
+  margin: 10px -30px -30px;
   font-size: 12px;
   background: #f4f4f4;
   padding: 10px 20px;
@@ -146,6 +161,16 @@
     width: 20px;
     margin-right: 2px;
     text-align: center;
+  }
+
+  .age {
+    .fa-baby {
+      width: 15px;
+      font-size: 9px;
+    }
+    .fa-child {
+      margin-left: -12px;
+    }
   }
 }
 
