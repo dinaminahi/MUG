@@ -11,12 +11,28 @@ import { PageNewsComponent } from "./pages/page-news/page-news.component";
 import { PageUsersComponent } from "./pages/page-users/page-users.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
-import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component"
+import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component";
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 import { PageCreateAccountComponent } from "./pages/page-create-account/page-create-account.component";
 import { PageAccountComponent } from "./pages/page-account/page-account.component";
+import { AuthGuard } from "./auth/auth.guard";
+
+import { CallbackComponent } from "./callback/callback.component";
 
 export const routes: Routes = [
+  { path: "", redirectTo: "/home", pathMatch: "full" },
+  {
+    path: "special",
+    component: PageAccountComponent,
+    // Add this to guard this route
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "callback",
+    component: CallbackComponent,
+    // Add this to guard this route
+    canActivate: [AuthGuard],
+  },
   { path: "about", component: PageAboutComponent },
   { path: "account", component: PageAccountComponent },
   // { path: "contacts", component: PageContactsComponent },
@@ -30,12 +46,12 @@ export const routes: Routes = [
   { path: "signin", component: PageCreateAccountComponent },
   { path: "news", component: PageNewsComponent },
   { path: "users", component: PageUsersComponent },
-  { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "**", component: PageNotFoundComponent }
+  { path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard],
 })
 export class AppRoutingModule {}
