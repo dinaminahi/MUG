@@ -1,24 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const app = express();
+const mongoose = require("mongoose");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
 
-const gameSchema = {
-  id: Number,
-  name: String,
-  category: [],
-  description: String,
-  playersMinAge: Number,
-  playersCount: { min: Number, max: Number },
-  playTimeMinutes: { min: Number, max: Number },
-  instructionUrl: String,
-  photoUrl: String
-};
 
 const connection = closure => {
   const uri =
@@ -33,6 +23,110 @@ const connection = closure => {
     }
   );
 };
+
+
+// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
+// mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority");
+
+// const categorySchema = {
+//   name: String,
+//   label: String,
+//   iconClass: String
+// }
+
+// const category = new Category({"name": "teens", "label": "Для підлітків", "iconClass": "fas fa-dragon" });
+
+// // category.save();
+
+// const gameSchema = {
+//   name: String,
+//   category: [categorySchema],
+//   description: String,
+//   playersMinAge: Number,
+//   playersCount: {
+//     min: Number,
+//     max: Number
+//   },
+//   playTimeMinutes: {
+//     min: Number,
+//     max: Number
+//   },
+//   instructionUrl: String,
+//   photoUrl: [String]
+// };
+
+// const eventSchema = {
+//   gameName: String,
+//   game: gameSchema,
+//   eventName: String,
+//   description: String,
+//   location: {
+//     address: String,
+//     geo: {
+//       longitude: Number,
+//       latitide: Number
+//     }
+//   },
+//   dateTime: String,
+//   duration: String,
+//   players: {
+//     age: {
+//       min: Number,
+//       max: Number
+//     },
+//     count: {
+//       min: Number,
+//       max: Number,
+//       current: Number
+//     },
+//     experienceNeeded: String
+//   }
+// };
+
+// const userSchema = {
+//   personal: {
+//     photoUrl: String,
+//     name: String,
+//     firstName: String,
+//     lastName: String,
+//     phone: String,
+//     email: String,
+//     location: {
+//       address: String,
+//       geo: {
+//         longitude: Number,
+//         latitide: Number
+//       }
+//     },
+//     dateOfBirth: Number,
+//     description: String,
+//   },
+//   events: {
+//     subscribed: [eventSchema],
+//     interested: [eventSchema],
+//     created: [eventSchema],
+//   },
+//   games: {
+//     favorited: [eventSchema], // game id's or some part of game objects
+//     skillLevel:
+//     {
+//       novice: [eventSchema],
+//       beginner: [eventSchema],
+//       intermediate: [eventSchema],
+//       advanced: [eventSchema]
+//     },
+//     rating: Number // likes counter form other users
+//   }
+// };
+
+
+// const Event = mongoose.model('Event', eventSchema);
+// const Game = mongoose.model('Game', gameSchema);
+// const User = mongoose.model('User', userSchema);
+// const Category = mongoose.model('Category', userSchema);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // Error handling
 const sendError = (err, res) => {
@@ -77,6 +171,7 @@ router.get("/events_extended/:eventId", (req, res) => {
   });
 });
 
+
 router.get("/events_extended", (req, res) => {
   connection(db => {
     db.collection("events")
@@ -100,6 +195,14 @@ router.get("/events_extended", (req, res) => {
         sendError(err, res);
       });
   });
+  // Event.find({})
+  // .then(events => {
+  //         response.data = events;
+  //         res.json(response);
+  //       })
+  //       .catch(err => {
+  //         sendError(err, res);
+  //       });
 });
 
 router.get("/events/:eventId", (req, res) => {
@@ -178,9 +281,9 @@ router.get("/games", (req, res) => {
 });
 
 router.post("/addevent", (req, res) => {
-   connection(db => {
-      db.collection("events").insertOne(req.body);
-   });
+  connection(db => {
+    db.collection("events").insertOne(req.body);
+  });
   console.log(req.body);
 });
 

@@ -29,9 +29,7 @@ export class EventDetailInfoComponent implements OnInit {
     this._dataService.getEventById(this.eventId).subscribe(res => {
       this.expectedEvent = res;
       this.geo.push(this.expectedEvent.location.geo);
-      console.log(this.expectedEvent);
     });
-
   }
 
   gotoEvents() {
