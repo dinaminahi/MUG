@@ -22,7 +22,7 @@ import { CallbackComponent } from "./callback/callback.component";
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   {
-    path: "special",
+    path: "special", // maby 'account'
     component: PageAccountComponent,
     // Add this to guard this route
     canActivate: [AuthGuard],

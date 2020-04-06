@@ -38,14 +38,14 @@
     <!-- Links -->
 
 
-    <ul class="nav navbar-nav navbar-right">
+    <!-- <ul class="nav navbar-nav navbar-right">
       <li>
         <a *ngIf="!authService.isLoggedIn" (click)="authService.login()">Log In</a>
       </li>
       <li>
         <a (click)="authService.logout()" *ngIf="authService.isLoggedIn">Log Out</a>
       </li>
-    </ul>
+    </ul> -->
 
 
     <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -74,7 +74,18 @@
     <!-- </div>
         </a>
       </li>
-    </ul> --> -->
+    </ul> -->
+    <ul class="nav navbar-nav navbar-right text-warning">
+      <li>
+        <a *ngIf="!authService.isLoggedIn" (click)="authService.login()">Log In</a>
+      </li>
+      <li>
+        <a (click)="authService.logout()" *ngIf="authService.isLoggedIn">Log Out</a>
+      </li>
+      <li>
+        <a routerLink="/special" *ngIf="authService.isLoggedIn" routerLinkActive="active">Private Deals</a>
+      </li>
+    </ul>
   </links>
   <!-- Collapsible content -->
 </mdb-navbar>
