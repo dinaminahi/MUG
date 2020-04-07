@@ -68,5 +68,75 @@
       }
     },
     "rating": 25
+  },
+  {
+    "id": 3,
+    "personal": {
+      "photoUrl": "https://p7.hiclipart.com/preview/43/162/468/anime-another-fairy-tail-otaku-drawing-anime.jpg",
+      "name": "Olga",
+      "firstName": "Olga",
+      "lastName": "Lister",
+      "phone": "0639876543",
+      "email": "olga@gmail.com",
+      "location": {
+        "address": "26 Rockwell Avenue Linden, NJ",
+        "geo": {
+          "latitude": -73.98887,
+          "longitude": 40.30476
+        }
+      },
+      "dateOfBirth": "11/05/1983",
+      "description": "В захваті від 'Merchant Cove'"
+    },
+    "events": {
+      "subscribed": [4, 5],
+      "interested": [6],
+      "created": [4]
+    },
+    "games": {
+      "favorited": [5],
+      "skillLevel": {
+        "novice": [],
+        "beginner": [2],
+        "intermediate": [5],
+        "advanced": []
+      }
+    },
+    "rating": 40
+  },
+  {
+    "id": 4,
+    "personal": {
+      "photoUrl": "https://c7.uihere.com/files/106/836/30/stock-photography-thinkig-thumb.jpg",
+      "name": "Andryu",
+      "firstName": "Andriy",
+      "lastName": "Bosol",
+      "phone": "0934567890",
+      "email": "andriy@gmail.com",
+      "location": {
+        "address": "55 North Oxford Court Rolling Meadows, IL",
+        "geo": {
+          "latitude": -88.02599,
+          "longitude": 42.07845
+        }
+      },
+      "dateOfBirth": "22/07/1987",
+      "description": ""
+    },
+    "events": {
+      "subscribed": [2, 3],
+      "interested": [1, 2, 3, 4],
+      "created": [3]
+    },
+    "games": {
+      "favorited": [3],
+      "skillLevel": {
+        "novice": [4],
+        "beginner": [5],
+        "intermediate": [],
+        "advanced": [3]
+      }
+    },
+    "rating": 30
   }
 ]
