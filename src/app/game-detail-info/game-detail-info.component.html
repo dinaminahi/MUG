@@ -2,19 +2,19 @@
   <div class="main-header"></div>
 </header>
 
-<div class="game-detail container">
+<div class="game-detail">
   <div class="row">
     <div class="col">
       <div class="game-item">
-        <div class="favorite">
+        <!-- <div class="favorite">
           <app-add-to-favorites></app-add-to-favorites>
+        </div> -->
+        <div class="wrapp-carousel">
+          <app-games-carousel
+            [imgs]="game?.photoUrl"
+            [title]="game?.name"
+          ></app-games-carousel>
         </div>
-
-        <app-games-carousel
-          [imgs]="game?.photoUrl"
-          [title]="game?.name"
-        ></app-games-carousel>
-
         <section class="game-content">
           <div class="game-meta text-left">
             <div>
@@ -52,22 +52,52 @@
             ></app-game-category-icons>
             <!-- {{ game?.category }} -->
           </div>
-          <div class="description">
-            <b>Короткий опис гри: </b>{{ game?.description }}
-          </div>
-          <!-- <div class="instructionUrl">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 order-md-2">
+                <div class="description">
+                  {{ game?.description }}
+                </div>
+                <!-- <div class="instructionUrl">
                 <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
               </div> -->
-          <div class="button-wrapper">
-            <button class="subm">
-              Create an event with this game
-            </button>
-            <button class="back" (click)="gotoGames()">Back</button>
+              </div>
+              <div class="col-md-3 order-md-1">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    Рейтинг гри на сайті
+                    <span class="icons"><i class="fas fa-award"></i></span>
+                  </li>
+                  <li class="list-group-item">
+                    Вподобати гру
+                    <span class="icons"
+                      ><app-add-to-favorites></app-add-to-favorites
+                    ></span>
+                  </li>
+                  <li class="list-group-item">
+                    Поділитися
+                    <span class="icons"><i class="fab fa-facebook"></i></span>
+                  </li>
+                  <li class="list-group-item">
+                    <span class="icons"
+                      ><button class="subm">
+                        Створити подію з цією грою
+                      </button></span
+                    >
+                  </li>
+                  <li class="list-group-item">
+                    <span class="icons"
+                      ><button class="back" (click)="gotoGames()">
+                        Повернутися до списку ігор
+                      </button></span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
       </div>
-
-      <!-- (click)="onSelect(event)" -->
     </div>
   </div>
 </div>
