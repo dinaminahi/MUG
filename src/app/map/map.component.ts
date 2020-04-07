@@ -8,12 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MapComponent implements OnInit {
 
 
-  @Input() geo: any;
+  @Input() geos: any;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.geo);
   }
 
 }

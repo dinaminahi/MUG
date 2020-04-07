@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
 import { Game } from "./game/game";
@@ -44,6 +44,12 @@ export class DataService {
       .pipe(map(response => (this.games = response.data)));
   }
 
+  public addEvent(newEvent) {
+     return this._http.post('/api/addevent', newEvent).subscribe(data => {
+       console.log(data);
+     });
+  }
+  
   public getGameById(id: number): Observable<Game> {
     return this._http
       .get<{ status: number; data: Game; message: string }>(`/api/games/${id}`)

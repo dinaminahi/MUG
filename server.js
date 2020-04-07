@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
 const app = express();
@@ -8,8 +7,8 @@ const app = express();
 const api = require('./server/routes/api');
 
 // Parsers
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
 
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist/MUG-project')));

@@ -1,3 +1,6 @@
-<agm-map [latitude]="geo.latitude" [longitude]="geo.longitude">
-   <agm-marker [latitude]="geo.latitude" [longitude]="geo.longitude"></agm-marker>
+
+<agm-map [latitude]="geos[0].latitude" [longitude]="geos[0].longitude">
+   <div *ngFor="let geo of geos">
+      <agm-marker [latitude]="geo.latitude" [longitude]="geo.longitude"></agm-marker>
+   </div>
 </agm-map>
