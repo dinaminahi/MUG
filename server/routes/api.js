@@ -44,19 +44,19 @@ const Category = mongoose.model('Category', categorySchema);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// // Error handling
-// const sendError = (err, res) => {
-//   response.status = 501;
-//   response.message = typeof err == "object" ? err.message : err;
-//   res.status(501).json(response);
-// };
+// Error handling
+const sendError = (err, res) => {
+  response.status = 501;
+  response.message = typeof err == "object" ? err.message : err;
+  res.status(501).json(response);
+};
 
-// // Response handling
-// let response = {
-//   status: 200,
-//   data: [],
-//   message: null
-// };
+// Response handling
+let response = {
+  status: 200,
+  data: [],
+  message: null
+};
 
 // // Get events
 
@@ -88,38 +88,44 @@ const Category = mongoose.model('Category', categorySchema);
 // });
 
 
-// router.get("/events_extended", (req, res) => {
-//   connection(db => {
-//     db.collection("events")
-//       .aggregate([
-//         {
-//           $lookup: {
-//             from: "games",
-//             localField: "gameId",
-//             foreignField: "id",
-//             as: "game"
-//           }
-//         },
-//         { $unwind: "$game" }
-//       ])
-//       .toArray()
-//       .then(events => {
-//         response.data = events;
-//         res.json(response);
-//       })
-//       .catch(err => {
-//         sendError(err, res);
-//       });
-//   });
-//   // Event.find({})
-//   // .then(events => {
-//   //         response.data = events;
-//   //         res.json(response);
-//   //       })
-//   //       .catch(err => {
-//   //         sendError(err, res);
-//   //       });
-// });
+router.get("/events_extended", (req, res) => {
+  Event.aggregate([
+        {
+          $lookup: {
+            from: "games",
+            localField: "game",
+            foreignField: "name",
+            as: "agame"
+          }
+        },
+      ])
+      .exec((err, events) => {
+        response.data = events;
+        res.json(response);
+      })
+    //   Student.aggregate([{
+    //     $lookup: {
+    //         from: "worksnapsTimeEntries", // collection name in db
+    //         localField: "_id",
+    //         foreignField: "student",
+    //         as: "worksnapsTimeEntries"
+    //     }
+    // }]).exec(function(err, students) {
+    //     // students contain WorksnapsTimeEntries
+    // });
+      // .catch(err => {
+      //   sendError(err, res);
+      // });
+  });
+  // Event.find({})
+  // .then(events => {
+  //         response.data = events;
+  //         res.json(response);
+  //       })
+  //       .catch(err => {
+  //         sendError(err, res);
+  //       });
+
 
 // router.get("/events/:eventId", (req, res) => {
 //   let eventId = Number(req.params.eventId);
@@ -137,20 +143,16 @@ const Category = mongoose.model('Category', categorySchema);
 //   });
 // });
 
-// router.get("/events", (req, res) => {
-//   connection(db => {
-//     db.collection("events")
-//       .find()
-//       .toArray()
-//       .then(events => {
-//         response.data = events;
-//         res.json(response);
-//       })
-//       .catch(err => {
-//         sendError(err, res);
-//       });
-//   });
-// });
+router.get("/events", (req, res) => {
+  Event.find({}, function(err, events){
+        if (err) {
+          sendError(err, res);
+        } else {
+          response.data = events;
+          res.json(response);
+        }
+      })
+});
 
 // router.get("/categories", (req, res) => {
 //   connection(db => {
