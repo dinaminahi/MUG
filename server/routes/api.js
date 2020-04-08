@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 const app = express();
 const mongoose = require("mongoose");
+const cors = require('cors')
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
@@ -14,8 +17,10 @@ const connection = closure => {
   const uri =
     "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority";
   return MongoClient.connect(
-    uri,
-    { useNewUrlParser: true, useUnifiedTopology: true },
+    uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    },
     (err, client) => {
       if (err) return console.log(err);
       let db = client.db("MUG-DB");
@@ -148,8 +153,11 @@ router.get("/events_extended/:eventId", (req, res) => {
   let eventId = Number(req.params.eventId);
   connection(db => {
     db.collection("events")
-      .aggregate([
-        { $match: { id: eventId } },
+      .aggregate([{
+          $match: {
+            id: eventId
+          }
+        },
         {
           $lookup: {
             from: "games",
@@ -158,7 +166,9 @@ router.get("/events_extended/:eventId", (req, res) => {
             as: "game"
           }
         },
-        { $unwind: "$game" }
+        {
+          $unwind: "$game"
+        }
       ])
       .next()
       .then(events => {
@@ -175,8 +185,7 @@ router.get("/events_extended/:eventId", (req, res) => {
 router.get("/events_extended", (req, res) => {
   connection(db => {
     db.collection("events")
-      .aggregate([
-        {
+      .aggregate([{
           $lookup: {
             from: "games",
             localField: "gameId",
@@ -184,7 +193,9 @@ router.get("/events_extended", (req, res) => {
             as: "game"
           }
         },
-        { $unwind: "$game" }
+        {
+          $unwind: "$game"
+        }
       ])
       .toArray()
       .then(events => {
@@ -209,7 +220,9 @@ router.get("/events/:eventId", (req, res) => {
   let eventId = Number(req.params.eventId);
   connection(db => {
     db.collection("events")
-      .find({ id: eventId })
+      .find({
+        id: eventId
+      })
       .toArray()
       .then(events => {
         response.data = events;
@@ -239,20 +252,33 @@ router.get("/events", (req, res) => {
 router.get("/categories", (req, res) => {
   connection(db => {
     db.collection("games")
-      .aggregate([
-        { $group: { _id: null, category: { $addToSet: "$category" } } },
+      .aggregate([{
+          $group: {
+            _id: null,
+            category: {
+              $addToSet: "$category"
+            }
+          }
+        },
         {
           $addFields: {
             category: {
               $reduce: {
                 input: "$category",
                 initialValue: [],
-                in: { $setUnion: ["$$value", "$$this"] }
+                in: {
+                  $setUnion: ["$$value", "$$this"]
+                }
               }
             }
           }
         },
-        { $project: { _id: 0, category: "$category" } }
+        {
+          $project: {
+            _id: 0,
+            category: "$category"
+          }
+        }
       ])
       .next()
       .then(categories => {
@@ -284,7 +310,9 @@ router.get("/games/:gameId", (req, res) => {
   let gameId = Number(req.params.gameId);
   connection(db => {
     db.collection("games")
-      .find({ id: gameId })
+      .find({
+        id: gameId
+      })
       .toArray()
       .then(games => {
         response.data = games;
