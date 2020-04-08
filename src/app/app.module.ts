@@ -4,10 +4,10 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { AgmCoreModule } from '@agm/core'
-import { from } from 'rxjs';
+import { AgmCoreModule } from "@agm/core";
+import { from } from "rxjs";
 import { HttpClientModule } from "@angular/common/http";
 import { DataService } from "./data.service";
 
@@ -41,9 +41,9 @@ import { LayoutEventsRuletteComponent } from "./layout/layout-events-rulette/lay
 import { HowItWorksComponent } from "./layout/how-it-works/how-it-works.component";
 import { LayoutHeroComponent } from "./layout/layout-hero/layout-hero.component";
 import { GameComponent } from "./game/game.component";
-import { EventItemComponent } from './event-item/event-item.component';
-import { EventDetailInfoComponent } from './event-detail-info/event-detail-info.component';
-import { MapComponent } from './map/map.component';
+import { EventItemComponent } from "./event-item/event-item.component";
+import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
+import { MapComponent } from "./map/map.component";
 import { FilterCategoryComponent } from "./filter-category/filter-category.component";
 import { EventsFilterPipe } from "./events-filter.pipe";
 import { ParticipantsCountComponent } from "./participants-count/participants-count.component";
@@ -106,7 +106,7 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     GamesCarouselComponent,
     SigninComponent,
     SignupComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     NgxPageScrollModule,
@@ -124,15 +124,15 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBqKA2arVjPzhzD-UvFu1fgRkepQdA7D9c',
-      libraries: ['places']
+      apiKey: "AIzaSyBqKA2arVjPzhzD-UvFu1fgRkepQdA7D9c",
+      libraries: ["places"],
     }),
     FormsModule,
     ReactiveFormsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}
