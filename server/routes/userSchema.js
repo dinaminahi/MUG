@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         address: String,
         geo: {
           longitude: Number,
-          latitide: Number
+          latitude: Number
         }
       },
       dateOfBirth: String,

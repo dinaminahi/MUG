@@ -12,9 +12,8 @@ import { DataService } from "../data.service";
   styleUrls: ["./event-detail-info.component.scss"]
 })
 export class EventDetailInfoComponent implements OnInit {
-  eventId: number;
   expectedEvent: EventItem;
-  public geo = [];
+  geo: Object;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,11 +23,11 @@ export class EventDetailInfoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let id = parseInt(this.route.snapshot.paramMap.get("id"));
-    this.eventId = id;
-    this._dataService.getEventById(this.eventId).subscribe(res => {
-      this.expectedEvent = res;
-      this.geo.push(this.expectedEvent.location.geo);
+    let id = this.route.snapshot.paramMap.get("id");
+    this._dataService.getEventById(id).subscribe(res => {
+      this.expectedEvent = res[0];
+      this.geo = this.expectedEvent.location.geo;
+      console.log(this.geo);
     });
   }
 

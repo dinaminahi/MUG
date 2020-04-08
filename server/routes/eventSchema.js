@@ -8,7 +8,7 @@ const eventSchema = new mongoose.Schema({
       address: String,
       geo: {
         longitude: Number,
-        latitide: Number
+        latitude: Number
       }
     },
     dateTime: String,

@@ -14,7 +14,7 @@ export class DataService {
   game: Game;
   constructor(private _http: HttpClient) {}
 
-  public getEventById(id: number): Observable<EventItem> {
+  public getEventById(id: String): Observable<EventItem> {
     return this._http
       .get<{ status: number; data: EventItem; message: string }>(
         `/api/events_extended/${id}`

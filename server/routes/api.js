@@ -60,32 +60,17 @@ let response = {
 
 // // Get events
 
-// router.get("/events_extended/:eventId", (req, res) => {
-//   let eventId = Number(req.params.eventId);
-//   connection(db => {
-//     db.collection("events")
-//       .aggregate([
-//         { $match: { id: eventId } },
-//         {
-//           $lookup: {
-//             from: "games",
-//             localField: "gameId",
-//             foreignField: "id",
-//             as: "game"
-//           }
-//         },
-//         { $unwind: "$game" }
-//       ])
-//       .next()
-//       .then(events => {
-//         response.data = events;
-//         res.json(response);
-//       })
-//       .catch(err => {
-//         sendError(err, res);
-//       });
-//   });
-// });
+router.get("/events_extended/:eventId", (req, res) => {
+  let eventId = req.params.eventId;
+     Event.find({_id: eventId}, (err, event) => {
+      if (err) {
+        sendError(err,res);
+      } else {
+        response.data = event;
+        res.json(response);
+      }
+     })
+  });
 
 
 router.get("/events_extended", (req, res) => {
@@ -98,34 +83,17 @@ router.get("/events_extended", (req, res) => {
             as: "agame"
           }
         },
+        { $unwind: "$game" }
       ])
       .exec((err, events) => {
-        response.data = events;
-        res.json(response);
+        if (err) {
+          sendError(err,res);
+        } else {
+          response.data = events;
+          res.json(response);
+        }
       })
-    //   Student.aggregate([{
-    //     $lookup: {
-    //         from: "worksnapsTimeEntries", // collection name in db
-    //         localField: "_id",
-    //         foreignField: "student",
-    //         as: "worksnapsTimeEntries"
-    //     }
-    // }]).exec(function(err, students) {
-    //     // students contain WorksnapsTimeEntries
-    // });
-      // .catch(err => {
-      //   sendError(err, res);
-      // });
   });
-  // Event.find({})
-  // .then(events => {
-  //         response.data = events;
-  //         res.json(response);
-  //       })
-  //       .catch(err => {
-  //         sendError(err, res);
-  //       });
-
 
 // router.get("/events/:eventId", (req, res) => {
 //   let eventId = Number(req.params.eventId);
