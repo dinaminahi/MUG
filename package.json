@@ -48,6 +48,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "ngx-page-scroll": "^7.0.1",
     "ngx-page-scroll-core": "^7.0.1",
+    "node": "^13.12.0",
     "npm": "^6.14.4",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
