@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
 import { Game } from "./game/game";
 import { Observable } from "rxjs";
+import { catchError, retry } from "rxjs/operators";
+import { User } from "./pages/page-users/user";
 
 @Injectable({ providedIn: "root" })
 export class DataService {
@@ -12,7 +14,9 @@ export class DataService {
   games: Game[];
   event: EventItem;
   game: Game;
-  isFavorited: boolean;
+  user: User;
+  favoritedEvents: string[];
+  favoritedGames: string[];
   constructor(private _http: HttpClient) {}
 
   public getEventById(id: number): Observable<EventItem> {
@@ -55,5 +59,26 @@ export class DataService {
     return this._http
       .get<{ status: number; data: Game; message: string }>(`/api/games/${id}`)
       .pipe(map((response) => (this.game = response.data)));
+  }
+
+  public getUser(): Observable<User> {
+    return this._http
+      .get<User>("assets/user-object.json")
+      .pipe(map((response) => (this.user = response)));
+  }
+
+  public addGameToFavorites(
+    gameId: number,
+    userEmail: string,
+    toggle: boolean
+  ): Observable<[]> {
+    return this._http
+      .put<any>("/api/favorite-games", { gameId, userEmail, toggle })
+      .pipe(
+        map((response) => {
+          this.favoritedGames = response.data;
+          return response;
+        })
+      );
   }
 }

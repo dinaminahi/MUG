@@ -1,3 +1,10 @@
-<button class="heart" (click)="dataService.addToFavorites()">
+<button
+  [ngClass]="{
+    isFavorited: this.isFavorited,
+    isLoading: this.isLoading,
+    'heart ': true
+  }"
+  (click)="this.toggleFavorite()"
+>
   <i class="fas fa-heart"></i>
 </button>

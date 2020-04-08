@@ -12,13 +12,18 @@ export class User {
     description: string; //'Фанат кооперативних ігор; завжди беру на зустріч з собою пиво на всю компанію'
   };
   events: {
-    subscribed: [];
-    interested: [];
-    created: [];
+    subscribed: number[];
+    interested: number[];
+    created: number[];
   };
   games: {
-    favorited: []; // game id's or some part of game objects
-    skillLevel: { novice: []; beginner: []; intermediate: []; advanced: [] };
+    favorited: number[]; // game id's or some part of game objects
+    skillLevel: {
+      novice: number[];
+      beginner: number[];
+      intermediate: number[];
+      advanced: number[];
+    };
   };
   rating: number; // likes counter form other users
 }

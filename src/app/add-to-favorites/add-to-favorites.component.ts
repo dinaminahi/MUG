@@ -5,9 +5,8 @@ import { EventItem } from "../event-item/event-item";
 import { Game } from "../game/game";
 import { User } from "../pages/page-users/user";
 import { from } from "rxjs";
-import { concatMap , tap} from 'rxjs/operators';
+import { concatMap, tap } from "rxjs/operators";
 import { DataService } from "../data.service";
-
 
 @Component({
   selector: "app-add-to-favorites",
@@ -15,88 +14,44 @@ import { DataService } from "../data.service";
   styleUrls: ["./add-to-favorites.component.scss"],
 })
 export class AddToFavoritesComponent implements OnInit {
-
-  @Input() game: Game;
-  @Input() event: EventItem;
-  @Input() user: User;
+  @Input() gameId: number;
+  @Input() eventId: number;
+  favoritedEvents: string[];
+  favoritedGames: string[];
+  isFavorited: boolean;
+  isLoading: boolean;
+  user: User;
   @Output() toggle = new EventEmitter<boolean>();
   isSubmitting = false;
   isAuthenticated = true;
-  constructor(private http: HttpClient, private router: Router, private dataService: DataService) {}
+
+  constructor(private _dataService: DataService, private http: HttpClient) {
+    this._dataService.getUser().subscribe((res) => {
+      this.user = res;
+      const gameId = this.gameId;
+      if (this.gameId) {
+        this.isFavorited = !!this.user.games.favorited.indexOf(gameId);
+      }
+      if (this.eventId) {
+        this.isFavorited = !!this.user.events.interested.indexOf(gameId);
+      }
+    });
+  }
 
   ngOnInit(): void {}
 
   toggleFavorite() {
-    this.isSubmitting = true;
-    this.user.isAuthenticated.pipe(concatMap(
-      (authenticated) => {
-        // Not authenticated? Push to login screen
-        if (!authenticated) {
-          this.router.navigateByUrl('/login');
-          return of(null);
-        }
-
+    this.isLoading = true;
+    this._dataService
+      .addGameToFavorites(
+        this.gameId,
+        this.user.personal.email,
+        !this.isFavorited
+      )
+      .subscribe((res) => {
+        this.isLoading = false;
+        this.isFavorited = !this.isFavorited;
+        this.favoritedGames = res;
+      });
+  }
 }
-
-// Просто як приклад як можна робити:
-
-// import { Component, EventEmitter, Input, Output } from '@angular/core';
-// import { Router } from '@angular/router';
-
-// import { Article, ArticlesService, UserService } from '../../core';
-// import { of } from 'rxjs';
-// import { concatMap ,  tap } from 'rxjs/operators';
-
-// @Component({
-//   selector: 'app-favorite-button',
-//   templateUrl: './favorite-button.component.html'
-// })
-// export class FavoriteButtonComponent {
-//   constructor(
-//     private articlesService: ArticlesService,
-//     private router: Router,
-//     private userService: UserService
-//   ) {}
-
-//   @Input() article: Article;
-//   @Output() toggle = new EventEmitter<boolean>();
-//   isSubmitting = false;
-
-//   toggleFavorite() {
-//     this.isSubmitting = true;
-
-//     this.userService.isAuthenticated.pipe(concatMap(
-//       (authenticated) => {
-//         // Not authenticated? Push to login screen
-//         if (!authenticated) {
-//           this.router.navigateByUrl('/login');
-//           return of(null);
-//         }
-
-//         // Favorite the article if it isn't favorited yet
-//         if (!this.article.favorited) {
-//           return this.articlesService.favorite(this.article.slug)
-//           .pipe(tap(
-//             data => {
-//               this.isSubmitting = false;
-//               this.toggle.emit(true);
-//             },
-//             err => this.isSubmitting = false
-//           ));
-
-//         // Otherwise, unfavorite the article
-//         } else {
-//           return this.articlesService.unfavorite(this.article.slug)
-//           .pipe(tap(
-//             data => {
-//               this.isSubmitting = false;
-//               this.toggle.emit(false);
-//             },
-//             err => this.isSubmitting = false
-//           ));
-//         }
-
-//       }
-//     )).subscribe();
-//   }
-// }

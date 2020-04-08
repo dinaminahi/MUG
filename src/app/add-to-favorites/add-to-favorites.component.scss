@@ -6,10 +6,20 @@
   color: #666;
   border: none;
   background: none;
-}
 
-.heart:active {
-  color: #444;
-}
+  &:active {
+    color: #444;
+  }
 
-// :host-context(.icons-inline) {}
+  &.isFavorited {
+    color: red;
+    &:active {
+      color: darken(red, 5%);
+    }
+  }
+
+  &.isLoading {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
