@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-module.exports = mongoose.model('Event', {
+module.exports = mongoose.model('Game', {
   name: String,
   category: [categorySchema],
   description: String,
