@@ -10,9 +10,17 @@ import { DataService } from "./data.service";
 })
 export class AppComponent {
   title = "MUG-project";
-  constructor(private dataService: DataService) {}
+  // constructor(private dataService: DataService) {} // api.servise
 
   ngOnInit() {
     // this.dataService.get();
+    //
+    // dont know if right-----
+    // this.dataService.getEvents();
+    // this.dataService.getCategories();
+    // this.dataService.getGames();
+    // this.dataService.getEventById;
+    // this.dataService.getGameById;
+    //---------------
   }
 }

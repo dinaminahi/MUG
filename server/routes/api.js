@@ -1,9 +1,11 @@
 const express = require("express");
-const app = express();
 const router = express.Router();
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const mongoose = require("mongoose");
+const jwt = require('jsonwebtoken')
+const app = express();
+
 
 app.use(express.json());
 app.use(
@@ -49,19 +51,53 @@ const connection = (closure) => {
 
 // ///////////////
 // user registration
+app.get('/users', async (req, res) => {
 
-app.get('/register', (req, res) => {
+  try {
+    const user = await User.find({}, '-password -__v')
+    res.send(users)
+  } catch (error) {
+    res.sendStatus(500)
+  }
+})
+
+app.post('/signup', (req, res) => {
   const userData = req.body;
-  // console.log(userData); // to check 
 
   let user = new User(userData)
+
   user.save((err, result) => {
     if (err)
       console.log('user error');
 
-    res.sendStatus(200)
+    res.status(200)
   })
 })
+
+// user login
+app.post('/signin', async (req, res) => {
+  const userData = req.body;
+
+  const user = await User.findOne({
+    email: userData.email
+  })
+
+  if (!user)
+    return res.status(401).send({
+      message: 'email or password - invalid'
+    })
+  if (userData.password != user.password)
+    return res.status(401).send({
+      message: 'email or password - invalid'
+    })
+  const payload = {}
+  const token = jwt.encde(payload, '123') // hardcoded secret
+  res.status(200).send({
+    token
+  })
+})
+
+
 
 mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", {
   useMongoClient: true

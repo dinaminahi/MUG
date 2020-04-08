@@ -1,3 +1,4 @@
+//-------service to get data from beckend ------ api.servise...
 import { Injectable } from "@angular/core";
 import { map, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
@@ -12,7 +13,6 @@ export class DataService {
   games: Game[];
   event: EventItem;
   game: Game;
-  // user: users; --- do not have it
 
   constructor(private _http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AgmCoreModule } from "@agm/core";
-import { from } from "rxjs";
+//import { from } from "rxjs"; --------------do we need it here?????
 import { HttpClientModule } from "@angular/common/http";
 import { DataService } from "./data.service";
 
@@ -64,6 +64,8 @@ import { GamesCarouselComponent } from "./games-carousel/games-carousel.componen
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { AuthService } from "./shared/auth.service";
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +109,7 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
+    UsersComponent,
   ],
   imports: [
     NgxPageScrollModule,
@@ -131,7 +134,7 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
   ],
-  providers: [DataService],
+  providers: [DataService, AuthService], // api.service
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })

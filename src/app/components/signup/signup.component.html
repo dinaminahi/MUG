@@ -20,10 +20,11 @@
             <!-- </div> -->
           </div>
           <!-- E-mail -->
-          <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+          <input [(ngModel)]="registerData.email" name="email" type="email" id="defaultRegisterFormEmail"
+            class="form-control mb-4" placeholder="E-mail">
           <!-- Password -->
-          <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <input [(ngModel)]="registerData.password" name="password" type="password" id="defaultRegisterFormPassword"
+            class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
           <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 8 characters and 1 digit
           </small>
@@ -40,7 +41,8 @@
               newsletter</label>
           </div>
           <!-- Sign up button -->
-          <button class="btn btn-info stylish-color-dark  my-4 btn-block" type="submit">Sign in</button>
+          <button (click)="post()" class="btn btn-info stylish-color-dark  my-4 btn-block" type="submit">Create
+            account</button>
           <!-- Social register -->
           <p>or sign up with:</p>
           <a href="#" class="mx-1" role="button"><i class="fab fa-facebook-f"></i></a>
