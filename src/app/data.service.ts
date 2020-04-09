@@ -46,8 +46,8 @@ export class DataService {
 
   public addEvent(newEvent) {
      return this._http.post('/api/addevent', newEvent).subscribe(data => {
-       console.log(data);
-     });
+      console.log(data);
+    });
   }
   
   public getGameById(id: number): Observable<Game> {

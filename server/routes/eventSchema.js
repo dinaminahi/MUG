@@ -25,7 +25,7 @@ const eventSchema = new mongoose.Schema({
       },
       experienceNeeded: String
     },
-    organizer: Number,
+    organizer: mongoose.ObjectId,
     canceled: Boolean
   });
   

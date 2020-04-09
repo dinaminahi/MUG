@@ -1,7 +1,7 @@
 export class EventItem {
   id: number;
   eventName: string;
-  game: {
+  agame: {
     id: number;
     name: string;
     category: string[];

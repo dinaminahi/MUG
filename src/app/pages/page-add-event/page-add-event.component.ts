@@ -23,15 +23,13 @@ export class PageAddEventComponent implements OnInit {
   public latlong: any = {}; //////////
   public searchControl: FormControl;
   isSubmitted = true;
-
-   public eventsCount: number;
   
   myForm: FormGroup;
   //to choose game for event, later it will be from json file or db
   games = ["Uno", "Merchant Cove", "Pangea"];
 
-  get gameA() {
-    return this.myForm.get('gameA');
+  get game() {
+    return this.myForm.get('game');
   } 
 
   get description() {
@@ -50,10 +48,8 @@ export class PageAddEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      id: [],
       eventName: [''],
-      gameId: 3,
-      gameA: ['', Validators.required],
+      game: ['', Validators.required],
       dateTime: ['', Validators.required],
       duration: [''],
       location: this.fb.group({
@@ -71,12 +67,13 @@ export class PageAddEventComponent implements OnInit {
        }),
        count: this.fb.group({
          min: [],
-         max: []
+         max: [],
+         current: 0
        }),
-       current: 0,
        following: [[]],
-       experiance: ['new']
-      })
+       experiance: ['novice']
+      }),
+      canceled: false
     });
 
     this.zoom = 8;
@@ -109,17 +106,14 @@ export class PageAddEventComponent implements OnInit {
 
           this.latLongs.push(latlong);
           this.searchControl.reset();
-          this._dataService.getEvents().subscribe(res => {
-            this.eventsCount = res.length;
-          }); 
          });
       });
     });
   }
 
   onSubmit() {
-    this.myForm.value.id = this.eventsCount++;
     this._dataService.addEvent(this.myForm.value);
+    console.log(this.myForm.value);
   }
 
   private setCurrentPosition() {
