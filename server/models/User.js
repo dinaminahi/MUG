@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt-nodejs");
 
-module.exports = mongoose.model('User', {
+const userShema = new mongoose.Schema({
   email: String,
   password: String,
   personal: {
@@ -13,8 +14,8 @@ module.exports = mongoose.model('User', {
       address: String,
       geo: {
         longitude: Number,
-        latitide: Number
-      }
+        latitide: Number,
+      },
     },
     dateOfBirth: Number,
     description: String,
@@ -30,8 +31,21 @@ module.exports = mongoose.model('User', {
       novice: [eventSchema],
       beginner: [eventSchema],
       intermediate: [eventSchema],
-      advanced: [eventSchema]
+      advanced: [eventSchema],
     },
-    rating: Number // likes counter form other users
-  }
-})
+    rating: Number, // likes counter form other users
+  },
+});
+
+userShema.pre("save", function (next) {
+  const user = this;
+
+  if (!user.isNotModefied("password")) return next();
+  bcrypt.hash(user.password, null, null, (err, hash) => {
+    if (err) return next(err);
+    user.password = hash;
+    naxt();
+  });
+});
+
+module.exports = mongoose.model("User", userShema);

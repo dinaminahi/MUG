@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const cors = require('cors');
-const bodyParser = require('body-parser')
+const cors = require("cors");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 const app = express();
-
+const bcrypt = require("bcrypt-nodejs");
 
 app.use(express.json());
 app.use(
@@ -14,10 +14,9 @@ app.use(
   })
 );
 
-// new for user creation 
+// new for user creation
 app.use(cors());
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
 
 //--- data - for future coreections-------
 
@@ -27,7 +26,10 @@ app.use(bodyParser.json())
 
 //------
 
-const User = require('./models/User.js')
+const User = require("./models/User.js");
+// for mongoose
+mongoose.Promise = Promise;
+
 //
 
 const MongoClient = require("mongodb").MongoClient;
@@ -37,7 +39,8 @@ const connection = (closure) => {
   const uri =
     "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority";
   return MongoClient.connect(
-    uri, {
+    uri,
+    {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
@@ -51,61 +54,69 @@ const connection = (closure) => {
 
 // ///////////////
 // user registration
-app.get('/users', async (req, res) => {
-
+app.get("/users", async (req, res) => {
   try {
-    const user = await User.find({}, '-password -__v')
-    res.send(users)
+    const users = await User.find({}, "-password -__v"); //  '-password -__v remove this dava from view
+    res.send(users);
   } catch (error) {
-    res.sendStatus(500)
+    res.sendStatus(500);
   }
-})
+});
 
-app.post('/signup', (req, res) => {
+app.get("/user-profile/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id, "-password -__v"); //  '-password -__v remove this dava from view
+    res.send(user);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
+app.post("/signup", (req, res) => {
   const userData = req.body;
 
-  let user = new User(userData)
+  let user = new User(userData);
 
   user.save((err, result) => {
-    if (err)
-      console.log('user error');
+    if (err) console.log("user error");
 
-    res.status(200)
-  })
-})
+    res.status(200);
+  });
+});
 
 // user login
-app.post('/signin', async (req, res) => {
-  const userData = req.body;
+app.post("/signin", async (req, res) => {
+  const loginData = req.body;
 
   const user = await User.findOne({
-    email: userData.email
-  })
+    email: userData.email,
+  });
 
   if (!user)
     return res.status(401).send({
-      message: 'email or password - invalid'
-    })
-  if (userData.password != user.password)
-    return res.status(401).send({
-      message: 'email or password - invalid'
-    })
-  const payload = {}
-  const token = jwt.encde(payload, '123') // hardcoded secret
-  res.status(200).send({
-    token
-  })
-})
+      message: "email or password - invalid",
+    });
 
-
-
-mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", {
-  useMongoClient: true
-}, (err) => {
-  if (!err)
-    console.log('connected to mongo')
+  bcrypt.compare(loginData.password, user.password, (err, isMatch) => {
+    if (!isMatch)
+      return res.status(401).send({
+        message: "email or password - invalid",
+      });
+    const payload = {};
+    const token = jwt.encde(payload, "123"); // hardcoded secret
+    res.status(200).send({ token });
+  });
 });
 
+mongoose.connect(
+  "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority",
+  {
+    useMongoClient: true,
+  },
+  (err) => {
+    if (!err) console.log("connected to mongo");
+  }
+);
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 
@@ -227,7 +238,8 @@ router.get("/events_extended/:eventId", (req, res) => {
   let eventId = Number(req.params.eventId);
   connection((db) => {
     db.collection("events")
-      .aggregate([{
+      .aggregate([
+        {
           $match: {
             id: eventId,
           },
@@ -258,7 +270,8 @@ router.get("/events_extended/:eventId", (req, res) => {
 router.get("/events_extended", (req, res) => {
   connection((db) => {
     db.collection("events")
-      .aggregate([{
+      .aggregate([
+        {
           $lookup: {
             from: "games",
             localField: "gameId",
@@ -325,7 +338,8 @@ router.get("/events", (req, res) => {
 router.get("/categories", (req, res) => {
   connection((db) => {
     db.collection("games")
-      .aggregate([{
+      .aggregate([
+        {
           $group: {
             _id: null,
             category: {
@@ -407,9 +421,5 @@ router.post("/addevent", (req, res) => {
 // connection(db => {
 //   db.collection("events").deleteOne({id: 10});
 // })
-
-
-
-
 
 module.exports = router;

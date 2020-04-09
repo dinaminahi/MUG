@@ -14,8 +14,22 @@ export class DataService {
   event: EventItem;
   game: Game;
 
-  constructor(private _http: HttpClient) {}
+  users = [];
 
+  constructor(private _http: HttpClient) {}
+  //------------------------------------
+  getUsers() {
+    this._http.get("http//lockalhost:3000/usres").subscribe((res) => {
+      /// - server 3000 change to - "/api/users"
+
+      this.users = res.json(); ///// error
+    });
+  }
+
+  getProfile(id) {
+    return this._http.get("http//lockalhost:3000/user-profile/" + id);
+  }
+  // -----------------------------------
   public getEventById(id: number): Observable<EventItem> {
     return this._http
       .get<{ status: number; data: EventItem; message: string }>(
