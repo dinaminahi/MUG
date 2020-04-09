@@ -1,7 +1,12 @@
 //-------service to get data from beckend ------ api.servise...
 import { Injectable } from "@angular/core";
 import { map, tap } from "rxjs/operators";
-import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpRequest,
+  HttpParams,
+} from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
 import { Game } from "./game/game";
 import { Observable } from "rxjs";
@@ -15,21 +20,24 @@ export class DataService {
   game: Game;
 
   users = [];
+  path = "http//lockalhost:3000"; /// nede to change to /api??
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private http: HttpClient) {}
+
+  // user ----
   //------------------------------------
   getUsers() {
-    this._http.get("http//lockalhost:3000/usres").subscribe((res) => {
-      /// - server 3000 change to - "/api/users"
-
-      this.users = res.json(); ///// error
+    this.http.get<any>(this.path + "/users").subscribe((res) => {
+      this.users = res;
     });
   }
 
   getProfile(id) {
-    return this._http.get("http//lockalhost:3000/user-profile/" + id);
+    return this.http.get(this.path + "/user-profile" + id);
   }
+
   // -----------------------------------
+
   public getEventById(id: number): Observable<EventItem> {
     return this._http
       .get<{ status: number; data: EventItem; message: string }>(

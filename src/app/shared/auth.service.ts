@@ -7,8 +7,13 @@ import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 export class AuthService {
   // messages = [] //----- for messging
   path = "http://lockalhost:3000/auth";
+  TOKEN_KEY = "token";
 
   constructor(private http: HttpClient) {}
+
+  get token() {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
 
   registerUser(registerData) {
     this.http.post(this.path + "/signup", registerData).subscribe((res) => {});
@@ -16,9 +21,9 @@ export class AuthService {
 
   loginUser(loginData) {
     this.http
-      .post(this.path + "/signin", loginData) // need to check adress /api/signin
+      .post<any>(this.path + "/signin", loginData) // need to check adress /api/signin
       .subscribe((res) => {
-        localStorage.setItem("token", res.json().token); /// error
+        localStorage.setItem(this.TOKEN_KEY, res.token);
       });
   }
 }

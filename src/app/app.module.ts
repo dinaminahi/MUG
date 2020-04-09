@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AgmCoreModule } from "@agm/core";
 //import { from } from "rxjs"; --------------do we need it here?????
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { DataService } from "./data.service";
 
 import { PageHomeComponent } from "./pages/page-home/page-home.component";
@@ -65,7 +65,8 @@ import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { AuthService } from "./shared/auth.service";
-import { UsersComponent } from './users/users.component';
+import { UsersComponent } from "./users/users.component";
+import { AuthInterceptorService } from "./shared/authInterceptor.service";
 
 @NgModule({
   declarations: [
@@ -134,7 +135,15 @@ import { UsersComponent } from './users/users.component';
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
   ],
-  providers: [DataService, AuthService], // api.service
+  providers: [
+    DataService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ], // api.service
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })

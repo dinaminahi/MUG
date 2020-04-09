@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const express = require('express');
 const router = express.Router()
 
+
+//create
 router.post('/signup', (req, res) => {
   const userData = req.body;
 
@@ -16,6 +18,7 @@ router.post('/signup', (req, res) => {
   });
 })
 
+//login
 router.post('/signin', async (req, res) => {
   const loginData = req.body;
   const user = await User.findOne({
@@ -32,7 +35,9 @@ router.post('/signin', async (req, res) => {
       return res.status(401).send({
         message: "email or password - invalid",
       });
-    const payload = {};
+    const payload = {
+      sub: user._id //subject - id
+    };
     const token = jwt.encde(payload, "123"); // hardcoded secret
     res.status(200).send({
       token

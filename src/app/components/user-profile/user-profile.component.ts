@@ -61,9 +61,10 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     // ------new
-    //  profile
+    //
+    // profile
     // const id = this.route.snapshot.params.id;
-    // this.dataService.getProfile(id).subscribe((data) => this.profile = data.jason());
+    // this.dataService.getProfile(id).subscribe((data) => this.profile = data);
     /// ----------new
 
     this.personalInfoForm = this.fb.group({

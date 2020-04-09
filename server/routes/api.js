@@ -19,9 +19,9 @@ app.use(bodyParser.json());
 
 //--- data - for future coreections-------????????
 
-// const Event = require('./models/Event.js')
-// const Category = require('./models/Category.js')
-// const Event = require('./models/Event.js')
+const Game = require('./models/Game.js')
+const Category = require('./models/Category.js')
+const Event = require('./models/Event.js')
 
 //------
 
