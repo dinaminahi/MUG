@@ -1,11 +1,5 @@
-import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
-import { EventItem } from "../event-item/event-item";
-import { Game } from "../game/game";
+import { Component, Input } from "@angular/core";
 import { User } from "../pages/page-users/user";
-import { from } from "rxjs";
-import { concatMap, tap } from "rxjs/operators";
 import { DataService } from "../data.service";
 
 @Component({
@@ -13,7 +7,7 @@ import { DataService } from "../data.service";
   templateUrl: "./add-to-favorites.component.html",
   styleUrls: ["./add-to-favorites.component.scss"],
 })
-export class AddToFavoritesComponent implements OnInit {
+export class AddToFavoritesComponent {
   @Input() gameId: number;
   @Input() eventId: number;
   favoritedEvents: string[];
@@ -21,19 +15,22 @@ export class AddToFavoritesComponent implements OnInit {
   isFavorited: boolean;
   isLoading: boolean;
   user: User;
-  @Output() toggle = new EventEmitter<boolean>();
-  isSubmitting = false;
-  isAuthenticated = true;
 
-  constructor(private _dataService: DataService, private http: HttpClient) {
+  constructor(private _dataService: DataService) {
     this._dataService.getUser().subscribe((res) => {
       this.user = res;
-      const gameId = this.gameId;
+      if (!this.user) {
+        return false;
+      }
       if (this.gameId) {
-        this.isFavorited = !!this.user.games.favorited.indexOf(gameId);
+        this.isFavorited = !!(
+          this.user.games.favorited.indexOf(this.gameId) > -1
+        );
       }
       if (this.eventId) {
-        this.isFavorited = !!this.user.events.interested.indexOf(gameId);
+        this.isFavorited = !!(
+          this.user.events.interested.indexOf(this.eventId) > -1
+        );
       }
     });
   }
@@ -42,16 +39,31 @@ export class AddToFavoritesComponent implements OnInit {
 
   toggleFavorite() {
     this.isLoading = true;
-    this._dataService
-      .addGameToFavorites(
-        this.gameId,
-        this.user.personal.email,
-        !this.isFavorited
-      )
-      .subscribe((res) => {
-        this.isLoading = false;
-        this.isFavorited = !this.isFavorited;
-        this.favoritedGames = res;
-      });
+    if (this.gameId) {
+      this._dataService
+        .addGameToFavorites(
+          this.gameId,
+          this.user.personal.email,
+          !this.isFavorited
+        )
+        .subscribe((res) => {
+          this.isLoading = false;
+          this.isFavorited = !this.isFavorited;
+          this.favoritedGames = res;
+        });
+    }
+    if (this.eventId) {
+      this._dataService
+        .addEventToFavorites(
+          this.eventId,
+          this.user.personal.email,
+          !this.isFavorited
+        )
+        .subscribe((res) => {
+          this.isLoading = false;
+          this.isFavorited = !this.isFavorited;
+          this.favoritedGames = res;
+        });
+    }
   }
 }

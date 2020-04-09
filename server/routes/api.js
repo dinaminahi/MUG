@@ -293,22 +293,54 @@ router.put("/favorite-games", (req, res) => {
       .find({ email: req.body.userEmail })
       .toArray()
       .then((users) => {
-        const favorites = users[0].favorites || [];
-        const index = favorites.indexOf(req.body.gameId);
+        const games = users[0].games || {};
+        games.favorites = games.favorites || [];
+        const index = games.favorites.indexOf(req.body.gameId);
         if (req.body.toggle) {
           if (index === -1) {
-            favorites.push(req.body.gameId);
+            games.favorites.push(req.body.gameId);
           }
         } else {
           if (index > -1) {
-            favorites.splice(index, 1);
+            games.favorites.splice(index, 1);
           }
         }
 
         db.collection("users")
-          .updateOne({ email: req.body.userEmail }, { $set: { favorites } })
+          .updateOne({ email: req.body.userEmail }, { $set: { games } })
           .then(() => {
-            res.json(favorites);
+            res.json(games.favorites);
+          });
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.put("/favorite-events", (req, res) => {
+  connection((db) => {
+    db.collection("users")
+      .find({ email: req.body.userEmail })
+      .toArray()
+      .then((users) => {
+        const events = users[0].events || {};
+        events.interested = events.interested || [];
+        const index = events.interested.indexOf(req.body.gameId);
+        if (req.body.toggle) {
+          if (index === -1) {
+            events.interested.push(req.body.eventId);
+          }
+        } else {
+          if (index > -1) {
+            events.interested.splice(index, 1);
+          }
+        }
+
+        db.collection("users")
+          .updateOne({ email: req.body.userEmail }, { $set: { events } })
+          .then(() => {
+            res.json(events.interested);
           });
       })
       .catch((err) => {

@@ -81,4 +81,19 @@ export class DataService {
         })
       );
   }
+
+  public addEventToFavorites(
+    eventId: number,
+    userEmail: string,
+    toggle: boolean
+  ): Observable<[]> {
+    return this._http
+      .put<any>("/api/favorite-events", { eventId, userEmail, toggle })
+      .pipe(
+        map((response) => {
+          this.favoritedEvents = response.data;
+          return response;
+        })
+      );
+  }
 }
