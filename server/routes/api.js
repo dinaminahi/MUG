@@ -3,9 +3,8 @@ const router = express.Router();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
 const app = express();
-const bcrypt = require("bcrypt-nodejs");
+const auth = require('./auth.js')
 
 app.use(express.json());
 app.use(
@@ -18,7 +17,7 @@ app.use(
 app.use(cors());
 app.use(bodyParser.json());
 
-//--- data - for future coreections-------
+//--- data - for future coreections-------????????
 
 // const Event = require('./models/Event.js')
 // const Category = require('./models/Category.js')
@@ -39,8 +38,7 @@ const connection = (closure) => {
   const uri =
     "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority";
   return MongoClient.connect(
-    uri,
-    {
+    uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
@@ -72,51 +70,17 @@ app.get("/user-profile/:id", async (req, res) => {
   }
 });
 
-app.post("/signup", (req, res) => {
-  const userData = req.body;
-
-  let user = new User(userData);
-
-  user.save((err, result) => {
-    if (err) console.log("user error");
-
-    res.status(200);
-  });
-});
-
-// user login
-app.post("/signin", async (req, res) => {
-  const loginData = req.body;
-
-  const user = await User.findOne({
-    email: userData.email,
-  });
-
-  if (!user)
-    return res.status(401).send({
-      message: "email or password - invalid",
-    });
-
-  bcrypt.compare(loginData.password, user.password, (err, isMatch) => {
-    if (!isMatch)
-      return res.status(401).send({
-        message: "email or password - invalid",
-      });
-    const payload = {};
-    const token = jwt.encde(payload, "123"); // hardcoded secret
-    res.status(200).send({ token });
-  });
-});
 
 mongoose.connect(
-  "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority",
-  {
+  "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", {
     useMongoClient: true,
   },
   (err) => {
     if (!err) console.log("connected to mongo");
   }
 );
+app.use('/auth', auth);
+
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 
@@ -238,8 +202,7 @@ router.get("/events_extended/:eventId", (req, res) => {
   let eventId = Number(req.params.eventId);
   connection((db) => {
     db.collection("events")
-      .aggregate([
-        {
+      .aggregate([{
           $match: {
             id: eventId,
           },
@@ -270,8 +233,7 @@ router.get("/events_extended/:eventId", (req, res) => {
 router.get("/events_extended", (req, res) => {
   connection((db) => {
     db.collection("events")
-      .aggregate([
-        {
+      .aggregate([{
           $lookup: {
             from: "games",
             localField: "gameId",
@@ -338,8 +300,7 @@ router.get("/events", (req, res) => {
 router.get("/categories", (req, res) => {
   connection((db) => {
     db.collection("games")
-      .aggregate([
-        {
+      .aggregate([{
           $group: {
             _id: null,
             category: {
