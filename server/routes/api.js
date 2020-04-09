@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
 const auth = require('./auth.js')
-
+const jwt = require("jsonwebtoken");
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -16,6 +16,10 @@ app.use(
 // new for user creation
 app.use(cors());
 app.use(bodyParser.json());
+
+
+// using express
+
 
 //--- data - for future coreections-------????????
 
@@ -79,7 +83,7 @@ mongoose.connect(
     if (!err) console.log("connected to mongo");
   }
 );
-app.use('/auth', auth);
+app.use('/auth', auth.router);
 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database

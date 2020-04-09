@@ -45,4 +45,23 @@ router.post('/signin', async (req, res) => {
   });
 })
 
-module.exports = router
+const auth = {
+  router,
+  checkAuthenticated: (req, res, next) => {
+    if (!req.header('authorization'))
+      return res.status(401).send({
+        message: "Unauthoraized. Mssing Auth Header"
+      })
+
+    const token = req.header('authorization').split(' ')[1]
+    const payload = jwt.decode(token, '123') //123 - hardcoding
+    if (!payload)
+      return res.status(401).send({
+        message: "Unauthoraized. Auth Hedder Invalid"
+      })
+    req.userId = payload.sub
+    next()
+  }
+}
+
+module.exports = auth
