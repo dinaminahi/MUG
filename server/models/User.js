@@ -44,7 +44,7 @@ userShema.pre("save", function (next) {
   bcrypt.hash(user.password, null, null, (err, hash) => {
     if (err) return next(err);
     user.password = hash;
-    naxt();
+    next();
   });
 });
 
