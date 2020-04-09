@@ -22,8 +22,9 @@
             [iconUrl]="event === selectedEvent ? icons.active : icons.default"
             [agmFitBounds]="true"
           >
-            <div><i class="fa fa-truck" aria-hidden="true"></i></div>
+          <agm-info-window><app-small-event-item [event]="event"></app-small-event-item></agm-info-window>
           </agm-marker>
+          <!-- <div><app-small-event-item [event]="selectedEvent" [ngClass]="{ selected: event === selectedEvent }"></app-small-event-item></div>  -->
         </agm-map>
       </div>
     </div>
