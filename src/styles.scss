@@ -59,3 +59,21 @@ body {
     }
   }
 }
+
+.carousel-multi-item {
+  .controls-top {
+    .btn-floating {
+      position: absolute;
+      top: 50%;
+      font-size: 2rem;
+      color: #ff6f59;
+      z-index: 2;
+      &:first-child {
+        left: -10px;
+      }
+      &:last-child {
+        right: -10px;
+      }
+    }
+  }
+}
