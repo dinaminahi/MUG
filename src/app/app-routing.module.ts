@@ -20,13 +20,12 @@ import { AuthGuard } from "./shared/auth.guard";
 // import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 
 export const routes: Routes = [
-  {
-    path: "userprofile/:id",
-    component: UserProfileComponent,
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: "userprofile/:id",
+  //   component: UserProfileComponent,
+  //   canActivate: [AuthGuard],
+  // },
   { path: "about", component: PageAboutComponent },
-  // { path: "account", component: PageAccountComponent },
   { path: "events", component: PageEventsComponent },
   { path: "events/:id", component: EventDetailInfoComponent },
   { path: "addevent", component: PageAddEventComponent },
@@ -39,6 +38,7 @@ export const routes: Routes = [
   { path: "userprofile", component: UserProfileComponent }, // changed
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent },
+  // { path: "account", component: PageAccountComponent },
   // { path: "contacts", component: PageContactsComponent },
 ];
 

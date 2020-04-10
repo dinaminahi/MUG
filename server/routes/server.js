@@ -1,26 +1,36 @@
 const express = require("express")
 const app = express()
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 // const router = express.Router();
-// const bodyParser = require("body-parser");
-// const mongoose = require("mongoose");
 // const auth = require('./auth.js')
 // const jwt = require("jsonwebtoken");
 
 app.use(cors());
+app.use(bodyParser.json());
 // app.use(express.json());
 // app.use(
 //   express.urlencoded({
 //     extended: false,
 //   })
 // );
-// app.use(bodyParser.json());
 
 app.post('/register', (req, res) => {
-  console.log(req.body)
-})
 
+  const userData = req.body;
+
+  let user = new User(userData);
+
+  user.save((err, newUser) => {
+    if (err)
+      return res.status(500).send({
+        message: "Error saving user",
+      });
+    createSendToken(res, newUser)
+  });
+})
 
 // const User = require("./models/User.js");
 
@@ -45,14 +55,11 @@ app.post('/register', (req, res) => {
 // });
 
 
-// mongoose.connect(
-//   "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", {
-//     useMongoClient: true,
-//   },
-//   (err) => {
-//     if (!err) console.log("connected to mongo");
-//   }
-// );
-// app.use('/auth', auth.router);
+mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", (err) => {
+  if (!err)
+    console.log("connected to mongo")
+})
 
-// app.listen(3000)
+app.use('/auth', auth.router);
+
+app.listen(3000)
