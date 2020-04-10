@@ -11,10 +11,12 @@ router.post('/signup', (req, res) => {
 
   let user = new User(userData);
 
-  user.save((err, result) => {
-    if (err) console.log("user error");
-
-    res.status(200);
+  user.save((err, newUser) => {
+    if (err)
+      return res.status(500).send({
+        message: "Error saving user",
+      });
+    createSendToken(res, newUser)
   });
 })
 
@@ -35,15 +37,19 @@ router.post('/signin', async (req, res) => {
       return res.status(401).send({
         message: "email or password - invalid",
       });
-    const payload = {
-      sub: user._id //subject - id
-    };
-    const token = jwt.encde(payload, "123"); // hardcoded secret
-    res.status(200).send({
-      token
-    });
+    createSendToken(res, user)
   });
 })
+
+function createSendToken(res, user) {
+  const payload = {
+    sub: user._id //subject - id
+  };
+  const token = jwt.encde(payload, "123"); // hardcoded secret
+  res.status(200).send({
+    token
+  });
+}
 
 const auth = {
   router,

@@ -36,10 +36,16 @@
       </li>
     </ul>
     <!-- Links -->
+    <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit" mdbWavesEffect
+      *ngIf="!authService.isAutentikated" routerLink="/login" routerLinkActive="active">login</button>
 
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <!-- !!!!!!!!!!!!!!!!!!! user img if user logged in -->
-      <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
+    <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit" mdbWavesEffect
+      *ngIf="authService.isAutentikated" (click)='authService.logout()'>logaut</button>
+
+
+    <!-- <ul class="navbar-nav ml-auto nav-flex-icons"> -->
+    <!-- !!!!!!!!!!!!!!!!!!! user img if user logged in -->
+    <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item avatar">
           <a class="nav-link p-0" routerLink="/userprofile" routerLinkActive="active">
             <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
@@ -47,15 +53,16 @@
           </a>
         </li>
       </ul> -->
-      <!-- user img -->
-      <li class="nav-item">
+    <!-- user img -->
+    <!-- <li class="nav-item">
         <a class="nav-link">
           <div class="btn-group deep-orange-text nav-link-lt" mdbDropdown>
-            <mdb-icon fas icon="user" routerLink="/login" routerLinkActive="active"></mdb-icon>
+            <mdb-icon fas icon="user" *ngIf="!authService.isAutentikated" routerLink="/login" routerLinkActive="active">
+            </mdb-icon>
           </div>
         </a>
       </li>
-    </ul>
+    </ul> -->
   </links>
   <!-- Collapsible content -->
 </mdb-navbar>

@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { from } from "rxjs";
-
-import { DataService } from "./data.service";
+import { AuthService } from "./shared/auth.service";
 
 @Component({
   selector: "app-root",
@@ -10,7 +9,7 @@ import { DataService } from "./data.service";
 })
 export class AppComponent {
   title = "MUG-project";
-  // constructor(private dataService: DataService) {} // api.servise
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     // this.dataService.get();
