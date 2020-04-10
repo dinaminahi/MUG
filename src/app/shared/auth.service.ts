@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 })
 export class AuthService {
   // messages = [] //----- for messging
-  path = "http://lockalhost:3000/auth"; // need to change /api/auth
+  path = "http://lockalhost:3000/api"; // need to change /api/auth /or/ /user
   TOKEN_KEY = "token";
 
   constructor(private http: HttpClient) {}
