@@ -26,7 +26,7 @@ export class AuthService {
 
   registerUser(registerData) {
     this.http
-      .post<any>(this.path + "/signup", registerData)
+      .post<any>(this.path + "/register", registerData)
       .subscribe((res) => {
         this.saveToken(res.token);
       });
@@ -34,7 +34,7 @@ export class AuthService {
 
   loginUser(loginData) {
     this.http
-      .post<any>(this.path + "/signin", loginData) // need to check adress /api/signin
+      .post<any>(this.path + "/login", loginData) // need to check adress /api/signin
       .subscribe((res) => {
         this.saveToken(res.token);
       });

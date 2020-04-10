@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 // const router = express.Router();
 // const auth = require('./auth.js')
 // const jwt = require("jsonwebtoken");
+const User = require("./models/User.js");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -32,7 +33,6 @@ app.post('/register', (req, res) => {
   });
 })
 
-// const User = require("./models/User.js");
 
 // mongoose.Promise = Promise;
 
@@ -55,7 +55,9 @@ app.post('/register', (req, res) => {
 // });
 
 
-mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", (err) => {
+mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", {
+  useMongoClient: true
+}, (err) => {
   if (!err)
     console.log("connected to mongo")
 })

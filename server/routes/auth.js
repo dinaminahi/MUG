@@ -6,7 +6,7 @@ const router = express.Router()
 
 
 //create
-router.post('/signup', (req, res) => {
+router.post('/rgister', (req, res) => {
   const userData = req.body;
 
   let user = new User(userData);
@@ -21,7 +21,7 @@ router.post('/signup', (req, res) => {
 })
 
 //login
-router.post('/signin', async (req, res) => {
+router.post('/login', async (req, res) => {
   const loginData = req.body;
   const user = await User.findOne({
     email: loginData.email
