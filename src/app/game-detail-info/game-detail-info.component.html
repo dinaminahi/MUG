@@ -6,13 +6,11 @@
   <div class="row">
     <div class="col">
       <div class="game-item">
-
         <div class="wrapp-carousel">
           <app-games-carousel
             [imgs]="game?.photoUrl"
             [title]="game?.name"
           ></app-games-carousel>
-
         </div>
         <section class="game-content">
           <div class="game-meta text-left">
@@ -69,9 +67,11 @@
                   </li>
                   <li class="list-group-item">
                     Вподобати гру
-                    <span class="icons"
-                      ><app-add-to-favorites></app-add-to-favorites
-                    ></span>
+                    <span class="icons">
+                      <app-add-to-favorites
+                        [gameId]="game?.id"
+                      ></app-add-to-favorites>
+                    </span>
                   </li>
                   <li class="list-group-item">
                     Поділитися
