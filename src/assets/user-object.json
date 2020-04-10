@@ -1,142 +1,36 @@
-[
-  {
-    "id": 1,
-    "personal": {
-      "photoUrl": "https://i.dlpng.com/static/png/6721831_preview.png",
-      "name": "Romka",
-      "firstName": "Roman",
-      "lastName": "Bilbo",
-      "phone": "123456789",
-      "email": "roman@gmail.com",
-      "location": {
-        "address": "26 Rockwell Avenue Linden, NJ",
-        "geo": {
-          "latitude": -73.98887,
-          "longitude": 40.30476
-        }
-      },
-      "dateOfBirth": "06/08/1989",
-      "description": "Фанат кооперативних ігор, завжди беру на зустріч з собою пиво на всю компанію"
-    },
-    "events": {
-      "subscribed": [2, 5],
-      "interested": [1, 2, 3, 5],
-      "created": []
-    },
-    "games": {
-      "favorited": [2],
-      "skillLevel": {
-        "novice": [4],
-        "beginner": [],
-        "intermediate": [2],
-        "advanced": []
+{
+  "_id": "5e8886d3e0cd3c695b5c94d8",
+  "isAuthenticated": true,
+  "personal": {
+    "photoUrl": "https://i.dlpng.com/static/png/6721831_preview.png",
+    "name": "Romka",
+    "firstName": "Roman",
+    "lastName": "Bilbo",
+    "phone": "123456789",
+    "email": "test@test.com",
+    "location": {
+      "address": "26 Rockwell Avenue Linden, NJ",
+      "geo": {
+        "latitude": -73.98887,
+        "longitude": 40.30476
       }
     },
-    "rating": 15
+    "dateOfBirth": "06/08/1989",
+    "description": "Фанат кооперативних ігор, завжди беру на зустріч з собою пиво на всю компанію"
   },
-  {
-    "id": 2,
-    "personal": {
-      "photoUrl": "http://pngimg.com/uploads/avatar/avatar_PNG47.png",
-      "name": "Juli",
-      "firstName": "Juliia",
-      "lastName": "Telia",
-      "phone": "1231234123",
-      "email": "juliia@gmail.com",
-      "location": {
-        "address": "55 North Oxford Court Rolling Meadows, IL",
-        "geo": {
-          "latitude": -88.02599,
-          "longitude": 42.07845
-        }
-      },
-      "dateOfBirth": "15/05/2003",
-      "description": "Завжди рада новим знайомствам"
-    },
-    "events": {
-      "subscribed": [3],
-      "interested": [1, 2, 4],
-      "created": []
-    },
-    "games": {
-      "favorited": [5],
-      "skillLevel": {
-        "novice": [4],
-        "beginner": [6],
-        "intermediate": [5],
-        "advanced": []
-      }
-    },
-    "rating": 25
+  "events": {
+    "subscribed": [2, 5],
+    "interested": [1, 2, 3, 5],
+    "created": []
   },
-  {
-    "id": 3,
-    "personal": {
-      "photoUrl": "https://p7.hiclipart.com/preview/43/162/468/anime-another-fairy-tail-otaku-drawing-anime.jpg",
-      "name": "Olga",
-      "firstName": "Olga",
-      "lastName": "Lister",
-      "phone": "0639876543",
-      "email": "olga@gmail.com",
-      "location": {
-        "address": "26 Rockwell Avenue Linden, NJ",
-        "geo": {
-          "latitude": -73.98887,
-          "longitude": 40.30476
-        }
-      },
-      "dateOfBirth": "11/05/1983",
-      "description": "В захваті від 'Merchant Cove'"
-    },
-    "events": {
-      "subscribed": [4, 5],
-      "interested": [6],
-      "created": [4]
-    },
-    "games": {
-      "favorited": [5],
-      "skillLevel": {
-        "novice": [],
-        "beginner": [2],
-        "intermediate": [5],
-        "advanced": []
-      }
-    },
-    "rating": 40
+  "games": {
+    "favorited": [2, 3, 5],
+    "skillLevel": {
+      "novice": [4],
+      "beginner": [],
+      "intermediate": [2],
+      "advanced": []
+    }
   },
-  {
-    "id": 4,
-    "personal": {
-      "photoUrl": "https://c7.uihere.com/files/106/836/30/stock-photography-thinkig-thumb.jpg",
-      "name": "Andryu",
-      "firstName": "Andriy",
-      "lastName": "Bosol",
-      "phone": "0934567890",
-      "email": "andriy@gmail.com",
-      "location": {
-        "address": "55 North Oxford Court Rolling Meadows, IL",
-        "geo": {
-          "latitude": -88.02599,
-          "longitude": 42.07845
-        }
-      },
-      "dateOfBirth": "22/07/1987",
-      "description": ""
-    },
-    "events": {
-      "subscribed": [2, 3],
-      "interested": [1, 2, 3, 4],
-      "created": [3]
-    },
-    "games": {
-      "favorited": [3],
-      "skillLevel": {
-        "novice": [4],
-        "beginner": [5],
-        "intermediate": [],
-        "advanced": [3]
-      }
-    },
-    "rating": 30
-  }
-]
+  "rating": 15
+}

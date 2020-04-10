@@ -1,1 +1,10 @@
-<span class="heart"><i class="fas fa-heart"></i></span>
+<button
+  [ngClass]="{
+    isFavorited: this.isFavorited,
+    isLoading: this.isLoading,
+    'heart ': true
+  }"
+  (click)="this.toggleFavorite()"
+>
+  <i class="fas fa-heart"></i>
+</button>
