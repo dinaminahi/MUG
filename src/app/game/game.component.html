@@ -1,7 +1,7 @@
 <div class="game-item">
   <div class="favorite">
     <div class="icon-wrap">
-      <app-add-to-favorites></app-add-to-favorites>
+      <app-add-to-favorites [gameId]="game?.id"></app-add-to-favorites>
     </div>
   </div>
   <a href="javascript:void(0)" (click)="onSelect(game)" class="game-item-link">

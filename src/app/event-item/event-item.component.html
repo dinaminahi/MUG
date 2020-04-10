@@ -9,7 +9,10 @@
       {{ event?.dateTime | date: "HH:mm" }}</span
     >
     <span class="heart-wrapper">
-      <app-add-to-favorites class="heart-icon"></app-add-to-favorites>
+      <app-add-to-favorites
+        [eventId]="event?.id"
+        class="heart-icon"
+      ></app-add-to-favorites>
     </span>
   </div>
   <section class="text-center dark-grey-text">

@@ -1,5 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const app = express();
+const mongoose = require("mongoose");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
@@ -13,10 +18,10 @@ const gameSchema = {
   playersCount: { min: Number, max: Number },
   playTimeMinutes: { min: Number, max: Number },
   instructionUrl: String,
-  photoUrl: String
+  photoUrl: String,
 };
 
-const connection = closure => {
+const connection = (closure) => {
   const uri =
     "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority";
   return MongoClient.connect(
@@ -30,6 +35,107 @@ const connection = closure => {
   );
 };
 
+// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
+// mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority");
+
+// const categorySchema = {
+//   name: String,
+//   label: String,
+//   iconClass: String
+// }
+
+// const category = new Category({"name": "teens", "label": "Для підлітків", "iconClass": "fas fa-dragon" });
+
+// // category.save();
+
+// const gameSchema = {
+//   name: String,
+//   category: [categorySchema],
+//   description: String,
+//   playersMinAge: Number,
+//   playersCount: {
+//     min: Number,
+//     max: Number
+//   },
+//   playTimeMinutes: {
+//     min: Number,
+//     max: Number
+//   },
+//   instructionUrl: String,
+//   photoUrl: [String]
+// };
+
+// const eventSchema = {
+//   gameName: String,
+//   game: gameSchema,
+//   eventName: String,
+//   description: String,
+//   location: {
+//     address: String,
+//     geo: {
+//       longitude: Number,
+//       latitide: Number
+//     }
+//   },
+//   dateTime: String,
+//   duration: String,
+//   players: {
+//     age: {
+//       min: Number,
+//       max: Number
+//     },
+//     count: {
+//       min: Number,
+//       max: Number,
+//       current: Number
+//     },
+//     experienceNeeded: String
+//   }
+// };
+
+// const userSchema = {
+//   personal: {
+//     photoUrl: String,
+//     name: String,
+//     firstName: String,
+//     lastName: String,
+//     phone: String,
+//     email: String,
+//     location: {
+//       address: String,
+//       geo: {
+//         longitude: Number,
+//         latitide: Number
+//       }
+//     },
+//     dateOfBirth: Number,
+//     description: String,
+//   },
+//   events: {
+//     subscribed: [eventSchema],
+//     interested: [eventSchema],
+//     created: [eventSchema],
+//   },
+//   games: {
+//     favorited: [eventSchema], // game id's or some part of game objects
+//     skillLevel:
+//     {
+//       novice: [eventSchema],
+//       beginner: [eventSchema],
+//       intermediate: [eventSchema],
+//       advanced: [eventSchema]
+//     },
+//     rating: Number // likes counter form other users
+//   }
+// };
+
+// const Event = mongoose.model('Event', eventSchema);
+// const Game = mongoose.model('Game', gameSchema);
+// const User = mongoose.model('User', userSchema);
+// const Category = mongoose.model('Category', userSchema);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // Error handling
 const sendError = (err, res) => {
   response.status = 501;
@@ -41,14 +147,14 @@ const sendError = (err, res) => {
 let response = {
   status: 200,
   data: [],
-  message: null
+  message: null,
 };
 
 // Get events
 
 router.get("/events_extended/:eventId", (req, res) => {
   let eventId = Number(req.params.eventId);
-  connection(db => {
+  connection((db) => {
     db.collection("events")
       .aggregate([
         { $match: { id: eventId } },
@@ -57,24 +163,24 @@ router.get("/events_extended/:eventId", (req, res) => {
             from: "games",
             localField: "gameId",
             foreignField: "id",
-            as: "game"
-          }
+            as: "game",
+          },
         },
-        { $unwind: "$game" }
+        { $unwind: "$game" },
       ])
       .next()
-      .then(events => {
+      .then((events) => {
         response.data = events;
         res.json(response);
       })
-      .catch(err => {
+      .catch((err) => {
         sendError(err, res);
       });
   });
 });
 
 router.get("/events_extended", (req, res) => {
-  connection(db => {
+  connection((db) => {
     db.collection("events")
       .aggregate([
         {
@@ -82,55 +188,63 @@ router.get("/events_extended", (req, res) => {
             from: "games",
             localField: "gameId",
             foreignField: "id",
-            as: "game"
-          }
+            as: "game",
+          },
         },
-        { $unwind: "$game" }
+        { $unwind: "$game" },
       ])
       .toArray()
-      .then(events => {
+      .then((events) => {
         response.data = events;
         res.json(response);
       })
-      .catch(err => {
+      .catch((err) => {
         sendError(err, res);
       });
   });
+  // Event.find({})
+  // .then(events => {
+  //         response.data = events;
+  //         res.json(response);
+  //       })
+  //       .catch(err => {
+  //         sendError(err, res);
+  //       });
 });
 
 router.get("/events/:eventId", (req, res) => {
   let eventId = Number(req.params.eventId);
-  connection(db => {
+  connection((db) => {
     db.collection("events")
       .find({ id: eventId })
       .toArray()
-      .then(events => {
+      .then((events) => {
         response.data = events;
         res.json(response);
       })
-      .catch(err => {
+      .catch((err) => {
         sendError(err, res);
       });
   });
 });
 
 router.get("/events", (req, res) => {
-  connection(db => {
+  connection((db) => {
     db.collection("events")
       .find()
       .toArray()
-      .then(events => {
+      .then((events) => {
         response.data = events;
         res.json(response);
       })
-      .catch(err => {
+      .catch((err) => {
         sendError(err, res);
       });
   });
 });
 
 router.get("/categories", (req, res) => {
-  connection(db => {
+  connection((db) => {
     db.collection("games")
       .aggregate([
         { $group: { _id: null, category: { $addToSet: "$category" } } },
@@ -140,34 +254,96 @@ router.get("/categories", (req, res) => {
               $reduce: {
                 input: "$category",
                 initialValue: [],
-                in: { $setUnion: ["$$value", "$$this"] }
-              }
-            }
-          }
+                in: { $setUnion: ["$$value", "$$this"] },
+              },
+            },
+          },
         },
-        { $project: { _id: 0, category: "$category" } }
+        { $project: { _id: 0, category: "$category" } },
       ])
       .next()
-      .then(categories => {
+      .then((categories) => {
         response.data = categories;
         res.json(response);
       })
-      .catch(err => {
+      .catch((err) => {
         sendError(err, res);
       });
   });
 });
 
 router.get("/games", (req, res) => {
-  connection(db => {
+  connection((db) => {
     db.collection("games")
       .find()
       .toArray()
-      .then(games => {
+      .then((games) => {
         response.data = games;
         res.json(response);
       })
-      .catch(err => {
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.put("/favorite-games", (req, res) => {
+  connection((db) => {
+    db.collection("users")
+      .find({ email: req.body.userEmail })
+      .toArray()
+      .then((users) => {
+        const games = users[0].games || {};
+        games.favorites = games.favorites || [];
+        const index = games.favorites.indexOf(req.body.gameId);
+        if (req.body.toggle) {
+          if (index === -1) {
+            games.favorites.push(req.body.gameId);
+          }
+        } else {
+          if (index > -1) {
+            games.favorites.splice(index, 1);
+          }
+        }
+
+        db.collection("users")
+          .updateOne({ email: req.body.userEmail }, { $set: { games } })
+          .then(() => {
+            res.json(games.favorites);
+          });
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.put("/favorite-events", (req, res) => {
+  connection((db) => {
+    db.collection("users")
+      .find({ email: req.body.userEmail })
+      .toArray()
+      .then((users) => {
+        const events = users[0].events || {};
+        events.interested = events.interested || [];
+        const index = events.interested.indexOf(req.body.gameId);
+        if (req.body.toggle) {
+          if (index === -1) {
+            events.interested.push(req.body.eventId);
+          }
+        } else {
+          if (index > -1) {
+            events.interested.splice(index, 1);
+          }
+        }
+
+        db.collection("users")
+          .updateOne({ email: req.body.userEmail }, { $set: { events } })
+          .then(() => {
+            res.json(events.interested);
+          });
+      })
+      .catch((err) => {
         sendError(err, res);
       });
   });
@@ -175,18 +351,29 @@ router.get("/games", (req, res) => {
 
 router.get("/games/:gameId", (req, res) => {
   let gameId = Number(req.params.gameId);
-  connection(db => {
+  connection((db) => {
     db.collection("games")
       .find({ id: gameId })
       .toArray()
-      .then(games => {
+      .then((games) => {
         response.data = games;
         res.json(response);
       })
-      .catch(err => {
+      .catch((err) => {
         sendError(err, res);
       });
   });
 });
+
+router.post("/addevent", (req, res) => {
+  connection((db) => {
+    db.collection("events").insertOne(req.body);
+  });
+  console.log(req.body);
+});
+
+// connection(db => {
+//   db.collection("events").deleteOne({id: 10});
+// })
 
 module.exports = router;
