@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+
+// const gameShema = new mongoose.Schema({
 module.exports = mongoose.model('Game', {
   name: String,
   category: [categorySchema],

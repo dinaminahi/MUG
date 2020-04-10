@@ -7,8 +7,14 @@ import { AppComponent } from "./app.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AgmCoreModule } from "@agm/core";
-//import { from } from "rxjs"; --------------do we need it here?????
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { from } from "rxjs";
+import {
+  HttpClientModule,
+  HttpHeaders,
+  HttpRequest,
+  HttpParams,
+  HTTP_INTERCEPTORS,
+} from "@angular/common/http";
 import { DataService } from "./data.service";
 
 import { PageHomeComponent } from "./pages/page-home/page-home.component";
@@ -19,7 +25,7 @@ import { PageGamesComponent } from "./pages/page-games/page-games.component";
 import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 import { PageNewsComponent } from "./pages/page-news/page-news.component";
 import { PageUsersComponent } from "./pages/page-users/page-users.component";
-import { PageLoginComponent } from "./pages/page-login/page-login.component";
+// import { PageLoginComponent } from "./pages/page-login/page-login.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 import { LayoutHeaderComponent } from "./layout/layout-header/layout-header.component";
 import { LayoutFooterComponent } from "./layout/layout-footer/layout-footer.component";
@@ -67,6 +73,7 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
 import { AuthService } from "./shared/auth.service";
 import { UsersComponent } from "./users/users.component";
 import { AuthInterceptorService } from "./shared/authInterceptor.service";
+import { ApiService } from "./api.service";
 
 @NgModule({
   declarations: [
@@ -78,7 +85,7 @@ import { AuthInterceptorService } from "./shared/authInterceptor.service";
     PageContactsComponent,
     PageNewsComponent,
     PageUsersComponent,
-    PageLoginComponent,
+    // PageLoginComponent,
     PageNotFoundComponent,
     LayoutHeaderComponent,
     LayoutFooterComponent,
@@ -137,6 +144,7 @@ import { AuthInterceptorService } from "./shared/authInterceptor.service";
   ],
   providers: [
     DataService,
+    ApiService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

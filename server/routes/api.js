@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const app = express();
-const auth = require('./auth.js')
-const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -13,26 +10,56 @@ app.use(
   })
 );
 
-// new for user creation
-app.use(cors());
-app.use(bodyParser.json());
-
-
-// using express
 
 
 //--- data - for future coreections-------????????
-
-const Game = require('./models/Game.js')
-const Category = require('./models/Category.js')
-const Event = require('./models/Event.js')
-
+//
+// const Game = require('./models/Game.js')
+// const Category = require('./models/Category.js')
+// const Event = require('./models/Event.js')
+//
+//for user  
+// const cors = require("cors");
+// const bodyParser = require("body-parser");
+// const auth = require('./auth.js')
+// const jwt = require("jsonwebtoken");
+// app.use(cors());
+// app.use(bodyParser.json());
 //------
-
-const User = require("./models/User.js");
-// for mongoose
-mongoose.Promise = Promise;
-
+//
+// const User = require("./models/User.js");
+// // for mongoose
+// mongoose.Promise = Promise;
+//
+// ///////////////
+// user registration
+// app.get("/users", async (req, res) => {
+//   try {
+//     const users = await User.find({}, "-password -__v"); //  '-password -__v remove this dava from view
+//     res.send(users);
+//   } catch (error) {
+//     res.sendStatus(500);
+//   }
+// });
+//
+// app.get("/user-profile/:id", async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id, "-password -__v"); //  '-password -__v remove this dava from view
+//     res.send(user);
+//   } catch (error) {
+//     res.sendStatus(500);
+//   }
+// });
+//
+// mongoose.connect(
+//   "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", {
+//     useMongoClient: true,
+//   },
+//   (err) => {
+//     if (!err) console.log("connected to mongo");
+//   }
+// );
+// app.use('/auth', auth.router);
 //
 
 const MongoClient = require("mongodb").MongoClient;
@@ -54,39 +81,13 @@ const connection = (closure) => {
   );
 };
 
-// ///////////////
-// user registration
-app.get("/users", async (req, res) => {
-  try {
-    const users = await User.find({}, "-password -__v"); //  '-password -__v remove this dava from view
-    res.send(users);
-  } catch (error) {
-    res.sendStatus(500);
-  }
-});
-
-app.get("/user-profile/:id", async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id, "-password -__v"); //  '-password -__v remove this dava from view
-    res.send(user);
-  } catch (error) {
-    res.sendStatus(500);
-  }
-});
 
 
-mongoose.connect(
-  "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority", {
-    useMongoClient: true,
-  },
-  (err) => {
-    if (!err) console.log("connected to mongo");
-  }
-);
-app.use('/auth', auth.router);
+
 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
+// mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority");
 
 // const categorySchema = {
 //   name: String,
@@ -388,3 +389,5 @@ router.post("/addevent", (req, res) => {
 // })
 
 module.exports = router;
+
+// app.listen(3000)

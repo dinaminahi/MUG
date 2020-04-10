@@ -14,11 +14,17 @@ import { PageAccountComponent } from "./pages/page-account/page-account.componen
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { AuthGuard } from "./shared/auth.guard";
 // import { PageCreateAccountComponent } from "./pages/page-create-account/page-create-account.component";
 // import { PageUsersComponent } from "./pages/page-users/page-users.component";
 // import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 
 export const routes: Routes = [
+  {
+    path: "userprofile/:id",
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "about", component: PageAboutComponent },
   // { path: "account", component: PageAccountComponent },
   { path: "events", component: PageEventsComponent },
@@ -28,7 +34,7 @@ export const routes: Routes = [
   { path: "games/:id", component: GameDetailInfoComponent },
   { path: "home", component: PageHomeComponent },
   { path: "login", component: SigninComponent }, // changed
-  { path: "signin", component: SignupComponent }, //changed
+  { path: "register", component: SignupComponent }, //changed
   { path: "news", component: PageNewsComponent },
   { path: "userprofile", component: UserProfileComponent }, // changed
   { path: "", redirectTo: "/home", pathMatch: "full" },

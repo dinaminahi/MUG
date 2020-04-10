@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
+// {
+// providedIn: "root",
+// }
 export class AuthService {
   // messages = [] //----- for messging
-  path = "http://lockalhost:3000/api"; // need to change /api/auth /or/ /user
+  path = "http://lockalhost:3000/user"; // need to change /api/auth /or/ /user
   TOKEN_KEY = "token";
 
   constructor(private http: HttpClient) {}

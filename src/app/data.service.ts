@@ -1,4 +1,3 @@
-//-------service to get data from beckend ------ api.servise...
 import { Injectable } from "@angular/core";
 import { map, tap } from "rxjs/operators";
 import {
@@ -19,22 +18,22 @@ export class DataService {
   event: EventItem;
   game: Game;
 
-  users = [];
-  path = "http//lockalhost:3000"; /// nede to change to /api??
+  // users = [];
+  // path = "http//lockalhost:3000"; /// nede to change to /api??
 
   constructor(private _http: HttpClient, private http: HttpClient) {}
 
   // user ----
   //------------------------------------
-  getUsers() {
-    this.http.get<any>(this.path + "/users").subscribe((res) => {
-      this.users = res;
-    });
-  }
+  // getUsers() {
+  //   this.http.get<any>(this.path + "/users").subscribe((res) => {
+  //     this.users = res;
+  //   });
+  // }
 
-  getProfile(id) {
-    return this.http.get(this.path + "/user-profile" + id);
-  }
+  // getProfile(id) {
+  //   return this.http.get(this.path + "/user-profile" + id);
+  // }
 
   // -----------------------------------
 
