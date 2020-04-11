@@ -65,6 +65,7 @@ import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { CommentItemComponent } from './comment-item/comment-item.component';
+import { AddCommentBoxComponent } from './add-comment-box/add-comment-box.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { CommentItemComponent } from './comment-item/comment-item.component';
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
-    CommentItemComponent
+    CommentItemComponent,
+    AddCommentBoxComponent
   ],
   imports: [
     NgxPageScrollModule,
