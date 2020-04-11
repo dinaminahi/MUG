@@ -64,6 +64,7 @@ import { GamesCarouselComponent } from "./games-carousel/games-carousel.componen
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { CommentItemComponent } from './comment-item/comment-item.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { UserProfileComponent } from "./components/user-profile/user-profile.com
     GamesCarouselComponent,
     SigninComponent,
     SignupComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CommentItemComponent
   ],
   imports: [
     NgxPageScrollModule,
