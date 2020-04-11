@@ -1,23 +1,17 @@
-<section class="text-center dark-grey-text">
-    <div class="image-wrap view overlay">
-        <img [src]="event?.game?.photoUrl" alt="" width="180px" height="140px" />
-    </div>
-
-    <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
-    <div class="button-wrapper">
-        <button class="subm">JOIN</button>
-        <button (click)="onSelect(event)" class="subm">
-            MORE INFO
-        </button>
-    </div>
-</section>
-<div class="footer text-center dark-grey-text">
-        <div class="footer-meta text-left">
-            <div class="count">
-                <span class="label">
-                    <i class="fas fa-users" title="Кількість гравців"></i> Кількість
-                    гравців:</span><b>
-                    {{ event?.players.count.min }} - {{ event?.players.count.max }}</b>
-            </div>
+    <div class="text-center">
+        <div class="image-wrap view overlay">
+            <img [src]="event?.game?.photoUrl" alt="" width="180px" height="140px" />
         </div>
-</div>
+    
+        <h2 class="font-weight-bold">{{ event?.game.name }}</h2>
+        <div class="button-wrapper ">
+            <button class="subm">JOIN</button>
+            <button (click)="onSelect(event)" class="subm">
+                MORE INFO
+            </button>
+        </div>
+    <div class="footer text-center dark-grey-text">
+            <h4>{{event?.dateTime | date: "HH:mm" }}</h4>
+    </div>
+    </div>
+   
