@@ -1,3 +1,5 @@
+@import "./../../sass/variables";
+
 .game-item {
   position: relative;
 
@@ -56,6 +58,7 @@
     z-index: 2;
 
     .arrow {
+
       &,
       &:before,
       &:after {
@@ -66,8 +69,7 @@
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: ($categoryIconsWidth/2 + 1) ($categoryIconsWidth/2 + 1) 0
-          ($categoryIconsWidth/2 + 1);
+        border-width: ($categoryIconsWidth/2 + 1) ($categoryIconsWidth/2 + 1) 0 ($categoryIconsWidth/2 + 1);
         border-color: #3a3535 transparent transparent transparent;
       }
 
@@ -75,16 +77,14 @@
         top: -($categoryIconsWidth/2 + 2);
         left: -$categoryIconsWidth/2;
         border-color: #cf9c41 transparent transparent transparent;
-        border-width: $categoryIconsWidth/2 $categoryIconsWidth/2 0
-          $categoryIconsWidth/2;
+        border-width: $categoryIconsWidth/2 $categoryIconsWidth/2 0 $categoryIconsWidth/2;
       }
 
       &:after {
         top: -($categoryIconsWidth/2 + 3);
         left: -($categoryIconsWidth/2 - 1);
         border-color: #3a3535 transparent transparent transparent;
-        border-width: ($categoryIconsWidth/2 - 1) ($categoryIconsWidth/2 - 1) 0
-          ($categoryIconsWidth/2 - 1);
+        border-width: ($categoryIconsWidth/2 - 1) ($categoryIconsWidth/2 - 1) 0 ($categoryIconsWidth/2 - 1);
       }
     }
   }
@@ -115,7 +115,7 @@
   .game-title {
     margin: 0 0 20px;
     padding: 10px 20px;
-    font-family: "Kelly Slab", cursive;
+    font-family: $font-family-alt;
     font-size: 1rem;
     line-height: 1.3;
     height: 65px;
@@ -131,10 +131,10 @@
   flex-wrap: nowrap;
   justify-content: space-around;
 
-  & > div {
+  &>div {
     white-space: nowrap;
 
-    & + div {
+    &+div {
       margin-left: 20px;
     }
   }
@@ -162,7 +162,7 @@
       white-space: normal;
     }
 
-    & + b {
+    &+b {
       font-size: 0.7rem;
     }
   }
