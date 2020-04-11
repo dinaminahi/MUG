@@ -27,6 +27,7 @@ const Comment = mongoose.model('Comment', commentSchema);
 
 // const comment = new Comment({
 //    text: 'Do I need to have money with me?',
+//    date: new Date().toLocaleString(),
 //    userId: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
 //    eventId: mongoose.Types.ObjectId("5e8e369a05c5341fa43a8de2")
 // });
