@@ -25,5 +25,9 @@ module.exports = mongoose.model('Event', {
       current: Number
     },
     experienceNeeded: String
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 })

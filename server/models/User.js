@@ -42,10 +42,10 @@ userShema.pre("save", function (next) {
 
   if (!user.isNotModefied("password")) return next();
   bcrypt.hash(user.password, null, null, (err, hash) => {
-    if (err) return next(err);
+    if (err)
+      return next(err);
     user.password = hash;
     next();
   });
 });
-
 module.exports = mongoose.model("User", userShema);

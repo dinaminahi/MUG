@@ -9,9 +9,11 @@ import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { MapsAPILoader } from "@agm/core";
 import {} from "googlemaps";
-// import { AuthService } from "src/app/shared/auth.service";   ??????? do need
-import { DataService } from "./../../data.service"; // connect to server
+
+import { DataService } from "./../../data.service";
 import { ActivatedRoute } from "@angular/router";
+
+import { ApiService } from "./../../../app/api.service";
 
 @Component({
   selector: "app-user-profile",
@@ -51,31 +53,31 @@ export class UserProfileComponent implements OnInit {
   }
 
   constructor(
-    // private authService: AuthService,
     private route: ActivatedRoute,
     private dataService: DataService,
     private fb: FormBuilder,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    // private authService: AuthService,
+    private apiService: ApiService
   ) {}
 
+  /// ----------new
+  profile;
   ngOnInit(): void {
-    // ------new
-    //
-    // profile
-    // const id = this.route.snapshot.params.id;
-    // this.dataService.getProfile(id).subscribe((data) => this.profile = data);
-    /// ----------new
+    const id = this.route.snapshot.params.id;
+    this.apiService.getProfile(id).subscribe((data) => (this.profile = data));
 
     this.personalInfoForm = this.fb.group({
       id: [],
+      email: ["", Validators.required],
+      password: ["", Validators.required],
       personal: this.fb.group({
         photoUrl: "",
         name: "",
         firstName: ["", Validators.required],
         lastName: ["", Validators.required],
         phone: ["", Validators.required],
-        email: ["", Validators.required],
         location: this.fb.group({
           address: "",
           geo: this.fb.group({

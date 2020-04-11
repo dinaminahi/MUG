@@ -1,13 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
-// {
-// providedIn: "root",
-// }
 export class AuthService {
-  // messages = [] //----- for messging
-  path = "http://lockalhost:3000/user"; // need to change /api/auth /or/ /user
+  path = "http://lockalhost:3000/auth";
   TOKEN_KEY = "token";
 
   constructor(private http: HttpClient) {}
@@ -19,7 +15,7 @@ export class AuthService {
   get isAutentikated() {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
-  //----
+  //--logout
   logout() {
     localStorage.removeItem(this.TOKEN_KEY);
   }
@@ -33,11 +29,9 @@ export class AuthService {
   }
 
   loginUser(loginData) {
-    this.http
-      .post<any>(this.path + "/login", loginData) // need to check adress /api/signin
-      .subscribe((res) => {
-        this.saveToken(res.token);
-      });
+    this.http.post<any>(this.path + "/login", loginData).subscribe((res) => {
+      this.saveToken(res.token);
+    });
   }
   saveToken(token) {
     localStorage.setItem(this.TOKEN_KEY, token);

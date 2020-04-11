@@ -1,11 +1,5 @@
 import { Injectable } from "@angular/core";
-// import { map, tap } from "rxjs/operators";
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpRequest,
-  HttpParams,
-} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class ApiService {
@@ -21,6 +15,6 @@ export class ApiService {
   }
 
   getProfile(id) {
-    return this.http.get(this.path + "/userprofile" + id);
+    return this.http.get(this.path + "/profile/" + id);
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { from } from "rxjs";
 import { AuthService } from "./shared/auth.service";
-import { ApiService } from "./api.service";
+// import { ApiService } from "./api.service";
 
 @Component({
   selector: "app-root",
@@ -11,7 +11,7 @@ import { ApiService } from "./api.service";
 export class AppComponent {
   title = "MUG-project";
   constructor(
-    private apiService: ApiService,
+    // private apiService: ApiService,
     private authService: AuthService
   ) {}
 

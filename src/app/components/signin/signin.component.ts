@@ -7,7 +7,7 @@ import { AuthService } from "./../../shared/auth.service";
   styleUrls: ["./signin.component.scss"],
 })
 export class SigninComponent implements OnInit {
-  loginData: any = {};
+  loginData = {};
 
   constructor(private authService: AuthService) {}
 

@@ -20,11 +20,15 @@ import { AuthGuard } from "./shared/auth.guard";
 // import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 
 export const routes: Routes = [
-  // {
-  //   path: "userprofile/:id",
-  //   component: UserProfileComponent,
-  //   canActivate: [AuthGuard],
-  // },
+  {
+    path: "profile/:id",
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: "register", component: SignupComponent }, //changed
+  { path: "login", component: SigninComponent }, // changed
+  { path: "profile", component: UserProfileComponent }, // changed
+  //
   { path: "about", component: PageAboutComponent },
   { path: "events", component: PageEventsComponent },
   { path: "events/:id", component: EventDetailInfoComponent },
@@ -32,10 +36,7 @@ export const routes: Routes = [
   { path: "games", component: PageGamesComponent },
   { path: "games/:id", component: GameDetailInfoComponent },
   { path: "home", component: PageHomeComponent },
-  { path: "login", component: SigninComponent }, // changed
-  { path: "register", component: SignupComponent }, //changed
   { path: "news", component: PageNewsComponent },
-  { path: "userprofile", component: UserProfileComponent }, // changed
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent },
   // { path: "account", component: PageAccountComponent },

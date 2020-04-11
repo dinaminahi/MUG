@@ -4,13 +4,10 @@ const jwt = require("jsonwebtoken");
 const express = require('express');
 const router = express.Router()
 
-
-//create
-router.post('/rgister', (req, res) => {
+//create- register
+router.post('/register', (req, res) => {
   const userData = req.body;
-
   let user = new User(userData);
-
   user.save((err, newUser) => {
     if (err)
       return res.status(500).send({
@@ -26,12 +23,10 @@ router.post('/login', async (req, res) => {
   const user = await User.findOne({
     email: loginData.email
   });
-
   if (!user)
     return res.status(401).send({
       message: "email or password - invalid",
     });
-
   bcrypt.compare(loginData.password, user.password, (err, isMatch) => {
     if (!isMatch)
       return res.status(401).send({
@@ -45,12 +40,12 @@ function createSendToken(res, user) {
   const payload = {
     sub: user._id //subject - id
   };
-  const token = jwt.encde(payload, "123"); // hardcoded secret
+  const token = jwt.encode(payload, "123"); // hardcoded secret
   res.status(200).send({
     token
   });
 }
-
+// will be needed for posts /messages
 const auth = {
   router,
   checkAuthenticated: (req, res, next) => {
@@ -58,7 +53,6 @@ const auth = {
       return res.status(401).send({
         message: "Unauthoraized. Mssing Auth Header"
       })
-
     const token = req.header('authorization').split(' ')[1]
     const payload = jwt.decode(token, '123') //123 - hardcoding
     if (!payload)
