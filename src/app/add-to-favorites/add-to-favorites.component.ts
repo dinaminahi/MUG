@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { User } from "../pages/page-users/user";
 import { DataService } from "../data.service";
+import mongoose from "mongoose";
 
 @Component({
   selector: "app-add-to-favorites",
@@ -8,8 +9,8 @@ import { DataService } from "../data.service";
   styleUrls: ["./add-to-favorites.component.scss"],
 })
 export class AddToFavoritesComponent {
-  @Input() gameId: number;
-  @Input() eventId: number;
+  @Input() gameId: mongoose.Types.ObjectId;
+  @Input() eventId: mongoose.Types.ObjectId;
   favoritedEvents: string[];
   favoritedGames: string[];
   isFavorited: boolean;
@@ -41,11 +42,7 @@ export class AddToFavoritesComponent {
     this.isLoading = true;
     if (this.gameId) {
       this._dataService
-        .addGameToFavorites(
-          this.gameId,
-          this.user.personal.email,
-          !this.isFavorited
-        )
+        .addGameToFavorites(this.gameId, this.user._id, !this.isFavorited)
         .subscribe((res) => {
           this.isLoading = false;
           this.isFavorited = !this.isFavorited;
@@ -54,11 +51,7 @@ export class AddToFavoritesComponent {
     }
     if (this.eventId) {
       this._dataService
-        .addEventToFavorites(
-          this.eventId,
-          this.user.personal.email,
-          !this.isFavorited
-        )
+        .addEventToFavorites(this.eventId, this.user._id, !this.isFavorited)
         .subscribe((res) => {
           this.isLoading = false;
           this.isFavorited = !this.isFavorited;

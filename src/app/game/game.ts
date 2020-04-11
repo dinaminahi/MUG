@@ -1,7 +1,9 @@
+import mongoose from "mongoose";
+
 export class Game {
-  id: number;
+  _id: mongoose.Types.ObjectId;
   name: string;
-  category: object[];
+  categories: object[];
   description: string;
   playersMinAge: number;
   playersCount: {

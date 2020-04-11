@@ -10,14 +10,14 @@
     >
     <span class="heart-wrapper">
       <app-add-to-favorites
-        [eventId]="event?.id"
+        [eventId]="event?._id"
         class="heart-icon"
       ></app-add-to-favorites>
     </span>
   </div>
   <section class="text-center dark-grey-text">
     <div class="image-wrap view overlay">
-      <img [src]="event?.agame[0]?.photoUrl[0]" alt="" />
+      <img [src]="((event?.agame)[0]?.photoUrl)[0]" alt="" />
     </div>
     <div class="attenders-icons">
       <app-participants-count

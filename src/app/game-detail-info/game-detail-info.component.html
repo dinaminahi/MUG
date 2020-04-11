@@ -45,7 +45,7 @@
           </h2>
           <div class="category">
             <app-game-category-icons
-              [categories]="game?.category"
+              [categories]="game?.categories"
             ></app-game-category-icons>
             <!-- {{ game?.category }} -->
           </div>
@@ -69,7 +69,7 @@
                     Вподобати гру
                     <span class="icons">
                       <app-add-to-favorites
-                        [gameId]="game?.id"
+                        [gameId]="game?._id"
                       ></app-add-to-favorites>
                     </span>
                   </li>
