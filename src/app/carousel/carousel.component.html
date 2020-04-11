@@ -1,4 +1,4 @@
-<div class=" container container-fluid">
+<div class="container">
   <section class="text-center">
     <!-- Section heading -->
     <h2 class="blue-grey-text font-weight-bold mb-4 pb-2 text-uppercase">
@@ -10,8 +10,13 @@
       possimus doloribus consectetur excepturi. Rerum?
     </p>
 
-    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
-      [animation]="'slide'" [ngSwitch]="carouselDisplayMode">
+    <mdb-carousel
+      [isControls]="true"
+      class="carousel-multi-item multi-animation"
+      [type]="'carousel-multi-item'"
+      [animation]="'slide'"
+      [ngSwitch]="carouselDisplayMode"
+    >
       <ng-container *ngSwitchCase="1">
         <mdb-carousel-item *ngFor="let event of slides1; let i = index">
           <div class="row w-100 mx-auto">

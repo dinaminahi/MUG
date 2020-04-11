@@ -3,12 +3,12 @@ $color-alert: #6f59;
 $color-green: #43aa8b;
 $color-grey: #f2efea;
 $color-attention: #ef3054;
-$font-family-alt: "Kelly Slab",
-cursive;
+$color-orange: #ff6f59;
+$font-family-alt: "Kelly Slab", cursive;
 
 // hot to use it : We need to import the file in order to use it:
 // @import "../../../stylings/variables"; // this is not cool!
-// 
+//
 // h1 {
 //     color: $brand-color;
 // }
