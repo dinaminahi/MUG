@@ -107,15 +107,27 @@ router.get("/events", (req, res) => {
 });
 
 router.get("/comments/:eventId", (req, res) => {
-  let eventId = req.params.eventId;
-   Comment.find({eventId: eventId}, function (err, comments) {
-     if (err) {
-       sendError(err, res);
-     } else {
-       response.data = comments;
-       res.json(response);
-     }
-   })
+  let idOfEvent = req.params.eventId;
+  Comment.aggregate([
+    {
+       $match: {eventId: mongoose.Types.ObjectId(idOfEvent)}
+    },
+    {
+      $lookup: {
+        from: "users",
+        localField: "userId",
+        foreignField: "_id",
+        as: "user"
+      }
+    }])
+    .exec((err, comments) => {
+      if (err) {
+        sendError(err, res);
+      } else {
+        response.data = comments;
+        res.json(response);
+      }
+    })
 });
 
 router.get("/categories", (req, res) => {
