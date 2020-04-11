@@ -7,6 +7,7 @@ const categorySchema = require('./categorySchema.js');
 const gameSchema = require('./gameSchema.js');
 const eventSchema = require('./eventSchema.js');
 const userSchema = require('./userSchema.js');
+const commentSchema = require('./commentSchema.js');
 
 
 app.use(express.json());
@@ -20,9 +21,17 @@ const Event = mongoose.model('Event', eventSchema);
 const Game = mongoose.model('Game', gameSchema);
 const User = mongoose.model('User', userSchema);
 const Category = mongoose.model('Category', categorySchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// const comment = new Comment({
+//    text: 'Do I need to have money with me?',
+//    userId: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
+//    eventId: mongoose.Types.ObjectId("5e8e369a05c5341fa43a8de2")
+// });
+
+// comment.save();
 
 // Error handling
 const sendError = (err, res) => {
@@ -95,6 +104,18 @@ router.get("/events", (req, res) => {
       res.json(response);
     }
   })
+});
+
+router.get("/comments/:eventId", (req, res) => {
+  let eventId = req.params.eventId;
+   Comment.find({eventId: eventId}, function (err, comments) {
+     if (err) {
+       sendError(err, res);
+     } else {
+       response.data = comments;
+       res.json(response);
+     }
+   })
 });
 
 router.get("/categories", (req, res) => {

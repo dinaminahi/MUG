@@ -26,7 +26,8 @@ const eventSchema = new mongoose.Schema({
       experienceNeeded: String
     },
     organizer: mongoose.ObjectId,
-    canceled: Boolean
+    canceled: Boolean,
+    commentsId: [mongoose.ObjectId]
   });
   
 module.exports = eventSchema;
