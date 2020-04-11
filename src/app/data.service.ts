@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
 import { Game } from "./game/game";
 import { Observable } from "rxjs";
+import { Comment } from "./comment-item/comment";
 
 @Injectable()
 export class DataService {
@@ -12,6 +13,7 @@ export class DataService {
   games: Game[];
   event: EventItem;
   game: Game;
+  comments: Comment[];
   constructor(private _http: HttpClient) {}
 
   public getEventById(id: String): Observable<EventItem> {
@@ -28,6 +30,13 @@ export class DataService {
         "/api/events_extended"
       )
       .pipe(map(response => (this.events = response.data)));
+  }
+
+  public getComments(id: String): Observable<Comment[]> {
+    return this._http.get<{ status: number; data: Comment[]; message: string}> (
+      `/api/comments/${id}`
+    )
+    .pipe(map(response => (this.comments = response.data)));
   }
 
   public getCategories(): Observable<string[]> {

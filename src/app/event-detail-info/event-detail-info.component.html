@@ -51,9 +51,11 @@
                     <p><a href="www.google.com">My site</a></p>
                 </div>
             </div>
-            <div class="comments my-5">
-                <h3>Comments</h3>
-                <app-comment-item></app-comment-item>
+
+            <h3>Comments</h3>
+
+            <div class="comments my-5" *ngFor="let comment of comments">
+                <app-comment-item [comment]="comment"></app-comment-item>
             </div>
             <a class="mt-4 back-btn" (click)="gotoEvents()">Back to all events</a>
         </div>

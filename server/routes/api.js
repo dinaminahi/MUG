@@ -111,7 +111,7 @@ router.get("/comments/:eventId", (req, res) => {
   let idOfEvent = req.params.eventId;
   Comment.aggregate([
     {
-       $match: {eventId: mongoose.Types.ObjectId(idOfEvent)}
+      $match: { eventId: mongoose.Types.ObjectId(idOfEvent) }
     },
     {
       $lookup: {
@@ -120,6 +120,9 @@ router.get("/comments/:eventId", (req, res) => {
         foreignField: "_id",
         as: "user"
       }
+    },
+    {
+      $unwind: "$user"
     }])
     .exec((err, comments) => {
       if (err) {

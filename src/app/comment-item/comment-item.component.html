@@ -1,10 +1,10 @@
 <div class="comment">
    <div class="user">
-       <img src="https://i.pinimg.com/280x280_RS/6a/c9/71/6ac9713db5467404cf7bdfd86817c7ae.jpg" alt="User's photo" align="left" class="mr-3">
-       <h4 mb-1>Diana Grechukh</h4>
-       <p> on 06/02/2019</p>
+       <img src="{{comment?.user?.personal?.photoUrl}}" alt="User's photo" align="left" class="mr-3">
+       <h4 mb-1>{{comment?.user?.personal?.name}}</h4>
+       <p> on {{comment?.date}}</p>
    </div>
    <div class="text">
-      <p>some text nkvnfknvknvkrnvrknvkfnvknbk</p>
+      <p>{{comment?.text}}</p>
    </div>
 </div>
