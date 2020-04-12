@@ -11,8 +11,11 @@ const dbConfig = require('./database/db');
 
 // ----------------------------
 
-// Express APIs
+// Express APIs - new
 const api = require('./routes/auth.routes');
+
+// API file for interacting with MongoDB - old
+const api = require('./server/routes/api');
 
 // MongoDB conection
 mongoose.Promise = global.Promise;
@@ -30,22 +33,28 @@ mongoose.connect(dbConfig.db, {
 // Remvoe MongoDB warning error
 mongoose.set('useCreateIndex', true);
 
-
-// Express settings
+// Express settings 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cors());
 
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: false
+}));
+
 // Serve static resources
 app.use('/public', express.static('public'));
 
-app.use('/api', api)
+// API location
+app.use('/api', api);
 
 // Define PORT
-
+const port = process.env.PORT || '3000';
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
@@ -65,21 +74,8 @@ app.use(function (err, req, res, next) {
 
 //------------------------------
 
-
-// API file for interacting with MongoDB
-const api = require('./server/routes/api');
-
-// Parsers
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
-
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist/MUG-project')));
-
-// API location
-app.use('/api', api);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
@@ -87,7 +83,6 @@ app.get('*', (req, res) => {
 });
 
 //Set Port
-const port = process.env.PORT || '3000';
 app.set('port', port);
 
 const server = http.createServer(app);
