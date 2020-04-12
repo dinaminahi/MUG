@@ -3,19 +3,46 @@ const path = require('path');
 const http = require('http');
 const app = express();
 
+// API file for interacting with MongoDB
+const api = require('./server/routes/api');
 
+// Parsers
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: false
+}));
+
+// Angular DIST output folder
+app.use(express.static(path.join(__dirname, 'dist/MUG-project')));
+
+// API location
+app.use('/api', api);
+
+// Send all other requests to the Angular app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/MUG-project/index.html'));
+});
+
+//Set Port
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+const server = http.createServer(app);
+
+server.listen(port, () => console.log(`Running on localhost:${port}`));
+
+
+// -----------------------------auth---------------------
+
+
+// const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const dbConfig = require('./database/db');
+const dbConfig = require('.server/database/db');
 
-// ----------------------------
-
-// Express APIs - new
-const authApi = require('./routes/auth.routes');
-
-// API file for interacting with MongoDB - old
-const api = require('./server/routes/api');
+// Express APIs
+const authApi = require('./server/routes/auth.routes');
 
 // MongoDB conection
 mongoose.Promise = global.Promise;
@@ -33,34 +60,24 @@ mongoose.connect(dbConfig.db, {
 // Remvoe MongoDB warning error
 mongoose.set('useCreateIndex', true);
 
-// Express settings 
-const app = express();
 
+// Express settings
+// const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cors());
 
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
-
-// API location
-app.use('/api', api); // old for data
-app.use('/api', authApi) // new for auth
-
 // Serve static resources
 app.use('/public', express.static('public'));
 
+app.use('/api', authApi)
 
 // Define PORT
-// const port = process.env.PORT || 4000;
-
-const port = process.env.PORT || '3000';
+const authPort = process.env.PORT || 4000;
 const server = app.listen(port, () => {
-  console.log('Connected to port ' + port)
+  console.log('Connected to port ' + authPort)
 })
 
 // Express error handling
@@ -75,20 +92,3 @@ app.use(function (err, req, res, next) {
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);
 });
-
-//------------------------------
-
-// Angular DIST output folder
-app.use(express.static(path.join(__dirname, 'dist/MUG-project')));
-
-// Send all other requests to the Angular app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/MUG-project/index.html'));
-});
-
-//Set Port
-app.set('port', port);
-
-const server = http.createServer(app);
-
-server.listen(port, () => console.log(`Running on localhost:${port}`));
