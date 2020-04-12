@@ -10,3 +10,15 @@ li {
 .nav-link:hover {
   opacity: 0.65;
 }
+
+mdb-navbar {
+  background-color: #254441;
+  
+  a {
+    color: #f2efea;
+  }
+
+  .navbar-brand {
+    font-family: 'Kelly Slab', cursive;
+  }
+}

@@ -57,10 +57,10 @@
             <div class="comments my-5" *ngFor="let comment of comments">
                 <app-comment-item [comment]="comment"></app-comment-item>
             </div>
-            <div class="add-comment">
+            <div class="add-comment mb-5">
                 <app-add-comment-box [eventId]="eventId"></app-add-comment-box>
             </div>
-            <a class="mt-4 back-btn" (click)="gotoEvents()">Back to all events</a>
+            <a class="mt-5 back-btn" (click)="gotoEvents()">Back to all events</a>
         </div>
         <div class="container map pb-5 px-0">
          <app-map [geo]="geo"></app-map>
