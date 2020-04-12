@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "./../../shared/auth.service"; //api
-import { ApiService } from "./../../../app/api.service";
+import { AuthService } from "./../../auth.service"; //api
+// import { ApiService } from "./../../../app/api.service";
 
 @Component({
   selector: "app-signup",
@@ -11,9 +11,9 @@ export class SignupComponent implements OnInit {
   registerData = {};
 
   constructor(
-    private authService: AuthService,
-    private apiService: ApiService
-  ) {} //apiService
+    // private apiService: ApiService,
+    private authService: AuthService
+  ) {}
 
   post() {
     console.log(this.registerData);

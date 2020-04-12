@@ -18,24 +18,7 @@ export class DataService {
   event: EventItem;
   game: Game;
 
-  // users = [];
-  // path = "http//lockalhost:3000"; /// nede to change to /api??
-
-  constructor(private _http: HttpClient, private http: HttpClient) {}
-
-  // user ----
-  //------------------------------------
-  // getUsers() {
-  //   this.http.get<any>(this.path + "/users").subscribe((res) => {
-  //     this.users = res;
-  //   });
-  // }
-
-  // getProfile(id) {
-  //   return this.http.get(this.path + "/user-profile" + id);
-  // }
-
-  // -----------------------------------
+  constructor(private _http: HttpClient) {}
 
   public getEventById(id: number): Observable<EventItem> {
     return this._http

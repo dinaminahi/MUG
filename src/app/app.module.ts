@@ -72,9 +72,9 @@ import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { RouterModule } from "@angular/router";
-import { AuthService } from "./shared/auth.service";
+import { AuthService } from "./auth.service";
 import { ApiService } from "./api.service";
-import { AuthInterceptorService } from "./shared/authInterceptor.service";
+import { AuthInterceptorService } from "./authInterceptor.service";
 
 @NgModule({
   declarations: [
@@ -153,7 +153,7 @@ import { AuthInterceptorService } from "./shared/authInterceptor.service";
       useClass: AuthInterceptorService,
       multi: true,
     },
-  ], // api.service
+  ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })

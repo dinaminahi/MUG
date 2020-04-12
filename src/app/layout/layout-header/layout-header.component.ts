@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "./../../shared/auth.service";
+import { AuthService } from "./../../auth.service";
 
 @Component({
   selector: "app-layout-header",
@@ -7,7 +7,7 @@ import { AuthService } from "./../../shared/auth.service";
   styleUrls: ["./layout-header.component.scss"],
 })
 export class LayoutHeaderComponent implements OnInit {
-  constructor(public authService: AuthService) {} //private must
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 }

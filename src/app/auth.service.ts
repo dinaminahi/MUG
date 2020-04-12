@@ -1,9 +1,12 @@
-import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+// import { environment } from '../environments/environment';
 
 @Injectable()
 export class AuthService {
-  path = "http://lockalhost:3000/auth";
+  messages = [];
+  path = "http://localhost:3000/auth"; // environment.path + '/auth';
+
   TOKEN_KEY = "token";
 
   constructor(private http: HttpClient) {}
@@ -11,11 +14,11 @@ export class AuthService {
   get token() {
     return localStorage.getItem(this.TOKEN_KEY);
   }
-  //check if logedin---
-  get isAutentikated() {
+
+  get isAuthenticated() {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
-  //--logout
+
   logout() {
     localStorage.removeItem(this.TOKEN_KEY);
   }
@@ -33,6 +36,7 @@ export class AuthService {
       this.saveToken(res.token);
     });
   }
+
   saveToken(token) {
     localStorage.setItem(this.TOKEN_KEY, token);
   }

@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "./../../shared/auth.service";
+import { AuthService } from "./../../auth.service";
 
 @Component({
   selector: "app-signin",
   templateUrl: "./signin.component.html",
   styleUrls: ["./signin.component.scss"],
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent {
   loginData = {};
 
   constructor(private authService: AuthService) {}
@@ -14,6 +14,4 @@ export class SigninComponent implements OnInit {
   post() {
     this.authService.loginUser(this.loginData);
   }
-
-  ngOnInit(): void {}
 }

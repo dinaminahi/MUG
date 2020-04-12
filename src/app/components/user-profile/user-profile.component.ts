@@ -58,7 +58,6 @@ export class UserProfileComponent implements OnInit {
     private fb: FormBuilder,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    // private authService: AuthService,
     private apiService: ApiService
   ) {}
 
@@ -66,6 +65,8 @@ export class UserProfileComponent implements OnInit {
   profile;
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
+
+    this.apiService.getUsers();
     this.apiService.getProfile(id).subscribe((data) => (this.profile = data));
 
     this.personalInfoForm = this.fb.group({
