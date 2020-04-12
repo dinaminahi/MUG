@@ -12,7 +12,7 @@ const dbConfig = require('./database/db');
 // ----------------------------
 
 // Express APIs - new
-const api = require('./routes/auth.routes');
+const authApi = require('./routes/auth.routes');
 
 // API file for interacting with MongoDB - old
 const api = require('./server/routes/api');
@@ -47,13 +47,17 @@ app.use(express.urlencoded({
   extended: false
 }));
 
+// API location
+app.use('/api', api); // old for data
+app.use('/api', authApi) // new for auth
+
 // Serve static resources
 app.use('/public', express.static('public'));
 
-// API location
-app.use('/api', api);
 
 // Define PORT
+// const port = process.env.PORT || 4000;
+
 const port = process.env.PORT || '3000';
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
