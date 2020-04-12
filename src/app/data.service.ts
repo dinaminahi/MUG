@@ -39,6 +39,12 @@ export class DataService {
     .pipe(map(response => (this.comments = response.data)));
   }
 
+  public addComment(newComment) {
+    return this._http.post('/api/addcomment', newComment).subscribe(data => {
+      console.log(data);
+    });
+  }
+
   public getCategories(): Observable<string[]> {
     return this._http
       .get<{ status: number; data: { category: string[] }; message: string }>(

@@ -225,7 +225,22 @@ router.post("/addevent", (req, res) => {
   });
 
   event.save();
-  console.log('api');
+  console.log('Event was inserted!');
+});
+
+router.post('/addcomment', (req, res) => {
+  if (req.body.text) {
+    const comment = new Comment({  
+      text: req.body.text,
+      date: req.body.date,
+      userId: mongoose.Types.ObjectId(req.body.userId),
+      eventId: mongoose.Types.ObjectId(req.body.eventId)    
+   });
+    
+   comment.save();
+   console.log('Comment was inserted!');
+
+  }
 });
 
 // connection(db => { 
