@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
-import { Validators} from "@angular/forms"
+import { FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import { DataService } from "../../data.service";
 

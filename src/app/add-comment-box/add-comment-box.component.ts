@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { DataService } from './../data.service';
 
 @Component({
   selector: 'app-add-comment-box',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCommentBoxComponent implements OnInit {
 
-  constructor() { }
+  @Input() eventId: string;
+  commentForm: FormGroup;
+
+  constructor(private fb: FormBuilder,  private _dataService: DataService) { }
 
   ngOnInit(): void {
+    this.commentForm = this.fb.group({
+      text: '',
+      date: new Date().toLocaleString(),
+      userId: "5e8e4093a918542dd08423be",
+      eventId: this.eventId
+    });
   }
 
+  onSubmit() {
+    console.log(this.commentForm.value);
+    this.commentForm.reset();
+  }
 }

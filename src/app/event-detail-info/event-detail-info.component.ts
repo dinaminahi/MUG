@@ -17,6 +17,7 @@ export class EventDetailInfoComponent implements OnInit {
   expectedEvent: EventItem;
   geo: Object;
   comments: Comment[];
+  eventId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +28,7 @@ export class EventDetailInfoComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get("id");
-
+    this.eventId = id;
     this._dataService.getEventById(id).subscribe(res => {
       this.expectedEvent = res[0];
       this.geo = this.expectedEvent.location.geo;
