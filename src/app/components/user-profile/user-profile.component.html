@@ -1,4 +1,14 @@
 <div class="container">
+  <div class="row">
+    <div class="inner-main">
+      <h2 class="mb-4">User Profile</h2>
+      <p><strong>Name:</strong> {{this.currentUser.name}}</p>
+      <p><strong>Email:</strong> {{this.currentUser.email}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
     <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
 

@@ -67,7 +67,7 @@ import { AddToFavoritesComponent } from "./add-to-favorites/add-to-favorites.com
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 import { GameCategoryIconsComponent } from "./game-category-icons/game-category-icons.component";
 import { GamesCarouselComponent } from "./games-carousel/games-carousel.component";
-import { UsersComponent } from "./users/users.component";
+// import { UsersComponent } from "./users/users.component";
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
@@ -118,7 +118,7 @@ import { AuthInterceptor } from "./shared/authconfig.interceptor";
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
-    UsersComponent,
+    // UsersComponent,
   ],
   imports: [
     RouterModule,

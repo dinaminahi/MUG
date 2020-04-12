@@ -63,16 +63,16 @@ mongoose.set('useCreateIndex', true);
 
 // Express settings
 // const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({
+//   extended: false
+// }));
 app.use(cors());
 
 // Serve static resources
 app.use('/public', express.static('public'));
 
-app.use('/api', authApi)
+app.use('/authApi', authApi)
 
 // Define PORT
 const authPort = process.env.PORT || 4000;
