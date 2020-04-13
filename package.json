@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "dev": "concurrently \"npm run serve-api\" \"npm run serve\"",
     "serve": "ng serve --proxy-config proxy.config.json",
-    "serve-api": "node_modules/.bin/nodemon server.js --watch server"
+    "serve-api": "node_modules/.bin/nodemon server.js --watch server & nodemon serverAuth.js --watch serverAuth "
   },
   "private": true,
   "dependencies": {
