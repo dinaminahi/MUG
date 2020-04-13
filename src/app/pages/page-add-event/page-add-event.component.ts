@@ -1,17 +1,23 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  NgZone,
+} from "@angular/core";
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
-import { Validators} from "@angular/forms"
-import { MapsAPILoader } from '@agm/core';
+import { Validators } from "@angular/forms";
+import { MapsAPILoader } from "@agm/core";
 import { DataService } from "../../data.service";
+import { AuthService } from "./../../shared/auth.service";
 
-import { } from "googlemaps";
+import {} from "googlemaps";
 
 @Component({
   selector: "app-page-add-event",
   templateUrl: "./page-add-event.component.html",
-  styleUrls: ["./page-add-event.component.scss"]
+  styleUrls: ["./page-add-event.component.scss"],
 })
-
 export class PageAddEventComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -22,17 +28,20 @@ export class PageAddEventComponent implements OnInit {
   public latLongs: any = []; //////////
   public latlong: any = {}; //////////
   public searchControl: FormControl;
+
+  public userId: any;
+
   isSubmitted = true;
 
-   public eventsCount: number;
-  
+  public eventsCount: number;
+
   myForm: FormGroup;
   //to choose game for event, later it will be from json file or db
   games = ["Uno", "Merchant Cove", "Pangea"];
 
   get gameA() {
-    return this.myForm.get('gameA');
-  } 
+    return this.myForm.get("gameA");
+  }
 
   get description() {
     return this.myForm.get("description");
@@ -46,38 +55,46 @@ export class PageAddEventComponent implements OnInit {
     return this.myForm.get("dateTime");
   }
 
-  constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private _dataService: DataService) { }
+  constructor(
+    private fb: FormBuilder,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
+    private _dataService: DataService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
       id: [],
-      eventName: [''],
+      eventName: [""],
       gameId: 3,
-      gameA: ['', Validators.required],
-      dateTime: ['', Validators.required],
-      duration: [''],
+      gameA: ["", Validators.required],
+      dateTime: ["", Validators.required],
+      duration: [""],
       location: this.fb.group({
         address: ["", Validators.required],
         geo: this.fb.group({
           latitude: [],
-          longitude:  []
-        })
+          longitude: [],
+        }),
       }),
       description: ["", Validators.required],
       players: this.fb.group({
-       age: this.fb.group({
-         min: [],
-         max: []
-       }),
-       count: this.fb.group({
-         min: [],
-         max: []
-       }),
-       current: 0,
-       following: [[]],
-       experiance: ['new']
-      })
+        age: this.fb.group({
+          min: [],
+          max: [],
+        }),
+        count: this.fb.group({
+          min: [],
+          max: [],
+        }),
+        current: 0,
+        following: [[]],
+        experiance: ["new"],
+      }),
     });
+
+    this.userId = this.authService.currentUserId;
 
     this.zoom = 8;
     this.latitude = 40.588;
@@ -86,20 +103,23 @@ export class PageAddEventComponent implements OnInit {
     this.searchControl = new FormControl();
     this.setCurrentPosition();
 
-    this.mapsAPILoader.load().then( () => {
-      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: []
-      });
-      autocomplete.addListener('place_changed', () => {
-         this.ngZone.run( () => {
-           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          if ( place.geometry === undefined || place.geometry === null ) {
-            return ;
+    this.mapsAPILoader.load().then(() => {
+      const autocomplete = new google.maps.places.Autocomplete(
+        this.searchElementRef.nativeElement,
+        {
+          types: [],
+        }
+      );
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
           }
 
           const latlong = {
             latitude: place.geometry.location.lat(),
-            longitude: place.geometry.location.lng()
+            longitude: place.geometry.location.lng(),
           };
 
           this.myForm.value.location.geo.longitude = latlong.longitude;
@@ -109,10 +129,10 @@ export class PageAddEventComponent implements OnInit {
 
           this.latLongs.push(latlong);
           this.searchControl.reset();
-          this._dataService.getEvents().subscribe(res => {
+          this._dataService.getEvents().subscribe((res) => {
             this.eventsCount = res.length;
-          }); 
-         });
+          });
+        });
       });
     });
   }
@@ -124,7 +144,7 @@ export class PageAddEventComponent implements OnInit {
 
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
