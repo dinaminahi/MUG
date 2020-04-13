@@ -16,7 +16,6 @@ export class AuthService {
   endpoint: string = "http://localhost:4000/authApi";
   headers = new HttpHeaders().set("Content-Type", "application/json");
   currentUser = {};
-  public currentUserId: any;
 
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -32,7 +31,6 @@ export class AuthService {
       .post<any>(`${this.endpoint}/signin`, user)
       .subscribe((res: any) => {
         localStorage.setItem("access_token", res.token);
-        this.currentUserId = res._id;
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
           this.router.navigate(["user-profile/" + res.msg._id]);
