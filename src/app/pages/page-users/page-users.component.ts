@@ -6,9 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./page-users.component.scss"],
 })
 export class PageUsersComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.apiService.getUsers();
-  }
+  ngOnInit(): void {}
 }
