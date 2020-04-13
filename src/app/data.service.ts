@@ -20,6 +20,7 @@ export class DataService {
   user: User;
   favoritedEvents: string[];
   favoritedGames: string[];
+  subscribedEvents: string[];
   constructor(private _http: HttpClient) {}
 
   public getEventById(id: String): Observable<EventItem> {
@@ -108,6 +109,21 @@ export class DataService {
       .pipe(
         map((response) => {
           this.favoritedEvents = response.data;
+          return response;
+        })
+      );
+  }
+
+  public joinToEvent(
+    eventId: number,
+    userId: string,
+    toggle: boolean
+  ): Observable<[]> {
+    return this._http
+      .put<any>("/api/subscribed-events", { eventId, userId, toggle })
+      .pipe(
+        map((response) => {
+          this.subscribedEvents = response.data;
           return response;
         })
       );

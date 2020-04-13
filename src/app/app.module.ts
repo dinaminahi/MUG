@@ -71,13 +71,14 @@ import { GamesCarouselComponent } from "./games-carousel/games-carousel.componen
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
-import { CommentItemComponent } from './comment-item/comment-item.component';
-import { AddCommentBoxComponent } from './add-comment-box/add-comment-box.component';
+import { CommentItemComponent } from "./comment-item/comment-item.component";
+import { AddCommentBoxComponent } from "./add-comment-box/add-comment-box.component";
 import { RouterModule } from "@angular/router";
 // import { AuthService } from "./shared/auth.service";
 // import { ApiService } from "./api.service";
 import { AuthInterceptor } from "./shared/authconfig.interceptor";
-import { SmallEventItemComponent } from './small-event-item/small-event-item.component';
+import { SmallEventItemComponent } from "./small-event-item/small-event-item.component";
+import { ButtonJoinComponent } from "./button-join/button-join.component";
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { SmallEventItemComponent } from './small-event-item/small-event-item.com
     CommentItemComponent,
     AddCommentBoxComponent,
     // UsersComponent,
-    SmallEventItemComponent
+    SmallEventItemComponent,
+    ButtonJoinComponent,
   ],
   imports: [
     RouterModule,
