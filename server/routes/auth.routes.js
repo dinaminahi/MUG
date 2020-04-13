@@ -125,8 +125,8 @@ router.route('/update-user/:id').put((req, res, next) => {
     $set: req.body
   }, (error, data) => {
     if (error) {
-      return next(error);
       console.log(error)
+      return next(error);
     } else {
       res.json(data)
       console.log('User successfully updated!')

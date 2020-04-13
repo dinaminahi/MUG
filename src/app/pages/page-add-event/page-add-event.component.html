@@ -6,10 +6,11 @@
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
       <h1 class="text-center main-heading">Create your event</h1>
+      <p><strong>id:</strong> {{userSchema.id}}</p>
 
       <div class="form-group">
         <label>Event name</label>
-        <h1>{{this.userId}}</h1>
+
         <input type="text" formControlName="eventName" class="form-control">
       </div>
 

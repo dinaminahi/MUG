@@ -9,9 +9,11 @@ import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { MapsAPILoader } from "@agm/core";
 import { DataService } from "../../data.service";
-import { AuthService } from "./../../shared/auth.service";
 
 import {} from "googlemaps";
+
+import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "./../../shared/auth.service";
 
 @Component({
   selector: "app-page-add-event",
@@ -19,6 +21,7 @@ import {} from "googlemaps";
   styleUrls: ["./page-add-event.component.scss"],
 })
 export class PageAddEventComponent implements OnInit {
+  currentUser = {};
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -28,9 +31,6 @@ export class PageAddEventComponent implements OnInit {
   public latLongs: any = []; //////////
   public latlong: any = {}; //////////
   public searchControl: FormControl;
-
-  public userId: any;
-
   isSubmitted = true;
 
   public eventsCount: number;
@@ -60,8 +60,14 @@ export class PageAddEventComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private _dataService: DataService,
-    private authService: AuthService
-  ) {}
+    public authService: AuthService,
+    private actRoute: ActivatedRoute
+  ) {
+    let id = this.actRoute.snapshot.paramMap.get("id");
+    this.authService.getUserProfile(id).subscribe((res) => {
+      this.currentUser = res.msg;
+    });
+  }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -93,8 +99,6 @@ export class PageAddEventComponent implements OnInit {
         experiance: ["new"],
       }),
     });
-
-    this.userId = this.authService.currentUserId;
 
     this.zoom = 8;
     this.latitude = 40.588;
