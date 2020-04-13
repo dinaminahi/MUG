@@ -1,5 +1,5 @@
 {
-  "name": "MUG-project",
+  "name": "mug-project",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "dev": "concurrently \"npm run serve-api\" \"npm run serve\"",
     "serve": "ng serve --proxy-config proxy.config.json",
-    "serve-api": "node_modules/.bin/nodemon server.js --watch server"
+    "serve-api": "nodemon server.js --watch server"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +32,7 @@
     "@types/googlemaps": "^3.39.3",
     "angular-bootstrap-md": "^9.0.0",
     "animate.css": "^3.7.2",
+    "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
@@ -52,6 +53,7 @@
     "npm": "^6.14.4",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
+    "save": "^2.4.0",
     "tslib": "^1.10.0",
     "zone.js": "^0.10.3"
   },
@@ -76,5 +78,17 @@
     "ts-node": "^8.8.1",
     "tslint": "^6.1.0",
     "typescript": "^3.8.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinaminahi/MUG.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dinaminahi/MUG/issues"
+  },
+  "homepage": "https://github.com/dinaminahi/MUG#readme"
 }

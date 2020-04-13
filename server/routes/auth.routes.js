@@ -27,7 +27,7 @@ router.post("/register-user",
     .isEmpty()
     .isLength({
       min: 5,
-      max: 8
+      max: 16
     })
   ],
   (req, res, next) => {
