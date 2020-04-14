@@ -27,7 +27,7 @@ router.post("/register-user",
     .isEmpty()
     .isLength({
       min: 5,
-      max: 16
+      max: 8
     })
   ],
   (req, res, next) => {
@@ -125,8 +125,8 @@ router.route('/update-user/:id').put((req, res, next) => {
     $set: req.body
   }, (error, data) => {
     if (error) {
-      console.log(error)
       return next(error);
+      console.log(error)
     } else {
       res.json(data)
       console.log('User successfully updated!')
