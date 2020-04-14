@@ -1,18 +1,19 @@
 footer {
-  color: #cccccc;
+  color: #f2efea;
+  background-color: #254441;
 
   a {
-    color: transparentize($color: #cccccc, $amount: 0.6) !important;
+    color: transparentize($color: #f2efea, $amount: 0.6) !important;
   }
 }
 
 .links {
   border-style: none solid none solid !important;
   border-width: 1px;
-  border-color: #cccccc;
+  border-color: #f2efea;
 
   a {
-    color: transparentize($color: #cccccc, $amount: 0.6) !important;
+    color: transparentize($color: #f2efea, $amount: 0.6) !important;
   }
 }
 
@@ -22,7 +23,8 @@ footer {
   .footer-btn {
     background-color: transparent;
     border-radius: 28px;
-    border: 2px solid #bd761a;
+    border: 2px solid #f2efea;
+    color: #f2efea;
     display: block;
     cursor: pointer;
     font-size: 14px;

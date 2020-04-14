@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
 import { Game } from "./game/game";
 import { Observable } from "rxjs";
+import { Comment } from "./comment-item/comment";
 import { catchError, retry } from "rxjs/operators";
 import { User } from "./pages/page-users/user";
 
@@ -14,12 +15,13 @@ export class DataService {
   games: Game[];
   event: EventItem;
   game: Game;
+  comments: Comment[];
   user: User;
   favoritedEvents: string[];
   favoritedGames: string[];
   constructor(private _http: HttpClient) {}
 
-  public getEventById(id: number): Observable<EventItem> {
+  public getEventById(id: String): Observable<EventItem> {
     return this._http
       .get<{ status: number; data: EventItem; message: string }>(
         `/api/events_extended/${id}`
@@ -33,6 +35,19 @@ export class DataService {
         "/api/events_extended"
       )
       .pipe(map((response) => (this.events = response.data)));
+  }
+
+  public getComments(id: String): Observable<Comment[]> {
+    return this._http.get<{ status: number; data: Comment[]; message: string}> (
+      `/api/comments/${id}`
+    )
+    .pipe(map(response => (this.comments = response.data)));
+  }
+
+  public addComment(newComment) {
+    return this._http.post('/api/addcomment', newComment).subscribe(data => {
+      console.log(data);
+    });
   }
 
   public getCategories(): Observable<string[]> {
@@ -50,7 +65,7 @@ export class DataService {
   }
 
   public addEvent(newEvent) {
-    return this._http.post("/api/addevent", newEvent).subscribe((data) => {
+     return this._http.post('/api/addevent', newEvent).subscribe(data => {
       console.log(data);
     });
   }

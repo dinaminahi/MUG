@@ -1,109 +1,108 @@
 <div class="container ">
-    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
-        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
-            <h1 class="text-center main-heading">Create your event</h1>
 
-            <div class="form-group">
-                <label>Event name</label>
-                <input type="text" formControlName="eventName" class="form-control">
-            </div>
 
-            <div class="form-group">
-                <label>Event description</label>
-                <textarea formControlName="description" [class.is-invalid]="description.invalid && description.touched"
-                    rows="3" class="form-control"></textarea>
-                <p [class.d-none]="description.valid || description.untouched" class="text-danger">Event description is
-                    required</p>
-            </div>
+  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
-            <div class="form-group" formGroupName="location">
-                <label>Location</label>
-                <input type="text" formControlName="address" #search [formControl]="searchControl" autocomplete="off"
-                    autocapitalize="off" spellcheck="false" class="form-control"
-                    placeholder="{{ myForm.value.location.address }}"
-                    [class.is-invalid]="address.invalid && address.touched">
-                <p [class.d-none]="address.valid || address.untouched" class="text-danger">Please specify the location
-                    of event</p>
-            </div>
+      <h1 class="text-center main-heading">Create your event</h1>
+      <!-- <p><strong>id:</strong> {{userSchema.id}}</p> -->
 
-            <div class="form-group">
-                <label>Date and time</label>
-                <input type="datetime-local" formControlName="dateTime" class="form-control"
-                    [class.is-invalid]="dateTime.invalid && dateTime.touched">
-                <p [class.d-none]="dateTime.valid || dateTime.untouched" class="text-danger">Please specify the date and
-                    time of event</p>
-            </div>
+      <div class="form-group">
+        <label>Event name</label>
 
-            <div class="form-group">
-                <label>Duration of your event</label>
-                <input type="text" formControlName="duration" class="form-control">
-            </div>
+        <input type="text" formControlName="eventName" class="form-control">
+      </div>
 
-            <div class="game">
+      <div class="form-group">
+        <label>Event description</label>
+        <textarea formControlName="description" [class.is-invalid]="description.invalid && description.touched" rows="3"
+          class="form-control"></textarea>
+        <p [class.d-none]="description.valid || description.untouched" class="text-danger">Event description is
+          required</p>
+      </div>
 
-                <h2 class="text-center">About game</h2>
+      <div class="form-group" formGroupName="location">
+        <label>Location</label>
+        <input type="text" formControlName="address" #search [formControl]="searchControl" autocomplete="off"
+          autocapitalize="off" spellcheck="false" class="form-control" placeholder="{{ myForm.value.location.address }}"
+          [class.is-invalid]="address.invalid && address.touched">
+        <p [class.d-none]="address.valid || address.untouched" class="text-danger">Please specify the location
+          of event</p>
+      </div>
 
-                <div class="form-group">
-                    <label>Choose the game</label>
-                    <select formControlName="gameA" class="custom-select"
-                        [class.is-invalid]="gameA.invalid && gameA.touched">
-                        <option value="" disabled>I want to play</option>
-                        <option *ngFor="let game of games">{{ game }}</option>
-                    </select>
-                    <p [class.d-none]="gameA.valid || gameA.untouched" class="text-danger">Please, choose the game</p>
+      <div class="form-group">
+        <label>Date and time</label>
+        <input type="datetime-local" formControlName="dateTime" class="form-control"
+          [class.is-invalid]="dateTime.invalid && dateTime.touched">
+        <p [class.d-none]="dateTime.valid || dateTime.untouched" class="text-danger">Please specify the date and
+          time of event</p>
+      </div>
+
+      <div class="form-group">
+        <label>Duration of your event</label>
+        <input type="text" formControlName="duration" class="form-control">
+      </div>
+
+      <div class="game">
+
+        <h2 class="text-center">About game</h2>
+
+        <div class="form-group">
+          <label>Choose the game</label>
+          <select formControlName="game" class="custom-select" [class.is-invalid]="game.invalid && game.touched">
+            <option value="" disabled>I want to play</option>
+            <option *ngFor="let game of games">{{ game }}</option>
+          </select>
+          <p [class.d-none]="game.valid || game.untouched" class="text-danger">Please, choose the game</p>
+        </div>
+
+        <div formGroupName="players">
+          <div class="form-group my-5">
+            <div class="row">
+              <div class="col-md-6  col-sm-12 text-center">
+                <label>Players age</label>
+                <div formGroupName="age">
+                  <input type="number" class="num-input form-control mr-5" formControlName="min" placeholder="min">
+                  <input type="number" class="num-input form-control" formControlName="max" placeholder="max">
                 </div>
-
-                <div formGroupName="players">
-                    <div class="form-group my-5">
-                        <div class="row">
-                            <div class="col-md-6  col-sm-12 text-center">
-                                <label>Players age</label>
-                                <div formGroupName="age">
-                                    <input type="number" class="num-input form-control mr-5" formControlName="min"
-                                        placeholder="min">
-                                    <input type="number" class="num-input form-control" formControlName="max"
-                                        placeholder="max">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12 text-center">
-                                <label>Players amount</label>
-                                <div formGroupName="count">
-                                    <input type="number" class="num-input form-control mr-5" formControlName="min"
-                                        placeholder="min">
-                                    <input type="number" class="num-input form-control" formControlName="max"
-                                        placeholder="max">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Default inline 1-->
-                    <label class="mr-5">Do players need experiance?</label>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="defaultInline1" name="experiance"
-                            formControlName="experiance" value="new" checked>
-                        <label class="custom-control-label" for="defaultInline1">New</label>
-                    </div>
-
-                    <!-- Default inline 2-->
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="defaultInline2" name="experiance"
-                            formControlName="experiance" value="intermediate">
-                        <label class="custom-control-label" for="defaultInline2">Intermediate</label>
-                    </div>
-
-                    <!-- Default inline 3-->
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="defaultInline3" name="experiance"
-                            formControlName="experiance" value="advanced">
-                        <label class="custom-control-label" for="defaultInline3">Advanced</label>
-                    </div>
+              </div>
+              <div class="col-md-6 col-sm-12 text-center">
+                <label>Players amount</label>
+                <div formGroupName="count">
+                  <input type="number" class="num-input form-control mr-5" formControlName="min" placeholder="min">
+                  <input type="number" class="num-input form-control" formControlName="max" placeholder="max">
                 </div>
-
+              </div>
             </div>
+          </div>
+          <!-- Default inline 1-->
+          <label class="mr-5">Do players need experiance?</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline1" name="experiance"
+              formControlName="experiance" value="new" checked>
+            <label class="custom-control-label" for="defaultInline1">New</label>
+          </div>
 
-            <button type="submit" class="btn btn-info stylish-color-dark my-4 btn-block"
-                [disabled]="!myForm.valid">Create</button>
-        </form>
-    </section>
+          <!-- Default inline 2-->
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline2" name="experiance"
+              formControlName="experiance" value="intermediate">
+            <label class="custom-control-label" for="defaultInline2">Intermediate</label>
+          </div>
+
+          <!-- Default inline 3-->
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline3" name="experiance"
+              formControlName="experiance" value="advanced">
+            <label class="custom-control-label" for="defaultInline3">Advanced</label>
+          </div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-info stylish-color-dark my-4 btn-block"
+        [disabled]="!myForm.valid">Create</button>
+    </form>
+  </section>
 </div>

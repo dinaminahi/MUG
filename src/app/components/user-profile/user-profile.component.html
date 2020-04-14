@@ -1,67 +1,82 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="inner-main">
+      <h2 class="mb-4">User Profile</h2>
+      <p><strong>Name:</strong> {{currentUser.name}}</p>
+      <p><strong>Email:</strong> {{currentUser.email}}</p>
+      <p><strong>pass:</strong> {{currentUser.password}}</p>
+      <p><strong>id:</strong> {{currentUser._id}}</p>
+    </div>
+  </div>
+</div> -->
+
 <div class="container">
-    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
-        <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
+  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+    <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
 
 
-            <div formGroupName="personal">
+      <div formGroupName="personal">
 
-                <p class="h4 mb-4">Personal information</p>
+        <p class="h4 mb-4">Personal information</p>
 
-                <div class="form-group">
-                    <div class="userPhoto mb-3"> 
-                        <img src="{{personalInfoForm}}" alt="Your photo">
-                    </div>
-                    <input type="file" name="image" width="100px">
-                </div>
-                <div class="form-group">
-                    <label for="name">Username</label>
-                    <input type="text" id="name" class="form-control" formControlName="name">
-                </div>
-                <div class="form-group">
-                    <label for="firstName">First name*</label>
-                    <input type="text" id="firstName" class="form-control" formControlName="firstName"  [class.is-invalid]="firstName.invalid && firstName.touched">
-                    <p [class.d-none]="firstName.valid || firstName.untouched" class="text-danger">First name is
-                        required</p>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last name*</label>
-                    <input type="text" id="lastName" class="form-control" formControlName="lastName" [class.is-invalid]="lastName.invalid && lastName.touched">
-                    <p [class.d-none]="lastName.valid || lastName.untouched" class="text-danger">Last name is
-                        required</p>
-                </div>
-                <div class="form-group">
-                    <label for="dateOfBirth">Date of birth</label>
-                    <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
-                </div>
-                <div class="form-group">
-                    <label>Few words about yourself</label>
-                    <textarea formControlName="description" rows="3" class="form-control"></textarea>
-                </div>
+        <div class="form-group">
+          <div class="userPhoto mb-3">
+            <img src="{{personalInfoForm}}" alt="Your photo">
+          </div>
+          <input type="file" name="image" width="100px">
+        </div>
+        <div class="form-group">
+          <label for="name">Username</label>
+          <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="firstName">First name*</label>
+          <input type="text" id="firstName" class="form-control" formControlName="firstName"
+            [class.is-invalid]="firstName.invalid && firstName.touched">
+          <p [class.d-none]="firstName.valid || firstName.untouched" class="text-danger"> First name is required</p>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last name*</label>
+          <input type="text" id="lastName" class="form-control" formControlName="lastName"
+            [class.is-invalid]="lastName.invalid && lastName.touched">
+          <p [class.d-none]="lastName.valid || lastName.untouched" class="text-danger">Last name is
+            required</p>
+        </div>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of birth</label>
+          <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
+        </div>
+        <div class="form-group">
+          <label>Few words about yourself</label>
+          <textarea formControlName="description" rows="3" class="form-control"></textarea>
+        </div>
 
-                <p class="h4 mb-4 mt-5">Contact information</p>
-  
-                <div class="form-group">
-                    <label for="phone">Phone number*</label>
-                    <input type="text" id="phone" class="form-control" formControlName="phone" [class.is-invalid]="lastName.invalid && lastName.touched">
-                    <p [class.d-none]="phone.valid || phone.untouched" class="text-danger">Phone is
-                        required</p>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email*</label>
-                    <input type="text" id="email" class="form-control" formControlName="email" [class.is-invalid]="email.invalid && email.touched">
-                    <p [class.d-none]="email.valid || email.untouched" class="text-danger">Email is
-                        required</p>
-                </div>
-                <div class="form-group" formGroupName="location">
-                    <label>Location:</label>
-                    <input type="text" formControlName="address" #search [formControl]="searchControl"
-                        autocomplete="off" autocapitalize="off" spellcheck="false" class="form-control"
-                        placeholder="{{ personalInfoForm.value.personal.location.address }}">
-                </div>
-            </div>
+        <p class="h4 mb-4 mt-5">Contact information</p>
 
-            <button type="submit" class="btn btn-info stylish-color-dark my-4 btn-block"
-                [disabled]="!personalInfoForm.valid">Sign up</button>
-        </form>
-    </section>
+        <div class="form-group">
+          <label for="phone">Phone number*</label>
+          <input type="text" id="phone" class="form-control" formControlName="phone"
+            [class.is-invalid]="lastName.invalid && lastName.touched">
+          <p [class.d-none]="phone.valid || phone.untouched" class="text-danger">Phone is
+            required</p>
+        </div>
+        <div class="form-group">
+          <label for="email">Email*</label>
+          <input type="text" id="email" class="form-control" formControlName="email"
+            [class.is-invalid]="email.invalid && email.touched">
+          <p [class.d-none]="email.valid || email.untouched" class="text-danger">Email is
+            required</p>
+        </div>
+        <div class="form-group" formGroupName="location">
+          <label>Location:</label>
+          <input type="text" formControlName="address" #search [formControl]="searchControl" autocomplete="off"
+            autocapitalize="off" spellcheck="false" class="form-control"
+            placeholder="{{ personalInfoForm.value.personal.location.address }}">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-info stylish-color-dark my-4 btn-block"
+        [disabled]="!personalInfoForm.valid">Sign up</button>
+    </form>
+  </section>
 </div>

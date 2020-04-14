@@ -18,6 +18,6 @@ export class EventItemComponent implements OnInit {
   ngOnInit() {}
 
   onSelect(event) {
-    this.router.navigate(["/events", event.id]);
+    this.router.navigate(["/events", event._id]);
   }
 }

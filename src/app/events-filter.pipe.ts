@@ -11,7 +11,7 @@ export class EventsFilterPipe implements PipeTransform {
     }
     return events.filter(
       event =>
-        event.game.category.filter(category => categories.includes(category))
+        event.agame.category.filter(category => categories.includes(category))
           .length
     );
   }

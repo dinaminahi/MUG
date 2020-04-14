@@ -46,7 +46,10 @@ export class PageEventsComponent implements OnInit {
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
-    this._dataService.getEvents().subscribe(res => (this.events = res));
+    this._dataService.getEvents().subscribe(res => {
+      this.events = res;
+      console.log(this.events);
+    });
     this._dataService.getCategories().subscribe(
       res =>
         (this.categories = res.map(category => {

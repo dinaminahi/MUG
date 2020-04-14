@@ -1,70 +1,79 @@
 <div class="no-white my-5 py-5"></div>
 <div class="container my-4 py-4">
 
+  <div class="auth-wrapper">
+    <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="loginUser()">
+      <!--Section: Content-->
+      <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
 
-  <!--Section: Content-->
-  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
 
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
 
-    <!--Grid row-->
-    <div class="row d-flex justify-content-center">
+          <!--Grid column-->
+          <div class="col-md-6">
 
-      <!--Grid column-->
-      <div class="col-md-6">
+            <!-- Default form login -->
+            <form class="text-center" action="#!">
 
-        <!-- Default form login -->
-        <form class="text-center" action="#!">
+              <p class="h4 mb-4">Sign in</p>
 
-          <p class="h4 mb-4">Sign in</p>
-
-          <!-- Email -->
-          <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-
-          <!-- Password -->
-          <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
-
-          <div class="d-flex justify-content-around">
-            <div>
-              <!-- Remember me -->
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+              <!-- Email -->
+              <!-- <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"> -->
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
               </div>
-            </div>
-            <div>
-              <!-- Forgot password -->
-              <a href="">Forgot password?</a>
-            </div>
+              <!-- Password -->
+              <!-- <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"> -->
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password">
+              </div>
+              <div class="d-flex justify-content-around">
+                <div>
+                  <!-- Remember me -->
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                  </div>
+                </div>
+                <div>
+                  <!-- Forgot password -->
+                  <a href="">Forgot password?</a>
+                </div>
+              </div>
+
+              <!-- Sign in button -->
+              <!-- <button class="btn btn-info stylish-color-dark btn-block my-4" type="submit">Sign in</button> -->
+              <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+
+              <!-- Register -->
+              <p>Not a member?
+                <a routerLink="/sign-up" routerLinkActive="active">Register</a>
+              </p>
+
+              <!-- Social login -->
+              <p>or sign in with:</p>
+
+              <a href="#" class="mx-1" role="button"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="mx-1" role="button"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="mx-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="mx-1" role="button"><i class="fab fa-github"></i></a>
+
+            </form>
+            <!-- Default form login -->
+
           </div>
+          <!--Grid column-->
 
-          <!-- Sign in button -->
-          <button class="btn btn-info stylish-color-dark btn-block my-4" type="submit">Sign in</button>
-
-          <!-- Register -->
-          <p>Not a member?
-            <a routerLink="/signin" routerLinkActive="active">Register</a>
-          </p>
-
-          <!-- Social login -->
-          <p>or sign in with:</p>
-
-          <a href="#" class="mx-1" role="button"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="mx-1" role="button"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="mx-1" role="button"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="mx-1" role="button"><i class="fab fa-github"></i></a>
-
-        </form>
-        <!-- Default form login -->
-
-      </div>
-      <!--Grid column-->
-
-    </div>
-    <!--Grid row-->
+        </div>
+        <!--Grid row-->
 
 
-  </section>
-  <!--Section: Content-->
-
+      </section>
+      <!--Section: Content-->
+    </form>
+  </div>
 
 </div>

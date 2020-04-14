@@ -3,138 +3,29 @@ const router = express.Router();
 const app = express();
 const mongoose = require("mongoose");
 
+const Category = require('./../models/categorySchema');
+const Game = require('./../models/gameSchema');
+const Event = require('./../models/eventSchema');
+const User = require('./../models/userSchema');
+const Comment = require('./../models/commentSchema');
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const MongoClient = require("mongodb").MongoClient;
-const ObjectID = require("mongodb").ObjectID;
-
-const gameSchema = {
-  id: Number,
-  name: String,
-  category: [],
-  description: String,
-  playersMinAge: Number,
-  playersCount: { min: Number, max: Number },
-  playTimeMinutes: { min: Number, max: Number },
-  instructionUrl: String,
-  photoUrl: String,
-};
-
-const connection = (closure) => {
-  const uri =
-    "mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority";
-  return MongoClient.connect(
-    uri,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    (err, client) => {
-      if (err) return console.log(err);
-      let db = client.db("MUG-DB");
-      closure(db);
-    }
-  );
-};
-
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
-// mongoose.connect("mongodb+srv://mug-user:carrot4mug@cluster0-qmj6q.mongodb.net/test?retryWrites=true&w=majority");
-
-// const categorySchema = {
-//   name: String,
-//   label: String,
-//   iconClass: String
-// }
-
-// const category = new Category({"name": "teens", "label": "Для підлітків", "iconClass": "fas fa-dragon" });
-
-// // category.save();
-
-// const gameSchema = {
-//   name: String,
-//   category: [categorySchema],
-//   description: String,
-//   playersMinAge: Number,
-//   playersCount: {
-//     min: Number,
-//     max: Number
-//   },
-//   playTimeMinutes: {
-//     min: Number,
-//     max: Number
-//   },
-//   instructionUrl: String,
-//   photoUrl: [String]
-// };
-
-// const eventSchema = {
-//   gameName: String,
-//   game: gameSchema,
-//   eventName: String,
-//   description: String,
-//   location: {
-//     address: String,
-//     geo: {
-//       longitude: Number,
-//       latitide: Number
-//     }
-//   },
-//   dateTime: String,
-//   duration: String,
-//   players: {
-//     age: {
-//       min: Number,
-//       max: Number
-//     },
-//     count: {
-//       min: Number,
-//       max: Number,
-//       current: Number
-//     },
-//     experienceNeeded: String
-//   }
-// };
-
-// const userSchema = {
-//   personal: {
-//     photoUrl: String,
-//     name: String,
-//     firstName: String,
-//     lastName: String,
-//     phone: String,
-//     email: String,
-//     location: {
-//       address: String,
-//       geo: {
-//         longitude: Number,
-//         latitide: Number
-//       }
-//     },
-//     dateOfBirth: Number,
-//     description: String,
-//   },
-//   events: {
-//     subscribed: [eventSchema],
-//     interested: [eventSchema],
-//     created: [eventSchema],
-//   },
-//   games: {
-//     favorited: [eventSchema], // game id's or some part of game objects
-//     skillLevel:
-//     {
-//       novice: [eventSchema],
-//       beginner: [eventSchema],
-//       intermediate: [eventSchema],
-//       advanced: [eventSchema]
-//     },
-//     rating: Number // likes counter form other users
-//   }
-// };
-
-// const Event = mongoose.model('Event', eventSchema);
-// const Game = mongoose.model('Game', gameSchema);
-// const User = mongoose.model('User', userSchema);
-// const Category = mongoose.model('Category', userSchema);
+mongoose.connect("mongodb+srv://diana-admin:dianadiana@cluster0-v29yw.mongodb.net/MUG");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// const comment = new Comment({
+//    text: 'Do I need to have money with me?',
+//    date: new Date().toLocaleString(),
+//    userId: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
+//    eventId: mongoose.Types.ObjectId("5e8e369a05c5341fa43a8de2")
+// });
+
+// comment.save();
 
 // Error handling
 const sendError = (err, res) => {
@@ -150,226 +41,199 @@ let response = {
   message: null,
 };
 
-// Get events
+// // Get events
 
 router.get("/events_extended/:eventId", (req, res) => {
-  let eventId = Number(req.params.eventId);
-  connection((db) => {
-    db.collection("events")
-      .aggregate([
-        { $match: { id: eventId } },
-        {
-          $lookup: {
-            from: "games",
-            localField: "gameId",
-            foreignField: "id",
-            as: "game",
-          },
-        },
-        { $unwind: "$game" },
-      ])
-      .next()
-      .then((events) => {
-        response.data = events;
-        res.json(response);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+  let eventId = req.params.eventId;
+  Event.find({ _id: eventId }, (err, event) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = event;
+      res.json(response);
+    }
+  })
 });
 
 router.get("/events_extended", (req, res) => {
-  connection((db) => {
-    db.collection("events")
-      .aggregate([
-        {
-          $lookup: {
-            from: "games",
-            localField: "gameId",
-            foreignField: "id",
-            as: "game",
-          },
-        },
-        { $unwind: "$game" },
-      ])
-      .toArray()
-      .then((events) => {
+  Event.aggregate([
+    {
+      $lookup: {
+        from: "games",
+        localField: "game",
+        foreignField: "name",
+        as: "agame"
+      }
+    },
+    { $unwind: "$game" }
+  ])
+    .exec((err, events) => {
+      if (err) {
+        sendError(err, res);
+      } else {
         response.data = events;
         res.json(response);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
-  // Event.find({})
-  // .then(events => {
-  //         response.data = events;
-  //         res.json(response);
-  //       })
-  //       .catch(err => {
-  //         sendError(err, res);
-  //       });
+      }
+    })
 });
 
 router.get("/events/:eventId", (req, res) => {
-  let eventId = Number(req.params.eventId);
-  connection((db) => {
-    db.collection("events")
-      .find({ id: eventId })
-      .toArray()
-      .then((events) => {
-        response.data = events;
-        res.json(response);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+  let eventId = req.params.eventId;
+  Event.find({ _id: eventId }, (err, event) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = event;
+      res.json(response);
+    }
+  })
 });
 
 router.get("/events", (req, res) => {
-  connection((db) => {
-    db.collection("events")
-      .find()
-      .toArray()
-      .then((events) => {
-        response.data = events;
-        res.json(response);
-      })
-      .catch((err) => {
+  Event.find({}, function (err, events) {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = events;
+      res.json(response);
+    }
+  })
+});
+
+router.get("/comments/:eventId", (req, res) => {
+  let idOfEvent = req.params.eventId;
+  Comment.aggregate([
+    {
+      $match: { eventId: mongoose.Types.ObjectId(idOfEvent) }
+    },
+    {
+      $lookup: {
+        from: "users",
+        localField: "userId",
+        foreignField: "_id",
+        as: "user"
+      }
+    },
+    {
+      $unwind: "$user"
+    }])
+    .exec((err, comments) => {
+      if (err) {
         sendError(err, res);
-      });
-  });
+      } else {
+        response.data = comments;
+        res.json(response);
+      }
+    })
 });
 
 router.get("/categories", (req, res) => {
-  connection((db) => {
-    db.collection("games")
-      .aggregate([
-        { $group: { _id: null, category: { $addToSet: "$category" } } },
-        {
-          $addFields: {
-            category: {
-              $reduce: {
-                input: "$category",
-                initialValue: [],
-                in: { $setUnion: ["$$value", "$$this"] },
-              },
-            },
-          },
-        },
-        { $project: { _id: 0, category: "$category" } },
-      ])
-      .next()
-      .then((categories) => {
+  Game.aggregate([
+    { $group: { _id: null, category: { $addToSet: "$category" } } },
+    {
+      $addFields: {
+        category: {
+          $reduce: {
+            input: "$category",
+            initialValue: [],
+            in: { $setUnion: ["$$value", "$$this"] }
+          }
+        }
+      }
+    },
+    { $project: { _id: 0, category: "$category" } }
+  ])
+    .exec((err, categories) => {
+      if (err) {
+        sendError(err, res);
+      } else {
         response.data = categories;
         res.json(response);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+      }
+    })
 });
 
 router.get("/games", (req, res) => {
-  connection((db) => {
-    db.collection("games")
-      .find()
-      .toArray()
-      .then((games) => {
+  Game.aggregate([
+    {
+      $lookup: {
+        from: "categories",
+        localField: "category",
+        foreignField: "name",
+        as: "categories"
+      }
+    },
+    { $unwind: "$category" }
+  ])
+    .exec((err, games) => {
+      if (err) {
+        sendError(err, res);
+      } else {
         response.data = games;
         res.json(response);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
-});
-
-router.put("/favorite-games", (req, res) => {
-  connection((db) => {
-    db.collection("users")
-      .find({ email: req.body.userEmail })
-      .toArray()
-      .then((users) => {
-        const games = users[0].games || {};
-        games.favorites = games.favorites || [];
-        const index = games.favorites.indexOf(req.body.gameId);
-        if (req.body.toggle) {
-          if (index === -1) {
-            games.favorites.push(req.body.gameId);
-          }
-        } else {
-          if (index > -1) {
-            games.favorites.splice(index, 1);
-          }
-        }
-
-        db.collection("users")
-          .updateOne({ email: req.body.userEmail }, { $set: { games } })
-          .then(() => {
-            res.json(games.favorites);
-          });
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
-});
-
-router.put("/favorite-events", (req, res) => {
-  connection((db) => {
-    db.collection("users")
-      .find({ email: req.body.userEmail })
-      .toArray()
-      .then((users) => {
-        const events = users[0].events || {};
-        events.interested = events.interested || [];
-        const index = events.interested.indexOf(req.body.gameId);
-        if (req.body.toggle) {
-          if (index === -1) {
-            events.interested.push(req.body.eventId);
-          }
-        } else {
-          if (index > -1) {
-            events.interested.splice(index, 1);
-          }
-        }
-
-        db.collection("users")
-          .updateOne({ email: req.body.userEmail }, { $set: { events } })
-          .then(() => {
-            res.json(events.interested);
-          });
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+      }
+    })
 });
 
 router.get("/games/:gameId", (req, res) => {
-  let gameId = Number(req.params.gameId);
-  connection((db) => {
-    db.collection("games")
-      .find({ id: gameId })
-      .toArray()
-      .then((games) => {
-        response.data = games;
-        res.json(response);
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });
+  let gameId = req.params.gameId;
+  Game.find({ _id: gameId }, (err, event) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = event;
+      res.json(response);
+    }
+  })
 });
 
 router.post("/addevent", (req, res) => {
-  connection((db) => {
-    db.collection("events").insertOne(req.body);
+  const event = new Event({
+    eventName: req.body.eventName,
+    game: req.body.game,
+    description: req.body.description,
+    location: {
+      address: req.body.location.address,
+      geo: {
+        longitude: req.body.location.geo.longitude,
+        latitude: req.body.location.geo.latitude
+      }
+    },
+    dateTime: req.body.dateTime,
+    duration: req.body.duration,
+    players: {
+      age: {
+        min: req.body.players.age.min,
+        max: req.body.players.age.max
+      },
+      count: {
+        min: req.body.players.count.min,
+        max: req.body.players.count.max,
+        current: req.body.players.count.current
+      },
+      experienceNeeded: req.body.players.experience
+    },
+    organizer: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
+    canceled: req.body.canceled
   });
-  console.log(req.body);
+
+  event.save();
+  console.log('Event was inserted!');
+});
+
+router.post('/addcomment', (req, res) => {
+  if (req.body.text) {
+    const comment = new Comment({  
+      text: req.body.text,
+      date: req.body.date,
+      userId: mongoose.Types.ObjectId(req.body.userId),
+      eventId: mongoose.Types.ObjectId(req.body.eventId)    
+   });
+    
+   comment.save();
+   console.log('Comment was inserted!');
+
+  }
 });
 
 // connection(db => {

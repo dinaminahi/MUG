@@ -1,1 +1,123 @@
-<p>signup works!</p>
+<div class=" container auth-wrapper">
+  <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
+    <h3 class="h3 mb-3 font-weight-normal text-center">Please sign up</h3>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" formControlName="name" placeholder="Enter name" required>
+    </div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-block btn-primary">Sign up</button>
+  </form>
+</div>
+
+
+<div class="container my-5 py-5 ">
+
+  <div class="auth-wrapper">
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+      <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+
+          <!--Grid column-->
+          <div class="col-md-6">
+
+            <!-- Default form register -->
+            <form class="text-center" action="#!">
+
+              <p class="h4 mb-4">Sign up</p>
+
+              <div class="form-row mb-4">
+                <div class="col">
+                  <!-- First name -->
+                  <!-- <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name"> -->
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="Enter First Name"
+                      required>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Last name -->
+                  <!-- <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"> -->
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName" placeholder="Enter Last Name"
+                      required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- E-mail -->
+              <!-- <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"> -->
+              <div class="form-group">
+                <label>Email address</label>
+                <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
+              </div>
+              <!-- Password -->
+              <!-- <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+              aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+              At least 8 characters and 1 digit
+            </small> -->
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+              </div>
+              <!-- Phone number -->
+              <input type="number" id="defaultRegisterPhonePassword" class="form-control"
+                placeholder="Enter phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+              <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                Optional - for two step authentication
+              </small>
+
+              <!-- Newsletter -->
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+                <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our
+                  newsletter</label>
+              </div>
+
+              <!-- Sign up button -->
+              <button class="btn btn-info stylish-color-dark  my-4 btn-block" type="submit">Sign in</button>
+
+              <!-- Social register -->
+              <p>or sign up with:</p>
+
+              <a href="#" class="mx-1" role="button"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="mx-1" role="button"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="mx-1" role="button"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="mx-1" role="button"><i class="fab fa-github"></i></a>
+
+              <hr>
+
+              <!-- Terms of service -->
+              <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank">terms of service</a>
+
+            </form>
+            <!-- Default form register -->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </form>
+    </section>
+    <!--Section: Content-->
+  </div>
+  <!-- <app-user-profile></app-user-profile> -->
+
+</div>
