@@ -42,7 +42,7 @@ router.post("/register-user",
           password: hash,
           email: req.body.email,
           personal: {
-            photoUrl: '',
+            photoUrl: 'https://res.cloudinary.com/deji/image/upload/v1489787662/blank_photo_mqvivv.png',
             name: req.body.name,
             firstName: '',
             lastName: '',

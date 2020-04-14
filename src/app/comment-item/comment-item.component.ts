@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Comment } from './comment';
-import { AuthService } from './../shared/auth.service';
-import { DataService } from './../data.service';
 import { UserItem } from './../components/user-profile/user';
 
 @Component({
@@ -15,15 +13,9 @@ export class CommentItemComponent implements OnInit {
 
   currentUser: UserItem;
 
-  constructor(private _dataService: DataService, private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
-
-    let currUserId = this.authService.UserId;
-
-    this._dataService.getUserById(currUserId).subscribe((res) => {
-        this.currentUser = res[0];
-    });
 
     console.log(this.comment);
   }

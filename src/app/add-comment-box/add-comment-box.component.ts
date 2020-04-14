@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { DataService } from './../data.service';
+import { AuthService } from './../shared/auth.service';
 
 @Component({
   selector: 'app-add-comment-box',
@@ -12,13 +13,24 @@ export class AddCommentBoxComponent implements OnInit {
   @Input() eventId: string;
   commentForm: FormGroup;
 
-  constructor(private fb: FormBuilder,  private _dataService: DataService) { }
+  constructor(private fb: FormBuilder,  private _dataService: DataService, private authService: AuthService) { }
 
   ngOnInit(): void {
+
+    let userId = this.authService.UserId;
+    let name = this.authService.UserName;
+    let photo = this.authService.UserPhoto;
+
     this.commentForm = this.fb.group({
       text: '',
       date: new Date().toLocaleString(),
-      userId: "5e8e4093a918542dd08423be",
+      userId: userId,
+      user: this.fb.group({
+         personal: this.fb.group({
+           name: name,
+           photoUrl: photo
+         })
+      }),
       eventId: this.eventId
     });
   }
@@ -26,6 +38,5 @@ export class AddCommentBoxComponent implements OnInit {
   onSubmit() {
     this._dataService.comments.push(this.commentForm.value);
     this._dataService.addComment(this.commentForm.value);
-    this.commentForm.reset();
   }
 }

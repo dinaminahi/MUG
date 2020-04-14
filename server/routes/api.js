@@ -28,6 +28,42 @@ mongoose.connect("mongodb+srv://diana-admin:dianadiana@cluster0-v29yw.mongodb.ne
 // comment.save();
 
 // Error handling
+
+// const game = new Game({
+//   name: 'djcndjscn',
+//   category: [
+//     {
+//       name: 'some',
+//       label: 'some',
+//       iconClass: 'fas'
+//     },
+//     {
+//       name: 'soffme',
+//       label: 'some',
+//       iconClass: 'fas'
+//     },
+//     {
+//       name: 'nfff',
+//       label: 'some',
+//       iconClass: 'fas'
+//     }
+//   ],
+//   description: 'ndknvdknvd',
+//   playersMinAge: 2,
+//   playersCount: {
+//     min: 2,
+//     max: 3
+//   },
+//   playTimeMinutes: {
+//     min: 4,
+//     max: 15
+//   },
+//   instructionUrl: 'nvkdvnd',
+//   photoUrl: ['ndjvnfjvnf']
+// })
+
+// game.save();
+
 const sendError = (err, res) => {
   response.status = 501;
   response.message = typeof err == "object" ? err.message : err;
@@ -86,7 +122,7 @@ router.get("/events_extended", (req, res) => {
         response.data = events;
         res.json(response);
       }
-    })
+    });
 });
 
 router.get("/events/:eventId", (req, res) => {
@@ -98,7 +134,7 @@ router.get("/events/:eventId", (req, res) => {
       response.data = event;
       res.json(response);
     }
-  })
+  });
 });
 
 router.get("/events", (req, res) => {
@@ -109,7 +145,7 @@ router.get("/events", (req, res) => {
       response.data = events;
       res.json(response);
     }
-  })
+  });
 });
 
 router.get("/comments/:eventId", (req, res) => {
@@ -136,7 +172,7 @@ router.get("/comments/:eventId", (req, res) => {
         response.data = comments;
         res.json(response);
       }
-    })
+    });
 });
 
 router.get("/categories", (req, res) => {
@@ -166,25 +202,14 @@ router.get("/categories", (req, res) => {
 });
 
 router.get("/games", (req, res) => {
-  Game.aggregate([
-    {
-      $lookup: {
-        from: "categories",
-        localField: "category",
-        foreignField: "name",
-        as: "categories"
-      }
-    },
-    { $unwind: "$category" }
-  ])
-    .exec((err, games) => {
-      if (err) {
-        sendError(err, res);
-      } else {
-        response.data = games;
-        res.json(response);
-      }
-    })
+  Game.find({}, function (err, games) {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = games;
+      res.json(response);
+    }
+  });
 });
 
 router.get("/games/:gameId", (req, res) => {
@@ -225,7 +250,7 @@ router.post("/addevent", (req, res) => {
       },
       experienceNeeded: req.body.players.experience
     },
-    organizer: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
+    organizer: mongoose.Types.ObjectId(req.body.organizer),
     canceled: req.body.canceled
   });
 
@@ -234,6 +259,7 @@ router.post("/addevent", (req, res) => {
 });
 
 router.post('/addcomment', (req, res) => {
+  console.log(req.body);
   if (req.body.text) {
     const comment = new Comment({  
       text: req.body.text,
@@ -242,8 +268,14 @@ router.post('/addcomment', (req, res) => {
       eventId: mongoose.Types.ObjectId(req.body.eventId)    
    });
     
-   comment.save();
-   console.log('Comment was inserted!');
+   comment.save((err) => {
+     if (err) {
+       console.log(err);
+     } else {
+      console.log('Comment was inserted!');
+     }
+   });
+   
 
   }
 });
