@@ -6,5 +6,5 @@ const commentSchema = new mongoose.Schema({
     userId: mongoose.ObjectId,
     eventId: mongoose.ObjectId
   });
-  
-module.exports = commentSchema;
+
+  module.exports = mongoose.model('Comment', commentSchema);

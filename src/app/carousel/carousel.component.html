@@ -1,48 +1,49 @@
-<div class="container  z-depth-1 my-5 p-5 ">
+<div class="container">
   <section class="text-center">
     <!-- Section heading -->
     <h2 class="blue-grey-text font-weight-bold mb-4 pb-2 text-uppercase">
       NEAREST EVENTS
     </h2>
-    <P lass="blue-grey-text"
-      >Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur
+    <p lass="blue-grey-text">
+      Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur
       adipisicing elit. Facilis culpa quidem animi minus recusandae esse
-      possimus doloribus consectetur excepturi. Rerum?</P
-    >
+      possimus doloribus consectetur excepturi. Rerum?
+    </p>
+
     <mdb-carousel
-      [isControls]="false"
+      [isControls]="true"
       class="carousel-multi-item multi-animation"
       [type]="'carousel-multi-item'"
       [animation]="'slide'"
+      [ngSwitch]="carouselDisplayMode"
     >
-      <mdb-carousel-item *ngFor="let item of slides; let i = index">
-        <div
-          class="col-md-4"
-          [ngClass]="{ 'd-none d-md-block': cardIndex !== 0 }"
-          *ngFor="let card of item; let cardIndex = index"
-        >
-          <mdb-card class="my-1">
-            <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
-            <mdb-card-body class=" unique-color-dark">
-              <mdb-card-title>
-                <h1 class="text-warning">{{ card.title }}</h1>
-              </mdb-card-title>
-              <p class="text-left white-text">{{ card.description }}</p>
-              <!-- <a href="#" mdbBtn color="primary" class="waves-light" mdbWavesEffect>{{ card.buttonText }}</a> -->
-              <button
-                mdbBtn
-                type="button"
-                color="white"
-                outline="true"
-                block="true"
-                mdbWavesEffect
-              >
-                {{ card.buttonText }}
-              </button>
-            </mdb-card-body>
-          </mdb-card>
-        </div>
-      </mdb-carousel-item>
+      <ng-container *ngSwitchCase="1">
+        <mdb-carousel-item *ngFor="let event of slides1; let i = index">
+          <div class="row w-100 mx-auto">
+            <div class="col-12">
+              <app-event-item [event]="event"></app-event-item>
+            </div>
+          </div>
+        </mdb-carousel-item>
+      </ng-container>
+      <ng-container *ngSwitchCase="2">
+        <mdb-carousel-item *ngFor="let slide of slides2; let i = index">
+          <div class="row w-100 mx-auto">
+            <div class="col-6" *ngFor="let event of slide">
+              <app-event-item [event]="event"></app-event-item>
+            </div>
+          </div>
+        </mdb-carousel-item>
+      </ng-container>
+      <ng-container *ngSwitchCase="3">
+        <mdb-carousel-item *ngFor="let slide of slides3; let i = index">
+          <div class="row w-100 mx-auto">
+            <div class="col-4" *ngFor="let event of slide">
+              <app-event-item [event]="event"></app-event-item>
+            </div>
+          </div>
+        </mdb-carousel-item>
+      </ng-container>
     </mdb-carousel>
   </section>
 </div>

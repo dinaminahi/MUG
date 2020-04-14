@@ -6,4 +6,4 @@ const categorySchema = new mongoose.Schema({
     iconClass: String
   });
 
-  module.exports = categorySchema;
+  module.exports = mongoose.model('Category', categorySchema);

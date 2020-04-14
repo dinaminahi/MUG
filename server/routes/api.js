@@ -3,25 +3,18 @@ const router = express.Router();
 const app = express();
 const mongoose = require("mongoose");
 
-const categorySchema = require('./categorySchema.js');
-const gameSchema = require('./gameSchema.js');
-const eventSchema = require('./eventSchema.js');
-const userSchema = require('./userSchema.js');
-const commentSchema = require('./commentSchema.js');
+const Category = require('./../models/categorySchema');
+const Game = require('./../models/gameSchema');
+const Event = require('./../models/eventSchema');
+const User = require('./../models/userSchema');
+const Comment = require('./../models/commentSchema');
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 mongoose.connect("mongodb+srv://diana-admin:dianadiana@cluster0-v29yw.mongodb.net/MUG");
-
-const Event = mongoose.model('Event', eventSchema);
-const Game = mongoose.model('Game', gameSchema);
-const User = mongoose.model('User', userSchema);
-const Category = mongoose.model('Category', categorySchema);
-const Comment = mongoose.model('Comment', commentSchema);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -45,7 +38,7 @@ const sendError = (err, res) => {
 let response = {
   status: 200,
   data: [],
-  message: null
+  message: null,
 };
 
 // // Get events
@@ -243,7 +236,7 @@ router.post('/addcomment', (req, res) => {
   }
 });
 
-// connection(db => { 
+// connection(db => {
 //   db.collection("events").deleteOne({id: 10});
 // })
 

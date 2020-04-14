@@ -11,7 +11,7 @@ import { from } from "rxjs";
 @Component({
   selector: "app-game-detail-info",
   templateUrl: "./game-detail-info.component.html",
-  styleUrls: ["./game-detail-info.component.scss"]
+  styleUrls: ["./game-detail-info.component.scss"],
 })
 export class GameDetailInfoComponent implements OnInit {
   game: Game;
@@ -24,7 +24,7 @@ export class GameDetailInfoComponent implements OnInit {
     private _dataService: DataService
   ) {
     let id = parseInt(this.route.snapshot.paramMap.get("id"));
-    this._dataService.getGameById(id).subscribe(res => {
+    this._dataService.getGameById(id).subscribe((res) => {
       this.game = res[0];
 
       if (this.gameFromJson) {
@@ -39,15 +39,16 @@ export class GameDetailInfoComponent implements OnInit {
     this.game = {
       ...this.game,
       ...{
-        photoUrl: this.gameFromJson.photoUrl // an Array
-      }
+        photoUrl: this.gameFromJson.photoUrl, // an Array
+        category: this.gameFromJson.category, // an Array
+      },
     };
   }
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get("id"));
     this.http.get("assets/game-object.json").subscribe((data: Game[]) => {
-      this.gameFromJson = data.find(game => game.id === id);
+      this.gameFromJson = data.find((game) => game.id === id);
       if (this.game) {
         this.mergeGameObj();
       }

@@ -3,6 +3,7 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
+@import "./sass/variables"; // this is not cool!
 
 html,
 body {
@@ -14,6 +15,51 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+// Home page carousel with multi items
+.carousel.carousel-multi-item {
+  padding-bottom: 50px;
+
+  .controls-top {
+    .btn-floating {
+      position: absolute;
+      top: 50%;
+      margin-top: -50px;
+      font-size: 2rem;
+      color: $color-orange;
+      z-index: 2;
+
+      &:first-child {
+        left: -20px;
+      }
+
+      &:last-child {
+        right: -20px;
+      }
+    }
+  }
+  .carousel-indicators {
+    bottom: 20px;
+
+    li {
+      background: $color-grey;
+      width: 10px;
+      border-width: 5px;
+      height: 0;
+      box-shadow: 0 0 0 1px #666;
+
+      &.active {
+        background: #666;
+      }
+    }
+  }
+
+  // Event item styles overrides
+  app-event-item .description {
+    display: none !important;
+  }
+}
+
+// Game page carousel with thumbnails
 .carousel-thumbnails {
   padding-bottom: 50px;
 

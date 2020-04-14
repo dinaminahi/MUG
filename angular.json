@@ -35,9 +35,13 @@
               "node_modules/font-awesome/scss/font-awesome.scss",
               "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
               "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/animate.css/animate.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["./sass"]
+            },
             "scripts": [
               "node_modules/chart.js/dist/Chart.js",
               "node_modules/hammerjs/hammer.min.js"
@@ -85,7 +89,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MUG-project:build"
+            "browserTarget": "MUG-project:build",
+            "proxyConfig": "src/proxy.conf.json"
           }
         },
         "test": {

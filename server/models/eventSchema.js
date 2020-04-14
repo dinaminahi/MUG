@@ -30,4 +30,4 @@ const eventSchema = new mongoose.Schema({
     commentsId: [mongoose.ObjectId]
   });
   
-module.exports = eventSchema;
+  module.exports = mongoose.model('Event', eventSchema);
