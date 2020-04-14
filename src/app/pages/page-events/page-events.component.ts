@@ -6,7 +6,7 @@ import { CheckboxItem } from "../../filter-category/checkbox-item";
 @Component({
   selector: "app-page-events",
   templateUrl: "./page-events.component.html",
-  styleUrls: ["./page-events.component.scss"]
+  styleUrls: ["./page-events.component.scss"],
 })
 export class PageEventsComponent implements OnInit {
   selectedCategories = [];
@@ -16,16 +16,16 @@ export class PageEventsComponent implements OnInit {
       url: "assets/icons/meeple-blue.svg",
       scaledSize: {
         width: 30,
-        height: 30
-      }
+        height: 30,
+      },
     },
     active: {
       url: "assets/icons/meeple-orange.svg",
       scaledSize: {
         width: 30,
-        height: 30
-      }
-    }
+        height: 30,
+      },
+    },
   };
 
   categories: CheckboxItem[] = [];
@@ -46,13 +46,12 @@ export class PageEventsComponent implements OnInit {
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
-    this._dataService.getEvents().subscribe(res => {
+    this._dataService.getEvents().subscribe((res) => {
       this.events = res;
-      console.log(this.events);
     });
     this._dataService.getCategories().subscribe(
-      res =>
-        (this.categories = res.map(category => {
+      (res) =>
+        (this.categories = res.map((category) => {
           return { value: category, label: category };
         }))
     );

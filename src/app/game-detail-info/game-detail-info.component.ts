@@ -23,7 +23,7 @@ export class GameDetailInfoComponent implements OnInit {
     private router: Router,
     private _dataService: DataService
   ) {
-    let id = parseInt(this.route.snapshot.paramMap.get("id"));
+    let id = this.route.snapshot.paramMap.get("id");
     this._dataService.getGameById(id).subscribe((res) => {
       this.game = res[0];
 
@@ -40,7 +40,7 @@ export class GameDetailInfoComponent implements OnInit {
       ...this.game,
       ...{
         photoUrl: this.gameFromJson.photoUrl, // an Array
-        category: this.gameFromJson.category, // an Array
+        category: this.gameFromJson.categories, // an Array
       },
     };
   }
@@ -48,7 +48,7 @@ export class GameDetailInfoComponent implements OnInit {
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get("id"));
     this.http.get("assets/game-object.json").subscribe((data: Game[]) => {
-      this.gameFromJson = data.find((game) => game.id === id);
+      this.gameFromJson = data.find((game) => game._id === id);
       if (this.game) {
         this.mergeGameObj();
       }

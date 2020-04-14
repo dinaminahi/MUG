@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { DataService } from "../../data.service";
 import { Game } from "../../game/game";
 import { HttpClient } from "@angular/common/http";
@@ -6,19 +6,11 @@ import { HttpClient } from "@angular/common/http";
 @Component({
   selector: "app-page-games",
   templateUrl: "./page-games.component.html",
-  styleUrls: ["./page-games.component.scss"]
+  styleUrls: ["./page-games.component.scss"],
 })
-export class PageGamesComponent implements OnInit {
+export class PageGamesComponent {
   games: Game[];
   constructor(private _dataService: DataService, private http: HttpClient) {
-    // this._dataService.getGames().subscribe(res => (this.games = res));
-  }
-
-  // ngOnInit(): void {}
-
-  ngOnInit() {
-    this.http
-      .get("assets/game-object.json")
-      .subscribe((data: []) => (this.games = data));
+    this._dataService.getGames().subscribe((res) => (this.games = res));
   }
 }

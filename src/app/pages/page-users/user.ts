@@ -1,5 +1,7 @@
+import mongoose from "mongoose";
+
 export class User {
-  id: number;
+  _id: mongoose.Types.ObjectId;
   personal: {
     photoUrl: string;
     name: string;
