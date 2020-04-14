@@ -40,14 +40,15 @@ export class DataService {
   }
 
   public getComments(id: String): Observable<Comment[]> {
-    return this._http.get<{ status: number; data: Comment[]; message: string}> (
-      `/api/comments/${id}`
-    )
-    .pipe(map(response => (this.comments = response.data)));
+    return this._http
+      .get<{ status: number; data: Comment[]; message: string }>(
+        `/api/comments/${id}`
+      )
+      .pipe(map((response) => (this.comments = response.data)));
   }
 
   public addComment(newComment) {
-    return this._http.post('/api/addcomment', newComment).subscribe(data => {
+    return this._http.post("/api/addcomment", newComment).subscribe((data) => {
       console.log(data);
     });
   }
@@ -67,7 +68,7 @@ export class DataService {
   }
 
   public addEvent(newEvent) {
-     return this._http.post('/api/addevent', newEvent).subscribe(data => {
+    return this._http.post("/api/addevent", newEvent).subscribe((data) => {
       console.log(data);
     });
   }
