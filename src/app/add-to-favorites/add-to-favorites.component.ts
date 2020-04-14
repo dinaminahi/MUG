@@ -55,7 +55,7 @@ export class AddToFavoritesComponent {
         .subscribe((res) => {
           this.isLoading = false;
           this.isFavorited = !this.isFavorited;
-          this.favoritedGames = res;
+          this.favoritedEvents = res;
         });
     }
   }

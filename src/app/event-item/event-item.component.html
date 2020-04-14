@@ -24,10 +24,11 @@
         [count]="event?.players.count"
       ></app-participants-count>
     </div>
-    <h2 class="font-weight-bold">{{ event?.eventName }}</h2>
+    <h2>{{ event?.eventName }}</h2>
     <div class="button-wrapper">
-      <button class="subm">JOIN</button>
-      <button (click)="onSelect(event)" class="subm">
+      <app-button-join [eventId]="event?._id" class="join"></app-button-join>
+      <!-- <button class="subm">JOIN</button> -->
+      <button (click)="onSelect(event)" class="more">
         MORE INFO
       </button>
     </div>

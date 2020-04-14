@@ -293,6 +293,36 @@ router.put("/favorite-events", (req, res) => {
   });
 });
 
+router.put("/subscribed-events", (req, res) => {
+  const { userId, eventId, toggle } = req.body;
+  User.findById(userId, function (err, user) {
+    if (err) {
+      sendError(err, res);
+    } else {
+      const events = user.events || {};
+      events.subscribed = events.subscribed || [];
+      const index = events.subscribed.indexOf(eventId);
+      if (toggle) {
+        if (index === -1) {
+          events.subscribed.push(eventId);
+        }
+      } else {
+        if (index > -1) {
+          events.subscribed.splice(index, 1);
+        }
+      }
+
+      User.update({ _id: userId }, { events: events }, function (err) {
+        if (err) {
+          sendError(err, res);
+        } else {
+          res.json(events.subscribed);
+        }
+      });
+    }
+  });
+});
+
 // connection(db => {
 //   db.collection("events").deleteOne({id: 10});
 // })
