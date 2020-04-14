@@ -21,7 +21,7 @@ import { AuthService } from "./../../shared/auth.service";
   styleUrls: ["./page-add-event.component.scss"],
 })
 export class PageAddEventComponent implements OnInit {
-  currentUser = {};
+
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -32,6 +32,8 @@ export class PageAddEventComponent implements OnInit {
   public latlong: any = {}; //////////
   public searchControl: FormControl;
   isSubmitted = true;
+
+  public user: any;
 
   public eventsCount: number;
 
@@ -63,10 +65,7 @@ export class PageAddEventComponent implements OnInit {
     public authService: AuthService,
     private actRoute: ActivatedRoute
   ) {
-    let id = this.actRoute.snapshot.paramMap.get("id");
-    this.authService.getUserProfile(id).subscribe((res) => {
-      this.currentUser = res.msg;
-    });
+    
   }
 
   ngOnInit(): void {
@@ -103,6 +102,8 @@ export class PageAddEventComponent implements OnInit {
     this.zoom = 8;
     this.latitude = 40.588;
     this.longitude = -88.89;
+    this.user = this.authService.UserId;
+    console.log(this.user);
 
     this.searchControl = new FormControl();
     this.setCurrentPosition();

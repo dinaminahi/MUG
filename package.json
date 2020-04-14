@@ -8,9 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "concurrently \"npm run serve-api\" \"npm run serve\"",
+    "dev": "concurrently \"npm run serve\" \"npm run serve-api\" \"npm run serveAuth-apiAuth\"",
     "serve": "ng serve --proxy-config proxy.config.json",
-    "serve-api": "nodemon server.js --watch server & nodemon serverAuth.js --watch serverAuth "
+    "serve-api": "nodemon server.js --watch server",
+    "serveAuth-apiAuth": "nodemon serverAuth.js --watch serverAuth"
   },
   "private": true,
   "dependencies": {

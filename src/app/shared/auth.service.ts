@@ -16,6 +16,7 @@ export class AuthService {
   endpoint: string = "http://localhost:4000/authApi";
   headers = new HttpHeaders().set("Content-Type", "application/json");
   currentUser = {};
+  public currentId: String;
 
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -30,9 +31,13 @@ export class AuthService {
     return this.http
       .post<any>(`${this.endpoint}/signin`, user)
       .subscribe((res: any) => {
+        console.log(res._id);
         localStorage.setItem("access_token", res.token);
+        localStorage.setItem("userId", res._id);
         this.getUserProfile(res._id).subscribe((res) => {
+
           this.currentUser = res;
+          console.log(this.currentUser);
           this.router.navigate(["user-profile/" + res.msg._id]);
         });
       });
@@ -50,8 +55,13 @@ export class AuthService {
     return authToken !== null ? true : false;
   }
 
+  get UserId(): any {
+    return localStorage.getItem("userId");
+  }
+
   doLogout() {
     let removeToken = localStorage.removeItem("access_token");
+    let removeUserId = localStorage.removeItem("userId");
     if (removeToken == null) {
       this.router.navigate(["log-in"]);
     }
@@ -67,6 +77,8 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+
+  
 
   // Error
   handleError(error: HttpErrorResponse) {
