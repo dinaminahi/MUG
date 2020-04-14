@@ -55,6 +55,18 @@ router.get("/events_extended/:eventId", (req, res) => {
   })
 });
 
+router.get("/userinfo/:userId", (req, res) => {
+  let userId = req.params.userId;
+  User.find({ _id: userId }, (err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = user;
+      res.json(response);
+    }
+  })
+});
+
 router.get("/events_extended", (req, res) => {
   Event.aggregate([
     {

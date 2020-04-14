@@ -24,8 +24,8 @@ export class AddCommentBoxComponent implements OnInit {
   }
 
   onSubmit() {
+    this._dataService.comments.push(this.commentForm.value);
     this._dataService.addComment(this.commentForm.value);
     this.commentForm.reset();
-    window.location.reload();
   }
 }

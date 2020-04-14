@@ -4,6 +4,8 @@ import { HttpClient } from "@angular/common/http";
 import { EventItem } from "../event-item/event-item";
 import { Comment } from './../comment-item/comment';
 import { DataService } from "../data.service";
+import { AuthService } from "./../shared/auth.service"
+import { UserItem } from "./../components/user-profile/user";
 
 
 @Component({
@@ -15,6 +17,7 @@ import { DataService } from "../data.service";
 export class EventDetailInfoComponent implements OnInit {
 
   expectedEvent: EventItem;
+  expectedUser: UserItem;
   geo: Object;
   comments: Comment[];
   eventId: string;
@@ -23,21 +26,31 @@ export class EventDetailInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
-    private _dataService: DataService
+    private _dataService: DataService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    let userId = this.authService.UserId;
+
     let id = this.route.snapshot.paramMap.get("id");
     this.eventId = id;
+
     this._dataService.getEventById(id).subscribe(res => {
       this.expectedEvent = res[0];
       this.geo = this.expectedEvent.location.geo;
-      console.log(this.geo);
+    });
+
+    this._dataService.getUserById(userId).subscribe(res => {
+      this.expectedUser = res[0];
     });
 
     this._dataService.getComments(id).subscribe(res => {
       this.comments = res;
-    })
+    });
+
+    console.log(this.comments);
+
   }
 
   gotoEvents() {
