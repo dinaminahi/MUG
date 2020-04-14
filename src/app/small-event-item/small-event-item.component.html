@@ -1,0 +1,17 @@
+    <div class="text-center">
+        <div class="image-wrap view overlay">
+            <img [src]="event?.agame?.photoUrl" alt="" width="180px" height="140px" />
+        </div>
+    
+        <h2 class="font-weight-bold">{{ event?.agame.name }}</h2>
+        <div class="button-wrapper ">
+            <button class="subm">JOIN</button>
+            <button (click)="onSelect(event)" class="subm">
+                MORE INFO
+            </button>
+        </div>
+    <div class="footer text-center dark-grey-text">
+            <h4>{{event?.dateTime | date: "HH:mm" }}</h4>
+    </div>
+    </div>
+   

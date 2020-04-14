@@ -77,6 +77,7 @@ import { RouterModule } from "@angular/router";
 // import { AuthService } from "./shared/auth.service";
 // import { ApiService } from "./api.service";
 import { AuthInterceptor } from "./shared/authconfig.interceptor";
+import { SmallEventItemComponent } from './small-event-item/small-event-item.component';
 
 @NgModule({
   declarations: [
@@ -121,8 +122,9 @@ import { AuthInterceptor } from "./shared/authconfig.interceptor";
     SignupComponent,
     UserProfileComponent,
     CommentItemComponent,
-    AddCommentBoxComponent
+    AddCommentBoxComponent,
     // UsersComponent,
+    SmallEventItemComponent
   ],
   imports: [
     RouterModule,
