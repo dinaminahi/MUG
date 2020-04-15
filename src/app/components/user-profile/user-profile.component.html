@@ -1,11 +1,73 @@
-<div class="text-center">
-  <div class="photo">
-         <img src="{{expectedUser?.personal?.photoUrl}}" alt="User photo" >
-         <h2 class="name">{{expectedUser?.personal?.firstName}}  {{expectedUser?.personal?.lastName}}</h2>
-         <p class="username">{{expectedUser?.personal?.name}}</p>
-         <p class="location"><i class="fas fa-map-marker-alt event-icon mr-2 fa-lg"></i>{{expectedUser?.personal?.location?.address ? expectedUser?.personal?.location?.address : 'Unknown'}}</p>
-         <p class="social-media"></p>
+<div class=" user-data z-depth-1">
+  <i class="far fa-edit edit-btn fa-lg" (click)="goEdit()"></i>
+
+  <div class="photo py-5 text-center">
+    <img src="{{expectedUser?.personal?.photoUrl}}" alt="User photo">
+    <h2 class="name my-1">{{expectedUser?.personal?.firstName ? expectedUser?.personal?.firstName : 'First name'}}
+      {{expectedUser?.personal?.lastName ? expectedUser?.personal?.lastName : 'Last Name'}}</h2>
+    <p class="username">{{expectedUser?.personal?.name}}</p>
+    <p class="city mb-4"><i
+        class="fas fa-map-marker-alt event-icon mr-2 "></i>{{expectedUser?.personal?.location?.address ? expectedUser?.personal?.location?.address : 'Unknown'}}
+    </p>
+    <p class="social-media"><i class="fab fa-facebook-square mr-5 fa-2x"></i><i class="fab fa-twitter-square mr-5 fa-lg"></i><i class="fab fa-instagram fa-lg"></i></p>
   </div>
+
+  <hr>
+
+  <div class="contacts pl-5">
+
+    <h2>Contacts</h2>
+
+    <div class="pl-4 pb-4">
+    <h4>Email</h4>
+    <p class="email">{{expectedUser?.email}}</p>
+
+    <h4>Phone number</h4>
+    <p class="phone">{{expectedUser?.personal?.phone ? expectedUser?.personal?.phone : 'Unknown'}}</p>
+
+    <h4>Location</h4>
+    <p class="location">{{expectedUser?.personal?.location?.address ? expectedUser?.personal?.location?.address : 'Unknown'}}</p>
+
+  </div>
+  </div>
+
+  <hr>
+
+  <div class="favourite-games px-5">
+
+    <h2>Favourite games</h2>
+
+    <div class="row">
+<div  class="col-4">
+  <div class="game-item text-center">
+    <p>Uno</p>
+  </div>
+</div>
+<div class="col-4">
+  <div class="game-item text-center">
+    <p>Uno</p>
+  </div>
+</div>
+<div class="col-4">
+  <div class="game-item text-center">
+    <p>Uno</p>
+  </div>
+</div>
+<div class="col-4">
+  <div class="game-item text-center">
+    <p>Uno</p>
+  </div>
+</div>
+    </div>
+       
+        <!-- <div class="game-item d-inline">
+          <p class="d-inline">Uno</p>
+        </div> -->
+
+       
+
+  </div>
+
 </div>
 
 <!-- <div class="container">

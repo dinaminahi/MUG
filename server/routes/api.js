@@ -224,6 +224,28 @@ router.get("/games/:gameId", (req, res) => {
   });
 });
 
+router.get("/favourite-game-names/:userId", (req, res) => {
+  let userId = req.params.userId;
+  let favouriteGameNames = [];
+
+  User.findById(userId, (err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      user.games.favorited.forEach((id) => {
+        Game.findById(id, (err, game) => {
+          if (err) {
+            sendError(err, res);
+          } else {
+             favouriteGames.push(game.name);
+          }
+        });
+      });
+    } 
+  });
+  res.json(favouriteGameNames);
+}); 
+
 router.post("/addevent", (req, res) => {
   const event = new Event({
     eventName: req.body.eventName,
@@ -367,6 +389,8 @@ router.put("/subscribed-events", (req, res) => {
     }
   });
 });
+
+// Event.deleteOne({eventName: 'Some game'});
 
 // connection(db => {
 //   db.collection("events").deleteOne({id: 10});

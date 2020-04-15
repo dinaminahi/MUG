@@ -74,7 +74,6 @@ export class UserProfileComponent implements OnInit {
 
     let id = this.actRoute.snapshot.paramMap.get("id");
 
-
     this.authService.getUserProfile(id).subscribe((res) => {
       this.currentUser = res.msg;
     });
@@ -130,7 +129,7 @@ export class UserProfileComponent implements OnInit {
       const autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
-          types: [],
+          types: ['(cities)'],
         }
       );
       autocomplete.addListener("place_changed", () => {
@@ -162,6 +161,10 @@ export class UserProfileComponent implements OnInit {
 
   onSubmit() {
     console.log(this.personalInfoForm.value);
+  }
+
+  goEdit() {
+      
   }
 
   private setCurrentPosition() {

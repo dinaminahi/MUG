@@ -25,6 +25,7 @@ export class DataService {
   currentUser: UserItem;
   favoritedEvents: string[];
   favoritedGames: string[];
+  favoritegameNames: string[];
   subscribedEvents: string[];
   constructor(private _http: HttpClient) {}
 
@@ -79,6 +80,12 @@ export class DataService {
     return this._http
       .get<{ status: number; data: Game[]; message: string }>("/api/games")
       .pipe(map((response) => (this.games = response.data)));
+  }
+
+  public getFavouriteGameNames(id: string): Observable<string[]> {
+    return this._http
+      .get<{favouriteGameNames: string[]}>(`/api/favorited-game-names/`)
+      .pipe(map((response) => (this.favoritegameNames = response.favouriteGameNames)));
   }
 
   public addEvent(newEvent) {
