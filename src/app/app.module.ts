@@ -81,6 +81,7 @@ import { SmallEventItemComponent } from "./small-event-item/small-event-item.com
 import { ButtonJoinComponent } from "./button-join/button-join.component";
 import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-main-navbar.component";
 import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favorites-games.component";
+import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-favorites-events.component";
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favo
     ButtonJoinComponent,
     LayoutMainNavbarComponent,
     UsersFavoritesGamesComponent,
+    UsersFavoritesEventsComponent,
   ],
   imports: [
     RouterModule,
