@@ -1,0 +1,71 @@
+<!--Navbar-->
+
+<mdb-navbar SideClass="navbar navbar-expand-lg scrolling-navbar" mdbStickyHeader>
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand font-weight-bold" routerLink="/home" routerLinkActive="active">MUG</a>
+  </mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links class="links">
+    <!-- Links -->
+    <ul class="navbar-nav m-auto h4-responsive">
+      <li class="nav-item">
+        <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/home" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/events"
+          routerLinkActive="active">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/games"
+          routerLinkActive="active">Games</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/news" routerLinkActive="active">News</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/about"
+          routerLinkActive="active">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light nav-link-lt" mdbWavesEffect pageScroll [routerLink]="['home']"
+          href="#contacts-elem">Contacts</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <!-- !!!!!!!!!!!!!!!!!!! user img if user logged in -->
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item avatar">
+          <a *ngIf="this.authService.isLoggedIn" class="nav-link p-0" routerLink="/account" routerLinkActive="active">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+              alt="avatar image" height="40" />
+          </a>
+        </li>
+      </ul>
+      <!-- user img -->
+      <li class="nav-item">
+        <a class="nav-link">
+          <div class="btn-group deep-orange-text nav-link-lt" mdbDropdown>
+            <mdb-icon *ngIf="!this.authService.isLoggedIn" fas icon="user" routerLinkActive="active"
+              routerLink="/sign-in"></mdb-icon>
+            <!-- <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+              <a class="dropdown-item" href="#">Log In</a>
+              <a class="dropdown-item" href="#">Sign Up</a> -->
+
+            <!-- for logged in users -->
+            <!-- <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Profile</a> -->
+            <!-- </div> -->
+            <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button"
+              class="btn btn-danger">Logout</button>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

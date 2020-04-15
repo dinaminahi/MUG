@@ -55,8 +55,8 @@
 
       <!-- third column -->
       <div class="col-md-4 mb-md-0 mb-3 buttons">
-        <button class="footer-btn" pageScroll href="#how-it-works">Back to top</button>
-        <button class="footer-btn" id="sign-up-btn" routerLink="/signin" routerLinkActive="active">Sign
+        <button (click)="backToTop()" class="footer-btn" pageScroll href="#navMenu">Back to top</button>
+        <button (click)="logIn()" class="footer-btn" id="sign-up-btn">Sign
           up</button>
       </div>
     </div>
