@@ -3,25 +3,38 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  NgZone,
+  NgZone
 } from "@angular/core";
+
+import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "./../../shared/auth.service";
+import { DataService } from "./../../data.service";
+
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { MapsAPILoader } from "@agm/core";
 import {} from "googlemaps";
 
-import { ActivatedRoute } from "@angular/router";
-import { AuthService } from "./../../shared/auth.service";
+import { UserItem } from "./user";
+
 
 @Component({
   selector: "app-user-profile",
   templateUrl: "./user-profile.component.html",
   styleUrls: ["./user-profile.component.scss"],
 })
+
+
 export class UserProfileComponent implements OnInit {
-  currentUser: Object = {};
+
+
   @ViewChild("search")
   public searchElementRef: ElementRef;
+
+
+  currentUser: Object = {};
+  expectedUser: UserItem;
+
 
   public zoom: number; //////////////
   public longitude: number;
@@ -29,11 +42,8 @@ export class UserProfileComponent implements OnInit {
   public latLongs: any = []; //////////
   public latlong: any = {}; //////////
   public searchControl: FormControl;
-  isSubmitted = true;
 
   personalInfoForm: FormGroup;
-  //  //to choose game for event, later it will be from json file or db
-  //  games = ['Uno', 'Merchant Cove', 'Pangea'];
 
   get firstName() {
     return this.personalInfoForm.get(["personal", "firstName"]);
@@ -55,17 +65,24 @@ export class UserProfileComponent implements OnInit {
     private fb: FormBuilder,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    //userauth
-    public authService: AuthService,
-    private actRoute: ActivatedRoute
-  ) {
+    private authService: AuthService,
+    private actRoute: ActivatedRoute,
+    private _dataService: DataService
+  ) {}
+
+  ngOnInit(): void {
+
     let id = this.actRoute.snapshot.paramMap.get("id");
+
+
     this.authService.getUserProfile(id).subscribe((res) => {
       this.currentUser = res.msg;
     });
-  }
 
-  ngOnInit(): void {
+    this._dataService.getUserById(id).subscribe(res => {
+      this.expectedUser = res[0];
+    });
+
     this.personalInfoForm = this.fb.group({
       id: [],
       personal: this.fb.group({

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Comment } from './comment';
+import { UserItem } from './../components/user-profile/user';
 
 @Component({
   selector: 'app-comment-item',
@@ -13,7 +14,6 @@ export class CommentItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.comment);
   }
 
 }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const gameSchema = new mongoose.Schema({
     name: String,
-    category: [String],
+    category: [ Object],
     description: String,
     playersMinAge: Number,
     playersCount: {

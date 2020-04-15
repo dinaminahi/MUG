@@ -42,7 +42,7 @@
     >
     <div class="description z-depth-1 text-muted">
       <div>
-        {{ event?.description }}
+        {{ event?.description.slice(0, 50) }}...
       </div>
 
       <div class="footer-meta text-left">
@@ -77,3 +77,4 @@
     </div>
   </div>
 </div>
+

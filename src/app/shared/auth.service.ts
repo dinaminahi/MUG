@@ -31,11 +31,13 @@ export class AuthService {
     return this.http
       .post<any>(`${this.endpoint}/signin`, user)
       .subscribe((res: any) => {
-        console.log(res._id);
+        // console.log(res);
         localStorage.setItem("access_token", res.token);
         localStorage.setItem("userId", res._id);
+        
         this.getUserProfile(res._id).subscribe((res) => {
-
+        localStorage.setItem("userPhoto", res.msg.personal.photoUrl);
+        localStorage.setItem("userName", res.msg.personal.name);
           this.currentUser = res;
           console.log(this.currentUser);
           this.router.navigate(["user-profile/" + res.msg._id]);
@@ -59,9 +61,19 @@ export class AuthService {
     return localStorage.getItem("userId");
   }
 
+  get UserName(): any {
+    return localStorage.getItem("userName");
+  }
+
+  get UserPhoto(): any {
+    return localStorage.getItem("userPhoto");
+  }
+
   doLogout() {
     let removeToken = localStorage.removeItem("access_token");
     let removeUserId = localStorage.removeItem("userId");
+    let removeUserPhoto = localStorage.removeItem("userPhoto");
+    let removeUserName= localStorage.removeItem("userName");
     if (removeToken == null) {
       this.router.navigate(["log-in"]);
     }

@@ -29,6 +29,42 @@ mongoose.connect(
 // comment.save();
 
 // Error handling
+
+// const game = new Game({
+//   name: 'djcndjscn',
+//   category: [
+//     {
+//       name: 'some',
+//       label: 'some',
+//       iconClass: 'fas'
+//     },
+//     {
+//       name: 'soffme',
+//       label: 'some',
+//       iconClass: 'fas'
+//     },
+//     {
+//       name: 'nfff',
+//       label: 'some',
+//       iconClass: 'fas'
+//     }
+//   ],
+//   description: 'ndknvdknvd',
+//   playersMinAge: 2,
+//   playersCount: {
+//     min: 2,
+//     max: 3
+//   },
+//   playTimeMinutes: {
+//     min: 4,
+//     max: 15
+//   },
+//   instructionUrl: 'nvkdvnd',
+//   photoUrl: ['ndjvnfjvnf']
+// })
+
+// game.save();
+
 const sendError = (err, res) => {
   response.status = 501;
   response.message = typeof err == "object" ? err.message : err;
@@ -56,6 +92,18 @@ router.get("/events_extended/:eventId", (req, res) => {
   });
 });
 
+router.get("/userinfo/:userId", (req, res) => {
+  let userId = req.params.userId;
+  User.find({ _id: userId }, (err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = user;
+      res.json(response);
+    }
+  })
+});
+
 router.get("/events_extended", (req, res) => {
   Event.aggregate([
     {
@@ -66,15 +114,16 @@ router.get("/events_extended", (req, res) => {
         as: "agame",
       },
     },
-    { $unwind: "$game" },
-  ]).exec((err, events) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = events;
-      res.json(response);
-    }
-  });
+    { $unwind: "$game" }
+  ])
+    .exec((err, events) => {
+      if (err) {
+        sendError(err, res);
+      } else {
+        response.data = events;
+        res.json(response);
+      }
+    });
 });
 
 router.get("/events/:eventId", (req, res) => {
@@ -115,16 +164,16 @@ router.get("/comments/:eventId", (req, res) => {
       },
     },
     {
-      $unwind: "$user",
-    },
-  ]).exec((err, comments) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = comments;
-      res.json(response);
-    }
-  });
+      $unwind: "$user"
+    }])
+    .exec((err, comments) => {
+      if (err) {
+        sendError(err, res);
+      } else {
+        response.data = comments;
+        res.json(response);
+      }
+    });
 });
 
 router.get("/categories", (req, res) => {
@@ -153,17 +202,7 @@ router.get("/categories", (req, res) => {
 });
 
 router.get("/games", (req, res) => {
-  Game.aggregate([
-    {
-      $lookup: {
-        from: "categories",
-        localField: "category",
-        foreignField: "name",
-        as: "categories",
-      },
-    },
-    { $unwind: "$category" },
-  ]).exec((err, games) => {
+  Game.find({}, function (err, games) {
     if (err) {
       sendError(err, res);
     } else {
@@ -211,25 +250,31 @@ router.post("/addevent", (req, res) => {
       },
       experienceNeeded: req.body.players.experience,
     },
-    organizer: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
-    canceled: req.body.canceled,
+    organizer: mongoose.Types.ObjectId(req.body.organizer),
+    canceled: req.body.canceled
   });
 
   event.save();
   console.log("Event was inserted!");
 });
 
-router.post("/addcomment", (req, res) => {
+router.post('/addcomment', (req, res) => {
+  console.log(req.body);
   if (req.body.text) {
     const comment = new Comment({
       text: req.body.text,
       date: req.body.date,
       userId: mongoose.Types.ObjectId(req.body.userId),
-      eventId: mongoose.Types.ObjectId(req.body.eventId),
-    });
-
-    comment.save();
-    console.log("Comment was inserted!");
+      eventId: mongoose.Types.ObjectId(req.body.eventId)    
+   });
+    
+   comment.save((err) => {
+     if (err) {
+       console.log(err);
+     } else {
+      console.log('Comment was inserted!');
+     }
+   });
   }
 });
 

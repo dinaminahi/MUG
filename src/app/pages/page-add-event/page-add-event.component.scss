@@ -1,3 +1,5 @@
+@import "./../../../sass/variables";
+
 .container {
     margin: 100px auto;
 }
@@ -16,23 +18,20 @@ label {
 }
 
 .create-btn {
-    background: linear-gradient(to right, #ff3860 5%, #ffc08f 100%);
-    background-color: #ff3860;
-    border-radius: 28px;
+    background-color: $color-main;
     border: none;
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-family: Arial;
-    font-size: 17px;
-    padding: 15px 76px;
     text-decoration: none;
   }
-  .create-btn:hover {
-    background: linear-gradient(to right, #ffc08f 5%, #ff3860 100%);
-    background-color: #ffc08f;
-  }
+
   .create-btn:active {
     position: relative;
     top: 1px;
+  }
+
+  .create-btn:disabled {
+    background-color: $color-main;
+    opacity: 1;
   }

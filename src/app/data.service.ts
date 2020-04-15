@@ -7,10 +7,14 @@ import { Observable } from "rxjs";
 import { Comment } from "./comment-item/comment";
 import { catchError, retry } from "rxjs/operators";
 import { User } from "./pages/page-users/user";
-import mongoose from "mongoose";
+import { UserItem } from "./components/user-profile/user";
+
+
 
 @Injectable({ providedIn: "root" })
+
 export class DataService {
+
   categories: string[];
   events: EventItem[];
   games: Game[];
@@ -18,6 +22,7 @@ export class DataService {
   game: Game;
   comments: Comment[];
   user: User;
+  currentUser: UserItem;
   favoritedEvents: string[];
   favoritedGames: string[];
   subscribedEvents: string[];
@@ -30,6 +35,15 @@ export class DataService {
       )
       .pipe(map((response) => (this.event = response.data)));
   }
+
+  public getUserById(id: String): Observable<UserItem> {
+    return this._http
+      .get<{ status: number; data: UserItem; message: string }>(
+        `/api/userinfo/${id}`
+      )
+      .pipe(map((response) => (this.currentUser = response.data)));
+  }
+
 
   public getEvents(): Observable<EventItem[]> {
     return this._http
@@ -73,7 +87,7 @@ export class DataService {
     });
   }
 
-  public getGameById(id: mongoose.Types.ObjectId): Observable<Game> {
+  public getGameById(id: String): Observable<Game> {
     return this._http
       .get<{ status: number; data: Game; message: string }>(`/api/games/${id}`)
       .pipe(map((response) => (this.game = response.data)));

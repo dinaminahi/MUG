@@ -37,8 +37,7 @@ export class PageAddEventComponent implements OnInit {
 
   myForm: FormGroup;
   //to choose game for event, later it will be from json file or db
-  games = ["Uno", "Merchant Cove", "Pangea"];
-
+  games = [];
   get game() {
     return this.myForm.get('game');
   } 
@@ -67,6 +66,13 @@ export class PageAddEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this._dataService.getGames().subscribe(res => {
+        res.forEach(game => (this.games).push(game.name));
+        console.log(this.games);
+        console.log(res);
+    });
+
     this.myForm = this.fb.group({
       eventName: [''],
       game: ['', Validators.required],
@@ -93,6 +99,7 @@ export class PageAddEventComponent implements OnInit {
        following: [[]],
        experiance: ['novice']
       }),
+      organizer: this.authService.UserId,
       canceled: false
     });
 
