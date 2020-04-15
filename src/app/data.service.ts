@@ -94,6 +94,12 @@ export class DataService {
     });
   }
 
+  public editUser(newUser, id: string) {
+    return this._http.post(`/api/edit-user/${id}`, newUser).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
   public getGameById(id: String): Observable<Game> {
     return this._http
       .get<{ status: number; data: Game; message: string }>(`/api/games/${id}`)

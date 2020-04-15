@@ -21,7 +21,7 @@ let userSchema = new Schema({
         latitude: Number
       }
     },
-    dateOfBirth: String,
+    dateOfBirth: Number,
     description: String,
   },
   events: {

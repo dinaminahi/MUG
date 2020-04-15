@@ -92,17 +92,7 @@ router.get("/events_extended/:eventId", (req, res) => {
   });
 });
 
-router.get("/userinfo/:userId", (req, res) => {
-  let userId = req.params.userId;
-  User.find({ _id: userId }, (err, user) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = user;
-      res.json(response);
-    }
-  })
-});
+
 
 router.get("/events_extended", (req, res) => {
   Event.aggregate([
@@ -388,6 +378,22 @@ router.put("/subscribed-events", (req, res) => {
       });
     }
   });
+});
+
+router.get("/edit-user/:userId", (req, res) => {
+  let userId = req.params.userId;
+  let newData = {};
+
+  User.find({_id: userId}, (err, user) => {
+    if (err) {
+      sendError(err,res);
+    } else {
+      newData.personal.name = req.body.name ?  req.body.personal.name : user.personal.name;
+      newData.personal.fisrtName = req.body.personal.fisrtName ?  req.body.personal.fisrtName : user.personal.fisrtName;
+      
+
+    }
+  })
 });
 
 // Event.deleteOne({eventName: 'Some game'});

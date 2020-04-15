@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.com
 import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.component";
 import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component";
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
+import { UserEditFormComponent } from "./user-edit-form/user-edit-form.component";
 // -------------------------not used for  now
 // import { PageAccountComponent } from "./pages/page-account/page-account.component";
 // import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
@@ -38,6 +39,11 @@ export const routes: Routes = [
   {
     path: "useraccount/:id",
     component: PageUserAccountComponent,
+    canActivate: [AuthGuard], // - check if loggedin or not
+  },
+  {
+    path: "user-edit/:id",
+    component: UserEditFormComponent,
     canActivate: [AuthGuard], // - check if loggedin or not
   },
   //----
