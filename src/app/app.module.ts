@@ -82,6 +82,7 @@ import { ButtonJoinComponent } from "./button-join/button-join.component";
 import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-main-navbar.component";
 import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favorites-games.component";
 import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-favorites-events.component";
+import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-subscribed-events.component";
 
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-fa
     LayoutMainNavbarComponent,
     UsersFavoritesGamesComponent,
     UsersFavoritesEventsComponent,
+    UsersSubscribedEventsComponent,
   ],
   imports: [
     RouterModule,
