@@ -1,1 +1,8 @@
-<p>page-users works!</p>
+<app-users-favorites-games [favoritedGames]="user?.games.favorited">
+</app-users-favorites-games>
+
+<app-users-favorites-events [favoritedEvents]="user?.events.interested">
+</app-users-favorites-events>
+
+<app-users-subscribed-events [subscribedEvents]="user?.events.subscribed">
+</app-users-subscribed-events>

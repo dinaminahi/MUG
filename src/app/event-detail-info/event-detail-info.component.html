@@ -5,11 +5,11 @@
         <div class="event-detail container">
             <div class="row">
                 <div class="col-sm-8 pl-5 py-5">
-                    <h1 class="title mb-4">{{ expectedEvent.eventName }}</h1>
+                    <h1 class="title mb-4">{{ expectedEvent?.eventName }}</h1>
                     <p><i class="fas fa-clock event-icon mr-2 fa-lg"></i>Date and time</p>
-                    <h4 class="mb-4">{{ expectedEvent.dateTime }}</h4>
+                    <h4 class="mb-4">{{ expectedEvent?.dateTime }}</h4>
                     <p><i class="fas fa-map-marker-alt event-icon mr-2 fa-lg"></i>Address</p>
-                    <h4>{{ expectedEvent.location.address }}</h4>
+                    <h4>{{ expectedEvent?.location?.address }}</h4>
                     <p class="mt-5">Share with friends</p>
                     <p><i class="fab fa-facebook-square fa-2x mr-3"></i><i class="fab fa-instagram fa-2x mr-3"></i><i
                             class="fab fa-twitter-square fa-2x mr-3"></i><i class="fab fa-linkedin fa-2x"></i></p>
@@ -27,14 +27,14 @@
             <div class="row">
                 <div class="col-sm-8 pl-3 py-5">
                     <h3>Event details</h3>
-                    <p class="event-description-text">{{expectedEvent.description}}</p>
-                    <p class="mt-4">Age of players: <span class="pl-4">{{ expectedEvent.players.age.min }} -
-                            {{ expectedEvent.players.age.max }}</span></p>
-                    <p class="mt-2">Amount of players: <span class="pl-4">{{ expectedEvent.players.count.min }} -
-                            {{ expectedEvent.players.count.max }}</span></p>
-                    <p class="mt-2">Event duration: <span class="pl-4">{{ expectedEvent.duration }}</span></p>
+                    <p class="event-description-text">{{expectedEvent?.description}}</p>
+                    <p class="mt-4">Age of players: <span class="pl-4">{{ expectedEvent?.players?.age?.min }} -
+                            {{ expectedEvent?.players?.age?.max }}</span></p>
+                    <p class="mt-2">Amount of players: <span class="pl-4">{{ expectedEvent?.players?.count?.min }} -
+                            {{ expectedEvent?.players?.count?.max }}</span></p>
+                    <p class="mt-2">Event duration: <span class="pl-4">{{ expectedEvent?.duration }}</span></p>
                     <p class="mt-2">Do you need experience for this event?<span
-                            class="pl-4">{{ expectedEvent.players.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
+                            class="pl-4">{{ expectedEvent?.players?.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
                     </p>
                 </div>
                 <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">
@@ -66,7 +66,7 @@
          <app-map [geo]="geo"></app-map>
          <div class="text-center mt-5">
             <p><span>Address</span></p>
-            <p class="mb-5 mt-3">{{expectedEvent.location.address}}</p>
+            <p class="mb-5 mt-3">{{expectedEvent?.location?.address}}</p>
             <p class="mt-5"><i class="fas fa-bus fa-lg mr-3"></i><i class="fas fa-car fa-lg mr-3"></i><i class="fas fa-bicycle fa-lg mr-3"></i><i class="fas fa-walking fa-lg"></i></p>
          </div>
         </div>
