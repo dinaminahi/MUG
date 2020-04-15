@@ -12,6 +12,7 @@ li {
 // }
 
 mdb-navbar {
+  color: rgba(255, 255, 255, 0);
   // background-color: #003049;
 
   // a {
@@ -21,4 +22,8 @@ mdb-navbar {
   .navbar-brand {
     font-family: 'Kelly Slab', cursive;
   }
+}
+
+.navbar-brand {
+  opacity: 0.7;
 }
