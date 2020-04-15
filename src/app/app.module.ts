@@ -79,6 +79,7 @@ import { RouterModule } from "@angular/router";
 import { AuthInterceptor } from "./shared/authconfig.interceptor";
 import { SmallEventItemComponent } from "./small-event-item/small-event-item.component";
 import { ButtonJoinComponent } from "./button-join/button-join.component";
+import { LayoutMainNavbarComponent } from './layout/layout-main-navbar/layout-main-navbar.component';
 
 @NgModule({
   declarations: [
@@ -127,6 +128,7 @@ import { ButtonJoinComponent } from "./button-join/button-join.component";
     // UsersComponent,
     SmallEventItemComponent,
     ButtonJoinComponent,
+    LayoutMainNavbarComponent,
   ],
   imports: [
     RouterModule,
