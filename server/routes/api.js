@@ -101,7 +101,7 @@ router.get("/userinfo/:userId", (req, res) => {
       response.data = user;
       res.json(response);
     }
-  })
+  });
 });
 
 router.get("/events_extended", (req, res) => {
@@ -114,16 +114,15 @@ router.get("/events_extended", (req, res) => {
         as: "agame",
       },
     },
-    { $unwind: "$game" }
-  ])
-    .exec((err, events) => {
-      if (err) {
-        sendError(err, res);
-      } else {
-        response.data = events;
-        res.json(response);
-      }
-    });
+    { $unwind: "$game" },
+  ]).exec((err, events) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = events;
+      res.json(response);
+    }
+  });
 });
 
 router.get("/events/:eventId", (req, res) => {
@@ -164,16 +163,16 @@ router.get("/comments/:eventId", (req, res) => {
       },
     },
     {
-      $unwind: "$user"
-    }])
-    .exec((err, comments) => {
-      if (err) {
-        sendError(err, res);
-      } else {
-        response.data = comments;
-        res.json(response);
-      }
-    });
+      $unwind: "$user",
+    },
+  ]).exec((err, comments) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = comments;
+      res.json(response);
+    }
+  });
 });
 
 router.get("/categories", (req, res) => {
@@ -251,30 +250,48 @@ router.post("/addevent", (req, res) => {
       experienceNeeded: req.body.players.experience,
     },
     organizer: mongoose.Types.ObjectId(req.body.organizer),
-    canceled: req.body.canceled
+    canceled: req.body.canceled,
   });
 
-  event.save();
+  event.save(function (err, event) {
+    const eventId = event._id;
+    const userId = req.body.organizer;
+    User.findById(userId, function (err, user) {
+      if (err) {
+        sendError(err, res);
+      } else {
+        const events = user.events;
+        events.created.push(eventId);
+        User.update({ _id: userId }, { events: events }, function (err) {
+          if (err) {
+            sendError(err, res);
+          } else {
+            res.json(events.created);
+          }
+        });
+      }
+    });
+  });
   console.log("Event was inserted!");
 });
 
-router.post('/addcomment', (req, res) => {
+router.post("/addcomment", (req, res) => {
   console.log(req.body);
   if (req.body.text) {
     const comment = new Comment({
       text: req.body.text,
       date: req.body.date,
       userId: mongoose.Types.ObjectId(req.body.userId),
-      eventId: mongoose.Types.ObjectId(req.body.eventId)    
-   });
-    
-   comment.save((err) => {
-     if (err) {
-       console.log(err);
-     } else {
-      console.log('Comment was inserted!');
-     }
-   });
+      eventId: mongoose.Types.ObjectId(req.body.eventId),
+    });
+
+    comment.save((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Comment was inserted!");
+      }
+    });
   }
 });
 
