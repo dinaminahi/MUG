@@ -3,12 +3,26 @@ body,
 header,
 .view {
   height: 100%;
-
+  // background-color: hsl(271, 19%, 31%);
 }
 
 .btn {
   border-radius: 50px;
   letter-spacing: 5px;
+}
+
+
+
+.bg-x2 {
+  background-image: url("src/img/Vector.png");
+  height: 90%;
+  // background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // background-attachment: fixed;
+  // background-color: white;
+  z-index: 2;
 }
 
 .bg {
@@ -18,6 +32,7 @@ header,
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  z-index: 1;
 }
 
 .section-button {

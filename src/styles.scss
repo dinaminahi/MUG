@@ -5,16 +5,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
 @import "./sass/variables"; // this is not cool!
 @import "./../src/sass/variables";
-// html,
-// body {
-//   height: 100%;
-// }
 
-// body {
-//   margin: 0;
-//   font-family: Roboto, "Helvetica Neue", sans-serif;
-//   background: #f8f8f8;
-// }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f8f8f8;
+}
 
 
 // ----navbar
@@ -22,12 +24,6 @@
   // border-top: 3px solid $color-orange; 
   padding: 15px;
 }
-
-#navbarCollapse>links>ul>li.nav-item.dropdown.open.show>div>a.dropdown-item.waves-light.active.waves-effect:active {
-  background-color: $color-orange !important;
-}
-
-
 
 
 
