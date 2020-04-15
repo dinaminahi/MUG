@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { NgxPageScrollModule } from "ngx-page-scroll";
 
 @Component({
-  selector: 'app-layout-hero',
-  templateUrl: './layout-hero.component.html',
-  styleUrls: ['./layout-hero.component.scss']
+  selector: "app-layout-hero",
+  templateUrl: "./layout-hero.component.html",
+  styleUrls: ["./layout-hero.component.scss"],
 })
 export class LayoutHeroComponent implements OnInit {
+  constructor(private pageScroll: NgxPageScrollModule) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  Scrolldown() {
+    // this.router.navigate(["/"]);
+    this.pageScroll;
   }
 
+  ngOnInit(): void {}
 }

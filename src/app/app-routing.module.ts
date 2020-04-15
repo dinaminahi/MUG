@@ -15,7 +15,7 @@ import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.com
 // import { PageAccountComponent } from "./pages/page-account/page-account.component";
 // import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 // import { PageLoginComponent } from "./pages/page-login/page-login.component";
-// import { PageCreateAccountComponent } from "./pages/page-create-account/page-create-account.component";
+import { PageUserAccountComponent } from "./pages/page-user-account/page-user-account.component";
 // -------------------------
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
@@ -34,7 +34,13 @@ export const routes: Routes = [
     canActivate: [AuthGuard], // - check if loggedin or not
   },
   // -------login----
-
+  //-----user
+  {
+    path: "useraccount/:id",
+    component: PageUserAccountComponent,
+    canActivate: [AuthGuard], // - check if loggedin or not
+  },
+  //----
   { path: "home", component: PageHomeComponent },
   { path: "about", component: PageAboutComponent },
   { path: "events", component: PageEventsComponent },
@@ -45,7 +51,7 @@ export const routes: Routes = [
 
   // { path: "account", component: PageAccountComponent },
   // { path: "login", component: PageLoginComponent },
-  // { path: "signin", component: PageCreateAccountComponent },
+  // { path: "signin", component: PageUserAccountComponent },
   // { path: "contacts", component: PageContactsComponent },
 
   { path: "news", component: PageNewsComponent },

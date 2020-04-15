@@ -5,16 +5,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
 @import "./sass/variables"; // this is not cool!
 
-html,
-body {
-  height: 100%;
-}
+// html,
+// body {
+//   height: 100%;
+// }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: #f8f8f8;
-}
+// body {
+//   margin: 0;
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+//   background: #f8f8f8;
+// }
 
 // Home page carousel with multi items
 .carousel.carousel-multi-item {
@@ -38,6 +38,7 @@ body {
       }
     }
   }
+
   .carousel-indicators {
     bottom: 20px;
 
@@ -106,6 +107,7 @@ body {
     }
   }
 }
+
 .gm-style-iw {
   max-height: 500px !important;
 }
