@@ -80,6 +80,7 @@ import { AuthInterceptor } from "./shared/authconfig.interceptor";
 import { SmallEventItemComponent } from "./small-event-item/small-event-item.component";
 import { ButtonJoinComponent } from "./button-join/button-join.component";
 import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-main-navbar.component";
+import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favorites-games.component";
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-ma
     SmallEventItemComponent,
     ButtonJoinComponent,
     LayoutMainNavbarComponent,
+    UsersFavoritesGamesComponent,
   ],
   imports: [
     RouterModule,

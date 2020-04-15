@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 import { User } from "../pages/page-users/user";
 import { DataService } from "../data.service";
 import mongoose from "mongoose";
+import { AuthService } from "../shared/auth.service";
 
 @Component({
   selector: "app-button-join",
@@ -15,9 +16,13 @@ export class ButtonJoinComponent {
   isLoading: boolean;
   user: User;
 
-  constructor(private _dataService: DataService) {
-    this._dataService.getUser().subscribe((res) => {
-      this.user = res;
+  constructor(
+    private _dataService: DataService,
+    public authService: AuthService
+  ) {
+    let id = this.authService.UserId;
+    this.authService.getUserProfile(id).subscribe((res) => {
+      this.user = res.msg;
       if (!this.user) {
         return false;
       }
