@@ -63,25 +63,32 @@
               <div class="col-md-6  col-sm-12 text-center">
                 <label>Players age</label>
                 <div formGroupName="age">
-                  <input type="number" class="num-input form-control mr-5" formControlName="min" placeholder="min">
-                  <input type="number" class="num-input form-control" formControlName="max" placeholder="max">
+                  <input type="number" class="num-input form-control mr-5" formControlName="min" min="3" max="120" placeholder="min">
+                  <input type="number" class="num-input form-control" formControlName="max"  min="3" max="120" placeholder="max">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12 text-center">
                 <label>Players amount</label>
                 <div formGroupName="count">
-                  <input type="number" class="num-input form-control mr-5" formControlName="min" placeholder="min">
-                  <input type="number" class="num-input form-control" formControlName="max" placeholder="max">
+                  <input type="number" class="num-input form-control mr-5" formControlName="min"  min="2" max="10" placeholder="min">
+                  <input type="number" class="num-input form-control" formControlName="max" min="2" max="10" placeholder="max">
                 </div>
               </div>
             </div>
           </div>
           <!-- Default inline 1-->
           <label class="mr-5">Do players need experiance?</label>
+
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline3" name="experiance"
+              formControlName="experiance" value="novice">
+            <label class="custom-control-label" for="defaultInline3">Novice</label>
+          </div>
+
           <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" class="custom-control-input" id="defaultInline1" name="experiance"
-              formControlName="experiance" value="new" checked>
-            <label class="custom-control-label" for="defaultInline1">New</label>
+              formControlName="experiance" value="begginer" checked>
+            <label class="custom-control-label" for="defaultInline1">Begginer</label>
           </div>
 
           <!-- Default inline 2-->
@@ -101,8 +108,12 @@
 
       </div>
 
-      <button type="submit" class="btn btn-info stylish-color-dark my-4 btn-block"
+      <div>
+        <button type="submit" class="btn create-btn my-4 btn-block"
         [disabled]="!myForm.valid">Create</button>
-    </form>
+        <small [class.d-none]="myForm.valid" class="text-danger">Please, fill in the form correctly</small>
+      </div>
+      
+      </form>
   </section>
 </div>
