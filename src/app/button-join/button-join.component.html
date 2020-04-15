@@ -1,0 +1,10 @@
+<button
+  [ngClass]="{
+    isSubscribed: isSubscribed,
+    isLoading: isLoading,
+    'join ': true
+  }"
+  (click)="toggleSubscribed()"
+>
+  {{ isSubscribed ? "LEAVE" : "JOIN" }}
+</button>

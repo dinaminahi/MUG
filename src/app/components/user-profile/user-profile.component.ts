@@ -6,18 +6,16 @@ import {
   NgZone
 } from "@angular/core";
 
+import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "./../../shared/auth.service";
+import { DataService } from "./../../data.service";
+
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { MapsAPILoader } from "@agm/core";
 import {} from "googlemaps";
 
 import { UserItem } from "./user";
-
-import { ActivatedRoute } from "@angular/router";
-import { AuthService } from "./../../shared/auth.service";
-import { DataService } from "./../../data.service";
-
-
 
 
 @Component({
@@ -31,11 +29,12 @@ export class UserProfileComponent implements OnInit {
 
 
   @ViewChild("search")
+  public searchElementRef: ElementRef;
+
 
   currentUser: Object = {};
   expectedUser: UserItem;
 
-  public searchElementRef: ElementRef;
 
   public zoom: number; //////////////
   public longitude: number;
@@ -45,8 +44,6 @@ export class UserProfileComponent implements OnInit {
   public searchControl: FormControl;
 
   personalInfoForm: FormGroup;
-  
-  
 
   get firstName() {
     return this.personalInfoForm.get(["personal", "firstName"]);
@@ -85,9 +82,6 @@ export class UserProfileComponent implements OnInit {
     this._dataService.getUserById(id).subscribe(res => {
       this.expectedUser = res[0];
     });
-
-    console.log(this.expectedUser);
-
 
     this.personalInfoForm = this.fb.group({
       id: [],

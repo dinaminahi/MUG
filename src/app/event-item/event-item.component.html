@@ -10,24 +10,25 @@
     >
     <span class="heart-wrapper">
       <app-add-to-favorites
-        [eventId]="event?.id"
+        [eventId]="event?._id"
         class="heart-icon"
       ></app-add-to-favorites>
     </span>
   </div>
   <section class="text-center dark-grey-text">
     <div class="image-wrap view overlay">
-      <img [src]="event?.agame[0]?.photoUrl[0]" alt="" />
+      <img [src]="((event?.agame)[0]?.photoUrl)[0]" alt="" />
     </div>
     <div class="attenders-icons">
       <app-participants-count
         [count]="event?.players.count"
       ></app-participants-count>
     </div>
-    <h2 class="font-weight-bold">{{ event?.eventName }}</h2>
+    <h2>{{ event?.eventName }}</h2>
     <div class="button-wrapper">
-      <button class="subm">JOIN</button>
-      <button (click)="onSelect(event)" class="subm">
+      <app-button-join [eventId]="event?._id" class="join"></app-button-join>
+      <!-- <button class="subm">JOIN</button> -->
+      <button (click)="onSelect(event)" class="more">
         MORE INFO
       </button>
     </div>

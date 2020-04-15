@@ -8,7 +8,7 @@ import { Game } from "./game";
 @Component({
   selector: "app-game",
   templateUrl: "./game.component.html",
-  styleUrls: ["./game.component.scss"]
+  styleUrls: ["./game.component.scss"],
 })
 export class GameComponent {
   @Input() game: Game;
@@ -16,6 +16,6 @@ export class GameComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   onSelect(game) {
-    this.router.navigate(["/games", game.id]);
+    this.router.navigate(["/games", game._id]);
   }
 }

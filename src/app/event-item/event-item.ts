@@ -1,5 +1,7 @@
+import mongoose from "mongoose";
+
 export class EventItem {
-  id: number;
+  _id: mongoose.Types.ObjectId;
   eventName: string;
   agame: {
     id: number;
@@ -20,11 +22,11 @@ export class EventItem {
   };
   description: string;
   location: {
-    address: string,
+    address: string;
     geo: {
-      longitude: number,
-      latitude: number
-    }
+      longitude: number;
+      latitude: number;
+    };
   };
   dateTime: Date;
   duration: string;

@@ -1,6 +1,10 @@
+@import "../../sass/_variables.scss"; // this is not cool!
+
 .event-item {
   position: relative;
   padding: 10px;
+  border-radius: 4px;
+  background: #fff;
 
   &:after {
     content: "";
@@ -33,12 +37,13 @@
   }
 
   .image-wrap {
-    margin: 0;
+    margin: 0 -10px;
     position: relative;
     height: 0;
     padding: 3/5 * 100% 0 0;
     overflow: hidden;
     z-index: 1;
+    background: #fff;
 
     img {
       position: absolute;
@@ -54,7 +59,8 @@
 
   h2 {
     margin: 10px;
-    font-size: 15px;
+    font-family: $font-family-alt;
+    font-size: 20px;
     line-height: 1.2;
     height: 35px;
     display: flex;
@@ -101,25 +107,34 @@
   flex-wrap: nowrap;
   justify-content: center;
 
-  button {
-    display: inline-block;
-    margin: 0px 10px;
-    background-color: white;
-    color: black;
-    border: 2px solid #e7e7e7;
-    font-size: 12px;
+  .more {
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-orange;
+    text-decoration: underline;
+    margin-left: 20px;
   }
 
-  button:hover {
-    background-color: #ff7315;
-    color: #e7e7e7;
-    border: 2px solid #e7e7e7;
-    z-index: 2;
-  }
+  // button {
+  //   display: inline-block;
+  //   margin: 0px 10px;
+  //   background-color: white;
+  //   color: black;
+  //   border: 2px solid #e7e7e7;
+  //   font-size: 12px;
+  // }
+
+  // button:hover {
+  //   background-color: #ff7315;
+  //   color: #e7e7e7;
+  //   border: 2px solid #e7e7e7;
+  //   z-index: 2;
+  // }
 }
 
 .description {
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 10px 30px 30px;
   display: none;
 

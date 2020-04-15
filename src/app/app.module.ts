@@ -60,7 +60,7 @@ import { NgxPageScrollModule } from "ngx-page-scroll";
 import { TeamComponent } from "./about-layout/team/team.component";
 import { AboutUsComponent } from "./about-layout/about-us/about-us.component";
 import { AboutUsHeaderComponent } from "./about-layout/about-us-header/about-us-header.component";
-import { PageCreateAccountComponent } from "./pages/page-create-account/page-create-account.component";
+import { PageUserAccountComponent } from "./pages/page-user-account/page-user-account.component";
 import { LayoutPartnersComponent } from "./layout/layout-partners/layout-partners.component";
 import { PageAccountComponent } from "./pages/page-account/page-account.component";
 import { AddToFavoritesComponent } from "./add-to-favorites/add-to-favorites.component";
@@ -71,13 +71,15 @@ import { GamesCarouselComponent } from "./games-carousel/games-carousel.componen
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
-import { CommentItemComponent } from './comment-item/comment-item.component';
-import { AddCommentBoxComponent } from './add-comment-box/add-comment-box.component';
+import { CommentItemComponent } from "./comment-item/comment-item.component";
+import { AddCommentBoxComponent } from "./add-comment-box/add-comment-box.component";
 import { RouterModule } from "@angular/router";
 // import { AuthService } from "./shared/auth.service";
 // import { ApiService } from "./api.service";
 import { AuthInterceptor } from "./shared/authconfig.interceptor";
-import { SmallEventItemComponent } from './small-event-item/small-event-item.component';
+import { SmallEventItemComponent } from "./small-event-item/small-event-item.component";
+import { ButtonJoinComponent } from "./button-join/button-join.component";
+import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-main-navbar.component";
 
 @NgModule({
   declarations: [
@@ -113,7 +115,7 @@ import { SmallEventItemComponent } from './small-event-item/small-event-item.com
     TeamComponent,
     AboutUsComponent,
     AboutUsHeaderComponent,
-    PageCreateAccountComponent,
+    PageUserAccountComponent,
     LayoutPartnersComponent,
     PageAccountComponent,
     GameCategoryIconsComponent,
@@ -124,7 +126,9 @@ import { SmallEventItemComponent } from './small-event-item/small-event-item.com
     CommentItemComponent,
     AddCommentBoxComponent,
     // UsersComponent,
-    SmallEventItemComponent
+    SmallEventItemComponent,
+    ButtonJoinComponent,
+    LayoutMainNavbarComponent,
   ],
   imports: [
     RouterModule,

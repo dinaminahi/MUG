@@ -1,8 +1,8 @@
 [
   {
-    "id": 7,
+    "_id": 7,
     "name": "Ticket to Ride Junior: Європа",
-    "category": [
+    "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
       { "name": "family", "label": "Сімейні", "iconClass": "fas fa-users" },
       {
@@ -23,9 +23,9 @@
     ]
   },
   {
-    "id": 3,
+    "_id": 3,
     "name": "Каркассон. Амазонка",
-    "category": [
+    "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
       { "name": "logical", "label": "Логічні", "iconClass": "fas fa-chess" },
       { "name": "family", "label": "Сімейні", "iconClass": "fas fa-users" }
@@ -41,9 +41,9 @@
     ]
   },
   {
-    "id": 2,
+    "_id": 2,
     "name": "Жах Аркхема",
-    "category": [
+    "categories": [
       {
         "name": "adventure",
         "label": "Пригоди",
@@ -73,9 +73,9 @@
     ]
   },
   {
-    "id": 1,
+    "_id": 1,
     "name": "UNO ",
-    "category": [
+    "categories": [
       {
         "name": "simple",
         "label": "Новачкам",
@@ -99,9 +99,9 @@
     ]
   },
   {
-    "id": 4,
+    "_id": 4,
     "name": "Merchant Cove",
-    "category": [
+    "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
       { "name": "logical", "label": "Логічні", "iconClass": "fas fa-chess" },
       {
@@ -129,9 +129,9 @@
     ]
   },
   {
-    "id": 5,
+    "_id": 5,
     "name": "Pangea",
-    "category": [
+    "categories": [
       {
         "name": "adventure",
         "label": "Пригоди",
@@ -158,9 +158,9 @@
     ]
   },
   {
-    "id": 6,
+    "_id": 6,
     "name": "Root",
-    "category": [
+    "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
       { "name": "logical", "label": "Логічні", "iconClass": "fas fa-chess" },
       { "name": "family", "label": "Сімейні", "iconClass": "fas fa-users" }

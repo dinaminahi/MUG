@@ -1,5 +1,5 @@
 {
-  "_id": "5e8886d3e0cd3c695b5c94d8",
+  "_id": "5e8e406ab50d8756fc6e7a93",
   "isAuthenticated": true,
   "personal": {
     "photoUrl": "https://i.dlpng.com/static/png/6721831_preview.png",
@@ -20,11 +20,11 @@
   },
   "events": {
     "subscribed": [2, 5],
-    "interested": [1, 2, 3, 5],
+    "interested": [],
     "created": []
   },
   "games": {
-    "favorited": [2, 3, 5],
+    "favorited": [],
     "skillLevel": {
       "novice": [4],
       "beginner": [],

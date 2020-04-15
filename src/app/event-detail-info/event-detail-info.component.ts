@@ -49,8 +49,6 @@ export class EventDetailInfoComponent implements OnInit {
       this.comments = res;
     });
 
-    console.log(this.comments);
-
   }
 
   gotoEvents() {

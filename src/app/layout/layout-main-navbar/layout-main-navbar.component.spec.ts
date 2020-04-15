@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageCreateAccountComponent } from './page-create-account.component';
+import { LayoutMainNavbarComponent } from './layout-main-navbar.component';
 
-describe('PageCreateAccountComponent', () => {
-  let component: PageCreateAccountComponent;
-  let fixture: ComponentFixture<PageCreateAccountComponent>;
+describe('LayoutMainNavbarComponent', () => {
+  let component: LayoutMainNavbarComponent;
+  let fixture: ComponentFixture<LayoutMainNavbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageCreateAccountComponent ]
+      declarations: [ LayoutMainNavbarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageCreateAccountComponent);
+    fixture = TestBed.createComponent(LayoutMainNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

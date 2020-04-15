@@ -4,11 +4,11 @@ import { Router } from "@angular/router";
 import { NgxPageScrollModule } from "ngx-page-scroll";
 
 @Component({
-  selector: "app-layout-header",
-  templateUrl: "./layout-header.component.html",
-  styleUrls: ["./layout-header.component.scss"],
+  selector: "app-layout-main-navbar",
+  templateUrl: "./layout-main-navbar.component.html",
+  styleUrls: ["./layout-main-navbar.component.scss"],
 })
-export class LayoutHeaderComponent implements OnInit {
+export class LayoutMainNavbarComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private router: Router,

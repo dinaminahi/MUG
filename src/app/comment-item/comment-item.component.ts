@@ -11,13 +11,9 @@ export class CommentItemComponent implements OnInit {
 
   @Input() comment: Comment;
 
-  currentUser: UserItem;
-
   constructor() { }
 
   ngOnInit(): void {
-
-    console.log(this.comment);
   }
 
 }
