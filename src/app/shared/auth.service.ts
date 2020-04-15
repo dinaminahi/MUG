@@ -33,11 +33,13 @@ export class AuthService {
       .subscribe((res: any) => {
         // console.log(res);
         localStorage.setItem("access_token", res.token);
+
         localStorage.setItem("userId", res._id);
         
         this.getUserProfile(res._id).subscribe((res) => {
         localStorage.setItem("userPhoto", res.msg.personal.photoUrl);
         localStorage.setItem("userName", res.msg.personal.name);
+
           this.currentUser = res;
           console.log(this.currentUser);
           this.router.navigate(["user-profile/" + res.msg._id]);
@@ -89,7 +91,6 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
-
 
   // Error
   handleError(error: HttpErrorResponse) {

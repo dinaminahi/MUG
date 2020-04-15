@@ -1,24 +1,16 @@
-// .navbar-brand {
-//   padding-right: 3.5vw;
-// }
+@import "./../../../sass/variables";
 
 li {
   padding: 0 0.5vw;
   letter-spacing: 0.15rem;
 }
 
-// .nav-link:hover {
-//   opacity: 0.65;
-// }
+a:hover {
+  opacity: 0.9;
+  color: $color-orange !important;
+}
 
 mdb-navbar {
-  color: rgba(255, 255, 255, 0);
-  // background-color: #003049;
-
-  // a {
-  //   color: #f2efea;
-  // }
-
   .navbar-brand {
     font-family: 'Kelly Slab', cursive;
   }
@@ -26,4 +18,15 @@ mdb-navbar {
 
 .navbar-brand {
   opacity: 0.7;
+}
+
+li>a:focus {
+  border-bottom: 2px solid $color-orange;
+  border-top: 2px solid $color-orange;
+}
+
+.dropdown-item.active {
+  font-weight: 300;
+  background-color: #3f729b;
+  color: white;
 }
