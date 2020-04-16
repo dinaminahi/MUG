@@ -1,10 +1,11 @@
 $color-main: #003049;
 $color-alert: #d62828;
-$color-orange: #f77f00;
+$color-orange-1: #f77f00;
 $color-text: #eae2b7;
 $color-attention: #ef3054;
 $color-orange: #ff6f59;
-$font-family-alt: "Kelly Slab", cursive;
+$font-family-alt: "Kelly Slab",
+cursive;
 
 // hot to use it : We need to import the file in order to use it:
 // @import "../../../stylings/variables"; // this is not cool!

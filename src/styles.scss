@@ -124,3 +124,17 @@ body {
 .gm-style-iw {
   max-height: 500px !important;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-dialog-container {
+  background-color: #3f729b;
+}
