@@ -19,16 +19,7 @@
     <div class="image-wrap view overlay">
       <img [src]="((event?.agame)[0]?.photoUrl)[0]" alt="" />
     </div>
-    <div class="attenders-icons">
-      <app-participants-count
-        [count]="event?.players.count"
-        [joined]="event?.players.joined"
-      ></app-participants-count>
-    </div>
-    <!-- <div class="playersJoinedFull">
-      {{ event?.players.joinedFull.personal.photoUrl }}
-      {{ event?.players.joinedFull.personal.name }}
-    </div> -->
+
     <h2>{{ event?.eventName }}</h2>
 
     <div class="button-wrapper">
@@ -47,6 +38,12 @@
       ></span
     >
     <div class="description z-depth-1 text-muted">
+      <div class="attenders-icons">
+        <app-participants-count
+          [count]="event?.players.count"
+          [joined]="event?.players.joined"
+        ></app-participants-count>
+      </div>
       <div>{{ event?.description.slice(0, 50) }}...</div>
 
       <div class="footer-meta text-left">
