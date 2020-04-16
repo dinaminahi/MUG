@@ -42,6 +42,7 @@ export class SigninComponent implements OnInit {
   loginUser() {
     this.authService.signIn(this.signinForm.value);
   }
+
   registerUser() {
     this.authService.signUp(this.signupForm.value).subscribe((res) => {
       if (res.result) {
