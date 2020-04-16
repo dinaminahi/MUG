@@ -52,3 +52,11 @@ mat-card {
 mat-icon {
   color: #ff6f59;
 }
+
+input {
+  padding-left: 10px;
+}
+
+input:active {
+  background-color: white;
+}
