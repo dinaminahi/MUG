@@ -1,7 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { AuthService } from "./../../shared/auth.service";
 import { Router } from "@angular/router";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
 
 @Component({
   selector: "app-signin",
@@ -21,7 +26,11 @@ export class SigninComponent implements OnInit {
       password: [""],
     });
   }
+  onNoClick(): void {
+    this.router.navigate(["/home"]);
 
+    this.dialogRef.close();
+  }
   ngOnInit() {}
 
   loginUser() {

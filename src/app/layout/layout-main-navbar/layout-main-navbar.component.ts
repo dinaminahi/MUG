@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { AuthService } from "./../../shared/auth.service";
 import { Router } from "@angular/router";
 import { NgxPageScrollModule } from "ngx-page-scroll";
@@ -42,8 +42,8 @@ export class LayoutMainNavbarComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      alert("Are You Shoore?");
-      this.name = result;
+      // alert("Are You Shoore?");
+      // this.name = result; -  could add to user name
     });
     // this.dialog.open(SigninComponent);
   }
