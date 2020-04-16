@@ -21,9 +21,9 @@ export interface DialogData {
   styleUrls: ["./layout-main-navbar.component.scss"],
 })
 export class LayoutMainNavbarComponent implements OnInit {
-  name: any;
-  password: any;
-  email: any;
+  // name: any;
+  // password: any;
+  // email: any;
 
   constructor(
     public authService: AuthService,
@@ -36,11 +36,11 @@ export class LayoutMainNavbarComponent implements OnInit {
     const dialogRef = this.dialog.open(SigninComponent, {
       width: "400px",
       disableClose: true,
-      data: {
-        name: this.name,
-        password: this.password,
-        email: this.password,
-      },
+      // data: {
+      //   name: this.name,
+      //   password: this.password,
+      //   email: this.password,
+      // },
     });
     dialogRef.afterClosed().subscribe((result) => {
       // alert("Are You Shoore?");

@@ -29,7 +29,7 @@ export class SigninComponent implements OnInit {
   onNoClick(): void {
     this.router.navigate(["/home"]);
 
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
   ngOnInit() {}
 
