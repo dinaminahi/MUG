@@ -13,10 +13,8 @@
     <div class="image-wrap view overlay">
       <img [src]="((event?.agame)[0]?.photoUrl)[0]" alt="" />
     </div>
-    <div class="attenders-icons">
-      <app-participants-count [count]="event?.players.count"></app-participants-count>
-    </div>
     <h2>{{ event?.eventName }}</h2>
+
     <div class="button-wrapper">
       <app-button-join [eventId]="event?._id" class="join"></app-button-join>
       <!-- <button class="subm">JOIN</button> -->
@@ -29,6 +27,9 @@
     <span class="address"><span><i class="fas fa-map-marker" title="Локація"></i>
         {{ event?.location.address }}</span></span>
     <div class="description z-depth-1 text-muted">
+      <div class="attenders-icons">
+        <app-participants-count [count]="event?.players.count"></app-participants-count>
+      </div>
       <div>
         {{ event?.description.slice(0, 50) }}...
       </div>
