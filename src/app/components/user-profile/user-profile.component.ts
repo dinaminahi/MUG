@@ -5,10 +5,9 @@ import {
   ElementRef,
 } from "@angular/core";
 
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "./../../shared/auth.service";
 import { DataService } from "./../../data.service";
-
 import { UserItem } from "./user";
 
 
@@ -33,6 +32,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private actRoute: ActivatedRoute,
+    private router: Router,
     private _dataService: DataService
   ) {}
 
@@ -51,6 +51,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   goEdit() {
-      
+    this.router.navigate(['/user-edit', this.authService.UserId]);
   }
 }

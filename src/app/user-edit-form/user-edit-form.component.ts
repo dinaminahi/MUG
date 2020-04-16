@@ -6,7 +6,7 @@ import {
   NgZone
 } from "@angular/core";
 
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "./../shared/auth.service";
 import { DataService } from "./../data.service";
 
@@ -56,6 +56,7 @@ export class UserEditFormComponent implements OnInit {
     private ngZone: NgZone,
     private authService: AuthService,
     private actRoute: ActivatedRoute,
+    private router: Router,
     private _dataService: DataService
   ) {}
 
@@ -132,9 +133,14 @@ export class UserEditFormComponent implements OnInit {
     });
   }
 
+  cancel() {
+    this.router.navigate(['/user-profile', this.authService.UserId]);
+  }
+
   onSubmit() {
     console.log(this.personalInfoForm.value);
     this._dataService.editUser(this.personalInfoForm.value, this.authService.UserId);
+    this.router.navigate(['/user-profile', this.authService.UserId]);
   }
 
   private setCurrentPosition() {

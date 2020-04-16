@@ -56,8 +56,9 @@
                         placeholder="{{expectedUser?.personal?.location?.address}}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-info stylish-color-dark my-4 btn-block"
+                <button type="submit" class="btn btn-info px-5 my-4 mr-4"
                 [disabled]="!personalInfoForm.valid">Save</button>
+            <button type="button" (click)="cancel()" class="btn btn-danger my-4">Cancel</button>
         </form>
     </section>
 </div>

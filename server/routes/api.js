@@ -227,14 +227,14 @@ router.get("/favourite-game-names/:userId", (req, res) => {
           if (err) {
             sendError(err, res);
           } else {
-             favouriteGames.push(game.name);
+            favouriteGames.push(game.name);
           }
         });
       });
-    } 
+    }
   });
   res.json(favouriteGameNames);
-}); 
+});
 
 router.post("/addevent", (req, res) => {
   const event = new Event({
@@ -277,16 +277,16 @@ router.post('/addcomment', (req, res) => {
       text: req.body.text,
       date: req.body.date,
       userId: mongoose.Types.ObjectId(req.body.userId),
-      eventId: mongoose.Types.ObjectId(req.body.eventId)    
-   });
-    
-   comment.save((err) => {
-     if (err) {
-       console.log(err);
-     } else {
-      console.log('Comment was inserted!');
-     }
-   });
+      eventId: mongoose.Types.ObjectId(req.body.eventId)
+    });
+
+    comment.save((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Comment was inserted!');
+      }
+    });
   }
 });
 
@@ -394,34 +394,51 @@ router.get("/userinfo/:userId", (req, res) => {
 
 router.put("/edit-user/:userId", (req, res) => {
   let userId = req.params.userId;
-  console.log(req.body);
 
-//   let params = { 
-//     personal: {
-//       name: req.body.personal.name,
-//      email: req.body.personal.email, 
-//     firstName: req.body.personal.email,
-//     lastName: req.body.personal.email,
-//     phone: req.body.personal.email,
-//     address: req.body.personal.location.address,
-//     longitude: req.body.personal.location.geo.longitude,
-//     latitude: req.body.personal.location.geo.latitude,
-//     dateOfBirth: req.body.personal.dateOfBirth,
-//     description: req.body.personal.description,
-//     }
-//   };
+  function convertToDotNotation(obj, newObj = {}, prefix = "") {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        convertToDotNotation(obj[key], newObj, prefix + key + ".");
+      } else {
+        newObj[prefix + key] = obj[key];
+      }
+    }
+    return newObj;
+  }
 
-// for(let prop in params) if(!params[prop]) delete params[prop];
+  let params = {
+    email: req.body.personal.email,
+    personal: {
+      name: req.body.personal.name,
+      firstName: req.body.personal.firstName,
+      lastName: req.body.personal.lastName,
+      phone: req.body.personal.phone,
+      location: {
+        address: req.body.personal.location.address,
+        geo: {
+          longitude: req.body.personal.location.geo.longitude,
+          latitude: req.body.personal.location.geo.latitude,
+        }
+      },
+      dateOfBirth: req.body.personal.dateOfBirth,
+      description: req.body.personal.description,
+    }
+  };
 
-  User.findOneAndUpdate({_id: userId}, {name: 'dididi'});
+  for (let prop in params) if (!params[prop]) delete params[prop];
+  for (let prop in params.personal) if (!params.personal[prop]) delete params.personal[prop];
+  for (let prop in params.personal.location) if (!params.personal.location[prop]) delete params.personal.location[prop];
+  for (let prop in params.personal.location.geo) if (!params.personal.location.geo[prop]) delete params.personal.location.geo[prop];
 
-  console.log('updated');
+  User.update({ _id: userId }, convertToDotNotation(params), function (err) {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = params;
+      res.json(response);    }
+  });
 });
 
 // Event.deleteOne({eventName: 'Some game'});
-
-// connection(db => {
-//   db.collection("events").deleteOne({id: 10});
-// })
 
 module.exports = router;
