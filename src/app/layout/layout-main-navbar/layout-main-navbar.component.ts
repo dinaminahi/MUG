@@ -35,7 +35,7 @@ export class LayoutMainNavbarComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
       width: "450px",
-      disableClose: true,
+      // disableClose: true,
       // data: {
       //   name: this.name,
       //   password: this.password,
