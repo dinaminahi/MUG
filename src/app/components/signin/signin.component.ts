@@ -15,6 +15,7 @@ import {
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
+  signupForm: FormGroup;
 
   constructor(
     public fb: FormBuilder,
@@ -23,6 +24,12 @@ export class SigninComponent implements OnInit {
   ) {
     this.signinForm = this.fb.group({
       email: [""],
+      password: [""],
+    });
+    this.signupForm = this.fb.group({
+      name: [""],
+      email: [""],
+      mobile: [""],
       password: [""],
     });
   }
@@ -35,5 +42,14 @@ export class SigninComponent implements OnInit {
 
   loginUser() {
     this.authService.signIn(this.signinForm.value);
+  }
+  registerUser() {
+    this.authService.signUp(this.signupForm.value).subscribe((res) => {
+      if (res.result) {
+        console.log(res);
+        this.signupForm.reset();
+        this.router.navigate(["sign-in"]);
+      }
+    });
   }
 }
