@@ -41,10 +41,10 @@
 
     <ul class="navbar-nav ml-auto pr-5">
 
-      <!--  -->
+      <!--  <a>    *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/sign-in"
+        -->
       <li class="nav-item">
-        <a *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/sign-in"
-          class="nav-link waves-light" mdbWavesEffect>
+        <a (click)="openDialog()" class="nav-link waves-light" mdbWavesEffect>
           LogIn
         </a>
       </li>
