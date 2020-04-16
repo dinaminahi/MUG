@@ -78,7 +78,7 @@ export class UserEditFormComponent implements OnInit {
         firstName: [""],
         lastName: [""],
         phone: [""],
-        email: ["", Validators.required],
+        email: [""],
         location: this.fb.group({
           address: "",
           geo: this.fb.group({

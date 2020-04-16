@@ -12,10 +12,9 @@
                 <div class="form-group">
                     <label for="name">Username*</label>
                     <input type="text" id="name" class="form-control" formControlName="name"
-                        [class.is-invalid]="username.invalid && username.touched"
                         placeholder="{{expectedUser?.personal?.name}}">
-                    <p [class.d-none]="username.valid || username.untouched" class="text-danger"> Username is required
-                    </p>
+                    <!-- <p [class.d-none]="username.valid || username.untouched" class="text-danger"> Username is required
+                    </p> -->
                 </div>
                 <div class="form-group">
                     <label for="firstName">First name</label>

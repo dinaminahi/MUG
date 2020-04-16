@@ -380,20 +380,42 @@ router.put("/subscribed-events", (req, res) => {
   });
 });
 
-router.get("/edit-user/:userId", (req, res) => {
+router.get("/userinfo/:userId", (req, res) => {
   let userId = req.params.userId;
-  let newData = {};
-
-  User.find({_id: userId}, (err, user) => {
+  User.find({ _id: userId }, (err, user) => {
     if (err) {
-      sendError(err,res);
+      sendError(err, res);
     } else {
-      newData.personal.name = req.body.name ?  req.body.personal.name : user.personal.name;
-      newData.personal.fisrtName = req.body.personal.fisrtName ?  req.body.personal.fisrtName : user.personal.fisrtName;
-      
-
+      response.data = user;
+      res.json(response);
     }
-  })
+  });
+});
+
+router.put("/edit-user/:userId", (req, res) => {
+  let userId = req.params.userId;
+  console.log(req.body);
+
+//   let params = { 
+//     personal: {
+//       name: req.body.personal.name,
+//      email: req.body.personal.email, 
+//     firstName: req.body.personal.email,
+//     lastName: req.body.personal.email,
+//     phone: req.body.personal.email,
+//     address: req.body.personal.location.address,
+//     longitude: req.body.personal.location.geo.longitude,
+//     latitude: req.body.personal.location.geo.latitude,
+//     dateOfBirth: req.body.personal.dateOfBirth,
+//     description: req.body.personal.description,
+//     }
+//   };
+
+// for(let prop in params) if(!params[prop]) delete params[prop];
+
+  User.findOneAndUpdate({_id: userId}, {name: 'dididi'});
+
+  console.log('updated');
 });
 
 // Event.deleteOne({eventName: 'Some game'});
