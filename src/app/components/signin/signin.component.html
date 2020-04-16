@@ -6,14 +6,14 @@
         <mat-card-content>
           <form action="" class="form-signin" [formGroup]="signinForm" (ngSubmit)="loginUser()">
             <mat-form-field>
-              <input class="form-control" type="email" matInput placeholder="Email" required name="email" ngModel
+              <input class="form-control" type="email" matInput placeholder="Email" required name="email"
                 formControlName="email">
               <mat-error *ngIf="email.invalid">Email is required</mat-error>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
             <mat-form-field>
               <input class="form-control" matInput placeholder="Password" type="password" required minlength="6"
-                name="password" ngModel formControlName="password">
+                name="password" formControlName="password">
               <mat-error *ngIf="password.errors && password.errors.required">
                 Password is required
               </mat-error>
@@ -34,22 +34,23 @@
       </mat-tab>
       <mat-tab label="Sign Up">
         <mat-card-content>
-          <form action="">
+          <form action="" class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
             <mat-form-field>
-              <input matInput placeholder="User Name" required name="username" ngModel #username="ngModel" />
+              <input class="form-control" matInput placeholder="User Name" required name="name" ngModel
+                #name="ngModel" />
               <mat-icon matSuffix>perm_identity</mat-icon>
-              <mat-error *ngIf="username.invalid">
+              <mat-error *ngIf="name.invalid">
                 Username is required
               </mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Email" required name="email" ngModel #email="ngModel" />
+              <input class="form-control" matInput placeholder="Email" required name="email" ngModel #email="ngModel" />
               <mat-error *ngIf="email.invalid">Email is required</mat-error>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Password" type="password" required minlength="6" name="password" ngModel
-                #password="ngModel" />
+              <input class="form-control" matInput placeholder="Password" type="password" required minlength="6"
+                name="password" ngModel #password="ngModel" />
               <mat-error *ngIf="password.errors && password.errors.required">
                 Password is required
               </mat-error>
@@ -66,7 +67,7 @@
               </mat-error>
               <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
-            <button mat-raised-button class="login-button sign-btn">
+            <button type="submit" mat-raised-button class="login-button sign-btn">
               Sign Up
             </button>
           </form>

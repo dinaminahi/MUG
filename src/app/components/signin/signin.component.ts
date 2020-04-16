@@ -27,9 +27,10 @@ export class SigninComponent implements OnInit {
       password: [""],
     });
     this.signupForm = this.fb.group({
-      name: [""],
+      personal: {
+        name: [""],
+      },
       email: [""],
-      mobile: [""],
       password: [""],
     });
   }
@@ -48,7 +49,7 @@ export class SigninComponent implements OnInit {
       if (res.result) {
         console.log(res);
         this.signupForm.reset();
-        this.router.navigate(["sign-in"]);
+        // this.router.navigate(["sign-in"]);
       }
     });
   }
