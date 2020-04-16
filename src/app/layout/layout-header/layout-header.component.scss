@@ -11,14 +11,17 @@ header,
   letter-spacing: 5px;
 }
 
-.bg {
-  background-image: url("src/img/mu&g.png");
-  height: 100%;
+
+.bg-x2 {
+  background-image: url("src/img/Vector.png");
+  height: 85%;
+  // background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  z-index: -1;
+
+  // background-attachment: fixed;
+  // background-color: white;
+  z-index: 2;
 }
 
 .bg {
@@ -28,7 +31,7 @@ header,
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  z-index: -1;
+  z-index: 1;
 }
 
 .section-button {
