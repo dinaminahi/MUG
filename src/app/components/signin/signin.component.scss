@@ -10,19 +10,36 @@
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+
 }
 
-
+.sign-btn {
+  background-color: #ff6f59;
+  color: white;
+  letter-spacing: 2px;
+}
 
 mat-form-field,
 mat-checkbox {
-  width: 80%;
+  // width: 80%;
   display: block;
   margin: auto;
+  line-height: 2;
+  font-size: 16px;
 }
 
 mat-card-content {
-  margin-top: 20px;
+  margin-top: 30px;
+
+}
+
+mat-card {
+  color: #3f729b;
+}
+
+.social-btn {
+  color: #3f729b;
+  letter-spacing: 2px;
 }
 
 .login-button {
@@ -30,4 +47,8 @@ mat-card-content {
   display: block;
   width: 80%;
   margin: 20px auto;
+}
+
+mat-icon {
+  color: #ff6f59;
 }
