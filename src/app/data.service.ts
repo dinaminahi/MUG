@@ -95,7 +95,7 @@ export class DataService {
   }
 
   public editUser(newUser, id: string) {
-    return this._http.put(`/api/edit-user/${id}`, newUser).subscribe((data) => {
+    return this._http.post(`/api/edit-user/${id}`, newUser).subscribe((data) => {
       console.log(data);
     });
   }
