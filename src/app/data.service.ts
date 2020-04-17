@@ -9,12 +9,8 @@ import { catchError, retry } from "rxjs/operators";
 import { User } from "./pages/page-users/user";
 import { UserItem } from "./components/user-profile/user";
 
-
-
 @Injectable({ providedIn: "root" })
-
 export class DataService {
-
   categories: string[];
   events: EventItem[];
   games: Game[];
@@ -45,7 +41,6 @@ export class DataService {
       .pipe(map((response) => (this.currentUser = response.data)));
   }
 
-
   public getEvents(): Observable<EventItem[]> {
     return this._http
       .get<{ status: number; data: EventItem[]; message: string }>(
@@ -68,9 +63,9 @@ export class DataService {
     });
   }
 
-  public getCategories(): Observable<string[]> {
+  public getCategories(): Observable<[Object]> {
     return this._http
-      .get<{ status: number; data: { category: string[] }; message: string }>(
+      .get<{ status: number; data: { category: [Object] }; message: string }>(
         "/api/categories"
       )
       .pipe(map((response) => (this.categories = response.data[0].category)));

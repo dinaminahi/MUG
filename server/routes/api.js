@@ -173,7 +173,17 @@ router.get("/categories", (req, res) => {
 });
 
 router.get("/games", (req, res) => {
-  Game.find({}, function (err, games) {
+  Game.aggregate([
+    {
+      $lookup: {
+        from: "categories",
+        localField: "category",
+        foreignField: "name",
+        as: "categories",
+      },
+    },
+    { $unwind: "$category" },
+  ]).exec((err, games) => {
     if (err) {
       sendError(err, res);
     } else {
