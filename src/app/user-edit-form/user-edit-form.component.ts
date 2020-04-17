@@ -84,8 +84,8 @@ export class UserEditFormComponent implements OnInit {
         location: this.fb.group({
           address: "",
           geo: this.fb.group({
-            longitude: [],
-            latitude: [],
+            longitude: [''],
+            latitude: [''],
           }),
         }),
         dateOfBirth: "",
@@ -154,12 +154,14 @@ export class UserEditFormComponent implements OnInit {
     formData.append('phone', this.personalInfoForm.value.personal.phone);
     formData.append('email', this.personalInfoForm.value.personal.email);
     formData.append('address', this.personalInfoForm.value.personal.location.address);
-    formData.append('longitude', this.personalInfoForm.value.personal.location.geo.longitude);
-    formData.append('latitude', this.personalInfoForm.value.personal.location.geo.latitude);
+    
+    formData.append('longitude', (this.personalInfoForm.value.personal.location.geo.longitude ? this.personalInfoForm.value.personal.location.geo.longitude : ''));
+    formData.append('latitude', (this.personalInfoForm.value.personal.location.geo.latitude ? this.personalInfoForm.value.personal.location.geo.latitude : ''));
     formData.append('dateOfBirth', this.personalInfoForm.value.personal.dateOfBirth);
     formData.append('description', this.personalInfoForm.value.personal.description);
     formData.append('photo', this.userImageFile);
 
+    console.log(this.userImageFile);
     this._dataService.editUser(formData, this.authService.UserId);
     this.router.navigate(['/user-profile', this.authService.UserId]);
   }

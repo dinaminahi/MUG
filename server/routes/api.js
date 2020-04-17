@@ -2,9 +2,23 @@ const express = require("express");
 const router = express.Router();
 const app = express();
 const mongoose = require("mongoose");
-const fileUpload = require('express-fileupload');
+const fileupload = require('express-fileupload');
 const multer = require('multer');
-const upload = multer();
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+   cloud_name: 'dcronwamq',
+   api_key: '597153926796645',
+   api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
+});
+
+const storage = multer.diskStorage({
+  filename: (req, file, cb)=>{
+   cb(null, Date.now() + file.originalname)
+  }
+  });
+  
+  const upload = multer({storage});
 
 const Category = require("./../models/categorySchema");
 const Game = require("./../models/gameSchema");
@@ -14,7 +28,9 @@ const Comment = require("./../models/commentSchema");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileUpload());
+app.use(fileupload({
+  useTempFiles: true
+}));
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 mongoose.connect(
@@ -351,52 +367,66 @@ router.get("/userinfo/:userId", (req, res) => {
 
 router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
 
-  console.log(req.file);
+  let file = req.file;
 
-  // let userId = req.params.userId;
+ if(file) {
+  cloudinary.uploader.upload(file.path, {width: 150, 
+    height: 150,crop: "fit"}, (err, result) => {
+    User.update({ _id: userId }, { "personal.photoUrl": result.url }, function(err) {
+      console.log('update');
+    });   
+   });
+ }
+   
+  
+ 
+  let userId = req.params.userId;
 
-  // function convertToDotNotation(obj, newObj = {}, prefix = "") {
-  //   for (let key in obj) {
-  //     if (typeof obj[key] === "object") {
-  //       convertToDotNotation(obj[key], newObj, prefix + key + ".");
-  //     } else {
-  //       newObj[prefix + key] = obj[key];
-  //     }
-  //   }
-  //   return newObj;
-  // }
+  // console.log(photoURL);
 
-  // let params = {
-  //   email: req.body.personal.email,
-  //   personal: {
-  //     name: req.body.personal.name,
-  //     firstName: req.body.personal.firstName,
-  //     lastName: req.body.personal.lastName,
-  //     phone: req.body.personal.phone,
-  //     location: {
-  //       address: req.body.personal.location.address,
-  //       geo: {
-  //         longitude: req.body.personal.location.geo.longitude,
-  //         latitude: req.body.personal.location.geo.latitude,
-  //       }
-  //     },
-  //     dateOfBirth: req.body.personal.dateOfBirth,
-  //     description: req.body.personal.description,
-  //   }
-  // };
+  function convertToDotNotation(obj, newObj = {}, prefix = "") {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        convertToDotNotation(obj[key], newObj, prefix + key + ".");
+      } else {
+        newObj[prefix + key] = obj[key];
+      }
+    }
+    return newObj;
+  }
 
-  // for (let prop in params) if (!params[prop]) delete params[prop];
-  // for (let prop in params.personal) if (!params.personal[prop]) delete params.personal[prop];
-  // for (let prop in params.personal.location) if (!params.personal.location[prop]) delete params.personal.location[prop];
-  // for (let prop in params.personal.location.geo) if (!params.personal.location.geo[prop]) delete params.personal.location.geo[prop];
+  let params = {
+    email: req.body.email,
+    personal: {
+      name: req.body.name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phone: req.body.phone,
+      location: {
+        address: req.body.address,
+        geo: {
+          longitude: req.body.longitude,
+          latitude: req.body.latitude,
+        }
+      },
+      dateOfBirth: req.body.dateOfBirth,
+      description: req.body.description,
+    }
+  };
 
-  // User.update({ _id: userId }, convertToDotNotation(params), function (err) {
-  //   if (err) {
-  //     sendError(err, res);
-  //   } else {
-  //     response.data = params;
-  //     res.json(response);    }
-  // });
+  console.log(params);
+  for (let prop in params) if (!params[prop]) delete params[prop];
+  for (let prop in params.personal) if (!params.personal[prop]) delete params.personal[prop];
+  for (let prop in params.personal.location) if (!params.personal.location[prop]) delete params.personal.location[prop];
+  for (let prop in params.personal.location.geo) if (!params.personal.location.geo[prop]) delete params.personal.location.geo[prop];
+
+  User.update({ _id: userId }, convertToDotNotation(params), function (err) {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = params;
+      res.json(response);    }
+  });
 });
 
 // Event.deleteOne({eventName: 'Some game'});
