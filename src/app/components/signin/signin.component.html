@@ -2,7 +2,7 @@
   <mat-card class="">
     <mat-card-title style="text-align: center;">SignIn / SignUp</mat-card-title>
     <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
-      <mat-tab label="Sign In">
+      <mat-tab label="Sign In" [selectedIndex]='1'>
         <mat-card-content>
           <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
             <mat-form-field>

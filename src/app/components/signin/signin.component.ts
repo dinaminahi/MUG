@@ -32,6 +32,7 @@ export class SigninComponent implements OnInit {
       password: [""],
     });
   }
+
   onClickCheck(): void {}
 
   onNoClick(): void {
@@ -43,6 +44,7 @@ export class SigninComponent implements OnInit {
 
   loginUser() {
     this.authService.signIn(this.signinForm.value);
+    this.router.navigate(["home"]);
   }
 
   registerUser() {

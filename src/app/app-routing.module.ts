@@ -36,8 +36,8 @@ export const routes: Routes = [
   // -------login----
   //-----user
   {
-    path: "useraccount/:id",
-    component: UserProfileComponent,
+    path: "pageaddevent",
+    component: PageAddEventComponent,
     canActivate: [AuthGuard], // - check if loggedin or not
   },
   //----

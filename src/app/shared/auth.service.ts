@@ -42,7 +42,7 @@ export class AuthService {
 
           this.currentUser = res;
           console.log(this.currentUser);
-          this.router.navigate(["home/"]); // -- naviganes after susseful ligin
+          // this.router.navigate(["home/"]); // -- naviganes after susseful ligin
           // this.router.navigate(["user-profile/" + res.msg._id]); -- old
         });
       });
