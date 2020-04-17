@@ -32,6 +32,8 @@ export class SigninComponent implements OnInit {
       password: [""],
     });
   }
+  onClickCheck(): void {}
+
   onNoClick(): void {
     this.router.navigate(["/home"]);
 
@@ -48,6 +50,7 @@ export class SigninComponent implements OnInit {
       if (res.result) {
         console.log(res);
         this.signupForm.reset();
+        this.router.navigate(["user-profile/" + res.msg._id]);
         // this.router.navigate(["sign-in"]);
       }
     });

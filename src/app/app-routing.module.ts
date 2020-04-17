@@ -26,8 +26,8 @@ export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
 
   // ------login----
-  { path: "sign-in", component: SigninComponent },
-  { path: "sign-up", component: SignupComponent },
+  // { path: "sign-in", component: SigninComponent },
+  // { path: "sign-up", component: SignupComponent },
   {
     path: "user-profile/:id",
     component: UserProfileComponent,
@@ -37,7 +37,7 @@ export const routes: Routes = [
   //-----user
   {
     path: "useraccount/:id",
-    component: PageUserAccountComponent,
+    component: UserProfileComponent,
     canActivate: [AuthGuard], // - check if loggedin or not
   },
   //----
