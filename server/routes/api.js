@@ -2,6 +2,23 @@ const express = require("express");
 const router = express.Router();
 const app = express();
 const mongoose = require("mongoose");
+const fileupload = require('express-fileupload');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+   cloud_name: 'dcronwamq',
+   api_key: '597153926796645',
+   api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
+});
+
+const storage = multer.diskStorage({
+  filename: (req, file, cb)=>{
+   cb(null, Date.now() + file.originalname)
+  }
+  });
+  
+  const upload = multer({storage});
 
 const Category = require("./../models/categorySchema");
 const Game = require("./../models/gameSchema");
@@ -11,59 +28,14 @@ const Comment = require("./../models/commentSchema");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(fileupload({
+  useTempFiles: true
+}));
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 mongoose.connect(
   "mongodb+srv://diana-admin:dianadiana@cluster0-v29yw.mongodb.net/MUG"
 );
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// const comment = new Comment({
-//    text: 'Do I need to have money with me?',
-//    date: new Date().toLocaleString(),
-//    userId: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
-//    eventId: mongoose.Types.ObjectId("5e8e369a05c5341fa43a8de2")
-// });
-
-// comment.save();
-
-// Error handling
-
-// const game = new Game({
-//   name: 'djcndjscn',
-//   category: [
-//     {
-//       name: 'some',
-//       label: 'some',
-//       iconClass: 'fas'
-//     },
-//     {
-//       name: 'soffme',
-//       label: 'some',
-//       iconClass: 'fas'
-//     },
-//     {
-//       name: 'nfff',
-//       label: 'some',
-//       iconClass: 'fas'
-//     }
-//   ],
-//   description: 'ndknvdknvd',
-//   playersMinAge: 2,
-//   playersCount: {
-//     min: 2,
-//     max: 3
-//   },
-//   playTimeMinutes: {
-//     min: 4,
-//     max: 15
-//   },
-//   instructionUrl: 'nvkdvnd',
-//   photoUrl: ['ndjvnfjvnf']
-// })
-
-// game.save();
 
 const sendError = (err, res) => {
   response.status = 501;
@@ -80,6 +52,7 @@ let response = {
 
 // // Get events
 
+
 router.get("/events_extended/:eventId", (req, res) => {
   let eventId = req.params.eventId;
   Event.find({ _id: eventId }, (err, event) => {
@@ -87,18 +60,6 @@ router.get("/events_extended/:eventId", (req, res) => {
       sendError(err, res);
     } else {
       response.data = event;
-      res.json(response);
-    }
-  });
-});
-
-router.get("/userinfo/:userId", (req, res) => {
-  let userId = req.params.userId;
-  User.find({ _id: userId }, (err, user) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = user;
       res.json(response);
     }
   });
@@ -234,6 +195,28 @@ router.get("/games/:gameId", (req, res) => {
   });
 });
 
+router.get("/favourite-game-names/:userId", (req, res) => {
+  let userId = req.params.userId;
+  let favouriteGameNames = [];
+
+  User.findById(userId, (err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      user.games.favorited.forEach((id) => {
+        Game.findById(id, (err, game) => {
+          if (err) {
+            sendError(err, res);
+          } else {
+            favouriteGames.push(game.name);
+          }
+        });
+      });
+    }
+  });
+  res.json(favouriteGameNames);
+});
+
 router.post("/addevent", (req, res) => {
   const event = new Event({
     eventName: req.body.eventName,
@@ -294,14 +277,14 @@ router.post("/addcomment", (req, res) => {
       text: req.body.text,
       date: req.body.date,
       userId: mongoose.Types.ObjectId(req.body.userId),
-      eventId: mongoose.Types.ObjectId(req.body.eventId),
+      eventId: mongoose.Types.ObjectId(req.body.eventId)
     });
 
     comment.save((err) => {
       if (err) {
         console.log(err);
       } else {
-        console.log("Comment was inserted!");
+        console.log('Comment was inserted!');
       }
     });
   }
@@ -432,8 +415,82 @@ router.put("/subscribed-events", (req, res) => {
   });
 });
 
-// connection(db => {
-//   db.collection("events").deleteOne({id: 10});
-// })
+router.get("/userinfo/:userId", (req, res) => {
+  let userId = req.params.userId;
+  User.find({ _id: userId }, (err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = user;
+      res.json(response);
+    }
+  });
+});
+
+router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
+
+  let file = req.file;
+
+ if(file) {
+  cloudinary.uploader.upload(file.path, {width: 150, 
+    height: 150,crop: "fit"}, (err, result) => {
+    User.update({ _id: userId }, { "personal.photoUrl": result.url }, function(err) {
+      console.log('update');
+    });   
+   });
+ }
+   
+  
+ 
+  let userId = req.params.userId;
+
+  // console.log(photoURL);
+
+  function convertToDotNotation(obj, newObj = {}, prefix = "") {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        convertToDotNotation(obj[key], newObj, prefix + key + ".");
+      } else {
+        newObj[prefix + key] = obj[key];
+      }
+    }
+    return newObj;
+  }
+
+  let params = {
+    email: req.body.email,
+    personal: {
+      name: req.body.name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phone: req.body.phone,
+      location: {
+        address: req.body.address,
+        geo: {
+          longitude: req.body.longitude,
+          latitude: req.body.latitude,
+        }
+      },
+      dateOfBirth: req.body.dateOfBirth,
+      description: req.body.description,
+    }
+  };
+
+  console.log(params);
+  for (let prop in params) if (!params[prop]) delete params[prop];
+  for (let prop in params.personal) if (!params.personal[prop]) delete params.personal[prop];
+  for (let prop in params.personal.location) if (!params.personal.location[prop]) delete params.personal.location[prop];
+  for (let prop in params.personal.location.geo) if (!params.personal.location.geo[prop]) delete params.personal.location.geo[prop];
+
+  User.update({ _id: userId }, convertToDotNotation(params), function (err) {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = params;
+      res.json(response);    }
+  });
+});
+
+// Event.deleteOne({eventName: 'Some game'});
 
 module.exports = router;

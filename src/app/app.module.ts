@@ -91,6 +91,7 @@ import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-ma
 import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favorites-games.component";
 import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-favorites-events.component";
 import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-subscribed-events.component";
+import { UserEditFormComponent } from './user-edit-form/user-edit-form.component';
 import { UsersCreatedEventsComponent } from "./users-created-events/users-created-events.component";
 
 @NgModule({
@@ -144,6 +145,7 @@ import { UsersCreatedEventsComponent } from "./users-created-events/users-create
     UsersFavoritesGamesComponent,
     UsersFavoritesEventsComponent,
     UsersSubscribedEventsComponent,
+    UserEditFormComponent,
     UsersCreatedEventsComponent,
   ],
   imports: [
