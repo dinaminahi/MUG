@@ -51,7 +51,11 @@ export const routes: Routes = [
   { path: "about", component: PageAboutComponent },
   { path: "events", component: PageEventsComponent },
   { path: "events/:id", component: EventDetailInfoComponent },
-  { path: "addevent", component: PageAddEventComponent },
+  {
+    path: "pageaddevent",
+    component: PageAddEventComponent,
+    canActivate: [AuthGuard], // - check if loggedin or not
+  },
   { path: "games", component: PageGamesComponent },
   { path: "games/:id", component: GameDetailInfoComponent },
 

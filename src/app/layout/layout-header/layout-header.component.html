@@ -1,73 +1,44 @@
-<!--Navbar-->
-<mdb-navbar SideClass="row navbar navbar-expand-md navbar-dark unique-color" [containerInside]="false" mdbStickyHeader>
-
-  <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="pl-5 navbar-brand font-weight-bold" routerLink="/home" routerLinkActive="active">MUG</a>
-  </mdb-navbar-brand>
-  <!-- Collapsible content -->
-
-  <links>
-    <div class="container">
-      <!-- Links -->
-      <ul class=" navbar-nav m-auto h4-responsive">
-        <li class="nav-item">
-          <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/home"
-            routerLinkActive="active">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/events"
-            routerLinkActive="active">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/games"
-            routerLinkActive="active">Games</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/news"
-            routerLinkActive="active">News</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/about"
-            routerLinkActive="active">About</a>
-        </li>
-        <li class="nav-item">
-          <a (click)="Scrolldown()" class="nav-link waves-light nav-link-lt" mdbWavesEffect pageScroll
-            [routerLink]="['home']" href="#contacts-elem">Contacts</a>
-        </li>
-      </ul>
-    </div>
-    <!-- Links -->
-
-    <ul class="navbar-nav ml-auto pr-5">
-
-      <!--  -->
-      <li class="nav-item">
-        <a *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/sign-in"
-          class="nav-link waves-light" mdbWavesEffect>
-          LogIn
-        </a>
-      </li>
-      <!-- Dropdown if not loged-->
-
-      <li *ngIf="this.authService.isLoggedIn" class="nav-item dropdown" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0 pr-3"
-            alt="avatar image" height="40" /> Profile<span class="caret"></span>
-        </a>
-        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-
-          <a routerLinkActive="active" routerLink="useraccount/:id" class="dropdown-item waves-light" mdbWavesEffect>My
-            account</a>
-          <div class="divider dropdown-divider"></div>
-          <a (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect>Log
-            out</a>
+<!-- Main navigation -->
+<header>
+  <!-- Full Page Intro -->
+  <!-- <div class="view deep-orange darken-3"></div> -->
+  <!-- Mask & flexbox options-->
+  <div class="mask bg">
+    <!-- Content -->
+    <div class="container h-100">
+      <!--Grid row-->
+      <div class="row align-items-center h-100">
+        <!--Grid column-->
+        <div class="col-md-4">
+          <h1 class="white-text mb-4">
+            MeetUp
+          </h1>
+          <h1 class="white-text mb-4 text-center">
+            <span class="text-warning and-add">&</span>
+          </h1>
+          <h1 class="white-text mb-4 text-right">
+            Games
+          </h1>
+          <!-- <p class="mb-4 pb-2 white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vitae,
+              culpa qui officia deserunt labor debitis.</p> -->
+          <!-- <button type="button" class="btn btn-outline-white btn-md ml-md-0">Get started</button> -->
+          <!-- <button type="button" class="btn btn-white btn-md">Get started</button> -->
         </div>
 
-      </li>
+        <section class="section-button text-center  px-md-5 mx-md-5">
+          <p class="font-size font-weight-light white-text text-center mx-auto mb-4 pb-2">
+            Start yours new unique adventure here. Meet new friends and share
+            yours favorite game experience.
+          </p>
 
-    </ul>
-  </links>
-  <!-- Collapsible content -->
-
-</mdb-navbar>
-<!--/.Navbar-->
+          <button (click)="Scrolldown()" type="button" class="btn btn-lg btn-outline-white" pageScroll
+            href="#how-it-works">
+            findout More
+          </button>
+        </section>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</header>
+<!-- Main navigation -->

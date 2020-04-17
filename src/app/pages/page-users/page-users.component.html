@@ -1,8 +1,13 @@
-<app-users-favorites-games [favoritedGames]="user?.games.favorited">
-</app-users-favorites-games>
+<div class="container">
+  <app-users-favorites-games [favoritedGames]="user?.games.favorited">
+  </app-users-favorites-games>
 
-<app-users-favorites-events [favoritedEvents]="user?.events.interested">
-</app-users-favorites-events>
+  <app-users-favorites-events [favoritedEvents]="user?.events.interested">
+  </app-users-favorites-events>
 
-<app-users-subscribed-events [subscribedEvents]="user?.events.subscribed">
-</app-users-subscribed-events>
+  <app-users-subscribed-events [subscribedEvents]="user?.events.subscribed">
+  </app-users-subscribed-events>
+
+  <app-users-created-events [createdEvents]="user?.events.created">
+  </app-users-created-events>
+</div>

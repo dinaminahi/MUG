@@ -1,6 +1,6 @@
 <!--Navbar-->
-<mdb-navbar id="navMenu" SideClass="fixed-top row navbar navbar-expand-md navbar-dark unique-color"
-  [containerInside]="false">
+
+<mdb-navbar SideClass="navbar navbar-expand-md navbar-dark unique-color" [containerInside]="false" mdbStickyHeader>
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="pl-5 navbar-brand font-weight-bold" routerLink="/home" routerLinkActive="active">MUG</a>
@@ -12,8 +12,7 @@
       <!-- Links -->
       <ul class=" navbar-nav m-auto h4-responsive">
         <li class="nav-item">
-          <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/home"
-            routerLinkActive="active">Home</a>
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/home" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/events"
@@ -41,10 +40,10 @@
 
     <ul class="navbar-nav ml-auto pr-5">
 
-      <!--  -->
+      <!--  <a>     routerLinkActive="active" routerLink="/sign-in"
+        -->
       <li class="nav-item">
-        <a *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/sign-in"
-          class="nav-link waves-light" mdbWavesEffect>
+        <a *ngIf="!this.authService.isLoggedIn" (click)="openDialog()" class="nav-link waves-light" mdbWavesEffect>
           LogIn
         </a>
       </li>

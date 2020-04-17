@@ -1,0 +1,62 @@
+.login-page {
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  // background-color: #ff6f59;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+
+}
+
+.sign-btn {
+  background-color: #ff6f59;
+  color: white;
+  letter-spacing: 2px;
+}
+
+mat-form-field,
+mat-checkbox {
+  // width: 80%;
+  display: block;
+  margin: auto;
+  line-height: 2;
+  font-size: 16px;
+}
+
+mat-card-content {
+  margin-top: 30px;
+
+}
+
+mat-card {
+  color: #3f729b;
+}
+
+.social-btn {
+  color: #3f729b;
+  letter-spacing: 2px;
+}
+
+.login-button {
+  margin-top: 20px;
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+}
+
+mat-icon {
+  color: #ff6f59;
+}
+
+input {
+  padding-left: 10px;
+}
+
+input:active {
+  background-color: white;
+}

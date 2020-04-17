@@ -65,8 +65,6 @@ router.get("/events_extended/:eventId", (req, res) => {
   });
 });
 
-
-
 router.get("/events_extended", (req, res) => {
   Event.aggregate([
     {
@@ -77,16 +75,26 @@ router.get("/events_extended", (req, res) => {
         as: "agame",
       },
     },
-    { $unwind: "$game" }
-  ])
-    .exec((err, events) => {
-      if (err) {
-        sendError(err, res);
-      } else {
-        response.data = events;
-        res.json(response);
-      }
-    });
+    { $unwind: "$game" },
+    {
+      $lookup: {
+        from: "users",
+        let: { joined: "$players.joined" },
+        pipeline: [
+          { $match: { $expr: { $in: ["$_id", "$$joined"] } } },
+          { $project: { personal: 1 } },
+        ],
+        as: "players.joined",
+      },
+    },
+  ]).exec((err, events) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = events;
+      res.json(response);
+    }
+  });
 });
 
 router.get("/events/:eventId", (req, res) => {
@@ -127,16 +135,16 @@ router.get("/comments/:eventId", (req, res) => {
       },
     },
     {
-      $unwind: "$user"
-    }])
-    .exec((err, comments) => {
-      if (err) {
-        sendError(err, res);
-      } else {
-        response.data = comments;
-        res.json(response);
-      }
-    });
+      $unwind: "$user",
+    },
+  ]).exec((err, comments) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = comments;
+      res.json(response);
+    }
+  });
 });
 
 router.get("/categories", (req, res) => {
@@ -233,17 +241,36 @@ router.post("/addevent", (req, res) => {
         max: req.body.players.count.max,
         current: req.body.players.count.current,
       },
+      joined: [mongoose.Types.ObjectId(req.body.organizer)],
       experienceNeeded: req.body.players.experience,
     },
     organizer: mongoose.Types.ObjectId(req.body.organizer),
-    canceled: req.body.canceled
+    canceled: req.body.canceled,
   });
 
-  event.save();
+  event.save(function (err, event) {
+    const eventId = event._id;
+    const userId = req.body.organizer;
+    User.findById(userId, function (err, user) {
+      if (err) {
+        sendError(err, res);
+      } else {
+        const events = user.events;
+        events.created.push(eventId);
+        User.update({ _id: userId }, { events: events }, function (err) {
+          if (err) {
+            sendError(err, res);
+          } else {
+            res.json(events.created);
+          }
+        });
+      }
+    });
+  });
   console.log("Event was inserted!");
 });
 
-router.post('/addcomment', (req, res) => {
+router.post("/addcomment", (req, res) => {
   console.log(req.body);
   if (req.body.text) {
     const comment = new Comment({
@@ -325,6 +352,41 @@ router.put("/favorite-events", (req, res) => {
 
 router.put("/subscribed-events", (req, res) => {
   const { userId, eventId, toggle } = req.body;
+
+  // Save user's id into event's event.players.joined array and inctement event.players.count.curren
+  // if toggle is 'true', otherwise do opposite
+  Event.find({ _id: eventId }, (err, event) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      const eventPlayers = event[0].players || {};
+      eventPlayers.joined = eventPlayers.joined || [];
+      const joinedPlayersIndex = eventPlayers.joined.indexOf(userId);
+      console.log(eventPlayers);
+      if (toggle) {
+        if (joinedPlayersIndex === -1) {
+          eventPlayers.joined.push(userId);
+          eventPlayers.count.current = eventPlayers.count.current + 1;
+        }
+      } else {
+        if (joinedPlayersIndex > -1) {
+          eventPlayers.joined.splice(joinedPlayersIndex, 1);
+          eventPlayers.count.current = eventPlayers.count.current - 1;
+        }
+      }
+
+      Event.updateOne({ _id: eventId }, { players: eventPlayers }, function (
+        err
+      ) {
+        if (err) {
+          sendError(err, res);
+        }
+      });
+    }
+  });
+
+  // save event's id into user's  events.subscribed event
+  // if toggle is 'true', otherwise do opposite
   User.findById(userId, function (err, user) {
     if (err) {
       sendError(err, res);
@@ -342,7 +404,7 @@ router.put("/subscribed-events", (req, res) => {
         }
       }
 
-      User.update({ _id: userId }, { events: events }, function (err) {
+      User.updateOne({ _id: userId }, { events: events }, function (err) {
         if (err) {
           sendError(err, res);
         } else {

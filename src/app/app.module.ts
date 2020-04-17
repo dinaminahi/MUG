@@ -32,11 +32,19 @@ import { LayoutFooterComponent } from "./layout/layout-footer/layout-footer.comp
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
 import { FlexLayoutModule } from "@angular/flex-layout";
+//--ang-material
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
+import { MatCardModule } from "@angular/material/card";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatDialogModule } from "@angular/material/dialog";
+//
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from "./carousel/carousel.component";
 
@@ -84,6 +92,7 @@ import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favo
 import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-favorites-events.component";
 import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-subscribed-events.component";
 import { UserEditFormComponent } from './user-edit-form/user-edit-form.component';
+import { UsersCreatedEventsComponent } from "./users-created-events/users-created-events.component";
 
 @NgModule({
   declarations: [
@@ -137,6 +146,7 @@ import { UserEditFormComponent } from './user-edit-form/user-edit-form.component
     UsersFavoritesEventsComponent,
     UsersSubscribedEventsComponent,
     UserEditFormComponent,
+    UsersCreatedEventsComponent,
   ],
   imports: [
     RouterModule,
@@ -146,11 +156,6 @@ import { UserEditFormComponent } from './user-edit-form/user-edit-form.component
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
     FlexLayoutModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
@@ -161,6 +166,20 @@ import { UserEditFormComponent } from './user-edit-form/user-edit-form.component
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
+    FormsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatInputModule,
+    MatCardModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatDialogModule,
   ],
   providers: [
     DataService,
