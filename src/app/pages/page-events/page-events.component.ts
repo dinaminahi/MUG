@@ -49,12 +49,12 @@ export class PageEventsComponent implements OnInit {
     this._dataService.getEvents().subscribe((res) => {
       this.events = res;
     });
-    this._dataService.getCategories().subscribe(
-      (res) =>
-        (this.categories = res.map((category) => {
-          return { value: category, label: category };
-        }))
-    );
+    // this._dataService.getCategories().subscribe(
+    //   (res) =>
+    //     (this.categories = res.map((category) => {
+    //       return { value: category, label: category };
+    //     }))
+    // );
   }
 
   ngOnInit(): void {}

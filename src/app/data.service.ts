@@ -71,7 +71,7 @@ export class DataService {
         data: { categories: GameCategory[] };
         message: string;
       }>("/api/categories")
-      .pipe(map((response) => (this.categories = response.data.categories)));
+      .pipe(map((response) => (this.categories = response.data.category)));
   }
 
   public getGames(): Observable<Game[]> {
@@ -82,8 +82,12 @@ export class DataService {
 
   public getFavouriteGameNames(id: string): Observable<string[]> {
     return this._http
-      .get<{favouriteGameNames: string[]}>(`/api/favorited-game-names/`)
-      .pipe(map((response) => (this.favoritegameNames = response.favouriteGameNames)));
+      .get<{ favouriteGameNames: string[] }>(`/api/favorited-game-names/`)
+      .pipe(
+        map(
+          (response) => (this.favoritegameNames = response.favouriteGameNames)
+        )
+      );
   }
 
   public addEvent(newEvent) {
@@ -93,9 +97,11 @@ export class DataService {
   }
 
   public editUser(newUser, id: string) {
-    return this._http.post(`/api/edit-user/${id}`, newUser).subscribe((data) => {
-      console.log(data);
-    });
+    return this._http
+      .post(`/api/edit-user/${id}`, newUser)
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 
   public getGameById(id: String): Observable<Game> {
