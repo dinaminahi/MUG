@@ -40,7 +40,6 @@ export class GameDetailInfoComponent implements OnInit {
       ...this.game,
       ...{
         photoUrl: this.gameFromJson.photoUrl, // an Array
-        category: this.gameFromJson.categories, // an Array
       },
     };
   }
