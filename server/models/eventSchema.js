@@ -1,33 +1,34 @@
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema({
-    game: String,
-    eventName: String,
-    description: String,
-    location: {
-      address: String,
-      geo: {
-        longitude: Number,
-        latitude: Number
-      }
+  game: String,
+  eventName: String,
+  description: String,
+  location: {
+    address: String,
+    geo: {
+      longitude: Number,
+      latitude: Number,
     },
-    dateTime: String,
-    duration: String,
-    players: {
-      age: {
-        min: Number,
-        max: Number
-      },
-      count: {
-        min: Number,
-        max: Number,
-        current: Number
-      },
-      experienceNeeded: String
+  },
+  dateTime: String,
+  duration: String,
+  players: {
+    age: {
+      min: Number,
+      max: Number,
     },
-    organizer: mongoose.ObjectId,
-    canceled: Boolean,
-    commentsId: [mongoose.ObjectId]
-  });
-  
-  module.exports = mongoose.model('Event', eventSchema);
+    count: {
+      min: Number,
+      max: Number,
+      current: Number,
+    },
+    experienceNeeded: String,
+    joined: [mongoose.ObjectId],
+  },
+  organizer: mongoose.ObjectId,
+  canceled: Boolean,
+  commentsId: [mongoose.ObjectId],
+});
+
+module.exports = mongoose.model("Event", eventSchema);

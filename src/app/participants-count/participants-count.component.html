@@ -11,4 +11,16 @@
       *ngFor="let item of [].constructor(count.current)"
     ></i>
   </div>
+  <div class="users">
+    <button
+      *ngFor="let user of joined"
+      title="{{ user?.personal.firstName || user?.personal.name }}"
+      (click)="onSelect(user)"
+      [ngStyle]="
+        user?.personal.photoUrl.length && {
+          'background-image': 'url(' + user?.personal.photoUrl + ')'
+        }
+      "
+    ></button>
+  </div>
 </div>
