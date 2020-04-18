@@ -6,7 +6,9 @@
     [fitBounds]="true"
   >
     <agm-marker
-      *ngFor="let event of events | eventsFilter: selectedCategories"
+      *ngFor="
+        let event of events | eventsFilter: selectedCategories:selectedDateTimes
+      "
       [latitude]="event.location.geo.latitude"
       [longitude]="event.location.geo.longitude"
       (markerClick)="highlightItem(event)"
@@ -22,19 +24,24 @@
 </div>
 
 <div class="container">
-  <div class="filters mb-5">
-    <div class="row">
+  <div class="filters-wrapp">
+    <div class="row align-items-center">
       <div class="col">
-        <div>
-          <div class="filters">
-            <app-filter-category
-              [categories]="categoriesCurrent"
-              (toggle)="onCategoriesChange($event)"
-            ></app-filter-category>
-          </div>
+        <div class="filters-category">
+          <app-filter-category
+            [categories]="categoriesCurrent"
+            (toggle)="onCategoriesChange($event)"
+          ></app-filter-category>
+        </div>
+        <div class="filters-date">
+          <app-filter-date
+            [datesFormatted]="eventDateTimes"
+            (toggle)="onDateTimeChange($event)"
+          ></app-filter-date>
         </div>
         <!-- <h2 class="text-center mb-0">Some filters</h2> -->
       </div>
+
       <div class="col text-center">
         <button
           class="create-event-btn"
@@ -55,10 +62,13 @@
       </span>
     </h2>
 
-    <div class="row">
+    <div class="eventsList row">
       <div
         class="col-xl-3 col-lg-4 col-sm-6"
-        *ngFor="let event of events | eventsFilter: selectedCategories"
+        *ngFor="
+          let event of events
+            | eventsFilter: selectedCategories:selectedDateTimes
+        "
       >
         <app-event-item
           [event]="event"

@@ -30,12 +30,15 @@ export class PageEventsComponent implements OnInit {
   categoriesCurrent: GameCategory[] = [];
   events: EventItem[];
   selectedEvent: EventItem;
+  selectedDateTimes: Date[] = [];
+  eventDateTimes: string[];
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
     this._dataService.getEvents().subscribe((res) => {
       this.events = res;
       this.categories && this.filterCategories();
+      this.eventDateTimes = this.filterDateTimes();
     });
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
@@ -55,8 +58,33 @@ export class PageEventsComponent implements OnInit {
     );
   }
 
+  filterDateTimes() {
+    // Filter unique dates of all event in current page
+    // Format a date string based on event.dateTime which will not contain a hours/minutes,
+    // so we will have less unique dates if a low of events happen in a same date
+    // save this string to custom event.dateFormated property to mach event after filtering happens by the dateFormated string
+    // so the original event.dateTime could be passed to the filter pipe
+    this.events.forEach((e) => {
+      const date = new Date(e.dateTime);
+      e.dateFormated = `${
+        date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+      }.${
+        date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1
+      }.${date.getFullYear()}`;
+    });
+
+    return [...new Set(this.events.map((e) => e.dateFormated))];
+  }
+
   onCategoriesChange(value) {
     this.selectedCategories = value;
+  }
+  onDateTimeChange(datesCheckedInFilter) {
+    this.selectedDateTimes = this.events
+      .filter((e) => datesCheckedInFilter.includes(e.dateFormated))
+      .map((e) => e.dateTime);
   }
 
   highlightItem(event) {

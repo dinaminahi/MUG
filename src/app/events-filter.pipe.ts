@@ -5,15 +5,29 @@ import { EventItem } from "./event-item/event-item";
   name: "eventsFilter",
 })
 export class EventsFilterPipe implements PipeTransform {
-  transform(events: EventItem[], categories: string[]): EventItem[] {
-    if (!events || !categories.length) {
+  transform(
+    events: EventItem[],
+    categories: string[],
+    dates: Date[]
+  ): EventItem[] {
+    if (!events || !(categories.length || dates.length)) {
       return events;
     }
-    return events.filter(
-      (event) =>
-        event.agame[0].category.filter((category) =>
+
+    return events.filter((event) => {
+      let categoryFilterPass = true;
+      if (categories.length) {
+        categoryFilterPass = event.agame[0].category.filter((category) =>
           categories.includes(category)
-        ).length
-    );
+        ).length;
+      }
+
+      let dateFilterPass = true;
+      if (dates.length) {
+        dateFilterPass = dates.includes(event.dateTime);
+      }
+
+      return categoryFilterPass && dateFilterPass;
+    });
   }
 }

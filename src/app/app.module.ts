@@ -93,6 +93,7 @@ import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-fa
 import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-subscribed-events.component";
 import { UserEditFormComponent } from './user-edit-form/user-edit-form.component';
 import { UsersCreatedEventsComponent } from "./users-created-events/users-created-events.component";
+import { FilterDateComponent } from './filter-date/filter-date.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +148,7 @@ import { UsersCreatedEventsComponent } from "./users-created-events/users-create
     UsersSubscribedEventsComponent,
     UserEditFormComponent,
     UsersCreatedEventsComponent,
+    FilterDateComponent,
   ],
   imports: [
     RouterModule,
