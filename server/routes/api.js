@@ -7,18 +7,18 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
-   cloud_name: 'dcronwamq',
-   api_key: '597153926796645',
-   api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
+  cloud_name: 'dcronwamq',
+  api_key: '597153926796645',
+  api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
 });
 
 const storage = multer.diskStorage({
-  filename: (req, file, cb)=>{
-   cb(null, Date.now() + file.originalname)
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname)
   }
-  });
-  
-  const upload = multer({storage});
+});
+
+const upload = multer({ storage });
 
 const Category = require("./../models/categorySchema");
 const Game = require("./../models/gameSchema");
@@ -429,34 +429,8 @@ router.get("/userinfo/:userId", (req, res) => {
 
 router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
 
-  let file = req.file;
-
- if(file) {
-  cloudinary.uploader.upload(file.path, {width: 150, 
-    height: 150,crop: "fit"}, (err, result) => {
-    User.update({ _id: userId }, { "personal.photoUrl": result.url }, function(err) {
-      console.log('update');
-    });   
-   });
- }
-   
-  
- 
   let userId = req.params.userId;
-
-  // console.log(photoURL);
-
-  function convertToDotNotation(obj, newObj = {}, prefix = "") {
-    for (let key in obj) {
-      if (typeof obj[key] === "object") {
-        convertToDotNotation(obj[key], newObj, prefix + key + ".");
-      } else {
-        newObj[prefix + key] = obj[key];
-      }
-    }
-    return newObj;
-  }
-
+  let file = req.file;
   let params = {
     email: req.body.email,
     personal: {
@@ -476,7 +450,17 @@ router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
     }
   };
 
-  console.log(params);
+  function convertToDotNotation(obj, newObj = {}, prefix = "") {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        convertToDotNotation(obj[key], newObj, prefix + key + ".");
+      } else {
+        newObj[prefix + key] = obj[key];
+      }
+    }
+    return newObj;
+  }
+
   for (let prop in params) if (!params[prop]) delete params[prop];
   for (let prop in params.personal) if (!params.personal[prop]) delete params.personal[prop];
   for (let prop in params.personal.location) if (!params.personal.location[prop]) delete params.personal.location[prop];
@@ -486,9 +470,25 @@ router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
     if (err) {
       sendError(err, res);
     } else {
-      response.data = params;
-      res.json(response);    }
+      console.log('upadted');
+    }
   });
+
+  if (file) {
+    cloudinary.uploader.upload(file.path, {
+      width: 150,
+      height: 150, crop: "fit"
+    }, (err, result) => {
+      User.update({ _id: userId }, { "personal.photoUrl": result.url }, function (err) {
+        console.log('update photo')
+        response.data = result;
+        res.json(response);
+      });
+    });
+  } else {
+    response.data = params;
+        res.json(response);
+  }
 });
 
 // Event.deleteOne({eventName: 'Some game'});

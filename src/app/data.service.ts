@@ -94,10 +94,11 @@ export class DataService {
     });
   }
 
-  public editUser(newUser, id: string) {
-    return this._http.post(`/api/edit-user/${id}`, newUser).subscribe((data) => {
-      console.log(data);
-    });
+  editUser(newUser, id: string) {
+    return this._http.post<any>(`/api/edit-user/${id}`, newUser).pipe(
+      tap((newUser) => console.log(`edited user = ${JSON.stringify(newUser)}`)),
+      catchError(error => {return 'error'})
+      );
   }
 
   public getGameById(id: String): Observable<Game> {

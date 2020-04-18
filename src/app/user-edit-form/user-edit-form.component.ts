@@ -162,8 +162,12 @@ export class UserEditFormComponent implements OnInit {
     formData.append('photo', this.userImageFile);
 
     console.log(this.userImageFile);
-    this._dataService.editUser(formData, this.authService.UserId);
-    this.router.navigate(['/user-profile', this.authService.UserId]);
+    this._dataService.editUser(formData, this.authService.UserId)
+    .subscribe(editedUser => {
+         console.log(editedUser);
+         this.router.navigate(['/user-profile', this.authService.UserId]);
+
+    });
   }
 
   private setCurrentPosition() {
