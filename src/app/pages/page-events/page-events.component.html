@@ -1,52 +1,70 @@
 <div class="map-wrapper">
-  <agm-map [latitude]="geo.latitude" [longitude]="geo.longitude" [zoom]="geo.zoom" [fitBounds]="true">
-    <agm-marker *ngFor="let event of events | eventsFilter: selectedCategories" [latitude]="event.location.geo.latitude"
-      [longitude]="event.location.geo.longitude" (markerClick)="highlightItem(event)"
-      [iconUrl]="event === selectedEvent ? icons.active : icons.default" [agmFitBounds]="true">
+  <agm-map
+    [latitude]="geo.latitude"
+    [longitude]="geo.longitude"
+    [zoom]="geo.zoom"
+    [fitBounds]="true"
+  >
+    <agm-marker
+      *ngFor="let event of events | eventsFilter: selectedCategories"
+      [latitude]="event.location.geo.latitude"
+      [longitude]="event.location.geo.longitude"
+      (markerClick)="highlightItem(event)"
+      [iconUrl]="event === selectedEvent ? icons.active : icons.default"
+      [agmFitBounds]="true"
+    >
       <div><i class="fa fa-truck" aria-hidden="true"></i></div>
       <agm-info-window>
         <app-small-event-item [event]="event"></app-small-event-item>
       </agm-info-window>
-
     </agm-marker>
   </agm-map>
 </div>
 
 <div class="container">
-
   <div class="filters mb-5">
     <div class="row">
       <div class="col">
-        <h2 class="text-center mb-0">Some filters</h2>
+        <div>
+          <div class="filters">
+            <app-filter-category
+              [categories]="categoriesCurrent"
+              (toggle)="onCategoriesChange($event)"
+            ></app-filter-category>
+          </div>
+        </div>
+        <!-- <h2 class="text-center mb-0">Some filters</h2> -->
       </div>
       <div class="col text-center">
-        <button class="create-event-btn" routerLinkActive="active" routerLink="/pageaddevent">Create an event</button>
+        <button
+          class="create-event-btn"
+          routerLinkActive="active"
+          routerLink="/pageaddevent"
+        >
+          Create an event
+        </button>
       </div>
     </div>
-
   </div>
-
-  <!-- <div>
-      <div class="filters">
-        <app-filter-category
-          [options]="categories"
-          (toggle)="onCategoriesChange($event)"
-        ></app-filter-category>
-      </div>
-    </div> -->
-
 
   <div class="event-list">
     <h2 class="panel-heading mb-5 pt-3">
       Upcomming Events
-      <span *ngIf="selectedCategories.length">sorted by: {{ selectedCategories }}
+      <span *ngIf="selectedCategories.length"
+        >sorted by: {{ selectedCategories }}
       </span>
     </h2>
 
     <div class="row">
-      <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let event of events | eventsFilter: selectedCategories">
-        <app-event-item [event]="event" [ngClass]="{ selected: event === selectedEvent }"
-          (click)="highlightItem(event)"></app-event-item>
+      <div
+        class="col-xl-3 col-lg-4 col-sm-6"
+        *ngFor="let event of events | eventsFilter: selectedCategories"
+      >
+        <app-event-item
+          [event]="event"
+          [ngClass]="{ selected: event === selectedEvent }"
+          (click)="highlightItem(event)"
+        ></app-event-item>
       </div>
     </div>
   </div>

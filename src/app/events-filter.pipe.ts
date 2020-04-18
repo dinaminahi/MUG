@@ -2,7 +2,7 @@ import { PipeTransform, Pipe } from "@angular/core";
 import { EventItem } from "./event-item/event-item";
 
 @Pipe({
-  name: "eventsFilter"
+  name: "eventsFilter",
 })
 export class EventsFilterPipe implements PipeTransform {
   transform(events: EventItem[], categories: string[]): EventItem[] {
@@ -10,9 +10,10 @@ export class EventsFilterPipe implements PipeTransform {
       return events;
     }
     return events.filter(
-      event =>
-        event.agame.category.filter(category => categories.includes(category))
-          .length
+      (event) =>
+        event.agame[0].category.filter((category) =>
+          categories.includes(category)
+        ).length
     );
   }
 }

@@ -10,9 +10,14 @@
     Game type
   </button>
 
-  <div class="filter-body-wrapper" mdbCollapse [isCollapsed]="false" #filterList="bs-collapse">
+  <div
+    class="filter-body-wrapper"
+    mdbCollapse
+    [isCollapsed]="false"
+    #filterList="bs-collapse"
+  >
     <div class="filter-body">
-      <div *ngFor="let item of options">
+      <div *ngFor="let item of checkboxes">
         <label
           ><input
             type="checkbox"

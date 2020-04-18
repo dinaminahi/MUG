@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../data.service";
 import { EventItem } from "../../event-item/event-item";
-import { CheckboxItem } from "../../filter-category/checkbox-item";
-
+import { GameCategory } from "../../game-category-icons/game-category";
 @Component({
   selector: "app-page-events",
   templateUrl: "./page-events.component.html",
@@ -27,20 +26,8 @@ export class PageEventsComponent implements OnInit {
       },
     },
   };
-
-  categories: CheckboxItem[] = [];
-  //   { value: "Новачкам", label: "Новачкам" },
-  //   { value: "Швидкі", label: "Швидкі" },
-  //   { value: "Дорожні", label: "Дорожні" },
-  //   { value: "Пригоди", label: "Пригоди" },
-  //   { value: "Для підлітків", label: "Для підлітків" },
-  //   { value: "Гікам", label: "Гікам" },
-  //   { value: "Соло", label: "Соло" },
-  //   { value: "Стратегії", label: "Стратегії" },
-  //   { value: "Логічні", label: "Логічні" },
-  //   { value: "Сімейні", label: "Сімейні" }
-  // ];
-
+  categories: GameCategory[] = [];
+  categoriesCurrent: GameCategory[] = [];
   events: EventItem[];
   selectedEvent: EventItem;
 
@@ -48,16 +35,25 @@ export class PageEventsComponent implements OnInit {
   constructor(private _dataService: DataService) {
     this._dataService.getEvents().subscribe((res) => {
       this.events = res;
+      this.categories && this.filterCategories();
     });
-    // this._dataService.getCategories().subscribe(
-    //   (res) =>
-    //     (this.categories = res.map((category) => {
-    //       return { value: category, label: category };
-    //     }))
-    // );
+    this._dataService.getCategories().subscribe((res) => {
+      this.categories = res;
+      this.events && this.filterCategories();
+    });
   }
 
   ngOnInit(): void {}
+
+  filterCategories() {
+    // Filter out categories which are not exist on any event in current page
+    // So each filtering checkbox will show at least one event
+    this.categoriesCurrent = this.categories.filter((category) =>
+      this.events.some(
+        (event) => event.agame[0].category.indexOf(category.name) !== -1
+      )
+    );
+  }
 
   onCategoriesChange(value) {
     this.selectedCategories = value;

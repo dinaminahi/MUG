@@ -68,10 +68,10 @@ export class DataService {
     return this._http
       .get<{
         status: number;
-        data: { categories: GameCategory[] };
+        data: GameCategory[];
         message: string;
       }>("/api/categories")
-      .pipe(map((response) => (this.categories = response.data.category)));
+      .pipe(map((response) => (this.categories = response.data)));
   }
 
   public getGames(): Observable<Game[]> {

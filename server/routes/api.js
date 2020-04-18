@@ -2,23 +2,23 @@ const express = require("express");
 const router = express.Router();
 const app = express();
 const mongoose = require("mongoose");
-const fileupload = require('express-fileupload');
-const multer = require('multer');
-const cloudinary = require('cloudinary').v2;
+const fileupload = require("express-fileupload");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-   cloud_name: 'dcronwamq',
-   api_key: '597153926796645',
-   api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
+  cloud_name: "dcronwamq",
+  api_key: "597153926796645",
+  api_secret: "gAET1_v4TT3W4eNwVBGqE78_NzU",
 });
 
 const storage = multer.diskStorage({
-  filename: (req, file, cb)=>{
-   cb(null, Date.now() + file.originalname)
-  }
-  });
-  
-  const upload = multer({storage});
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+
+const upload = multer({ storage });
 
 const Category = require("./../models/categorySchema");
 const Game = require("./../models/gameSchema");
@@ -28,9 +28,11 @@ const Comment = require("./../models/commentSchema");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileupload({
-  useTempFiles: true
-}));
+app.use(
+  fileupload({
+    useTempFiles: true,
+  })
+);
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 mongoose.connect(
@@ -51,7 +53,6 @@ let response = {
 };
 
 // // Get events
-
 
 router.get("/events_extended/:eventId", (req, res) => {
   let eventId = req.params.eventId;
@@ -148,21 +149,7 @@ router.get("/comments/:eventId", (req, res) => {
 });
 
 router.get("/categories", (req, res) => {
-  Game.aggregate([
-    { $group: { _id: null, category: { $addToSet: "$category" } } },
-    {
-      $addFields: {
-        category: {
-          $reduce: {
-            input: "$category",
-            initialValue: [],
-            in: { $setUnion: ["$$value", "$$this"] },
-          },
-        },
-      },
-    },
-    { $project: { _id: 0, category: "$category" } },
-  ]).exec((err, categories) => {
+  Category.find({}, (err, categories) => {
     if (err) {
       sendError(err, res);
     } else {
@@ -297,14 +284,14 @@ router.post("/addcomment", (req, res) => {
       text: req.body.text,
       date: req.body.date,
       userId: mongoose.Types.ObjectId(req.body.userId),
-      eventId: mongoose.Types.ObjectId(req.body.eventId)
+      eventId: mongoose.Types.ObjectId(req.body.eventId),
     });
 
     comment.save((err) => {
       if (err) {
         console.log(err);
       } else {
-        console.log('Comment was inserted!');
+        console.log("Comment was inserted!");
       }
     });
   }
@@ -447,21 +434,25 @@ router.get("/userinfo/:userId", (req, res) => {
   });
 });
 
-router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
-
+router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
   let file = req.file;
 
- if(file) {
-  cloudinary.uploader.upload(file.path, {width: 150, 
-    height: 150,crop: "fit"}, (err, result) => {
-    User.update({ _id: userId }, { "personal.photoUrl": result.url }, function(err) {
-      console.log('update');
-    });   
-   });
- }
-   
-  
- 
+  if (file) {
+    cloudinary.uploader.upload(
+      file.path,
+      { width: 150, height: 150, crop: "fit" },
+      (err, result) => {
+        User.update(
+          { _id: userId },
+          { "personal.photoUrl": result.url },
+          function (err) {
+            console.log("update");
+          }
+        );
+      }
+    );
+  }
+
   let userId = req.params.userId;
 
   // console.log(photoURL);
@@ -489,25 +480,30 @@ router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
         geo: {
           longitude: req.body.longitude,
           latitude: req.body.latitude,
-        }
+        },
       },
       dateOfBirth: req.body.dateOfBirth,
       description: req.body.description,
-    }
+    },
   };
 
   console.log(params);
   for (let prop in params) if (!params[prop]) delete params[prop];
-  for (let prop in params.personal) if (!params.personal[prop]) delete params.personal[prop];
-  for (let prop in params.personal.location) if (!params.personal.location[prop]) delete params.personal.location[prop];
-  for (let prop in params.personal.location.geo) if (!params.personal.location.geo[prop]) delete params.personal.location.geo[prop];
+  for (let prop in params.personal)
+    if (!params.personal[prop]) delete params.personal[prop];
+  for (let prop in params.personal.location)
+    if (!params.personal.location[prop]) delete params.personal.location[prop];
+  for (let prop in params.personal.location.geo)
+    if (!params.personal.location.geo[prop])
+      delete params.personal.location.geo[prop];
 
   User.update({ _id: userId }, convertToDotNotation(params), function (err) {
     if (err) {
       sendError(err, res);
     } else {
       response.data = params;
-      res.json(response);    }
+      res.json(response);
+    }
   });
 });
 
