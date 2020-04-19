@@ -168,8 +168,7 @@ router.get("/games", (req, res) => {
         foreignField: "name",
         as: "categories",
       },
-    },
-    { $unwind: "$category" },
+    }
   ]).exec((err, games) => {
     if (err) {
       sendError(err, res);

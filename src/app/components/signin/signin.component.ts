@@ -30,8 +30,12 @@ export class SigninComponent implements OnInit {
       name: [""],
       email: [""],
       password: [""],
+      repassword:[""]
     });
   }
+
+  onClickCheck(): void {}
+
   onNoClick(): void {
     this.router.navigate(["/home"]);
 
@@ -41,6 +45,7 @@ export class SigninComponent implements OnInit {
 
   loginUser() {
     this.authService.signIn(this.signinForm.value);
+    this.router.navigate(["events"]);
   }
 
   registerUser() {
@@ -48,6 +53,7 @@ export class SigninComponent implements OnInit {
       if (res.result) {
         console.log(res);
         this.signupForm.reset();
+        this.router.navigate(["user-profile/" + res.msg._id]);
         // this.router.navigate(["sign-in"]);
       }
     });

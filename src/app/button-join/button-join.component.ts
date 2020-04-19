@@ -27,18 +27,22 @@ export class ButtonJoinComponent {
     public authService: AuthService,
     public dialog: MatDialog
   ) {
-    let id = this.authService.UserId;
-    this.authService.getUserProfile(id).subscribe((res) => {
-      this.user = res.msg;
-      if (!this.user) {
-        return false;
-      }
-      if (this.eventId) {
-        this.isSubscribed = !!(
-          this.user.events.subscribed.indexOf(this.eventId) > -1
-        );
-      }
-    });
+
+    if(this.authService.isLoggedIn){
+      let id = this.authService.UserId;
+      this.authService.getUserProfile(id).subscribe((res) => {
+        this.user = res.msg;
+        if (!this.user) {
+          return false;
+        }
+        if (this.eventId) {
+          this.isSubscribed = !!(
+            this.user.events.subscribed.indexOf(this.eventId) > -1
+          );
+        }
+      });
+    }
+    
   }
 
   ngOnInit(): void {}

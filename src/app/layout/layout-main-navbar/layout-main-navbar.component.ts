@@ -49,6 +49,10 @@ export class LayoutMainNavbarComponent implements OnInit {
     // this.dialog.open(SigninComponent);
   }
 
+  sigupUser() {
+    // this.router.navigate(["user-profile/" + this.signUp(res.msg._id)]);
+  }
+
   logout() {
     this.authService.doLogout();
     this.router.navigate(["/home"]);
