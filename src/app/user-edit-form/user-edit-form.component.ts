@@ -29,6 +29,7 @@ export class UserEditFormComponent implements OnInit {
   public searchElementRef: ElementRef;
 
   userImageFile;
+  loading: boolean = false;
 
   currentUser: Object = {};
   expectedUser: UserItem;
@@ -56,7 +57,6 @@ export class UserEditFormComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private authService: AuthService,
-    private actRoute: ActivatedRoute,
     private router: Router,
     private _dataService: DataService
   ) {}
@@ -66,11 +66,7 @@ export class UserEditFormComponent implements OnInit {
     let id = this.authService.UserId;
 
     this.authService.getUserProfile(id).subscribe((res) => {
-      this.currentUser = res.msg;
-    });
-
-    this._dataService.getUserById(id).subscribe(res => {
-      this.expectedUser = res[0];
+      this.expectedUser = res.msg;
     });
 
     this.personalInfoForm = this.fb.group({
@@ -162,8 +158,13 @@ export class UserEditFormComponent implements OnInit {
     formData.append('photo', this.userImageFile);
 
     console.log(this.userImageFile);
-    this._dataService.editUser(formData, this.authService.UserId);
-    this.router.navigate(['/user-profile', this.authService.UserId]);
+    this.loading = true;
+    this._dataService.editUser(formData, this.authService.UserId)
+    .subscribe(editedUser => {
+         console.log(editedUser);
+         this.loading = false;
+         this.router.navigate(['/user-profile', this.authService.UserId]);
+    });
   }
 
   private setCurrentPosition() {

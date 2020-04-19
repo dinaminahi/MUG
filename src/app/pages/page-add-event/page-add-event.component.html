@@ -1,7 +1,7 @@
-<div class="container ">
-
-
-
+<div *ngIf="!this.authService.isLoggedIn" class="notLoginMsg">
+  <h1>You must log in first!</h1>
+</div>
+<div class="container"  *ngIf="this.authService.isLoggedIn">
   <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 

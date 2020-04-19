@@ -2,7 +2,7 @@
   <i class="far fa-edit edit-btn fa-lg" (click)="goEdit()"></i>
 
   <div class="photo py-5 text-center">
-    <img src="{{expectedUser?.personal?.photoUrl}}" alt="User photo">
+    <img [src]="expectedUser?.personal?.photoUrl" alt="User photo">
     <h2 class="name my-1">{{expectedUser?.personal?.firstName ? expectedUser?.personal?.firstName : 'First name'}}
       {{expectedUser?.personal?.lastName ? expectedUser?.personal?.lastName : 'Last Name'}}</h2>
     <p class="username">{{expectedUser?.personal?.name}}</p>
