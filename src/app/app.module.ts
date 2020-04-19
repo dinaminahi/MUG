@@ -94,6 +94,8 @@ import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-
 import { UserEditFormComponent } from './user-edit-form/user-edit-form.component';
 import { UsersCreatedEventsComponent } from "./users-created-events/users-created-events.component";
 import { SpinnerComponent } from './spinner/spinner.component';
+import { FilterDateComponent } from './filter-date/filter-date.component';
+import { FilterGameNameComponent } from './filter-game-name/filter-game-name.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +151,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     UserEditFormComponent,
     UsersCreatedEventsComponent,
     SpinnerComponent,
+    FilterDateComponent,
+    FilterGameNameComponent,
   ],
   imports: [
     RouterModule,

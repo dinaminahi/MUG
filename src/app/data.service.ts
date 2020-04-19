@@ -64,15 +64,15 @@ export class DataService {
     });
   }
 
-  // public getCategories(): Observable<GameCategory[]> {
-  //   return this._http
-  //     .get<{
-  //       status: number;
-  //       data: { categories: GameCategory[] };
-  //       message: string;
-  //     }>("/api/categories")
-  //     .pipe(map((response) => (this.categories = response.data.categories)));
-  // }
+  public getCategories(): Observable<GameCategory[]> {
+    return this._http
+      .get<{
+        status: number;
+        data: GameCategory[];
+        message: string;
+      }>("/api/categories")
+      .pipe(map((response) => (this.categories = response.data)));
+  }
 
   public getGames(): Observable<Game[]> {
     return this._http

@@ -29,6 +29,7 @@ export class EventItem {
     };
   };
   dateTime: Date;
+  dateFormated: string;
   duration: string;
   players: {
     age: { min: number; max: number };
