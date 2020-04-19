@@ -48,6 +48,7 @@ export class AddCommentBoxComponent implements OnInit {
       console.log(res);
       this.loading = false;
       this._dataService.comments.push(this.commentForm.value);
+      this.commentForm.controls['text'].reset();
     });
   } else {
        this.openDialog();
