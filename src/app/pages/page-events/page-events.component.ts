@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../data.service";
 import { EventItem } from "../../event-item/event-item";
 import { GameCategory } from "../../game-category-icons/game-category";
+
 @Component({
   selector: "app-page-events",
   templateUrl: "./page-events.component.html",
@@ -31,7 +32,9 @@ export class PageEventsComponent implements OnInit {
   events: EventItem[];
   selectedEvent: EventItem;
   selectedDateTimes: Date[] = [];
+  selectedGameNames: string[] = [];
   eventDateTimes: string[];
+  gameName: string[];
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
@@ -39,6 +42,7 @@ export class PageEventsComponent implements OnInit {
       this.events = res;
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
+      this.gameName = this.filterGameName();
     });
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
@@ -78,6 +82,10 @@ export class PageEventsComponent implements OnInit {
     return [...new Set(this.events.map((e) => e.dateFormated))];
   }
 
+  filterGameName() {
+    return [...new Set(this.events.map((event) => event.agame[0].name))];
+  }
+
   onCategoriesChange(value) {
     this.selectedCategories = value;
   }
@@ -85,6 +93,9 @@ export class PageEventsComponent implements OnInit {
     this.selectedDateTimes = this.events
       .filter((e) => datesCheckedInFilter.includes(e.dateFormated))
       .map((e) => e.dateTime);
+  }
+  onGameNameChange(names) {
+    this.selectedGameNames = names;
   }
 
   highlightItem(event) {

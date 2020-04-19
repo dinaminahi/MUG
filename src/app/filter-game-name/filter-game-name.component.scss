@@ -1,0 +1,25 @@
+.filter-button {
+  background-color: transparent;
+  border: 3px solid #f2efea;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  color: #f2efea;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 40px;
+  text-decoration: none;
+  margin: 25px auto 0;
+  outline: none;
+}
+
+.filter-body {
+  padding: 10px;
+  z-index: 10;
+  background-color: #f77f00;
+  color: #f2efea;
+}
+.filter-body-wrapper {
+  border: 1px solid #e0e0e0;
+}

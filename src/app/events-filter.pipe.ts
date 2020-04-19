@@ -8,9 +8,10 @@ export class EventsFilterPipe implements PipeTransform {
   transform(
     events: EventItem[],
     categories: string[],
-    dates: Date[]
+    dates: Date[],
+    gameNames: string[]
   ): EventItem[] {
-    if (!events || !(categories.length || dates.length)) {
+    if (!events || !(categories.length || dates.length || gameNames.length)) {
       return events;
     }
 
@@ -27,7 +28,12 @@ export class EventsFilterPipe implements PipeTransform {
         dateFilterPass = dates.includes(event.dateTime);
       }
 
-      return categoryFilterPass && dateFilterPass;
+      let gameNameFilterPass = true;
+      if (gameNames.length) {
+        gameNameFilterPass = gameNames.includes(event.agame[0].name);
+      }
+
+      return categoryFilterPass && dateFilterPass && gameNameFilterPass;
     });
   }
 }

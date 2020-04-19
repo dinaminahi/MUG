@@ -94,6 +94,7 @@ import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-
 import { UserEditFormComponent } from './user-edit-form/user-edit-form.component';
 import { UsersCreatedEventsComponent } from "./users-created-events/users-created-events.component";
 import { FilterDateComponent } from './filter-date/filter-date.component';
+import { FilterGameNameComponent } from './filter-game-name/filter-game-name.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { FilterDateComponent } from './filter-date/filter-date.component';
     UserEditFormComponent,
     UsersCreatedEventsComponent,
     FilterDateComponent,
+    FilterGameNameComponent,
   ],
   imports: [
     RouterModule,
