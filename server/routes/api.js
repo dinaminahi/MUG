@@ -173,7 +173,17 @@ router.get("/categories", (req, res) => {
 });
 
 router.get("/games", (req, res) => {
-  Game.find({}, function (err, games) {
+  Game.aggregate([
+    {
+      $lookup: {
+        from: "categories",
+        localField: "category",
+        foreignField: "name",
+        as: "categories",
+      },
+    },
+    { $unwind: "$category" },
+  ]).exec((err, games) => {
     if (err) {
       sendError(err, res);
     } else {
@@ -185,11 +195,21 @@ router.get("/games", (req, res) => {
 
 router.get("/games/:gameId", (req, res) => {
   let gameId = req.params.gameId;
-  Game.find({ _id: gameId }, (err, event) => {
+  Game.aggregate([
+    { $match: { _id: mongoose.Types.ObjectId(gameId) } },
+    {
+      $lookup: {
+        from: "categories",
+        localField: "category",
+        foreignField: "name",
+        as: "categories",
+      },
+    },
+  ]).exec((err, game) => {
     if (err) {
       sendError(err, res);
     } else {
-      response.data = event;
+      response.data = game;
       res.json(response);
     }
   });
