@@ -30,6 +30,7 @@ export class SigninComponent implements OnInit {
       name: [""],
       email: [""],
       password: [""],
+      repassword:[""]
     });
   }
   onNoClick(): void {
