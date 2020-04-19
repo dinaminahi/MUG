@@ -44,6 +44,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatMenuModule } from "@angular/material/menu";
+
 //
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from "./carousel/carousel.component";
@@ -91,11 +93,12 @@ import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-ma
 import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favorites-games.component";
 import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-favorites-events.component";
 import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-subscribed-events.component";
-import { UserEditFormComponent } from './user-edit-form/user-edit-form.component';
+import { UserEditFormComponent } from "./user-edit-form/user-edit-form.component";
 import { UsersCreatedEventsComponent } from "./users-created-events/users-created-events.component";
-import { SpinnerComponent } from './spinner/spinner.component';
-import { FilterDateComponent } from './filter-date/filter-date.component';
-import { FilterGameNameComponent } from './filter-game-name/filter-game-name.component';
+import { SpinnerComponent } from "./spinner/spinner.component";
+import { FilterDateComponent } from "./filter-date/filter-date.component";
+import { FilterGameNameComponent } from "./filter-game-name/filter-game-name.component";
+import { LayoutNavComponent } from "./layout/layout-nav/layout-nav.component";
 
 @NgModule({
   declarations: [
@@ -153,6 +156,7 @@ import { FilterGameNameComponent } from './filter-game-name/filter-game-name.com
     SpinnerComponent,
     FilterDateComponent,
     FilterGameNameComponent,
+    LayoutNavComponent,
   ],
   imports: [
     RouterModule,
@@ -186,6 +190,7 @@ import { FilterGameNameComponent } from './filter-game-name/filter-game-name.com
     MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
+    MatMenuModule,
   ],
   providers: [
     DataService,
