@@ -1,0 +1,69 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div class="container my-5"  *ngIf="!loading">
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+        <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
+
+            <p class="h4 mb-4">Personal information</p>
+            <div class="form-group">
+                <div class="userPhoto mb-3">
+                    <img src="{{expectedUser?.personal?.photoUrl}}" alt="Your photo">
+                </div>
+                <input type="file" name="image" width="100px"  formControlName="photo" (change)="selectFile($event)">
+
+            </div>
+            <div formGroupName="personal">
+               
+                <div class="form-group">
+                    <label for="name">Username*</label>
+                    <input type="text" id="name" class="form-control" formControlName="name"
+                        placeholder="{{expectedUser?.personal?.name}}">
+                    <!-- <p [class.d-none]="username.valid || username.untouched" class="text-danger"> Username is required
+                    </p> -->
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First name</label>
+                    <input type="text" id="firstName" class="form-control" formControlName="firstName"
+                         placeholder="{{expectedUser?.personal?.firstName}}">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last name</label>
+                    <input type="text" id="lastName" class="form-control" formControlName="lastName"
+                    placeholder="{{expectedUser?.personal?.lastName}}">
+                </div>
+                <div class="form-group">
+                    <label for="dateOfBirth">Your age</label>
+                    <input type="number" id="dateOfBirth" class="form-control" formControlName="dateOfBirth"
+                         min="3" >
+                </div>
+                <div class="form-group">
+                    <label>Few words about yourself</label>
+                    <textarea formControlName="description" rows="3" class="form-control" placeholder="{{expectedUser?.personal?.description}}"></textarea>
+                </div>
+                <p class="h4 mb-4 mt-5">Contact information</p>
+                <div class="form-group">
+                    <label for="phone">Phone number</label>
+                    <input type="text" id="phone" class="form-control" formControlName="phone"
+                    placeholder="{{expectedUser?.personal?.phone}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="text" id="email" class="form-control" formControlName="email"
+                        [class.is-invalid]="email.invalid && email.touched" placeholder="{{expectedUser?.email}}">
+                    <p [class.d-none]="email.valid || email.untouched" class="text-danger">Email is
+                        required</p>
+                </div>
+                <div class="form-group" formGroupName="location">
+                    <label>Location:</label>
+                    <input type="text" formControlName="address" #search [formControl]="searchControl"
+                        autocomplete="off" autocapitalize="off" spellcheck="false" class="form-control"
+                        placeholder="{{ personalInfoForm.value.personal.location.address }}"
+                        placeholder="{{expectedUser?.personal?.location?.address}}">
+                </div>
+            </div>
+                <button type="submit" class="btn btn-info px-5 my-4 mr-4"
+                [disabled]="!personalInfoForm.valid">Save</button>
+            <button type="button" (click)="cancel()" class="btn btn-danger my-4">Cancel</button>
+        </form>
+    </section>
+</div>

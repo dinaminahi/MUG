@@ -3,19 +3,16 @@ import { map, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
 import { Game } from "./game/game";
-import { Observable } from "rxjs";
+import { Observable, from } from "rxjs";
 import { Comment } from "./comment-item/comment";
 import { catchError, retry } from "rxjs/operators";
 import { User } from "./pages/page-users/user";
 import { UserItem } from "./components/user-profile/user";
-
-
+import { GameCategory } from "./game-category-icons/game-category";
 
 @Injectable({ providedIn: "root" })
-
 export class DataService {
-
-  categories: string[];
+  categories: GameCategory[];
   events: EventItem[];
   games: Game[];
   event: EventItem;
@@ -25,6 +22,7 @@ export class DataService {
   currentUser: UserItem;
   favoritedEvents: string[];
   favoritedGames: string[];
+  favoritegameNames: string[];
   subscribedEvents: string[];
   constructor(private _http: HttpClient) {}
 
@@ -43,7 +41,6 @@ export class DataService {
       )
       .pipe(map((response) => (this.currentUser = response.data)));
   }
-
 
   public getEvents(): Observable<EventItem[]> {
     return this._http
@@ -67,12 +64,14 @@ export class DataService {
     });
   }
 
-  public getCategories(): Observable<string[]> {
+  public getCategories(): Observable<GameCategory[]> {
     return this._http
-      .get<{ status: number; data: { category: string[] }; message: string }>(
-        "/api/categories"
-      )
-      .pipe(map((response) => (this.categories = response.data[0].category)));
+      .get<{
+        status: number;
+        data: GameCategory[];
+        message: string;
+      }>("/api/categories")
+      .pipe(map((response) => (this.categories = response.data)));
   }
 
   public getGames(): Observable<Game[]> {
@@ -81,10 +80,27 @@ export class DataService {
       .pipe(map((response) => (this.games = response.data)));
   }
 
+  public getFavouriteGameNames(id: string): Observable<string[]> {
+    return this._http
+      .get<{ favouriteGameNames: string[] }>(`/api/favorited-game-names/`)
+      .pipe(
+        map(
+          (response) => (this.favoritegameNames = response.favouriteGameNames)
+        )
+      );
+  }
+
   public addEvent(newEvent) {
     return this._http.post("/api/addevent", newEvent).subscribe((data) => {
       console.log(data);
     });
+  }
+
+  editUser(newUser, id: string) {
+    return this._http.post<any>(`/api/edit-user/${id}`, newUser).pipe(
+      tap((newUser) => console.log(`edited user = ${JSON.stringify(newUser)}`)),
+      catchError(error => {return 'error'})
+      );
   }
 
   public getGameById(id: String): Observable<Game> {

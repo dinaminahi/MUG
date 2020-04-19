@@ -3,6 +3,12 @@ import { User } from "../pages/page-users/user";
 import { DataService } from "../data.service";
 import mongoose from "mongoose";
 import { AuthService } from "../shared/auth.service";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
+import { SigninComponent } from "./../components/signin/signin.component";
 
 @Component({
   selector: "app-button-join",
@@ -18,35 +24,52 @@ export class ButtonJoinComponent {
 
   constructor(
     private _dataService: DataService,
-    public authService: AuthService
+    public authService: AuthService,
+    public dialog: MatDialog
   ) {
-    let id = this.authService.UserId;
-    this.authService.getUserProfile(id).subscribe((res) => {
-      this.user = res.msg;
-      if (!this.user) {
-        return false;
-      }
-      if (this.eventId) {
-        this.isSubscribed = !!(
-          this.user.events.subscribed.indexOf(this.eventId) > -1
-        );
-      }
-    });
+
+    if(this.authService.isLoggedIn){
+      let id = this.authService.UserId;
+      this.authService.getUserProfile(id).subscribe((res) => {
+        this.user = res.msg;
+        if (!this.user) {
+          return false;
+        }
+        if (this.eventId) {
+          this.isSubscribed = !!(
+            this.user.events.subscribed.indexOf(this.eventId) > -1
+          );
+        }
+      });
+    }
+    
   }
 
   ngOnInit(): void {}
 
   toggleSubscribed() {
-    this.isLoading = true;
-
-    if (this.eventId) {
-      this._dataService
-        .joinToEvent(this.eventId, this.user._id, !this.isSubscribed)
-        .subscribe((res) => {
-          this.isLoading = false;
-          this.isSubscribed = !this.isSubscribed;
-          this.subscribedEvents = res;
-        });
+    if(this.authService.isLoggedIn) {
+      this.isLoading = true;
+      if (this.eventId) {
+        this._dataService
+          .joinToEvent(this.eventId, this.user._id, !this.isSubscribed)
+          .subscribe((res) => {
+            this.isLoading = false;
+            this.isSubscribed = !this.isSubscribed;
+            this.subscribedEvents = res;
+          });
+      }
+    } else {
+      this.openDialog();
     }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SigninComponent, {
+      width: "450px",
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+
+    });
   }
 }

@@ -22,23 +22,27 @@ export class AddToFavoritesComponent {
     private _dataService: DataService,
     public authService: AuthService
   ) {
-    let id = this.authService.UserId;
-    this.authService.getUserProfile(id).subscribe((res) => {
-      this.user = res.msg;
-      if (!this.user) {
-        return false;
-      }
-      if (this.gameId) {
-        this.isFavorited = !!(
-          this.user.games.favorited.indexOf(this.gameId) > -1
-        );
-      }
-      if (this.eventId) {
-        this.isFavorited = !!(
-          this.user.events.interested.indexOf(this.eventId) > -1
-        );
-      }
-    });
+
+    if(this.authService.isLoggedIn) {
+      let id = this.authService.UserId;
+      this.authService.getUserProfile(id).subscribe((res) => {
+        this.user = res.msg;
+        if (!this.user) {
+          return false;
+        }
+        if (this.gameId) {
+          this.isFavorited = !!(
+            this.user.games.favorited.indexOf(this.gameId) > -1
+          );
+        }
+        if (this.eventId) {
+          this.isFavorited = !!(
+            this.user.events.interested.indexOf(this.eventId) > -1
+          );
+        }
+      });
+    }
+    
   }
 
   ngOnInit(): void {}

@@ -1,37 +1,46 @@
 @import "./../../../sass/variables";
 
 .container {
-    margin: 100px auto;
+  margin: 100px auto;
 }
 
 .main-heading {
-    font-size: 36px;
+  font-size: 36px;
 }
 
 label {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .num-input {
-    width: 80px;
-    display: inline;
+  width: 80px;
+  display: inline;
 }
 
 .create-btn {
-    background-color: $color-main;
-    border: none;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    text-decoration: none;
-  }
+  background-color: $color-main;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+}
 
-  .create-btn:active {
+.create-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.create-btn:disabled {
+  background-color: $color-main;
+  opacity: 1;
+}
+
+.notLoginMsg {
+  height: 71.5vh;
+  text-align: center;
+  h1 {
     position: relative;
-    top: 1px;
+    top: 50%;
   }
-
-  .create-btn:disabled {
-    background-color: $color-main;
-    opacity: 1;
-  }
+}

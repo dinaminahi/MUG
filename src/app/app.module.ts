@@ -91,7 +91,11 @@ import { LayoutMainNavbarComponent } from "./layout/layout-main-navbar/layout-ma
 import { UsersFavoritesGamesComponent } from "./users-favorites-games/users-favorites-games.component";
 import { UsersFavoritesEventsComponent } from "./users-favorites-events/users-favorites-events.component";
 import { UsersSubscribedEventsComponent } from "./users-subscribed-events/users-subscribed-events.component";
+import { UserEditFormComponent } from './user-edit-form/user-edit-form.component';
 import { UsersCreatedEventsComponent } from "./users-created-events/users-created-events.component";
+import { SpinnerComponent } from './spinner/spinner.component';
+import { FilterDateComponent } from './filter-date/filter-date.component';
+import { FilterGameNameComponent } from './filter-game-name/filter-game-name.component';
 
 @NgModule({
   declarations: [
@@ -144,7 +148,11 @@ import { UsersCreatedEventsComponent } from "./users-created-events/users-create
     UsersFavoritesGamesComponent,
     UsersFavoritesEventsComponent,
     UsersSubscribedEventsComponent,
+    UserEditFormComponent,
     UsersCreatedEventsComponent,
+    SpinnerComponent,
+    FilterDateComponent,
+    FilterGameNameComponent,
   ],
   imports: [
     RouterModule,

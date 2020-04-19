@@ -2,6 +2,23 @@ const express = require("express");
 const router = express.Router();
 const app = express();
 const mongoose = require("mongoose");
+const fileupload = require("express-fileupload");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: 'dcronwamq',
+  api_key: '597153926796645',
+  api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
+});
+
+const storage = multer.diskStorage({
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname)
+  }
+});
+
+const upload = multer({ storage });
 
 const Category = require("./../models/categorySchema");
 const Game = require("./../models/gameSchema");
@@ -11,59 +28,16 @@ const Comment = require("./../models/commentSchema");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  fileupload({
+    useTempFiles: true,
+  })
+);
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 mongoose.connect(
   "mongodb+srv://diana-admin:dianadiana@cluster0-v29yw.mongodb.net/MUG"
 );
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// const comment = new Comment({
-//    text: 'Do I need to have money with me?',
-//    date: new Date().toLocaleString(),
-//    userId: mongoose.Types.ObjectId("5e8e4093a918542dd08423be"),
-//    eventId: mongoose.Types.ObjectId("5e8e369a05c5341fa43a8de2")
-// });
-
-// comment.save();
-
-// Error handling
-
-// const game = new Game({
-//   name: 'djcndjscn',
-//   category: [
-//     {
-//       name: 'some',
-//       label: 'some',
-//       iconClass: 'fas'
-//     },
-//     {
-//       name: 'soffme',
-//       label: 'some',
-//       iconClass: 'fas'
-//     },
-//     {
-//       name: 'nfff',
-//       label: 'some',
-//       iconClass: 'fas'
-//     }
-//   ],
-//   description: 'ndknvdknvd',
-//   playersMinAge: 2,
-//   playersCount: {
-//     min: 2,
-//     max: 3
-//   },
-//   playTimeMinutes: {
-//     min: 4,
-//     max: 15
-//   },
-//   instructionUrl: 'nvkdvnd',
-//   photoUrl: ['ndjvnfjvnf']
-// })
-
-// game.save();
 
 const sendError = (err, res) => {
   response.status = 501;
@@ -92,18 +66,6 @@ router.get("/events_extended/:eventId", (req, res) => {
   });
 });
 
-router.get("/userinfo/:userId", (req, res) => {
-  let userId = req.params.userId;
-  User.find({ _id: userId }, (err, user) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = user;
-      res.json(response);
-    }
-  });
-});
-
 router.get("/events_extended", (req, res) => {
   Event.aggregate([
     {
@@ -115,6 +77,17 @@ router.get("/events_extended", (req, res) => {
       },
     },
     { $unwind: "$game" },
+    {
+      $lookup: {
+        from: "users",
+        let: { joined: "$players.joined" },
+        pipeline: [
+          { $match: { $expr: { $in: ["$_id", "$$joined"] } } },
+          { $project: { personal: 1 } },
+        ],
+        as: "players.joined",
+      },
+    },
   ]).exec((err, events) => {
     if (err) {
       sendError(err, res);
@@ -176,21 +149,7 @@ router.get("/comments/:eventId", (req, res) => {
 });
 
 router.get("/categories", (req, res) => {
-  Game.aggregate([
-    { $group: { _id: null, category: { $addToSet: "$category" } } },
-    {
-      $addFields: {
-        category: {
-          $reduce: {
-            input: "$category",
-            initialValue: [],
-            in: { $setUnion: ["$$value", "$$this"] },
-          },
-        },
-      },
-    },
-    { $project: { _id: 0, category: "$category" } },
-  ]).exec((err, categories) => {
+  Category.find({}, (err, categories) => {
     if (err) {
       sendError(err, res);
     } else {
@@ -201,7 +160,16 @@ router.get("/categories", (req, res) => {
 });
 
 router.get("/games", (req, res) => {
-  Game.find({}, function (err, games) {
+  Game.aggregate([
+    {
+      $lookup: {
+        from: "categories",
+        localField: "category",
+        foreignField: "name",
+        as: "categories",
+      },
+    }
+  ]).exec((err, games) => {
     if (err) {
       sendError(err, res);
     } else {
@@ -213,14 +181,46 @@ router.get("/games", (req, res) => {
 
 router.get("/games/:gameId", (req, res) => {
   let gameId = req.params.gameId;
-  Game.find({ _id: gameId }, (err, event) => {
+  Game.aggregate([
+    { $match: { _id: mongoose.Types.ObjectId(gameId) } },
+    {
+      $lookup: {
+        from: "categories",
+        localField: "category",
+        foreignField: "name",
+        as: "categories",
+      },
+    },
+  ]).exec((err, game) => {
     if (err) {
       sendError(err, res);
     } else {
-      response.data = event;
+      response.data = game;
       res.json(response);
     }
   });
+});
+
+router.get("/favourite-game-names/:userId", (req, res) => {
+  let userId = req.params.userId;
+  let favouriteGameNames = [];
+
+  User.findById(userId, (err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      user.games.favorited.forEach((id) => {
+        Game.findById(id, (err, game) => {
+          if (err) {
+            sendError(err, res);
+          } else {
+            favouriteGames.push(game.name);
+          }
+        });
+      });
+    }
+  });
+  res.json(favouriteGameNames);
 });
 
 router.post("/addevent", (req, res) => {
@@ -247,6 +247,7 @@ router.post("/addevent", (req, res) => {
         max: req.body.players.count.max,
         current: req.body.players.count.current,
       },
+      joined: [mongoose.Types.ObjectId(req.body.organizer)],
       experienceNeeded: req.body.players.experience,
     },
     organizer: mongoose.Types.ObjectId(req.body.organizer),
@@ -357,6 +358,41 @@ router.put("/favorite-events", (req, res) => {
 
 router.put("/subscribed-events", (req, res) => {
   const { userId, eventId, toggle } = req.body;
+
+  // Save user's id into event's event.players.joined array and inctement event.players.count.curren
+  // if toggle is 'true', otherwise do opposite
+  Event.find({ _id: eventId }, (err, event) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      const eventPlayers = event[0].players || {};
+      eventPlayers.joined = eventPlayers.joined || [];
+      const joinedPlayersIndex = eventPlayers.joined.indexOf(userId);
+      console.log(eventPlayers);
+      if (toggle) {
+        if (joinedPlayersIndex === -1) {
+          eventPlayers.joined.push(userId);
+          eventPlayers.count.current = eventPlayers.count.current + 1;
+        }
+      } else {
+        if (joinedPlayersIndex > -1) {
+          eventPlayers.joined.splice(joinedPlayersIndex, 1);
+          eventPlayers.count.current = eventPlayers.count.current - 1;
+        }
+      }
+
+      Event.updateOne({ _id: eventId }, { players: eventPlayers }, function (
+        err
+      ) {
+        if (err) {
+          sendError(err, res);
+        }
+      });
+    }
+  });
+
+  // save event's id into user's  events.subscribed event
+  // if toggle is 'true', otherwise do opposite
   User.findById(userId, function (err, user) {
     if (err) {
       sendError(err, res);
@@ -374,7 +410,7 @@ router.put("/subscribed-events", (req, res) => {
         }
       }
 
-      User.update({ _id: userId }, { events: events }, function (err) {
+      User.updateOne({ _id: userId }, { events: events }, function (err) {
         if (err) {
           sendError(err, res);
         } else {
@@ -385,8 +421,87 @@ router.put("/subscribed-events", (req, res) => {
   });
 });
 
-// connection(db => {
-//   db.collection("events").deleteOne({id: 10});
-// })
+router.get("/userinfo/:userId", (req, res) => {
+  let userId = req.params.userId;
+  User.find({ _id: userId }, (err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = user;
+      res.json(response);
+    }
+  });
+});
+
+router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
+
+
+  let userId = req.params.userId;
+  let file = req.file;
+  let params = {
+    email: req.body.email,
+    personal: {
+      name: req.body.name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phone: req.body.phone,
+      location: {
+        address: req.body.address,
+        geo: {
+          longitude: req.body.longitude,
+          latitude: req.body.latitude,
+        },
+      },
+      dateOfBirth: req.body.dateOfBirth,
+      description: req.body.description,
+    },
+  };
+
+  function convertToDotNotation(obj, newObj = {}, prefix = "") {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        convertToDotNotation(obj[key], newObj, prefix + key + ".");
+      } else {
+        newObj[prefix + key] = obj[key];
+      }
+    }
+    return newObj;
+  }
+
+  for (let prop in params) if (!params[prop]) delete params[prop];
+  for (let prop in params.personal)
+    if (!params.personal[prop]) delete params.personal[prop];
+  for (let prop in params.personal.location)
+    if (!params.personal.location[prop]) delete params.personal.location[prop];
+  for (let prop in params.personal.location.geo)
+    if (!params.personal.location.geo[prop])
+      delete params.personal.location.geo[prop];
+
+  User.update({ _id: userId }, convertToDotNotation(params), function (err) {
+    if (err) {
+      sendError(err, res);
+    } else {
+      console.log('upadeted');
+    }
+  });
+
+  if (file) {
+    cloudinary.uploader.upload(file.path, {
+      width: 150,
+      height: 150, crop: "fit"
+    }, (err, result) => {
+      User.update({ _id: userId }, { "personal.photoUrl": result.url }, function (err) {
+        console.log('update photo')
+        response.data = result;
+        res.json(response);
+      });
+    });
+  } else {
+    response.data = params;
+        res.json(response);
+  }
+});
+
+// Event.deleteOne({eventName: 'Some game'});
 
 module.exports = router;

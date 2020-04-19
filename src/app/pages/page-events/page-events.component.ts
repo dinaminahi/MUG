@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../data.service";
 import { EventItem } from "../../event-item/event-item";
-import { CheckboxItem } from "../../filter-category/checkbox-item";
+import { GameCategory } from "../../game-category-icons/game-category";
 
 @Component({
   selector: "app-page-events",
@@ -27,40 +27,75 @@ export class PageEventsComponent implements OnInit {
       },
     },
   };
-
-  categories: CheckboxItem[] = [];
-  //   { value: "Новачкам", label: "Новачкам" },
-  //   { value: "Швидкі", label: "Швидкі" },
-  //   { value: "Дорожні", label: "Дорожні" },
-  //   { value: "Пригоди", label: "Пригоди" },
-  //   { value: "Для підлітків", label: "Для підлітків" },
-  //   { value: "Гікам", label: "Гікам" },
-  //   { value: "Соло", label: "Соло" },
-  //   { value: "Стратегії", label: "Стратегії" },
-  //   { value: "Логічні", label: "Логічні" },
-  //   { value: "Сімейні", label: "Сімейні" }
-  // ];
-
+  categories: GameCategory[] = [];
+  categoriesCurrent: GameCategory[] = [];
   events: EventItem[];
   selectedEvent: EventItem;
+  selectedDateTimes: Date[] = [];
+  selectedGameNames: string[] = [];
+  eventDateTimes: string[];
+  gameName: string[];
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
     this._dataService.getEvents().subscribe((res) => {
       this.events = res;
+      this.categories && this.filterCategories();
+      this.eventDateTimes = this.filterDateTimes();
+      this.gameName = this.filterGameName();
     });
-    this._dataService.getCategories().subscribe(
-      (res) =>
-        (this.categories = res.map((category) => {
-          return { value: category, label: category };
-        }))
-    );
+    this._dataService.getCategories().subscribe((res) => {
+      this.categories = res;
+      this.events && this.filterCategories();
+    });
   }
 
   ngOnInit(): void {}
 
+  filterCategories() {
+    // Filter out categories which are not exist on any event in current page
+    // So each filtering checkbox will show at least one event
+    this.categoriesCurrent = this.categories.filter((category) =>
+      this.events.some(
+        (event) => event.agame[0].category.indexOf(category.name) !== -1
+      )
+    );
+  }
+
+  filterDateTimes() {
+    // Filter unique dates of all event in current page
+    // Format a date string based on event.dateTime which will not contain a hours/minutes,
+    // so we will have less unique dates if a low of events happen in a same date
+    // save this string to custom event.dateFormated property to mach event after filtering happens by the dateFormated string
+    // so the original event.dateTime could be passed to the filter pipe
+    this.events.forEach((e) => {
+      const date = new Date(e.dateTime);
+      e.dateFormated = `${
+        date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+      }.${
+        date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1
+      }.${date.getFullYear()}`;
+    });
+
+    return [...new Set(this.events.map((e) => e.dateFormated))];
+  }
+
+  filterGameName() {
+    return [...new Set(this.events.map((event) => event.agame[0].name))];
+  }
+
   onCategoriesChange(value) {
     this.selectedCategories = value;
+  }
+  onDateTimeChange(datesCheckedInFilter) {
+    this.selectedDateTimes = this.events
+      .filter((e) => datesCheckedInFilter.includes(e.dateFormated))
+      .map((e) => e.dateTime);
+  }
+  onGameNameChange(names) {
+    this.selectedGameNames = names;
   }
 
   highlightItem(event) {
