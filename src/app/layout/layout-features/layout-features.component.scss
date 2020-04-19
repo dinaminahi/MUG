@@ -9,3 +9,47 @@
   z-index: 1;
   height: 730px;
 }
+
+@media screen and (max-width: 768px) {
+  .lead {
+    display: none;
+  }
+
+  // ox:hover {
+  //   display: block;
+  // }
+  // .textanim-container {
+  //   position: relative;
+  //   max-width: 250px;
+  //   min-height: 250px;
+  //   margin: auto;
+  //   border: 1px solid #ccc;
+  //   overflow: hidden;
+  // }
+
+  .textanim-title {
+    padding-top: 10px;
+    transform: translateY(20%);
+    text-align: center;
+    transition: 0.5s;
+  }
+
+  .textanim-container:hover .textanim-title {
+    // top: 10px;
+    transform: translateY(0);
+  }
+
+  .textanim-hidden {
+    position: absolute;
+    top: 400px;
+    opacity: 0.0;
+    transition: 0.8s;
+    text-align: center;
+  }
+
+  .textanim-container:hover .textanim-hidden {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+}

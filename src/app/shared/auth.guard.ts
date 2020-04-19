@@ -33,12 +33,18 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isLoggedIn !== true) {
+
+     // window.alert("Access not allowed!"); //---- change
+     // this.router.navigate(["log-in"]); // ---- change
+
       const dialogRef = this.dialog.open(SigninComponent, {
         width: "450px",
+        height: "650px",
       });
       dialogRef.afterClosed().subscribe((result) => {
 
       });
+
     }
     return true;
   }
