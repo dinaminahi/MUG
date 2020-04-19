@@ -9,6 +9,7 @@ import { GameCategory } from "../../game-category-icons/game-category";
   styleUrls: ["./page-events.component.scss"],
 })
 export class PageEventsComponent implements OnInit {
+  loading = true;
   selectedCategories = [];
   geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };
   icons = {
@@ -43,6 +44,7 @@ export class PageEventsComponent implements OnInit {
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
+      this.loading = false;
     });
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;

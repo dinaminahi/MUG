@@ -9,8 +9,12 @@ import { Game } from "../../game/game";
 })
 export class PageGamesComponent {
   games: Game[];
+  loading: boolean = true;
 
   constructor(private _dataService: DataService) {
-    this._dataService.getGames().subscribe((res) => (this.games = res));
+    this._dataService.getGames().subscribe((res) => {
+      this.games = res;
+      this.loading = false;
+    });
   }
 }

@@ -51,7 +51,7 @@
 
       <li *ngIf="this.authService.isLoggedIn" class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0 pr-3"
+          <img src="{{this.authService.UserPhoto}}" class="rounded-circle z-depth-0 pr-3"
             alt="avatar image" height="40" /> Profile<span class="caret"></span>
         </a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
@@ -71,3 +71,4 @@
 
 </mdb-navbar>
 <!--/.Navbar-->
+

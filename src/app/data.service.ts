@@ -58,10 +58,11 @@ export class DataService {
       .pipe(map((response) => (this.comments = response.data)));
   }
 
-  public addComment(newComment) {
-    return this._http.post("/api/addcomment", newComment).subscribe((data) => {
-      console.log(data);
-    });
+  addComment(newComment) {
+    return this._http.post<any>("/api/addcomment", newComment).pipe(
+      tap((newComment) => console.log(`inserted = ${JSON.stringify(newComment)}`)),
+      catchError(error => {return 'error'})
+      );
   }
 
   public getCategories(): Observable<GameCategory[]> {

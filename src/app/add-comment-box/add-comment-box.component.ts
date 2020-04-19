@@ -2,6 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { DataService } from './../data.service';
 import { AuthService } from './../shared/auth.service';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
+import { SigninComponent } from "./../components/signin/signin.component";
 
 @Component({
   selector: 'app-add-comment-box',
@@ -12,11 +18,11 @@ export class AddCommentBoxComponent implements OnInit {
 
   @Input() eventId: string;
   commentForm: FormGroup;
+  loading: Boolean;
 
-  constructor(private fb: FormBuilder,  private _dataService: DataService, private authService: AuthService) { }
+  constructor(private fb: FormBuilder,  private _dataService: DataService, private authService: AuthService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-
     let userId = this.authService.UserId;
     let name = this.authService.UserName;
     let photo = this.authService.UserPhoto;
@@ -36,7 +42,24 @@ export class AddCommentBoxComponent implements OnInit {
   }
 
   onSubmit() {
-    this._dataService.comments.push(this.commentForm.value);
-    this._dataService.addComment(this.commentForm.value);
+    if (this.authService.isLoggedIn) {
+    this.loading = true;
+    this._dataService.addComment(this.commentForm.value).subscribe( res => {
+      console.log(res);
+      this.loading = false;
+      this._dataService.comments.push(this.commentForm.value);
+    });
+  } else {
+       this.openDialog();
   }
+}
+
+openDialog(): void {
+  const dialogRef = this.dialog.open(SigninComponent, {
+    width: "450px",
+  });
+  dialogRef.afterClosed().subscribe((result) => {
+
+  });
+}
 }
