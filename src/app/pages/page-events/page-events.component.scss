@@ -68,6 +68,8 @@ app-event-item {
   margin-top: -45px;
   margin-bottom: 5px;
   padding: 10px;
+  text-align: center;
+
   .filters-category {
     position: absolute;
     left: 20px;
@@ -76,13 +78,13 @@ app-event-item {
   }
   .filters-date {
     position: absolute;
-    left: 220px;
+    left: 142px;
     top: -45px;
     z-index: 4;
   }
   .filters-game-name {
     position: absolute;
-    left: 380px;
+    left: 247px;
     top: -45px;
     z-index: 4;
   }
