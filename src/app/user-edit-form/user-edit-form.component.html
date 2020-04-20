@@ -9,8 +9,7 @@
                 <div class="userPhoto mb-3">
                     <img src="{{expectedUser?.personal?.photoUrl}}" alt="Your photo">
                 </div>
-                <input type="file" name="image" width="100px"  formControlName="photo" (change)="selectFile($event)">
-
+                <input type="file" name="image" formControlName="photo" (change)="selectFile($event)">
             </div>
             <div formGroupName="personal">
                
