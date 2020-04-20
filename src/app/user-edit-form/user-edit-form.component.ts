@@ -6,7 +6,7 @@ import {
   NgZone
 } from "@angular/core";
 
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { AuthService } from "./../shared/auth.service";
 import { DataService } from "./../data.service";
 

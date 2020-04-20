@@ -3,6 +3,8 @@ import {
   OnInit} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
+import { Router } from "@angular/router";
+
 import { DataService } from "./../data.service";
 import { AuthService } from "./../shared/auth.service";
 
@@ -40,6 +42,7 @@ export class AddGameFormComponent implements OnInit {
     private fb: FormBuilder,
     private _dataService: DataService,
     public authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -71,12 +74,12 @@ export class AddGameFormComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     for (let img of this.gameImages) {
-      formData.append('files', img);
+      formData.append('photos', img);
     }
     formData.append('name', this.myForm.value.name);
     formData.append('description', this.myForm.value.description);
     formData.append('playersMinAge', this.myForm.value.playersMinAge);
-    
+    formData.append('instructionUrl', this.myForm.value.instructionUrl);
     formData.append('playersCountMin', this.myForm.value.playersCount.min);
     formData.append('playersCountMax', this.myForm.value.playersCount.max);
 
@@ -84,12 +87,11 @@ export class AddGameFormComponent implements OnInit {
     formData.append('timeMax', this.myForm.value.playTimeMinutes.max);
 
     this.loading = true;
-    // this._dataService.editUser(formData, this.authService.UserId)
-    // .subscribe(editedUser => {
-    //      console.log(editedUser);
-    //      this.loading = false;
-    //      this.router.navigate(['/user-profile', this.authService.UserId]);
-    // });
-    console.log(formData);
+    this._dataService.addGame(formData)
+    .subscribe(addedGame => {
+         console.log(addedGame);
+         this.loading = false;
+         this.router.navigate(['/games']);
+    });
   }
 }

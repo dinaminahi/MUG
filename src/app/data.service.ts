@@ -104,6 +104,13 @@ export class DataService {
       );
   }
 
+  addGame(newGame) {
+    return this._http.post<any>(`/api/addgame`, newGame).pipe(
+      tap((newGame) => console.log(`added game = ${JSON.stringify(newGame)}`)),
+      catchError(error => {return 'error'})
+      );
+  }
+  
   public getGameById(id: String): Observable<Game> {
     return this._http
       .get<{ status: number; data: Game; message: string }>(`/api/games/${id}`)
