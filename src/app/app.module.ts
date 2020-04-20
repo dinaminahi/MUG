@@ -98,7 +98,6 @@ import { UsersCreatedEventsComponent } from "./users-created-events/users-create
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { FilterDateComponent } from "./filter-date/filter-date.component";
 import { FilterGameNameComponent } from "./filter-game-name/filter-game-name.component";
-import { LayoutNavComponent } from "./layout/layout-nav/layout-nav.component";
 
 @NgModule({
   declarations: [
@@ -156,7 +155,6 @@ import { LayoutNavComponent } from "./layout/layout-nav/layout-nav.component";
     SpinnerComponent,
     FilterDateComponent,
     FilterGameNameComponent,
-    LayoutNavComponent,
   ],
   imports: [
     RouterModule,
