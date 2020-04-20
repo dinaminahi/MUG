@@ -39,21 +39,24 @@ export class PageEventsComponent implements OnInit {
   gameName: string[];
 
   // Create an instance of the DataService through dependency injection
-  constructor(private _dataService: DataService) {
-    this._dataService.getEvents().subscribe((res) => {
-      this.events = res;
+  constructor(private _dataService: DataService) {}
+
+  ngOnInit(): void {
+    this._dataService.eventsShared.subscribe((events) => {
+      this.events = events;
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
-      this.loading = false;
+      if (this.events) {
+        this.loading = false;
+      }
     });
+    this._dataService.getEvents().subscribe();
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
       this.events && this.filterCategories();
     });
   }
-
-  ngOnInit(): void {}
 
   filterCategories() {
     // Filter out categories which are not exist on any event in current page

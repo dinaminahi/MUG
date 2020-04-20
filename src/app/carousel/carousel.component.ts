@@ -38,12 +38,6 @@ export class CarouselComponent implements OnInit, OnChanges {
     } else {
       this.carouselDisplayMode = 3;
     }
-    console.log(
-      this.carouselDisplayMode,
-      window.innerWidth,
-      this.TABLET_BREAKPOINT,
-      this.DESKTOP_BREAKPOINT
-    );
   }
   ngOnChanges() {
     if (this.events) {
