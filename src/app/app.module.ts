@@ -98,6 +98,8 @@ import { UsersCreatedEventsComponent } from "./users-created-events/users-create
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { FilterDateComponent } from "./filter-date/filter-date.component";
 import { FilterGameNameComponent } from "./filter-game-name/filter-game-name.component";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { SearchFilterPipe } from "./search-filter.pipe";
 
 @NgModule({
   declarations: [
@@ -155,6 +157,7 @@ import { FilterGameNameComponent } from "./filter-game-name/filter-game-name.com
     SpinnerComponent,
     FilterDateComponent,
     FilterGameNameComponent,
+    SearchFilterPipe,
   ],
   imports: [
     RouterModule,
@@ -189,6 +192,7 @@ import { FilterGameNameComponent } from "./filter-game-name/filter-game-name.com
     MatIconModule,
     MatDialogModule,
     MatMenuModule,
+    Ng2SearchPipeModule,
   ],
   providers: [
     DataService,

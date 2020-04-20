@@ -9,9 +9,17 @@
     <h2 class="panel-heading">
       Games
     </h2>
+
+    <!-- <div class="md-form">
+      <input type="search" [(ngModel)]="term" placeholder="Search text">
+    </div> -->
+    <div class="md-form">
+      <input type="search" [(ngModel)]="searchText" placeholder="Input Game Name">
+    </div>
+
     <div class="row">
       <!-- <div class="col-lg-4 col-md-6"> -->
-      <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let game of games">
+      <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let game of games | filter: searchText">
         <app-game [game]="game"></app-game>
       </div>
       <!-- </div> -->
