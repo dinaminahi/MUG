@@ -47,6 +47,9 @@ export class PageEventsComponent implements OnInit {
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
+      if (this.events) {
+        this.loading = false;
+      }
     });
     this._dataService.getEvents().subscribe();
     this._dataService.getCategories().subscribe((res) => {
