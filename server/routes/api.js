@@ -288,9 +288,11 @@ router.post("/addcomment", (req, res) => {
 
     comment.save((err) => {
       if (err) {
-        console.log(err);
+         sendError(err, res);
       } else {
         console.log("Comment was inserted!");
+        response.data = res.statusCode;
+        res.json(response);
       }
     });
   }

@@ -31,6 +31,7 @@ export class LayoutMainNavbarComponent implements OnInit {
     private pageScroll: NgxPageScrollModule,
     public dialog: MatDialog
   ) {}
+  
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {

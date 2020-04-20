@@ -62,7 +62,8 @@
     </div>
   </div>
 
-  <div class="event-list">
+  <app-spinner *ngIf="loading"></app-spinner>
+  <div class="event-list" *ngIf="!loading">
     <h2 class="panel-heading mb-5 pt-3">
       Upcomming Events
       <span *ngIf="selectedCategories.length"
