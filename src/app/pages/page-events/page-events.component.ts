@@ -9,6 +9,7 @@ import { GameCategory } from "../../game-category-icons/game-category";
   styleUrls: ["./page-events.component.scss"],
 })
 export class PageEventsComponent implements OnInit {
+  searchText;
   loading = true;
   selectedCategories = [];
   geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };

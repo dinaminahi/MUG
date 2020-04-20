@@ -10,6 +10,7 @@ import { Game } from "../../game/game";
 export class PageGamesComponent {
   games: Game[];
   loading: boolean = true;
+  searchText;
 
   constructor(private _dataService: DataService) {
     this._dataService.getGames().subscribe((res) => {
