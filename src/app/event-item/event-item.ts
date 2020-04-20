@@ -36,5 +36,6 @@ export class EventItem {
     count: { min: number; max: number; current: number };
     invitationList: [number, number, number];
     experienceNeeded: boolean;
+    joined: any[];
   };
 }

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { EventItem } from "./event-item/event-item";
@@ -9,6 +10,7 @@ import { catchError, retry } from "rxjs/operators";
 import { User } from "./pages/page-users/user";
 import { UserItem } from "./components/user-profile/user";
 import { GameCategory } from "./game-category-icons/game-category";
+import { EmitterVisitorContext } from "@angular/compiler";
 
 @Injectable({ providedIn: "root" })
 export class DataService {
@@ -24,6 +26,10 @@ export class DataService {
   favoritedGames: string[];
   favoritegameNames: string[];
   subscribedEvents: string[];
+
+  private eventsSource = new BehaviorSubject<EventItem[]>([]);
+  eventsShared = this.eventsSource.asObservable();
+
   constructor(private _http: HttpClient) {}
 
   public getEventById(id: String): Observable<EventItem> {
@@ -47,7 +53,12 @@ export class DataService {
       .get<{ status: number; data: EventItem[]; message: string }>(
         "/api/events_extended"
       )
-      .pipe(map((response) => (this.events = response.data)));
+      .pipe(
+        map((response) => {
+          this.eventsSource.next(response.data);
+          return response.data;
+        })
+      );
   }
 
   public getComments(id: String): Observable<Comment[]> {
@@ -100,8 +111,10 @@ export class DataService {
   editUser(newUser, id: string) {
     return this._http.post<any>(`/api/edit-user/${id}`, newUser).pipe(
       tap((newUser) => console.log(`edited user = ${JSON.stringify(newUser)}`)),
-      catchError(error => {return 'error'})
-      );
+      catchError((error) => {
+        return "error";
+      })
+    );
   }
 
   public getGameById(id: String): Observable<Game> {
@@ -152,10 +165,16 @@ export class DataService {
     toggle: boolean
   ): Observable<[]> {
     return this._http
-      .put<any>("/api/subscribed-events", { eventId, userId, toggle })
+      .put<any>("/api/join-to-event", { eventId, userId, toggle })
       .pipe(
         map((response) => {
-          this.subscribedEvents = response.data;
+          const currentEvents = this.eventsSource.getValue();
+          const currentEvent = currentEvents.find(
+            (event) => event._id === eventId
+          );
+          currentEvent.players = response.event.players;
+          this.eventsSource.next(currentEvents);
+          this.subscribedEvents = response.user.events.subscribed;
           return response;
         })
       );
