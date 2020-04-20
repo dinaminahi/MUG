@@ -100,6 +100,7 @@ import { FilterDateComponent } from "./filter-date/filter-date.component";
 import { FilterGameNameComponent } from "./filter-game-name/filter-game-name.component";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { SearchFilterPipe } from "./search-filter.pipe";
+import { AddGameFormComponent } from './add-game-form/add-game-form.component';
 
 @NgModule({
   declarations: [
@@ -158,6 +159,7 @@ import { SearchFilterPipe } from "./search-filter.pipe";
     FilterDateComponent,
     FilterGameNameComponent,
     SearchFilterPipe,
+    AddGameFormComponent,
   ],
   imports: [
     RouterModule,
