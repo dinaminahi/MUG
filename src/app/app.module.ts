@@ -45,13 +45,13 @@ import { MatInputModule } from "@angular/material/input";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatMenuModule } from "@angular/material/menu";
-
+import { MatExpansionModule } from "@angular/material/expansion";
 //
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { CarouselComponent } from "./carousel/carousel.component";
 
 import { LayoutContactsComponent } from "./layout/layout-contacts/layout-contacts.component";
-import { LayoutTeamComponent } from "./layout/layout-team/layout-team.component";
+// import { LayoutTeamComponent } from "./layout/layout-team/layout-team.component";
 import { LayoutFeaturesComponent } from "./layout/layout-features/layout-features.component";
 import { LayoutEventsRuletteComponent } from "./layout/layout-events-rulette/layout-events-rulette.component";
 import { HowItWorksComponent } from "./layout/how-it-works/how-it-works.component";
@@ -67,9 +67,9 @@ import { ParticipantsCountComponent } from "./participants-count/participants-co
 import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
 import { NgxPageScrollModule } from "ngx-page-scroll";
 
-import { TeamComponent } from "./about-layout/team/team.component";
-import { AboutUsComponent } from "./about-layout/about-us/about-us.component";
-import { AboutUsHeaderComponent } from "./about-layout/about-us-header/about-us-header.component";
+// import { TeamComponent } from "./about-layout/team/team.component";
+// import { AboutUsComponent } from "./about-layout/about-us/about-us.component";
+// import { AboutUsHeaderComponent } from "./about-layout/about-us-header/about-us-header.component";
 import { PageUserAccountComponent } from "./pages/page-user-account/page-user-account.component";
 import { LayoutPartnersComponent } from "./layout/layout-partners/layout-partners.component";
 import { PageAccountComponent } from "./pages/page-account/page-account.component";
@@ -119,7 +119,7 @@ import { DateFormatPipe } from "./date-format.pipe";
     LayoutFooterComponent,
     CarouselComponent,
     LayoutContactsComponent,
-    LayoutTeamComponent,
+    // LayoutTeamComponent,
     LayoutFeaturesComponent,
     LayoutEventsRuletteComponent,
     HowItWorksComponent,
@@ -134,9 +134,9 @@ import { DateFormatPipe } from "./date-format.pipe";
     AddToFavoritesComponent,
     PageAddEventComponent,
     GameDetailInfoComponent,
-    TeamComponent,
-    AboutUsComponent,
-    AboutUsHeaderComponent,
+    // TeamComponent,
+    // AboutUsComponent,
+    // AboutUsHeaderComponent,
     PageUserAccountComponent,
     LayoutPartnersComponent,
     PageAccountComponent,
@@ -196,6 +196,7 @@ import { DateFormatPipe } from "./date-format.pipe";
     MatIconModule,
     MatDialogModule,
     MatMenuModule,
+    MatExpansionModule,
     Ng2SearchPipeModule,
   ],
   providers: [
