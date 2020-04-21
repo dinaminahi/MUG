@@ -1,4 +1,4 @@
-<div class="container" id="container">
+<div class="container decktop" id="container">
   <div class="form-container sign-up-container">
     <form action="#" [formGroup]="signupForm" (ngSubmit)="registerUser()">
       <h1>Create Account</h1>
@@ -46,7 +46,7 @@
         <h1>Welcome Back!</h1>
         <p>To keep connected with us please login with your personal info</p>
         <button class="ghost" id="signIn">Sign In</button>
-        <button mat-dialog-close (click)="onNoClick()" class="">
+        <button mat-dialog-close (click)="onNoClick()" class="no-thx">
           No, Thanks!
         </button>
       </div>
@@ -54,7 +54,7 @@
         <h1>Hello, Friend!</h1>
         <p>Enter your personal details and start journey with us</p>
         <button class="ghost" id="signUp">Sign Up</button>
-        <button mat-dialog-close (click)="onNoClick()" class="">
+        <button mat-dialog-close (click)="onNoClick()" class="no-thx">
           No, Thanks!
         </button>
       </div>
@@ -63,28 +63,30 @@
 </div>
 
 <!--  -->
-<!-- <div class="login-page">
+<div class="login-page mobile">
   <mat-card class="">
     <mat-card-title style="text-align: center;">SignIn / SignUp</mat-card-title>
     <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
       <mat-tab label="Sign In" [selectedIndex]='1'>
         <mat-card-content>
           <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
-            <mat-form-field>
-              <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-                formControlName="password" />
-              <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field>
-            <mat-checkbox>Remember Me!</mat-checkbox>
+            <div class="social-container">
+              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+            <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
+            <input matInput placeholder="Password" type="password" required minlength="6" name="password"
+              formControlName="password" />
+            <a href="#">Forgot your password?</a>
+
             <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
               Sign In
             </button>
-            <button mat-raised-button class="login-button social-btn s-in">
-              Login with Google
+
+            <button mat-dialog-close (click)="onNoClick()" class="login-button btn btn-outline-danger waves-effect">
+              No, Thanks!
             </button>
           </form>
         </mat-card-content>
@@ -93,34 +95,33 @@
       <mat-tab label="Sign Up">
         <mat-card-content>
           <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
-            <mat-form-field>
-              <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
-              <mat-icon matSuffix>perm_identity</mat-icon>
-            </mat-form-field>
-            <mat-form-field>
-              <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-                formControlName="password" />
-              <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field>
-            <mat-form-field>
+            <div class="social-container">
+              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
+            <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
+            <input matInput placeholder="Password" type="password" required minlength="6" name="password"
+              formControlName="password" />
+            <!-- <mat-form-field>
               <input matInput placeholder="Password" type="password" required minlength="6" name="repassword"
                 formControlName="repassword" />
 
               <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field>
+            </mat-form-field> -->
             <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
               Sign Up
+            </button>
+            <button mat-dialog-close (click)="onNoClick()" class="login-button btn btn-outline-danger waves-effect">
+              No, Thanks!
             </button>
           </form>
         </mat-card-content>
       </mat-tab>
     </mat-tab-group>
-    <button mat-button mat-dialog-close (click)="onNoClick()" class="login-button social-btn">
-      No, Thanks!
-    </button>
+
+
   </mat-card>
-</div> -->
+</div>

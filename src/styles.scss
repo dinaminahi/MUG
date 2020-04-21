@@ -139,3 +139,10 @@ body {
   background-color: #3f729b;
 
 }
+
+@media screen and (max-width: 768px) {
+  #cdk-owrlay-0 {
+    height: auto;
+
+  }
+}
