@@ -2,3 +2,21 @@
   margin-top: -65px;
   z-index: 2;
 }
+
+.main-header {
+  background-image: url("src/img/about-bg-img.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 400px;
+  position: relative;
+  // z-index: -1;
+  background-attachment: fixed;
+}
+
+.img {
+  background-image: url("src/img/about-info-img2.jpg");
+  background-position: center center;
+  background-size: cover;
+  height: 30vh;
+}
