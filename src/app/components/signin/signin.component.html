@@ -1,4 +1,69 @@
-<div class="login-page">
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form action="#" [formGroup]="signupForm" (ngSubmit)="registerUser()">
+      <h1>Create Account</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>or use your email for registration</span>
+      <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
+      <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
+      <input matInput placeholder="Password" type="password" required minlength="6" name="password"
+        formControlName="password" />
+      <!-- <input matInput placeholder="Password" type="password" required minlength="6" name="repassword"
+        formControlName="repassword" /> -->
+      <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
+        Sign Up
+      </button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form action="#" [formGroup]="signinForm" (ngSubmit)="loginUser()">
+      <h1>Sign in</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>or use your account</span>
+
+      <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
+
+
+      <input matInput placeholder="Password" type="password" required minlength="6" name="password"
+        formControlName="password" />
+      <a href="#">Forgot your password?</a>
+      <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
+        Sign In
+      </button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Sign In</button>
+        <button mat-dialog-close (click)="onNoClick()" class="">
+          No, Thanks!
+        </button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp">Sign Up</button>
+        <button mat-dialog-close (click)="onNoClick()" class="">
+          No, Thanks!
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  -->
+<!-- <div class="login-page">
   <mat-card class="">
     <mat-card-title style="text-align: center;">SignIn / SignUp</mat-card-title>
     <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
@@ -58,4 +123,4 @@
       No, Thanks!
     </button>
   </mat-card>
-</div>
+</div> -->

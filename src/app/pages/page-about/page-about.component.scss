@@ -45,7 +45,7 @@
 }
 
 .filters-wrapp {
-  background-color: #f77f00;
+  background-color: (lighten($color: $color-main-blue, $amount: 10));
   color: #f2efea;
   border-radius: 10px;
   position: relative;

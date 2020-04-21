@@ -105,8 +105,11 @@
   font-size: 20px;
 }
 
+button.btn.btn-white.btn-primary.active {
+  background-color: white transparent !important;
+}
 
-@media screen and(max-width: 1260px) {
+@media screen and(max-width: 1200px) {
   .page-heading-message {
     h2 {
       margin-top: 40px;
@@ -122,6 +125,28 @@
       to {
         margin-top: 40px;
         height: 100%;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width:1201px) and (max-width:1680px) {
+  .page-heading-message {
+    h2 {
+      margin-top: 210px;
+      animation: 3s slide-down;
+    }
+
+    @keyframes slide-down {
+      from {
+        margin-top: 40px;
+        height: 100%;
+      }
+
+      to {
+        margin-top: 210px;
+        height: 300%;
       }
     }
   }
