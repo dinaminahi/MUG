@@ -179,14 +179,12 @@ export class UserEditFormComponent implements OnInit {
       this.personalInfoForm.value.personal.description
     );
     formData.append("photo", this.userImageFile);
-
-    console.log(this.userImageFile);
     this.loading = true;
     this._dataService
       .editUser(formData, this.authService.UserId)
       .subscribe((editedUser) => {
         this.loading = false;
-        console.log(editedUser);
+        localStorage.setItem("userPhoto", editedUser.data.url);
         this.router.navigate(["/user-profile", this.authService.UserId]);
       });
   }
