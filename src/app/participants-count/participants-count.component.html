@@ -11,7 +11,7 @@
       *ngFor="let item of [].constructor(count.current)"
     ></i>
   </div>
-  <div class="users">
+  <div *ngIf="this.authService.UserId" class="users">
     <button
       *ngFor="let user of joined"
       title="{{ user?.personal.firstName || user?.personal.name }}"
