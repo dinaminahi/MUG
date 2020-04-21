@@ -3,16 +3,17 @@ import { EventItem } from "../event-item/event-item";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 @Component({
-  selector: 'app-small-event-item',
-  templateUrl: './small-event-item.component.html',
-  styleUrls: ['./small-event-item.component.scss']
+  selector: "app-small-event-item",
+  templateUrl: "./small-event-item.component.html",
+  styleUrls: ["./small-event-item.component.scss"],
 })
 export class SmallEventItemComponent implements OnInit {
   @Input() event: EventItem;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
+    console.log(this.event);
   }
 
   onSelect(event) {
