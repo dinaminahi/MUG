@@ -8,6 +8,7 @@ import { Game } from "../../game/game";
   styleUrls: ["./page-games.component.scss"],
 })
 export class PageGamesComponent {
+  value;
   games: Game[];
   loading: boolean = true;
   searchText;

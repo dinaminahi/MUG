@@ -1,3 +1,5 @@
+@import "../../../sass/variables";
+
 .page-heading-message {
   background-color: #3a3535;
   color: #f4f4f4;
@@ -6,8 +8,9 @@
   margin: 5px 0 20px;
 
   h2 {
-    margin: 0;
+    margin-top: 210px;
     font-weight: normal;
+    font-size: 50px;
   }
 }
 
@@ -65,4 +68,35 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+
+
+.example-form-field {
+  width: 400px;
+  color: white;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+  font-size: 20px;
+
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+  border-bottom: 3px solid;
+  line-height: 20px;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: $color-main !important;
+  border-bottom: 3px solid;
+}
+
+.mat-input-element {
+  line-height: 10px !important;
+  font-size: 20px;
 }
