@@ -63,7 +63,10 @@ export class PageEventsComponent implements OnInit {
     // So each filtering checkbox will show at least one event
     this.categoriesCurrent = this.categories.filter((category) =>
       this.events.some(
-        (event) => event.agame[0].category.indexOf(category.name) !== -1
+        (event) =>
+          event.agame[0].category &&
+          event.agame[0].category.length &&
+          event.agame[0].category.indexOf(category.name) !== -1
       )
     );
   }

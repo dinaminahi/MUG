@@ -25,12 +25,11 @@ export class DataService {
   favoritedEvents: string[];
   favoritedGames: string[];
   favoritegameNames: string[];
-  subscribedEvents: string[];
 
   private eventsSource = new BehaviorSubject<EventItem[]>([]);
   eventsShared = this.eventsSource.asObservable();
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   public getEventById(id: String): Observable<EventItem> {
     return this._http
@@ -71,8 +70,12 @@ export class DataService {
 
   addComment(newComment) {
     return this._http.post<any>("/api/addcomment", newComment).pipe(
-      tap((newComment) => console.log(`inserted = ${JSON.stringify(newComment)}`)),
-      catchError(error => { return 'error' })
+      tap((newComment) =>
+        console.log(`inserted = ${JSON.stringify(newComment)}`)
+      ),
+      catchError((error) => {
+        return "error";
+      })
     );
   }
 
@@ -120,7 +123,9 @@ export class DataService {
   addGame(newGame) {
     return this._http.post<any>(`/api/addgame`, newGame).pipe(
       tap((newGame) => console.log(`added game = ${JSON.stringify(newGame)}`)),
-      catchError(error => { return 'error' })
+      catchError((error) => {
+        return "error";
+      })
     );
   }
 
@@ -170,7 +175,7 @@ export class DataService {
     eventId: number,
     userId: string,
     toggle: boolean
-  ): Observable<[]> {
+  ): Observable<any> {
     return this._http
       .put<any>("/api/join-to-event", { eventId, userId, toggle })
       .pipe(
@@ -181,7 +186,6 @@ export class DataService {
           );
           currentEvent.players = response.event.players;
           this.eventsSource.next(currentEvents);
-          this.subscribedEvents = response.user.events.subscribed;
           return response;
         })
       );
