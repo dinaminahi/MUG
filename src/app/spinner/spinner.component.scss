@@ -1,16 +1,18 @@
 .loader {
-  height: 76.7vh;
+  // height: 76.7vh;
 }
 
 .sk-chase {
   width: 40px;
   height: 40px;
-  position: relative;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
   animation: sk-chase 2.5s infinite linear both;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
 }
 
 .sk-chase-dot {

@@ -21,10 +21,6 @@ export interface DialogData {
   styleUrls: ["./layout-main-navbar.component.scss"],
 })
 export class LayoutMainNavbarComponent implements OnInit {
-  // name: any;
-  // password: any;
-  // email: any;
-
   constructor(
     public authService: AuthService,
     private router: Router,
