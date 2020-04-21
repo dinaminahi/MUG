@@ -66,15 +66,15 @@
 }
 
 .page-heading {
-  color: $color-main-blue;
-  -webkit-text-stroke: 1px white;
+  color: white;
+  -webkit-text-stroke: 2px $color-main-blue;
   padding: 30px;
   text-align: center;
   margin: 5px 0 20px;
 
   h2 {
     margin-top: 210px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 70px;
 
   }
