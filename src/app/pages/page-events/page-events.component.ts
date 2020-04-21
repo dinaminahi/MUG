@@ -10,7 +10,7 @@ import { GameCategory } from "../../game-category-icons/game-category";
 })
 export class PageEventsComponent implements OnInit {
   searchText;
-  loading: boolean;
+  loading: boolean = true;
   selectedCategories = [];
   geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };
   icons = {
@@ -48,11 +48,10 @@ export class PageEventsComponent implements OnInit {
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
-      if (this.events) {
-        this.loading = false;
-      }
     });
-    this._dataService.getEvents().subscribe();
+    this._dataService.getEvents().subscribe((res) => {
+      this.loading = false;
+    });
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
       this.events && this.filterCategories();
