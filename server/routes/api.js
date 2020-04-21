@@ -263,6 +263,7 @@ router.post("/addevent", (req, res) => {
       } else {
         const events = user.events;
         events.created.push(eventId);
+        events.subscribed.push(eventId);
         User.update({ _id: userId }, { events: events }, function (err) {
           if (err) {
             sendError(err, res);
@@ -371,14 +372,23 @@ router.put("/join-to-event", (req, res) => {
       eventPlayers.joined = eventPlayers.joined || [];
       const joinedPlayersIndex = eventPlayers.joined.indexOf(userId);
       if (toggle) {
-        if (joinedPlayersIndex === -1) {
+        if (
+          joinedPlayersIndex === -1 &&
+          eventPlayers.count.current < eventPlayers.count.max
+        ) {
           eventPlayers.joined.push(userId);
-          eventPlayers.count.current = eventPlayers.count.current + 1;
+          eventPlayers.count.current = Math.min(
+            eventPlayers.count.current + 1,
+            eventPlayers.count.max
+          );
         }
       } else {
         if (joinedPlayersIndex > -1) {
           eventPlayers.joined.splice(joinedPlayersIndex, 1);
-          eventPlayers.count.current = eventPlayers.count.current - 1;
+          eventPlayers.count.current = Math.max(
+            eventPlayers.count.current - 1,
+            0
+          );
         }
       }
 
@@ -430,12 +440,12 @@ router.put("/join-to-event", (req, res) => {
                 as: "players.joined",
               },
             },
-          ]).exec((err, events) => {
+          ]).exec((err, events2) => {
             if (err) {
               sendError(err, res);
             } else {
               res.json({
-                event: { players: events[0].players },
+                event: { players: events2[0].players },
                 user: { events: { subscribed: events.subscribed } },
               });
             }

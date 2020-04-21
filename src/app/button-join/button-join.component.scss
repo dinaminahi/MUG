@@ -27,4 +27,9 @@
     opacity: 0.3;
     pointer-events: none;
   }
+
+  &.isFull:not(.isSubscribed) {
+    opacity: 0.3;
+    pointer-events: none;
+  }
 }

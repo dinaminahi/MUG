@@ -1,4 +1,4 @@
-<div class="event-item my-3 z-depth-1">
+<div class="event-item my-3 z-depth-1" data-id="{{ event?._id }}">
   <div class="event-header dark-grey-text">
     <span
       ><i class="far fa-calendar-alt"></i>
@@ -44,7 +44,9 @@
           [joined]="event?.players.joined"
         ></app-participants-count>
       </div>
-      <div>{{ event?.description.slice(0, 50) }}...</div>
+      <div class="description-text">
+        {{ event?.description.slice(0, 50) }}...
+      </div>
 
       <div class="footer-meta text-left">
         <div>
