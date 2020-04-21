@@ -458,7 +458,7 @@ router.get("/userinfo/:userId", (req, res) => {
   });
 });
 
-router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
+router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
   let userId = req.params.userId;
   let file = req.file;
   let params = {
@@ -531,6 +531,50 @@ router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
   } else {
     response.data = params;
     res.json(response);
+  }
+});
+
+
+router.post("/addgame", upload.array('photos'), (req, res) => {
+  let files = req.files;
+
+  const game = new Game({
+    name: req.body.name,
+    categories: [],
+    description: req.body.description,
+    playersMinAge: req.body.playersMinAge,
+    playersCount: {
+      min: req.body.playersCountMin,
+      max: req.body.playersCountMax,
+    },
+    playTimeMinutes: {
+      min: req.body.timeMin,
+      max: req.body.timeMax
+    },
+    instructionUrl: req.body.instructionUrl,
+    photoUrl: []
+  });
+
+  game.save();
+
+  if (files) {
+    for(let i = 0; i < files.length; i++) {
+    cloudinary.uploader.upload(files[i].path, {
+      width: 250,
+      height: 200, crop: "fit"
+    }, (err, result) => {
+      Game.update({ name: req.body.name }, { $push: {"photoUrl": result.url } }, function (err) {
+        console.log('pushed photo')
+      });
+      if (i === files.length - 1) {
+        response.data = result;
+        res.json(response);
+      }
+    });
+  }
+  } else {
+    response.data = game;
+        res.json(response);
   }
 });
 
