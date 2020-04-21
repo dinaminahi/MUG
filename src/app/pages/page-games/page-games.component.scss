@@ -1,15 +1,22 @@
+@import "../../../sass/variables";
+
 .page-heading-message {
-  background-color: #3a3535;
-  color: #f4f4f4;
+  color: $color-main-blue;
+  -webkit-text-stroke: 2px white;
   padding: 30px;
   text-align: center;
   margin: 5px 0 20px;
 
+
   h2 {
-    margin: 0;
-    font-weight: normal;
+    margin-top: 210px;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: normal;
+
   }
 }
+
 
 .panel-heading {
   margin: 0 0 10px;
@@ -34,14 +41,14 @@
 
 .create-event-btn {
   background-color: transparent;
-  border-radius: 28px;
+  border-radius: 8px;
   border: 3px solid #f2efea;
   display: inline-block;
   cursor: pointer;
   color: #f2efea;
   font-family: Arial;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 400;
   padding: 12px 60px;
   text-decoration: none;
   margin: 25px auto;
@@ -65,4 +72,57 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+
+
+.example-form-field {
+  width: 400px;
+  color: white;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+  font-size: 20px;
+
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+  border-bottom: 3px solid;
+  line-height: 20px;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: $color-main !important;
+  border-bottom: 3px solid;
+}
+
+.mat-input-element {
+  line-height: 10px !important;
+  font-size: 20px;
+}
+
+
+@media screen and(max-width: 1260px) {
+  .page-heading-message {
+    h2 {
+      margin-top: 40px;
+      animation: 3s slide-up;
+    }
+
+    @keyframes slide-up {
+      from {
+        margin-top: 210px;
+        height: 300%;
+      }
+
+      to {
+        margin-top: 40px;
+        height: 100%;
+      }
+    }
+  }
 }
