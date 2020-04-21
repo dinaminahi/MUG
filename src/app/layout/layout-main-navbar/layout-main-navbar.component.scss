@@ -11,6 +11,8 @@ a:hover {
 }
 
 mdb-navbar {
+  z-index: 900 !important;
+
   .navbar-brand {
     font-family: 'Kelly Slab', cursive;
   }

@@ -10,7 +10,7 @@ import { GameCategory } from "../../game-category-icons/game-category";
 })
 export class PageEventsComponent implements OnInit {
   searchText;
-  loading = true;
+  loading: boolean;
   selectedCategories = [];
   geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };
   icons = {
@@ -39,21 +39,25 @@ export class PageEventsComponent implements OnInit {
   gameName: string[];
 
   // Create an instance of the DataService through dependency injection
-  constructor(private _dataService: DataService) {
-    this._dataService.getEvents().subscribe((res) => {
-      this.events = res;
+  constructor(private _dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.loading = true;
+    this._dataService.eventsShared.subscribe((events) => {
+      this.events = events;
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
-      this.loading = false;
+      if (this.events) {
+        this.loading = false;
+      }
     });
+    this._dataService.getEvents().subscribe();
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
       this.events && this.filterCategories();
     });
   }
-
-  ngOnInit(): void {}
 
   filterCategories() {
     // Filter out categories which are not exist on any event in current page

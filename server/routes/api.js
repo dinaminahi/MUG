@@ -7,15 +7,15 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-  cloud_name: 'dcronwamq',
-  api_key: '597153926796645',
-  api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
+  cloud_name: "dcronwamq",
+  api_key: "597153926796645",
+  api_secret: "gAET1_v4TT3W4eNwVBGqE78_NzU",
 });
 
 const storage = multer.diskStorage({
   filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname)
-  }
+    cb(null, Date.now() + file.originalname);
+  },
 });
 
 const upload = multer({ storage });
@@ -168,7 +168,7 @@ router.get("/games", (req, res) => {
         foreignField: "name",
         as: "categories",
       },
-    }
+    },
   ]).exec((err, games) => {
     if (err) {
       sendError(err, res);
@@ -358,19 +358,18 @@ router.put("/favorite-events", (req, res) => {
   });
 });
 
-router.put("/subscribed-events", (req, res) => {
+router.put("/join-to-event", (req, res) => {
   const { userId, eventId, toggle } = req.body;
-
+  let eventPlayers;
   // Save user's id into event's event.players.joined array and inctement event.players.count.curren
   // if toggle is 'true', otherwise do opposite
   Event.find({ _id: eventId }, (err, event) => {
     if (err) {
       sendError(err, res);
     } else {
-      const eventPlayers = event[0].players || {};
+      eventPlayers = event[0].players || {};
       eventPlayers.joined = eventPlayers.joined || [];
       const joinedPlayersIndex = eventPlayers.joined.indexOf(userId);
-      console.log(eventPlayers);
       if (toggle) {
         if (joinedPlayersIndex === -1) {
           eventPlayers.joined.push(userId);
@@ -416,7 +415,31 @@ router.put("/subscribed-events", (req, res) => {
         if (err) {
           sendError(err, res);
         } else {
-          res.json(events.subscribed);
+          Event.aggregate([
+            {
+              $match: { _id: mongoose.Types.ObjectId(eventId) },
+            },
+            {
+              $lookup: {
+                from: "users",
+                let: { joined: "$players.joined" },
+                pipeline: [
+                  { $match: { $expr: { $in: ["$_id", "$$joined"] } } },
+                  { $project: { personal: 1 } },
+                ],
+                as: "players.joined",
+              },
+            },
+          ]).exec((err, events) => {
+            if (err) {
+              sendError(err, res);
+            } else {
+              res.json({
+                event: { players: events[0].players },
+                user: { events: { subscribed: events.subscribed } },
+              });
+            }
+          });
         }
       });
     }
@@ -481,24 +504,33 @@ router.post("/edit-user/:userId", upload.single('photo'), (req, res) => {
     if (err) {
       sendError(err, res);
     } else {
-      console.log('upadeted');
+      console.log("upadeted");
     }
   });
 
   if (file) {
-    cloudinary.uploader.upload(file.path, {
-      width: 150,
-      height: 150, crop: "fit"
-    }, (err, result) => {
-      User.update({ _id: userId }, { "personal.photoUrl": result.url }, function (err) {
-        console.log('update photo')
-        response.data = result;
-        res.json(response);
-      });
-    });
+    cloudinary.uploader.upload(
+      file.path,
+      {
+        width: 150,
+        height: 150,
+        crop: "fit",
+      },
+      (err, result) => {
+        User.update(
+          { _id: userId },
+          { "personal.photoUrl": result.url },
+          function (err) {
+            console.log("update photo");
+            response.data = result;
+            res.json(response);
+          }
+        );
+      }
+    );
   } else {
     response.data = params;
-        res.json(response);
+    res.json(response);
   }
 });
 

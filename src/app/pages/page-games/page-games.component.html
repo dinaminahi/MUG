@@ -1,4 +1,4 @@
-<div class="page-heading-message">
+<div class="page-heading-message bg-img">
   <div class="container">
     <h2>Find the <b>game</b> you want <b>to play</b></h2>
   </div>
@@ -6,18 +6,25 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div class="container" *ngIf="!loading">
   <div class="games-list">
-    <h2 class="panel-heading">
-      Games
-    </h2>
 
-    <!-- <div class="md-form">
-      <input type="search" [(ngModel)]="term" placeholder="Search text">
-    </div> -->
-    <div class="md-form">
-      <input type="search" [(ngModel)]="searchText" placeholder="Input Game Name">
+    <div class="filters-wrapp">
+      <div class="row align-items-center">
+
+        <div class="col-7">
+          <div class="md-form">
+            <input type="search" [(ngModel)]="searchText" placeholder="Search by any text" />
+          </div>
+        </div>
+
+        <div class="col-5 text-center">
+          <button class="create-event-btn" routerLinkActive="active" routerLink="/pageaddevent">
+            Create an event
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
+    <div class="row py-5 my-5">
       <!-- <div class="col-lg-4 col-md-6"> -->
       <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let game of games | filter: searchText">
         <app-game [game]="game"></app-game>
