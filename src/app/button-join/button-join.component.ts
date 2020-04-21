@@ -20,6 +20,7 @@ export class ButtonJoinComponent {
   subscribedEvents: string[];
   isSubscribed: boolean;
   isLoading: boolean;
+  isFull: boolean;
   user: User;
 
   constructor(
@@ -53,8 +54,10 @@ export class ButtonJoinComponent {
           .joinToEvent(this.eventId, this.user._id, !this.isSubscribed)
           .subscribe((res) => {
             this.isLoading = false;
+            this.isFull =
+              res.event.players.count.current >= res.event.players.count.max;
             this.isSubscribed = !this.isSubscribed;
-            this.subscribedEvents = res;
+            this.subscribedEvents = res.user.events.subscribed;
           });
       }
     } else {
