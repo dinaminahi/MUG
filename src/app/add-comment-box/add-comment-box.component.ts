@@ -67,8 +67,6 @@ export class AddCommentBoxComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
       width: "450px",
-      height: "640px",
-      disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }

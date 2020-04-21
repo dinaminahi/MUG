@@ -547,9 +547,11 @@ router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
 router.post("/addgame", upload.array("photos"), (req, res) => {
   let files = req.files;
 
+  console.log(req.body);
+
   const game = new Game({
     name: req.body.name,
-    categories: [],
+    category: req.body.categoryNames,
     description: req.body.description,
     playersMinAge: req.body.playersMinAge,
     playersCount: {

@@ -1,7 +1,7 @@
 <div *ngIf="!this.authService.isLoggedIn" class="notLoginMsg">
   <h1>You must log in first!</h1>
 </div>
-<div class="container"  *ngIf="this.authService.isLoggedIn">
+<div class="container" *ngIf="this.authService.isLoggedIn">
   <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
@@ -63,15 +63,19 @@
               <div class="col-md-6  col-sm-12 text-center">
                 <label>Players age</label>
                 <div formGroupName="age">
-                  <input type="number" class="num-input form-control mr-5" formControlName="min" min="3" max="120" placeholder="min">
-                  <input type="number" class="num-input form-control" formControlName="max"  min="3" max="120" placeholder="max">
+                  <input type="number" class="num-input form-control mr-5" formControlName="min" min="3" max="120"
+                    placeholder="min">
+                  <input type="number" class="num-input form-control" formControlName="max" min="3" max="120"
+                    placeholder="max">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12 text-center">
                 <label>Players amount</label>
                 <div formGroupName="count">
-                  <input type="number" class="num-input form-control mr-5" formControlName="min"  min="2" max="10" placeholder="min">
-                  <input type="number" class="num-input form-control" formControlName="max" min="2" max="10" placeholder="max">
+                  <input type="number" class="num-input form-control mr-5" formControlName="min" min="2" max="10"
+                    placeholder="min">
+                  <input type="number" class="num-input form-control" formControlName="max" min="2" max="10"
+                    placeholder="max">
                 </div>
               </div>
             </div>
@@ -109,11 +113,10 @@
       </div>
 
       <div>
-        <button type="submit" class="btn create-btn my-4 btn-block"
-        [disabled]="!myForm.valid">Create</button>
+        <button type="submit" class="btn create-btn my-4 btn-block" [disabled]="!myForm.valid">Create</button>
         <small [class.d-none]="myForm.valid" class="text-danger">Please, fill in the form correctly</small>
       </div>
-      
-      </form>
+
+    </form>
   </section>
 </div>
