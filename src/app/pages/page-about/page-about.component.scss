@@ -1,9 +1,11 @@
+@import "../../../sass/variables";
+
 .position {
   margin-top: -65px;
   z-index: 2;
 }
 
-.main-header {
+.bg-img {
   background-image: url("src/img/about-bg-img.jpg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -61,4 +63,19 @@
   margin: 30px;
   font-size: 40px;
   letter-spacing: 2px;
+}
+
+.page-heading {
+  color: $color-main-blue;
+  -webkit-text-stroke: 1px white;
+  padding: 30px;
+  text-align: center;
+  margin: 5px 0 20px;
+
+  h2 {
+    margin-top: 210px;
+    font-weight: 600;
+    font-size: 70px;
+
+  }
 }

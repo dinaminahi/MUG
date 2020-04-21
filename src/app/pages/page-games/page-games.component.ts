@@ -12,11 +12,15 @@ export class PageGamesComponent {
   games: Game[];
   loading: boolean = true;
   searchText;
+  displayMode: number;
 
   constructor(private _dataService: DataService) {
     this._dataService.getGames().subscribe((res) => {
       this.games = res;
       this.loading = false;
     });
+  }
+  onDisplayModeChange(mode: number): void {
+    this.displayMode = mode;
   }
 }

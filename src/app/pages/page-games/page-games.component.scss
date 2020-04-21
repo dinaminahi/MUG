@@ -1,18 +1,22 @@
 @import "../../../sass/variables";
 
 .page-heading-message {
-  background-color: #3a3535;
-  color: #f4f4f4;
+  color: $color-main-blue;
+  -webkit-text-stroke: 2px white;
   padding: 30px;
   text-align: center;
   margin: 5px 0 20px;
 
+
   h2 {
     margin-top: 210px;
-    font-weight: normal;
-    font-size: 50px;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: normal;
+
   }
 }
+
 
 .panel-heading {
   margin: 0 0 10px;
@@ -43,7 +47,7 @@
   cursor: pointer;
   color: #f2efea;
   font-family: Arial;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 400;
   padding: 12px 60px;
   text-decoration: none;
@@ -99,4 +103,26 @@
 .mat-input-element {
   line-height: 10px !important;
   font-size: 20px;
+}
+
+
+@media screen and(max-width: 1260px) {
+  .page-heading-message {
+    h2 {
+      margin-top: 40px;
+      animation: 3s slide-up;
+    }
+
+    @keyframes slide-up {
+      from {
+        margin-top: 210px;
+        height: 300%;
+      }
+
+      to {
+        margin-top: 40px;
+        height: 100%;
+      }
+    }
+  }
 }
