@@ -25,7 +25,7 @@
         margin-right: 3px;
       }
 
-      &+span {
+      & + span {
         margin-left: 20px;
       }
     }
@@ -82,7 +82,7 @@
 }
 
 .attenders-icons {
-  margin: 3px 0;
+  margin: -10px 0 15px;
 }
 
 .footer {
@@ -154,6 +154,11 @@
   }
 }
 
+.description-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .footer-meta {
   margin-top: 13px;
   margin: 10px -30px -30px;
@@ -167,6 +172,7 @@
     justify-content: left;
     // justify-content: space-between;
     border-bottom: 1px dotted #ddd;
+    overflow: hidden;
 
     &:last-child {
       border-bottom: none;
@@ -175,6 +181,12 @@
 
   .label {
     margin-right: 10px;
+    white-space: nowrap;
+  }
+
+  b {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   i {

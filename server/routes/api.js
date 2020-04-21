@@ -263,6 +263,7 @@ router.post("/addevent", (req, res) => {
       } else {
         const events = user.events;
         events.created.push(eventId);
+        events.subscribed.push(eventId);
         User.update({ _id: userId }, { events: events }, function (err) {
           if (err) {
             sendError(err, res);
@@ -288,7 +289,7 @@ router.post("/addcomment", (req, res) => {
 
     comment.save((err) => {
       if (err) {
-         sendError(err, res);
+        sendError(err, res);
       } else {
         console.log("Comment was inserted!");
         response.data = res.statusCode;
@@ -371,14 +372,23 @@ router.put("/join-to-event", (req, res) => {
       eventPlayers.joined = eventPlayers.joined || [];
       const joinedPlayersIndex = eventPlayers.joined.indexOf(userId);
       if (toggle) {
-        if (joinedPlayersIndex === -1) {
+        if (
+          joinedPlayersIndex === -1 &&
+          eventPlayers.count.current < eventPlayers.count.max
+        ) {
           eventPlayers.joined.push(userId);
-          eventPlayers.count.current = eventPlayers.count.current + 1;
+          eventPlayers.count.current = Math.min(
+            eventPlayers.count.current + 1,
+            eventPlayers.count.max
+          );
         }
       } else {
         if (joinedPlayersIndex > -1) {
           eventPlayers.joined.splice(joinedPlayersIndex, 1);
-          eventPlayers.count.current = eventPlayers.count.current - 1;
+          eventPlayers.count.current = Math.max(
+            eventPlayers.count.current - 1,
+            0
+          );
         }
       }
 
@@ -430,12 +440,12 @@ router.put("/join-to-event", (req, res) => {
                 as: "players.joined",
               },
             },
-          ]).exec((err, events) => {
+          ]).exec((err, events2) => {
             if (err) {
               sendError(err, res);
             } else {
               res.json({
-                event: { players: events[0].players },
+                event: { players: events2[0].players },
                 user: { events: { subscribed: events.subscribed } },
               });
             }
@@ -530,6 +540,58 @@ router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
     );
   } else {
     response.data = params;
+    res.json(response);
+  }
+});
+
+router.post("/addgame", upload.array("photos"), (req, res) => {
+  let files = req.files;
+
+  const game = new Game({
+    name: req.body.name,
+    categories: [],
+    description: req.body.description,
+    playersMinAge: req.body.playersMinAge,
+    playersCount: {
+      min: req.body.playersCountMin,
+      max: req.body.playersCountMax,
+    },
+    playTimeMinutes: {
+      min: req.body.timeMin,
+      max: req.body.timeMax,
+    },
+    instructionUrl: req.body.instructionUrl,
+    photoUrl: [],
+  });
+
+  game.save();
+
+  if (files) {
+    for (let i = 0; i < files.length; i++) {
+      cloudinary.uploader.upload(
+        files[i].path,
+        {
+          width: 250,
+          height: 200,
+          crop: "fit",
+        },
+        (err, result) => {
+          Game.update(
+            { name: req.body.name },
+            { $push: { photoUrl: result.url } },
+            function (err) {
+              console.log("pushed photo");
+            }
+          );
+          if (i === files.length - 1) {
+            response.data = result;
+            res.json(response);
+          }
+        }
+      );
+    }
+  } else {
+    response.data = game;
     res.json(response);
   }
 });

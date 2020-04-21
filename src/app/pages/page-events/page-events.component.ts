@@ -10,7 +10,7 @@ import { GameCategory } from "../../game-category-icons/game-category";
 })
 export class PageEventsComponent implements OnInit {
   searchText;
-  loading = true;
+  loading: boolean = true;
   selectedCategories = [];
   geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };
   icons = {
@@ -42,16 +42,16 @@ export class PageEventsComponent implements OnInit {
   constructor(private _dataService: DataService) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this._dataService.eventsShared.subscribe((events) => {
       this.events = events;
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
-      if (this.events) {
-        this.loading = false;
-      }
     });
-    this._dataService.getEvents().subscribe();
+    this._dataService.getEvents().subscribe((res) => {
+      this.loading = false;
+    });
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
       this.events && this.filterCategories();
@@ -63,7 +63,10 @@ export class PageEventsComponent implements OnInit {
     // So each filtering checkbox will show at least one event
     this.categoriesCurrent = this.categories.filter((category) =>
       this.events.some(
-        (event) => event.agame[0].category.indexOf(category.name) !== -1
+        (event) =>
+          event.agame[0].category &&
+          event.agame[0].category.length &&
+          event.agame[0].category.indexOf(category.name) !== -1
       )
     );
   }

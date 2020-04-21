@@ -12,6 +12,7 @@ import { EventDetailInfoComponent } from "./event-detail-info/event-detail-info.
 import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.component";
 import { GameDetailInfoComponent } from "./game-detail-info/game-detail-info.component";
 import { UserEditFormComponent } from "./user-edit-form/user-edit-form.component";
+import { AddGameFormComponent } from './add-game-form/add-game-form.component';
 // -------------------------not used for  now
 // import { PageAccountComponent } from "./pages/page-account/page-account.component";
 // import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
@@ -37,11 +38,6 @@ export const routes: Routes = [
   // -------login----
   //-----user
   {
-    path: "pageaddevent",
-    component: PageAddEventComponent,
-    canActivate: [AuthGuard], // - check if loggedin or not
-  },
-  {
     path: "user-edit/:id",
     component: UserEditFormComponent,
     canActivate: [AuthGuard], // - check if loggedin or not
@@ -58,7 +54,11 @@ export const routes: Routes = [
   },
   { path: "games", component: PageGamesComponent },
   { path: "games/:id", component: GameDetailInfoComponent },
-
+  {
+    path: "addgame",
+    component: AddGameFormComponent,
+    canActivate: [AuthGuard], // - check if loggedin or not
+  },
   // { path: "account", component: PageAccountComponent },
   // { path: "login", component: PageLoginComponent },
   // { path: "signin", component: PageUserAccountComponent },

@@ -7,14 +7,14 @@ const gameSchema = new mongoose.Schema({
   playersMinAge: Number,
   playersCount: {
     min: Number,
-    max: Number,
+    max: Number
   },
   playTimeMinutes: {
     min: Number,
-    max: Number,
+    max: Number
   },
   instructionUrl: String,
-  photoUrl: [String],
+  photoUrl: [String]
 });
 
 module.exports = mongoose.model("Game", gameSchema);

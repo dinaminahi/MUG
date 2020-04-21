@@ -5,7 +5,12 @@ import {
   ElementRef,
   NgZone,
 } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from "@angular/forms";
 
 import { MapsAPILoader } from "@agm/core";
 import {} from "googlemaps";
@@ -14,14 +19,12 @@ import { ActivatedRoute } from "@angular/router";
 import { DataService } from "../../data.service";
 import { AuthService } from "./../../shared/auth.service";
 
-
 @Component({
   selector: "app-page-add-event",
   templateUrl: "./page-add-event.component.html",
   styleUrls: ["./page-add-event.component.scss"],
 })
 export class PageAddEventComponent implements OnInit {
-
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -39,8 +42,8 @@ export class PageAddEventComponent implements OnInit {
   //to choose game for event, later it will be from json file or db
   games = [];
   get game() {
-    return this.myForm.get('game');
-  } 
+    return this.myForm.get("game");
+  }
 
   get description() {
     return this.myForm.get("description");
@@ -61,23 +64,20 @@ export class PageAddEventComponent implements OnInit {
     private _dataService: DataService,
     public authService: AuthService,
     private actRoute: ActivatedRoute
-  ) {
-    
-  }
+  ) {}
 
   ngOnInit(): void {
-
-    this._dataService.getGames().subscribe(res => {
-        res.forEach(game => (this.games).push(game.name));
-        console.log(this.games);
-        console.log(res);
+    this._dataService.getGames().subscribe((res) => {
+      res.forEach((game) => this.games.push(game.name));
+      console.log(this.games);
+      console.log(res);
     });
 
     this.myForm = this.fb.group({
-      eventName: [''],
-      game: ['', Validators.required],
-      dateTime: ['', Validators.required],
-      duration: [''],
+      eventName: [""],
+      game: ["", Validators.required],
+      dateTime: ["", Validators.required],
+      duration: [""],
       location: this.fb.group({
         address: ["", Validators.required],
         geo: this.fb.group({
@@ -87,20 +87,20 @@ export class PageAddEventComponent implements OnInit {
       }),
       description: ["", Validators.required],
       players: this.fb.group({
-       age: this.fb.group({
-         min: [],
-         max: []
-       }),
-       count: this.fb.group({
-         min: [],
-         max: [],
-         current: 0
-       }),
-       following: [[]],
-       experiance: ['novice']
+        age: this.fb.group({
+          min: [],
+          max: [],
+        }),
+        count: this.fb.group({
+          min: [],
+          max: [],
+          current: 1,
+        }),
+        following: [[]],
+        experiance: ["novice"],
       }),
       organizer: this.authService.UserId,
-      canceled: false
+      canceled: false,
     });
 
     this.zoom = 8;
@@ -138,7 +138,7 @@ export class PageAddEventComponent implements OnInit {
 
           this.latLongs.push(latlong);
           this.searchControl.reset();
-         });
+        });
       });
     });
   }

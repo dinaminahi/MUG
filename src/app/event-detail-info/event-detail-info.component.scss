@@ -1,3 +1,4 @@
+@import "./../../sass/variables";
 h2 {
   font-size: 38px;
 }
@@ -17,7 +18,6 @@ h3 {
   font-weight: 500;
 }
 
-
 .main-header {
   background-image: url("https://cdn.thewirecutter.com/wp-content/uploads/2018/03/boardgamesforadults-2x1-7452.jpg");
   background-repeat: no-repeat;
@@ -32,50 +32,47 @@ h3 {
   border-radius: 10px;
   box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.45);
   position: relative;
-  margin-top: -60px;
+  margin-top: -150px;
   z-index: 1;
   background-color: white;
   color: #1a1b1e;
 
   .goToGame-btn {
-    color: #c7c7d6;
+    color: #bbbbc0;
     text-decoration: underline;
     font-size: 14px;
     font-weight: normal;
   }
+
   .event-icon {
-    color: #ff3860;
+    color: $color-orange;
   }
 
   p {
-    color: #c7c7d6;
+    color: rgb(160, 160, 163);
   }
 
   .fa-facebook-square,
   .fa-instagram,
   .fa-twitter-square,
   .fa-linkedin {
-    color: #1a1b1e;
+    color: $color-main-blue;
   }
 }
 
 .subscribe {
   .add-btn {
-    background: linear-gradient(to right, #ff3860 5%, #ffc08f 100%);
-    background-color: #ff3860;
-    border-radius: 28px;
-    border: none;
+    background-color: $color-orange;
+    border-radius: 5px;
+    border: 1px solid $color-orange;
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
     font-family: Arial;
     font-size: 17px;
+    font-weight: 600;
     padding: 15px 76px;
     text-decoration: none;
-  }
-  .add-btn:hover {
-    background: linear-gradient(to right, #ffc08f 5%, #ff3860 100%);
-    background-color: #ffc08f;
   }
   .add-btn:active {
     position: relative;
@@ -88,7 +85,7 @@ h3 {
   color: #1a1b1e;
 
   p {
-    color: #c7c7d6;
+    color: rgb(160, 160, 163);
   }
 
   .event-description-text,
@@ -97,7 +94,7 @@ h3 {
   }
 
   .back-btn {
-    color: #007bff;
+    color: $color-main-blue;
   }
 
   .organisor {
@@ -124,7 +121,7 @@ h3 {
 
   span,
   i {
-    color: #c7c7d6;
+    color: rgb(160, 160, 163);
   }
 
   margin-bottom: 50px;

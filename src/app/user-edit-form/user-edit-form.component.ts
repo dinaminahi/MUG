@@ -3,10 +3,10 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  NgZone
+  NgZone,
 } from "@angular/core";
 
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { AuthService } from "./../shared/auth.service";
 import { DataService } from "./../data.service";
 
@@ -18,22 +18,20 @@ import {} from "googlemaps";
 import { UserItem } from "./../components/user-profile/user";
 
 @Component({
-  selector: 'app-user-edit-form',
-  templateUrl: './user-edit-form.component.html',
-  styleUrls: ['./user-edit-form.component.scss']
+  selector: "app-user-edit-form",
+  templateUrl: "./user-edit-form.component.html",
+  styleUrls: ["./user-edit-form.component.scss"],
 })
-
 export class UserEditFormComponent implements OnInit {
-
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
+  userImage: string = this.authService.UserPhoto;
   userImageFile;
   loading: boolean = false;
 
   currentUser: Object = {};
   expectedUser: UserItem;
-
 
   public zoom: number; //////////////
   public longitude: number;
@@ -62,7 +60,6 @@ export class UserEditFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     let id = this.authService.UserId;
 
     this.authService.getUserProfile(id).subscribe((res) => {
@@ -70,7 +67,7 @@ export class UserEditFormComponent implements OnInit {
     });
 
     this.personalInfoForm = this.fb.group({
-      photo: [''],
+      photo: [""],
       personal: this.fb.group({
         name: [""],
         firstName: [""],
@@ -80,13 +77,13 @@ export class UserEditFormComponent implements OnInit {
         location: this.fb.group({
           address: "",
           geo: this.fb.group({
-            longitude: [''],
-            latitude: [''],
+            longitude: [""],
+            latitude: [""],
           }),
         }),
         dateOfBirth: "",
-        description: [""]
-      })
+        description: [""],
+      }),
     });
 
     this.zoom = 8;
@@ -100,7 +97,7 @@ export class UserEditFormComponent implements OnInit {
       const autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
-          types: ['(cities)'],
+          types: ["(cities)"],
         }
       );
       autocomplete.addListener("place_changed", () => {
@@ -131,40 +128,67 @@ export class UserEditFormComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/user-profile', this.authService.UserId]);
+    this.router.navigate(["/user-profile", this.authService.UserId]);
   }
 
   selectFile(event) {
-    if(event.target.files.length > 0) {
+    if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.userImageFile = file;
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.userImage = event.target.result;
+      };
+      reader.readAsDataURL(file);
     }
-
   }
 
   onSubmit() {
     const formData = new FormData();
-    formData.append('name', this.personalInfoForm.value.personal.name);
-    formData.append('firstName', this.personalInfoForm.value.personal.firstName);
-    formData.append('lastName', this.personalInfoForm.value.personal.lastName);
-    formData.append('phone', this.personalInfoForm.value.personal.phone);
-    formData.append('email', this.personalInfoForm.value.personal.email);
-    formData.append('address', this.personalInfoForm.value.personal.location.address);
-    
-    formData.append('longitude', (this.personalInfoForm.value.personal.location.geo.longitude ? this.personalInfoForm.value.personal.location.geo.longitude : ''));
-    formData.append('latitude', (this.personalInfoForm.value.personal.location.geo.latitude ? this.personalInfoForm.value.personal.location.geo.latitude : ''));
-    formData.append('dateOfBirth', this.personalInfoForm.value.personal.dateOfBirth);
-    formData.append('description', this.personalInfoForm.value.personal.description);
-    formData.append('photo', this.userImageFile);
+    formData.append("name", this.personalInfoForm.value.personal.name);
+    formData.append(
+      "firstName",
+      this.personalInfoForm.value.personal.firstName
+    );
+    formData.append("lastName", this.personalInfoForm.value.personal.lastName);
+    formData.append("phone", this.personalInfoForm.value.personal.phone);
+    formData.append("email", this.personalInfoForm.value.personal.email);
+    formData.append(
+      "address",
+      this.personalInfoForm.value.personal.location.address
+    );
+
+    formData.append(
+      "longitude",
+      this.personalInfoForm.value.personal.location.geo.longitude
+        ? this.personalInfoForm.value.personal.location.geo.longitude
+        : ""
+    );
+    formData.append(
+      "latitude",
+      this.personalInfoForm.value.personal.location.geo.latitude
+        ? this.personalInfoForm.value.personal.location.geo.latitude
+        : ""
+    );
+    formData.append(
+      "dateOfBirth",
+      this.personalInfoForm.value.personal.dateOfBirth
+    );
+    formData.append(
+      "description",
+      this.personalInfoForm.value.personal.description
+    );
+    formData.append("photo", this.userImageFile);
 
     console.log(this.userImageFile);
     this.loading = true;
-    this._dataService.editUser(formData, this.authService.UserId)
-    .subscribe(editedUser => {
-         console.log(editedUser);
-         this.loading = false;
-         this.router.navigate(['/user-profile', this.authService.UserId]);
-    });
+    this._dataService
+      .editUser(formData, this.authService.UserId)
+      .subscribe((editedUser) => {
+        this.loading = false;
+        console.log(editedUser);
+        this.router.navigate(["/user-profile", this.authService.UserId]);
+      });
   }
 
   private setCurrentPosition() {
