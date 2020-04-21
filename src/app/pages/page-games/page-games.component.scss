@@ -4,6 +4,7 @@
   padding: 30px;
   text-align: center;
   margin: 5px 0 20px;
+
   h2 {
     margin: 0;
     font-weight: normal;
@@ -16,4 +17,14 @@
 
 .games-list {
   padding: 0 0 20px;
+}
+
+.bg-img {
+  background-image: url('src/img/gabeg-bg.jpg');
+  // background-size: cover;
+  background-position: center center;
+  height: 400px;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

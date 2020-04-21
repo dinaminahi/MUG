@@ -27,8 +27,7 @@ export class ButtonJoinComponent {
     public authService: AuthService,
     public dialog: MatDialog
   ) {
-
-    if(this.authService.isLoggedIn){
+    if (this.authService.isLoggedIn) {
       let id = this.authService.UserId;
       this.authService.getUserProfile(id).subscribe((res) => {
         this.user = res.msg;
@@ -42,13 +41,12 @@ export class ButtonJoinComponent {
         }
       });
     }
-    
   }
 
   ngOnInit(): void {}
 
   toggleSubscribed() {
-    if(this.authService.isLoggedIn) {
+    if (this.authService.isLoggedIn) {
       this.isLoading = true;
       if (this.eventId) {
         this._dataService
@@ -67,9 +65,9 @@ export class ButtonJoinComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
       width: "450px",
+      height: "640px",
+      disableClose: true,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }

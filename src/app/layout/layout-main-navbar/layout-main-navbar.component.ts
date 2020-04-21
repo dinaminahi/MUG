@@ -31,12 +31,12 @@ export class LayoutMainNavbarComponent implements OnInit {
     private pageScroll: NgxPageScrollModule,
     public dialog: MatDialog
   ) {}
-  
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
       width: "450px",
-      // disableClose: true,
+      height: "640px",
+      disableClose: true,
       // data: {
       //   name: this.name,
       //   password: this.password,
