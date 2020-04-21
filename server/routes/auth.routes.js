@@ -63,9 +63,8 @@ router.post("/register-user",
             created: [],
           },
           games: {
-            favorited: [], 
-            skillLevel:
-            {
+            favorited: [],
+            skillLevel: {
               novice: [],
               beginner: [],
               intermediate: [],
@@ -73,7 +72,7 @@ router.post("/register-user",
             },
             rating: 0
           }
-         });
+        });
         user.save().then((response) => {
           res.status(201).json({
             message: "User successfully created!",
@@ -116,7 +115,7 @@ router.post("/signin", (req, res, next) => {
     });
     res.status(200).json({
       token: jwtToken,
-      expiresIn: 3600,
+      expiresIn: 360000,
       _id: getUser._id
     });
   }).catch(err => {

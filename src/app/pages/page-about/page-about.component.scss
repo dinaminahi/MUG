@@ -67,7 +67,7 @@
 
 .page-heading {
   color: white;
-  -webkit-text-stroke: 2px $color-main-blue;
+  -webkit-text-stroke: 3px $color-main-blue;
   padding: 30px;
   text-align: center;
   margin: 5px 0 20px;
@@ -75,7 +75,29 @@
   h2 {
     margin-top: 210px;
     font-weight: 500;
-    font-size: 70px;
+    font-size: 80px;
+    line-height: normal;
+  }
+}
 
+
+@media screen and(max-width: 1260px) {
+  .page-heading {
+    h2 {
+      margin-top: 40px;
+      animation: 3s slide-up;
+    }
+
+    @keyframes slide-up {
+      from {
+        margin-top: 210px;
+        height: 300%;
+      }
+
+      to {
+        margin-top: 40px;
+        height: 100%;
+      }
+    }
   }
 }
