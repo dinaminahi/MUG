@@ -30,7 +30,7 @@ export class SigninComponent implements OnInit {
       name: [""],
       email: [""],
       password: [""],
-      repassword:[""]
+      repassword: [""],
     });
   }
 
@@ -41,7 +41,19 @@ export class SigninComponent implements OnInit {
 
     // this.dialogRef.close();
   }
-  ngOnInit() {}
+  ngOnInit(): void {
+    const signUpButton = document.getElementById("signUp");
+    const signInButton = document.getElementById("signIn");
+    const container = document.getElementById("container");
+
+    signUpButton.addEventListener("click", () => {
+      container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener("click", () => {
+      container.classList.remove("right-panel-active");
+    });
+  }
 
   loginUser() {
     this.authService.signIn(this.signinForm.value);
