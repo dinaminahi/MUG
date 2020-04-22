@@ -28,7 +28,7 @@ export class EventItem {
       latitude: number;
     };
   };
-  dateTime: Date;
+  dateTime: string;
   dateFormated: string;
   duration: string;
   players: {
