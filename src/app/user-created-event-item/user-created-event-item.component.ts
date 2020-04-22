@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../shared/auth.service';
 import { DataService } from './../data.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogForCancelBtnComponent } from './../dialog-for-cancel-btn/dialog-for-cancel-btn.component';
 
 @Component({
   selector: 'app-user-created-event-item',
@@ -31,8 +32,13 @@ export class UserCreatedEventItemComponent implements OnInit {
     this.router.navigate(['/events', event._id]);
   }
 
-  openDialog() {
-    // this.dialog.open();
+  openDialog(eventId) {
+    let dialogRef = this.dialog.open(DialogForCancelBtnComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.cancelEvent(eventId, this.authService.UserId);
+      }
+    });
   }
 
   cancelEvent(eventId: string, userId: string) {

@@ -552,9 +552,8 @@ router.post('/cancelevent', (req, res) => {
       if (err) {
         sendError(err, res);
       } else {
-        console.log(event);
-        // response.data = event;
-        // res.json(response);
+        response.data = event;
+        res.json(response);
       }
     }
   );
