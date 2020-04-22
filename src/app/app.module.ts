@@ -103,6 +103,7 @@ import { SearchFilterPipe } from "./search-filter.pipe";
 import { AddGameFormComponent } from "./add-game-form/add-game-form.component";
 import { DateFormatPipe } from "./date-format.pipe";
 import { UserCreatedEventItemComponent } from './user-created-event-item/user-created-event-item.component';
+import { DialogForCancelBtnComponent } from './dialog-for-cancel-btn/dialog-for-cancel-btn.component';
 
 @NgModule({
   declarations: [
@@ -164,6 +165,7 @@ import { UserCreatedEventItemComponent } from './user-created-event-item/user-cr
     AddGameFormComponent,
     DateFormatPipe,
     UserCreatedEventItemComponent,
+    DialogForCancelBtnComponent,
   ],
   imports: [
     RouterModule,

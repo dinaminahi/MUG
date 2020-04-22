@@ -4,6 +4,7 @@ import { EventItem } from './../event-item/event-item';
 import { Router } from '@angular/router';
 import { AuthService } from './../shared/auth.service';
 import { DataService } from './../data.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-created-event-item',
@@ -18,7 +19,8 @@ export class UserCreatedEventItemComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    private _dataService: DataService
+    private _dataService: DataService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +29,10 @@ export class UserCreatedEventItemComponent implements OnInit {
 
   onSelect(event) {
     this.router.navigate(['/events', event._id]);
+  }
+
+  openDialog() {
+    // this.dialog.open();
   }
 
   cancelEvent(eventId: string, userId: string) {
