@@ -102,6 +102,8 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { SearchFilterPipe } from "./search-filter.pipe";
 import { DateFormatPipe } from "./date-format.pipe";
 
+import { MatVideoModule } from "mat-video";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -195,6 +197,7 @@ import { DateFormatPipe } from "./date-format.pipe";
     MatDialogModule,
     MatMenuModule,
     MatExpansionModule,
+    MatVideoModule,
     Ng2SearchPipeModule,
   ],
   providers: [
