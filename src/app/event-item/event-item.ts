@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export class EventItem {
   _id: mongoose.Types.ObjectId;
@@ -38,4 +38,5 @@ export class EventItem {
     experienceNeeded: boolean;
     joined: any[];
   };
+  canceled: boolean;
 }
