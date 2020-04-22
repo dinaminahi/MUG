@@ -111,7 +111,7 @@ router.post("/signin", (req, res, next) => {
       email: getUser.email,
       userId: getUser._id
     }, "longer-secret-is-better", {
-      expiresIn: "1h"
+      expiresIn: "10h"
     });
     res.status(200).json({
       token: jwtToken,

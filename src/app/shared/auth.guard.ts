@@ -40,9 +40,9 @@ export class AuthGuard implements CanActivate {
       // this.router.navigate(["log-in"]); // ---- change
 
       const dialogRef = this.dialog.open(SigninComponent, {
-        width: "450px",
-        height: "640px",
-        disableClose: true,
+        // width: "450px",
+        // height: "640px",
+        // disableClose: true,
       });
       dialogRef.afterClosed().subscribe((result) => {});
     }
