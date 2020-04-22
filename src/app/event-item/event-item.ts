@@ -31,6 +31,7 @@ export class EventItem {
   dateTime: string;
   dateFormated: string;
   duration: string;
+  organizer: mongoose.Types.ObjectId;
   players: {
     age: { min: number; max: number };
     count: { min: number; max: number; current: number };

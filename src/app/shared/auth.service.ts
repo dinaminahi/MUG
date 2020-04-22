@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { User } from "./user";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
+import { BehaviorSubject } from "rxjs";
+import { UserItem } from "../components/user-profile/user";
+
 import {
   HttpClient,
   HttpHeaders,
@@ -16,6 +19,9 @@ export class AuthService {
   endpoint: string = "http://localhost:4000/authApi";
   headers = new HttpHeaders().set("Content-Type", "application/json");
   currentUser = {};
+  private userSource = new BehaviorSubject<UserItem>(undefined);
+  userShared = this.userSource.asObservable();
+  isUserAPICallMade: boolean = false;
   public currentId: String;
 
   constructor(private http: HttpClient, public router: Router) {}
@@ -41,7 +47,6 @@ export class AuthService {
           localStorage.setItem("userName", res.msg.personal.name);
 
           this.currentUser = res;
-          console.log(this.currentUser);
           // this.router.navigate(["home/"]); // -- naviganes after susseful ligin
           // this.router.navigate(["user-profile/" + res.msg._id]); -- old
         });
@@ -82,11 +87,27 @@ export class AuthService {
     }
   }
 
+  // This method could be called many times from a lot of components
+  // which are subscribed to this.userShared/this.userSource data.
+  // Initially this.userSource is 'undefined' so we need to call the /user-profile API at least once
+  // to get this data and update the observable user property.
+  // In order to avoid multiple API calls triggered in this case, components are calling this method
+  // instead of the getUserProfile() directly. This way we are sure that the API is called only once
+  getCurrentUserData() {
+    if (!this.isUserAPICallMade) {
+      this.isUserAPICallMade = true;
+      this.getUserProfile(this.UserId).subscribe((res) => {
+        this.userSource.next(res.msg);
+      });
+    }
+    return this.userShared;
+  }
+
   // User profile
   getUserProfile(id): Observable<any> {
     let authApi = `${this.endpoint}/user-profile/${id}`;
     return this.http.get(authApi, { headers: this.headers }).pipe(
-      map((res: Response) => {
+      map((res: any) => {
         return res || {};
       }),
       catchError(this.handleError)
