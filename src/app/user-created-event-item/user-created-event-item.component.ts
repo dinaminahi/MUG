@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { EventItem } from './../event-item/event-item';
 import { Router } from '@angular/router';
 import { AuthService } from './../shared/auth.service';
+import { DataService } from './../data.service';
+
 @Component({
   selector: 'app-user-created-event-item',
   templateUrl: './user-created-event-item.component.html',
@@ -15,7 +17,8 @@ export class UserCreatedEventItemComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private _dataService: DataService
   ) {}
 
   ngOnInit(): void {
@@ -28,9 +31,10 @@ export class UserCreatedEventItemComponent implements OnInit {
 
   cancelEvent(eventId: string, userId: string) {
     if (!this.cancel) {
-      this.cancel = true;
-      console.log(eventId);
-      console.log(userId);
+      this._dataService.cancelEvent(eventId, userId).subscribe(res => {
+        console.log('canceled');
+        this.cancel = true;
+      });
     }
   }
 }

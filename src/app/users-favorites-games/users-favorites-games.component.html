@@ -3,7 +3,7 @@
   <button type="button" (click)="goToGames()">Find game</button>
 </div>
 
-<div class="row">
+<div class="row mt-3">
   <div class="col-lg-6 col-md-12 col-sm-12" *ngFor="let game of games">
     <app-game [game]="game"></app-game>
   </div>
