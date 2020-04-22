@@ -1,29 +1,18 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-} from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "./../../shared/auth.service";
-import { DataService } from "./../../data.service";
-import { UserItem } from "./user";
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './../../shared/auth.service';
+import { DataService } from './../../data.service';
+import { UserItem } from './user';
 
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.scss"],
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
 })
-
-
 export class UserProfileComponent implements OnInit {
-
-
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
-
 
   currentUser: Object = {};
   expectedUser: UserItem;
@@ -37,16 +26,18 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    let id = this.authService.UserId;
 
-    let id = this.actRoute.snapshot.paramMap.get("id");
-
-    this.authService.getUserProfile(id).subscribe((res) => {
+    this.authService.getUserProfile(id).subscribe(res => {
       this.currentUser = res.msg;
     });
 
     this._dataService.getUserById(id).subscribe(res => {
       this.expectedUser = res[0];
-      this.expectedUserCity = (res[0].personal.location.address).substring( 0, res[0].personal.location.address.indexOf(","));
+      this.expectedUserCity = res[0].personal.location.address.substring(
+        0,
+        res[0].personal.location.address.indexOf(',')
+      );
     });
   }
 
