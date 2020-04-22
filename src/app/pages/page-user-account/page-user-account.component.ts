@@ -12,6 +12,11 @@ import { User } from './../page-users/user';
 export class PageUserAccountComponent implements OnInit {
   public user: User;
 
+  joined: boolean = true;
+  created: boolean = false;
+  favouriteEvents: boolean = false;
+  favouriteGames: boolean = false;
+
   constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
@@ -19,5 +24,33 @@ export class PageUserAccountComponent implements OnInit {
     this.authService.getUserProfile(id).subscribe(res => {
       this.user = res.msg;
     });
+  }
+
+  joinedClick() {
+    this.joined = true;
+    this.created = false;
+    this.favouriteEvents = false;
+    this.favouriteGames = false;
+  }
+
+  createdClick() {
+    this.joined = false;
+    this.created = true;
+    this.favouriteEvents = false;
+    this.favouriteGames = false;
+  }
+
+  favouriteEventsClick() {
+    this.joined = false;
+    this.created = false;
+    this.favouriteEvents = true;
+    this.favouriteGames = false;
+  }
+
+  favouriteGamesClick() {
+    this.joined = false;
+    this.created = false;
+    this.favouriteEvents = false;
+    this.favouriteGames = true;
   }
 }

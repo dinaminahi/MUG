@@ -1,9 +1,10 @@
-<h2 class="panel-heading">
-  Your created events
-</h2>
+<div *ngIf="!events">
+  <h2 class="panel-heading">You didn't create events</h2>
+  <button type="button" (click)="goToAddEvent()">Create event</button>
+</div>
 
 <div class="row">
-  <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let event of events">
+  <div class="col-lg-6 col-md-12 col-sm-12" *ngFor="let event of events">
     <app-event-item [event]="event"></app-event-item>
   </div>
 </div>
