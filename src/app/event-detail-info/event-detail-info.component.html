@@ -18,7 +18,7 @@
             <h2 class="text-center mb-4">Subscribe now</h2>
             <p class="text-center">Click to add to your calendar</p>
             <div class="text-center mt-4">
-                <app-button-join *ngIf="!expectedEvent?.canceled" [eventId]="expectedEvent?._id" class="join">
+                <app-button-join *ngIf="!expectedEvent?.canceled" [eventId]="expectedEvent?._id">
                 </app-button-join>
                 <button type="button" [disabled]="expectedEvent?.canceled" *ngIf="expectedEvent?.canceled"
                     class="btn btn-danger mb-5">Canceled</button>
@@ -41,8 +41,7 @@
             </p>
         </div>
         <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">
-            <img class="mr-4" src="https://i.pinimg.com/280x280_RS/6a/c9/71/6ac9713db5467404cf7bdfd86817c7ae.jpg"
-                align="left" alt="Photo of event author">
+            <img class="mr-4" src="{{organizor?.personal?.photoUrl}}" align="left" alt="Photo of event author">
             <p>Event organiser</p>
             <h3>{{organizor?.personal?.name}}</h3>
             <p class="mt-5">Phone number</p>

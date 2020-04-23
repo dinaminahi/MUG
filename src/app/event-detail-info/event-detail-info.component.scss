@@ -60,26 +60,6 @@ h3 {
   }
 }
 
-.subscribe {
-  .add-btn {
-    background-color: $color-orange;
-    border-radius: 5px;
-    border: 1px solid $color-orange;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 17px;
-    font-weight: 600;
-    padding: 15px 76px;
-    text-decoration: none;
-  }
-  .add-btn:active {
-    position: relative;
-    top: 1px;
-  }
-}
-
 .event-description {
   margin: 80px auto;
   color: #1a1b1e;
