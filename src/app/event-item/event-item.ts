@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export class EventItem {
   _id: mongoose.Types.ObjectId;
@@ -28,9 +28,10 @@ export class EventItem {
       latitude: number;
     };
   };
-  dateTime: Date;
+  dateTime: string;
   dateFormated: string;
   duration: string;
+  organizer: mongoose.Types.ObjectId;
   players: {
     age: { min: number; max: number };
     count: { min: number; max: number; current: number };
@@ -38,4 +39,5 @@ export class EventItem {
     experienceNeeded: boolean;
     joined: any[];
   };
+  canceled: boolean;
 }

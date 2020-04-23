@@ -8,7 +8,7 @@ export class EventsFilterPipe implements PipeTransform {
   transform(
     events: EventItem[],
     categories: string[],
-    dates: Date[],
+    dates: string[],
     gameNames: string[]
   ): EventItem[] {
     if (!events || !(categories.length || dates.length || gameNames.length)) {

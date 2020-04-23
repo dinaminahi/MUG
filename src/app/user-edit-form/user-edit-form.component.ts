@@ -3,27 +3,27 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  NgZone,
-} from "@angular/core";
+  NgZone
+} from '@angular/core';
 
-import { Router } from "@angular/router";
-import { AuthService } from "./../shared/auth.service";
-import { DataService } from "./../data.service";
+import { Router } from '@angular/router';
+import { AuthService } from './../shared/auth.service';
+import { DataService } from './../data.service';
 
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
-import { Validators } from "@angular/forms";
-import { MapsAPILoader } from "@agm/core";
-import {} from "googlemaps";
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { MapsAPILoader } from '@agm/core';
+import {} from 'googlemaps';
 
-import { UserItem } from "./../components/user-profile/user";
+import { UserItem } from './../components/user-profile/user';
 
 @Component({
-  selector: "app-user-edit-form",
-  templateUrl: "./user-edit-form.component.html",
-  styleUrls: ["./user-edit-form.component.scss"],
+  selector: 'app-user-edit-form',
+  templateUrl: './user-edit-form.component.html',
+  styleUrls: ['./user-edit-form.component.scss']
 })
 export class UserEditFormComponent implements OnInit {
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   userImage: string = this.authService.UserPhoto;
@@ -43,11 +43,11 @@ export class UserEditFormComponent implements OnInit {
   personalInfoForm: FormGroup;
 
   get username() {
-    return this.personalInfoForm.get(["personal", "name"]);
+    return this.personalInfoForm.get(['personal', 'name']);
   }
 
   get email() {
-    return this.personalInfoForm.get(["personal", "email"]);
+    return this.personalInfoForm.get(['personal', 'email']);
   }
 
   constructor(
@@ -62,28 +62,28 @@ export class UserEditFormComponent implements OnInit {
   ngOnInit(): void {
     let id = this.authService.UserId;
 
-    this.authService.getUserProfile(id).subscribe((res) => {
+    this.authService.getUserProfile(id).subscribe(res => {
       this.expectedUser = res.msg;
     });
 
     this.personalInfoForm = this.fb.group({
-      photo: [""],
+      photo: [''],
       personal: this.fb.group({
-        name: [""],
-        firstName: [""],
-        lastName: [""],
-        phone: [""],
-        email: [""],
+        name: [''],
+        firstName: [''],
+        lastName: [''],
+        phone: [''],
+        email: [''],
         location: this.fb.group({
-          address: "",
+          address: '',
           geo: this.fb.group({
-            longitude: [""],
-            latitude: [""],
-          }),
+            longitude: [''],
+            latitude: ['']
+          })
         }),
-        dateOfBirth: "",
-        description: [""],
-      }),
+        dateOfBirth: '',
+        description: ['']
+      })
     });
 
     this.zoom = 8;
@@ -97,10 +97,10 @@ export class UserEditFormComponent implements OnInit {
       const autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
-          types: ["(cities)"],
+          types: ['(cities)']
         }
       );
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
           if (place.geometry === undefined || place.geometry === null) {
@@ -109,7 +109,7 @@ export class UserEditFormComponent implements OnInit {
 
           const latlong = {
             latitude: place.geometry.location.lat(),
-            longitude: place.geometry.location.lng(),
+            longitude: place.geometry.location.lng()
           };
 
           this.personalInfoForm.value.personal.location.geo.longitude =
@@ -128,7 +128,7 @@ export class UserEditFormComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(["/user-profile", this.authService.UserId]);
+    this.router.navigate(['/user-profile', this.authService.UserId]);
   }
 
   selectFile(event) {
@@ -145,53 +145,53 @@ export class UserEditFormComponent implements OnInit {
 
   onSubmit() {
     const formData = new FormData();
-    formData.append("name", this.personalInfoForm.value.personal.name);
+    formData.append('name', this.personalInfoForm.value.personal.name);
     formData.append(
-      "firstName",
+      'firstName',
       this.personalInfoForm.value.personal.firstName
     );
-    formData.append("lastName", this.personalInfoForm.value.personal.lastName);
-    formData.append("phone", this.personalInfoForm.value.personal.phone);
-    formData.append("email", this.personalInfoForm.value.personal.email);
+    formData.append('lastName', this.personalInfoForm.value.personal.lastName);
+    formData.append('phone', this.personalInfoForm.value.personal.phone);
+    formData.append('email', this.personalInfoForm.value.personal.email);
     formData.append(
-      "address",
+      'address',
       this.personalInfoForm.value.personal.location.address
     );
 
     formData.append(
-      "longitude",
+      'longitude',
       this.personalInfoForm.value.personal.location.geo.longitude
         ? this.personalInfoForm.value.personal.location.geo.longitude
-        : ""
+        : ''
     );
     formData.append(
-      "latitude",
+      'latitude',
       this.personalInfoForm.value.personal.location.geo.latitude
         ? this.personalInfoForm.value.personal.location.geo.latitude
-        : ""
+        : ''
     );
     formData.append(
-      "dateOfBirth",
+      'dateOfBirth',
       this.personalInfoForm.value.personal.dateOfBirth
     );
     formData.append(
-      "description",
+      'description',
       this.personalInfoForm.value.personal.description
     );
-    formData.append("photo", this.userImageFile);
+    formData.append('photo', this.userImageFile);
     this.loading = true;
     this._dataService
       .editUser(formData, this.authService.UserId)
-      .subscribe((editedUser) => {
+      .subscribe(editedUser => {
         this.loading = false;
-        localStorage.setItem("userPhoto", editedUser.data.url);
-        this.router.navigate(["/user-profile", this.authService.UserId]);
+        localStorage.setItem('userPhoto', editedUser.data.url);
+        this.router.navigate(['/useraccount']);
       });
   }
 
   private setCurrentPosition() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
