@@ -16,10 +16,11 @@ export class UsersCreatedEventsComponent {
       this.events = res.filter(
         event => this.createdEvents.indexOf(event._id) !== -1
       );
+      console.log(this.events);
     });
   }
 
   goToAddEvent() {
-    this.router.navigate(['/addevent']);
+    this.router.navigate(['/pageaddevent']);
   }
 }
