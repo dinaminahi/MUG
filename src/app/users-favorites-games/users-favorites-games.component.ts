@@ -19,8 +19,4 @@ export class UsersFavoritesGamesComponent {
       );
     });
   }
-
-  goToGames() {
-    this.router.navigate(['/games']);
-  }
 }

@@ -19,8 +19,4 @@ export class UsersCreatedEventsComponent {
       console.log(this.events);
     });
   }
-
-  goToAddEvent() {
-    this.router.navigate(['/pageaddevent']);
-  }
 }
