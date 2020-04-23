@@ -94,11 +94,9 @@ export class AuthService {
   // In order to avoid multiple API calls triggered in this case, components are calling this method
   // instead of the getUserProfile() directly. This way we are sure that the API is called only once
   getCurrentUserData() {
-    if (!this.isUserAPICallMade) {
+    if (!this.isUserAPICallMade && this.UserId) {
       this.isUserAPICallMade = true;
-      this.getUserProfile(this.UserId).subscribe(res => {
-        this.userSource.next(res.msg);
-      });
+      this.getUserProfile(this.UserId).subscribe();
     }
     return this.userShared;
   }
@@ -108,7 +106,9 @@ export class AuthService {
     let authApi = `${this.endpoint}/user-profile/${id}`;
     return this.http.get(authApi, { headers: this.headers }).pipe(
       map((res: any) => {
-        console.log(res.msg);
+        if (this.UserId && res.msg && res.msg._id === this.UserId) {
+          this.userSource.next(res.msg);
+        }
         return res || {};
       }),
       catchError(this.handleError)
