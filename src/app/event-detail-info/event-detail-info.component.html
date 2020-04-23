@@ -18,7 +18,10 @@
             <h2 class="text-center mb-4">Subscribe now</h2>
             <p class="text-center">Click to add to your calendar</p>
             <div class="text-center mt-4">
-                <button class="add-btn mb-5">Add to calendar</button>
+                <app-button-join *ngIf="!expectedEvent?.canceled" [eventId]="expectedEvent?._id" class="join">
+                </app-button-join>
+                <button type="button" [disabled]="expectedEvent?.canceled" *ngIf="expectedEvent?.canceled"
+                    class="btn btn-danger mb-5">Canceled</button>
             </div>
         </div>
     </div>

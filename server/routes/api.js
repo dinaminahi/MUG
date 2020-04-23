@@ -73,7 +73,6 @@ router.get('/events_extended/:eventId', (req, res) => {
     if (err) {
       sendError(err, res);
     } else {
-      console.log(event);
       response.data = event;
       res.json(response);
     }

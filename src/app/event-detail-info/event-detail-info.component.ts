@@ -15,7 +15,7 @@ export class EventDetailInfoComponent implements OnInit {
   geo: Object;
   comments: Comment[];
   eventId: string;
-  organizor: object;
+  organizor: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +30,7 @@ export class EventDetailInfoComponent implements OnInit {
 
     this._dataService.getEventById(id).subscribe(res => {
       this.expectedEvent = res[0];
+      console.log(this.expectedEvent);
       this.geo = this.expectedEvent.location.geo;
       this.organizor = res[0].organizerInfo[0];
     });
