@@ -28,7 +28,6 @@ export class EventItemComponent implements OnInit, OnChanges {
     if (this.event) {
       this.authService.getUserProfile(this.event.organizer).subscribe(res => {
         this.organizer = res.msg;
-        console.log(this.organizer);
       });
     }
   }

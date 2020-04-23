@@ -50,7 +50,10 @@ export const routes: Routes = [
   //----
   { path: 'home', component: PageHomeComponent },
   { path: 'about', component: PageAboutComponent },
-  { path: 'events', component: PageEventsComponent },
+  {
+    path: 'events',
+    component: PageEventsComponent
+  },
   { path: 'events/:id', component: EventDetailInfoComponent },
   {
     path: 'pageaddevent',

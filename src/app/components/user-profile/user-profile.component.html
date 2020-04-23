@@ -1,5 +1,5 @@
 <div class=" user-data z-depth-1">
-  <i class="far fa-edit edit-btn fa-lg" (click)="goEdit()"></i>
+  <i *ngIf="userId === currUserId" class="far fa-edit edit-btn fa-lg" (click)="goEdit()"></i>
 
   <div class="photo py-5 text-center">
     <img [src]="expectedUser?.personal?.photoUrl" alt="User photo">
