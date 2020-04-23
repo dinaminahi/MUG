@@ -1,50 +1,59 @@
-import { Component, Input } from "@angular/core";
-import { User } from "../pages/page-users/user";
-import { DataService } from "../data.service";
-import mongoose from "mongoose";
-import { AuthService } from "../shared/auth.service";
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { UserItem } from '../components/user-profile/user';
+import { DataService } from '../data.service';
+import mongoose from 'mongoose';
+import { AuthService } from '../shared/auth.service';
 import {
   MatDialog,
   MatDialogRef,
-  MAT_DIALOG_DATA,
-} from "@angular/material/dialog";
-import { SigninComponent } from "./../components/signin/signin.component";
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
+import { SigninComponent } from './../components/signin/signin.component';
 
 @Component({
-  selector: "app-button-join",
-  templateUrl: "./button-join.component.html",
-  styleUrls: ["./button-join.component.scss"],
+  selector: 'app-button-join',
+  templateUrl: './button-join.component.html',
+  styleUrls: ['./button-join.component.scss']
 })
-export class ButtonJoinComponent {
+export class ButtonJoinComponent implements OnInit, OnChanges {
   @Input() eventId: mongoose.Types.ObjectId;
   subscribedEvents: string[];
   isSubscribed: boolean;
   isLoading: boolean;
   isFull: boolean;
-  user: User;
+  user: UserItem;
 
   constructor(
     private _dataService: DataService,
     public authService: AuthService,
     public dialog: MatDialog
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     if (this.authService.isLoggedIn) {
-      let id = this.authService.UserId;
-      this.authService.getUserProfile(id).subscribe((res) => {
-        this.user = res.msg;
-        if (!this.user) {
+      this.authService.getCurrentUserData().subscribe(user => {
+        if (!user) {
           return false;
         }
+        this.user = user;
         if (this.eventId) {
-          this.isSubscribed = !!(
-            this.user.events.subscribed.indexOf(this.eventId) > -1
-          );
+          this.setIsSubscribed();
         }
       });
     }
   }
 
-  ngOnInit(): void {}
+  setIsSubscribed() {
+    this.isSubscribed = !!(
+      this.user.events.subscribed.indexOf(this.eventId) > -1
+    );
+  }
+
+  ngOnChanges() {
+    if (this.eventId && this.user) {
+      this.setIsSubscribed();
+    }
+  }
 
   toggleSubscribed() {
     if (this.authService.isLoggedIn) {
@@ -52,7 +61,7 @@ export class ButtonJoinComponent {
       if (this.eventId) {
         this._dataService
           .joinToEvent(this.eventId, this.user._id, !this.isSubscribed)
-          .subscribe((res) => {
+          .subscribe(res => {
             this.isLoading = false;
             this.isFull =
               res.event.players.count.current >= res.event.players.count.max;
@@ -67,10 +76,10 @@ export class ButtonJoinComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
-      width: "450px",
-      height: "640px",
-      disableClose: true,
+      width: '767px',
+      height: '530px',
+      disableClose: true
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }

@@ -27,5 +27,4 @@ export class User {
       advanced: number[];
     };
   };
-  rating: number; // likes counter form other users
 }
