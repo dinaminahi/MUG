@@ -1,19 +1,19 @@
-import { Component, Input, OnInit, OnChanges } from "@angular/core";
-import { UserItem } from "../components/user-profile/user";
-import { DataService } from "../data.service";
-import mongoose from "mongoose";
-import { AuthService } from "../shared/auth.service";
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { UserItem } from '../components/user-profile/user';
+import { DataService } from '../data.service';
+import mongoose from 'mongoose';
+import { AuthService } from '../shared/auth.service';
 import {
   MatDialog,
   MatDialogRef,
-  MAT_DIALOG_DATA,
-} from "@angular/material/dialog";
-import { SigninComponent } from "./../components/signin/signin.component";
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
+import { SigninComponent } from './../components/signin/signin.component';
 
 @Component({
-  selector: "app-button-join",
-  templateUrl: "./button-join.component.html",
-  styleUrls: ["./button-join.component.scss"],
+  selector: 'app-button-join',
+  templateUrl: './button-join.component.html',
+  styleUrls: ['./button-join.component.scss']
 })
 export class ButtonJoinComponent implements OnInit, OnChanges {
   @Input() eventId: mongoose.Types.ObjectId;
@@ -31,7 +31,7 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
-      this.authService.getCurrentUserData().subscribe((user) => {
+      this.authService.getCurrentUserData().subscribe(user => {
         if (!user) {
           return false;
         }
@@ -61,7 +61,7 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
       if (this.eventId) {
         this._dataService
           .joinToEvent(this.eventId, this.user._id, !this.isSubscribed)
-          .subscribe((res) => {
+          .subscribe(res => {
             this.isLoading = false;
             this.isFull =
               res.event.players.count.current >= res.event.players.count.max;
@@ -76,10 +76,10 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
-      width: "767px",
-      height: "530px",
-      disableClose: true,
+      width: '767px',
+      height: '530px',
+      disableClose: true
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }
