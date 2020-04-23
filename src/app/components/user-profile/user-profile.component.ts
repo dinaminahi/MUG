@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let id = this.authService.UserId;
+    let id = this.actRoute.snapshot.paramMap.get('id');
 
     this.authService.getUserProfile(id).subscribe(res => {
       this.currentUser = res.msg;

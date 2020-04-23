@@ -25,9 +25,10 @@ export class EventItemComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
-    if (this.event && this.authService.isLoggedIn) {
+    if (this.event) {
       this.authService.getUserProfile(this.event.organizer).subscribe(res => {
         this.organizer = res.msg;
+        console.log(this.organizer);
       });
     }
   }
