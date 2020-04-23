@@ -187,7 +187,7 @@ export class DataService {
   }
 
   public joinToEvent(
-    eventId: number,
+    eventId: string,
     userId: string,
     toggle: boolean
   ): Observable<any> {
@@ -196,6 +196,7 @@ export class DataService {
       .pipe(
         map(response => {
           const currentEvents = this.eventsSource.getValue();
+          console.log(currentEvents);
           const currentEvent = currentEvents.find(
             event => event._id === eventId
           );

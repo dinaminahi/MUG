@@ -1,13 +1,25 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-5 col-12">
+        <div class="col-md-4 col-12">
             <app-user-profile></app-user-profile>
         </div>
-        <div class="col-lg-7 col-12 mt-5">
-            <button type="button" (click)="joinedClick()">Joined events</button>
-            <button type="button" (click)="favouriteEventsClick()">Favourite events</button>
-            <button type="button" (click)="createdClick()">Created events</button>
-            <button type="button" (click)="favouriteGamesClick()">Favourite games</button>
+        <div class="col-md-8 col-12 mt-5">
+            <div class="anchors z-depth-1 mt-1">
+                <div class="py-3" (click)="joinedClick()" [class.chosen-a]="joined">
+                    <p>Joined events</p>
+                </div>
+                <div class="py-3" (click)="favouriteEventsClick()" [class.chosen-a]="favouriteEvents">
+                    <p>Favourite events</p>
+
+                </div>
+                <div class="py-3" (click)="createdClick()" [class.chosen-a]="created">
+                    <p>Created events</p>
+
+                </div>
+                <div class="py-3" (click)="favouriteGamesClick()" [class.chosen-a]="favouriteGames">
+                    <p>Favourite games</p>
+                </div>
+            </div>
 
             <app-users-favorites-games *ngIf="favouriteGames" [favoritedGames]="user?.games.favorited">
             </app-users-favorites-games>

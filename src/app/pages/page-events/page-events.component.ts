@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { DataService } from "../../data.service";
-import { EventItem } from "../../event-item/event-item";
-import { GameCategory } from "../../game-category-icons/game-category";
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../data.service';
+import { EventItem } from '../../event-item/event-item';
+import { GameCategory } from '../../game-category-icons/game-category';
 
 @Component({
-  selector: "app-page-events",
-  templateUrl: "./page-events.component.html",
-  styleUrls: ["./page-events.component.scss"],
+  selector: 'app-page-events',
+  templateUrl: './page-events.component.html',
+  styleUrls: ['./page-events.component.scss']
 })
 export class PageEventsComponent implements OnInit {
   searchText;
@@ -15,19 +15,19 @@ export class PageEventsComponent implements OnInit {
   geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };
   icons = {
     default: {
-      url: "assets/icons/meeple-blue.svg",
+      url: 'assets/icons/meeple-blue.svg',
       scaledSize: {
         width: 30,
-        height: 30,
-      },
+        height: 30
+      }
     },
     active: {
-      url: "assets/icons/meeple-orange.svg",
+      url: 'assets/icons/meeple-orange.svg',
       scaledSize: {
         width: 30,
-        height: 30,
-      },
-    },
+        height: 30
+      }
+    }
   };
   categories: GameCategory[] = [];
   categoriesCurrent: GameCategory[] = [];
@@ -43,16 +43,17 @@ export class PageEventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this._dataService.eventsShared.subscribe((events) => {
+    this._dataService.eventsShared.subscribe(events => {
       this.events = this.getTodayAndUpcomingEvents(events);
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
     });
-    this._dataService.getEvents().subscribe((res) => {
+    this._dataService.getEvents().subscribe(res => {
       this.loading = false;
+      console.log(res);
     });
-    this._dataService.getCategories().subscribe((res) => {
+    this._dataService.getCategories().subscribe(res => {
       this.categories = res;
       this.events && this.filterCategories();
     });
@@ -61,9 +62,9 @@ export class PageEventsComponent implements OnInit {
   filterCategories() {
     // Filter out categories which are not exist on any event in current page
     // So each filtering checkbox will show at least one event
-    this.categoriesCurrent = this.categories.filter((category) =>
+    this.categoriesCurrent = this.categories.filter(category =>
       this.events.some(
-        (event) =>
+        event =>
           event.agame[0] &&
           event.agame[0].category &&
           event.agame[0].category.length &&
@@ -78,29 +79,29 @@ export class PageEventsComponent implements OnInit {
     // so we will have less unique dates if a low of events happen in a same date
     // save this string to custom event.dateFormated property to mach event after filtering happens by the dateFormated string
     // so the original event.dateTime could be passed to the filter pipe
-    this.events.forEach((e) => {
+    this.events.forEach(e => {
       const date = new Date(e.dateTime);
       e.dateFormated = `${
-        date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+        date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
       }.${
         date.getMonth() + 1 < 10
-          ? "0" + (date.getMonth() + 1)
+          ? '0' + (date.getMonth() + 1)
           : date.getMonth() + 1
       }.${date.getFullYear()}`;
     });
 
-    return [...new Set(this.events.map((e) => e.dateFormated))];
+    return [...new Set(this.events.map(e => e.dateFormated))];
   }
 
   getTodayAndUpcomingEvents(events) {
-    return events.filter((e) => new Date(e.dateTime) >= new Date());
+    return events.filter(e => new Date(e.dateTime) >= new Date());
   }
 
   filterGameName() {
     return [
       ...new Set(
-        this.events.map((event) => event.agame[0] && event.agame[0].name)
-      ),
+        this.events.map(event => event.agame[0] && event.agame[0].name)
+      )
     ];
   }
 
@@ -109,8 +110,8 @@ export class PageEventsComponent implements OnInit {
   }
   onDateTimeChange(datesCheckedInFilter) {
     this.selectedDateTimes = this.events
-      .filter((e) => datesCheckedInFilter.includes(e.dateFormated))
-      .map((e) => e.dateTime);
+      .filter(e => datesCheckedInFilter.includes(e.dateFormated))
+      .map(e => e.dateTime);
   }
   onGameNameChange(names) {
     this.selectedGameNames = names;

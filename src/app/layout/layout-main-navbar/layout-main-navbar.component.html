@@ -54,7 +54,8 @@
           Profile<span class="caret"></span>
         </a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a routerLinkActive="active" routerLink="/useraccount" class="dropdown-item waves-light" mdbWavesEffect>My
+          <a routerLinkActive="active" routerLink="/useraccount/{{authService.UserId}}"
+            class="dropdown-item waves-light" mdbWavesEffect>My
             account</a>
           <div class="divider dropdown-divider"></div>
           <a (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect>Log out</a>

@@ -1,0 +1,24 @@
+.anchors {
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  div {
+    cursor: pointer;
+  }
+}
+// .underlineO {
+//     border-bottom: 1px solid orange;
+//   }
+
+//   .underlineG {
+//     border-bottom: 1px solid orange;
+//   }
+
+.chosen-a {
+  border-bottom: 2px solid orange;
+}

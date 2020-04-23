@@ -1,5 +1,5 @@
-<div class=" user-data z-depth-1">
-  <i class="far fa-edit edit-btn fa-lg" (click)="goEdit()"></i>
+<div class="user-data z-depth-1">
+  <i *ngIf="userId === currUserId" class="far fa-edit edit-btn fa-lg" (click)="goEdit()"></i>
 
   <div class="photo py-5 text-center">
     <img [src]="expectedUser?.personal?.photoUrl" alt="User photo">
@@ -16,9 +16,9 @@
   <hr>
 
 
-  <div class="contacts pl-5">
+  <div class="contacts">
 
-    <h2>Contacts</h2>
+    <h2 class="text-center">Contacts</h2>
 
     <div class="pl-4 pb-4">
       <h4>Email</h4>
@@ -35,40 +35,10 @@
   </div>
 
   <hr>
-
+  <!-- 
   <div class="favourite-games px-5">
-
     <h2>Favourite games</h2>
-
-    <div class="row">
-      <div class="col-4">
-        <div class="game-item text-center">
-          <p>Uno</p>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="game-item text-center">
-          <p>Uno</p>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="game-item text-center">
-          <p>Uno</p>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="game-item text-center">
-          <p>Uno</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="game-item d-inline">
-          <p class="d-inline">Uno</p>
-        </div> -->
-
-
-
-  </div>
+    <app-fav-game-names [favoritedGames]="expectedUser?.games.favorited"></app-fav-game-names>
+</div> -->
 
 </div>

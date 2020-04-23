@@ -1,0 +1,13 @@
+@import '../../sass/_variables.scss'; // this is not cool!
+
+.comment-btn {
+  cursor: pointer;
+  text-align: center;
+  width: 100px;
+  color: #444;
+  background: $color-orange;
+  color: #fff;
+  padding: 5px 10px;
+  border: $color-orange solid 2px;
+  border-radius: 4px;
+}

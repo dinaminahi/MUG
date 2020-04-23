@@ -19,8 +19,4 @@ export class UsersFavoritesEventsComponent {
       );
     });
   }
-
-  goToEvents() {
-    this.router.navigate(['/events']);
-  }
 }

@@ -16,6 +16,8 @@ export class UserCreatedEventItemComponent implements OnInit {
   @Input() event: EventItem;
   cancel: boolean;
 
+  currUserId: string;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -25,6 +27,7 @@ export class UserCreatedEventItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.currUserId = this.authService.UserId;
     this.cancel = this.event.canceled;
   }
 
