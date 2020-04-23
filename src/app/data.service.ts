@@ -54,8 +54,12 @@ export class DataService {
       )
       .pipe(
         map((response) => {
-          this.eventsSource.next(response.data);
-          return response.data;
+          const resSorted = response.data.sort(
+            (a, b) =>
+              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
+          );
+          this.eventsSource.next(resSorted);
+          return resSorted;
         })
       );
   }

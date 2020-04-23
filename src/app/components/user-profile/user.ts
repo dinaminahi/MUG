@@ -1,6 +1,9 @@
+import mongoose from "mongoose";
+
 export class UserItem {
-    password: string;
-    email: string;
+  _id: mongoose.Types.ObjectId;
+  password: string;
+  email: string;
   personal: {
     photoUrl: string;
     name: string;
@@ -12,26 +15,23 @@ export class UserItem {
       geo: {
         longitude: Number;
         latitude: Number;
-      }
+      };
     };
     dateOfBirth: string;
     description: string;
   };
   events: {
-    subscribed: [];
-    interested: [];
-    created: [];
+    subscribed: mongoose.Types.ObjectId[];
+    interested: mongoose.Types.ObjectId[];
+    created: mongoose.Types.ObjectId[];
   };
   games: {
-    favorited: []; // game id's or some part of game objects
-    skillLevel:
-    {
+    favorited: mongoose.Types.ObjectId[]; // game id's or some part of game objects
+    skillLevel: {
       novice: [];
       beginner: [];
       intermediate: [];
       advanced: [];
     };
-    rating: Number; // likes counter form other users
-  }
-  }
-  
+  };
+}

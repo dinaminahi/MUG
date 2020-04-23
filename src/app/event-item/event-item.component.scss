@@ -195,6 +195,19 @@
     text-align: center;
   }
 
+  button.organizerName {
+    border: none;
+    outline: none;
+    padding: 0;
+    background: none;
+    color: $color-orange;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .age {
     .fa-baby {
       width: 15px;
