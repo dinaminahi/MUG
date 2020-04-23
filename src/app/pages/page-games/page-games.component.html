@@ -7,23 +7,14 @@
 <div class="container" *ngIf="!loading">
   <div class="games-list">
 
-    <div class="filters-wrapp">
-      <div class="row align-items-center">
+    <div class="filters-wrapp z-depth-1">
+      <div class="row">
 
-        <div class="col-7">
+        <div class="col-sm">
           <!--  -->
-          <div class="btn-group btn-lg pull-left">
-            <button class="btn btn-white" type="button" (click)="onDisplayModeChange(1)"
-              [ngClass]="{'btn-secondary btn-lg active': displayMode === 1}">
-              <i class="fa fa-th"></i>
-            </button>
-            <button class="btn btn-white" type="button" (click)="onDisplayModeChange(2)"
-              [ngClass]="{'btn-secondary btn-lg active': displayMode === 2}">
-              <i class="fa fa-list"></i>
-            </button>
-          </div>
+
           <!--  -->
-          <mat-form-field class="example-form-field">
+          <mat-form-field class="example-form-field mt-4">
             <mat-label>Search Game</mat-label>
             <input matInput type="search" [(ngModel)]="searchText" [(ngModel)]="value">
             <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
@@ -32,10 +23,22 @@
           </mat-form-field>
         </div>
 
-        <div class="col-5 text-center">
-          <button class="create-event-btn" routerLinkActive="active" routerLink="/pageaddgame">
-            Add new Game
-          </button>
+        <div class="col-sm">
+          <div class="btn-group">
+            <button class="create-event-btn" routerLinkActive="active" routerLink="/pageaddgame">
+              Add new Game
+            </button>
+            <div class="btn-group btn-lg m-auto pl-5 pr-0 mr-0">
+              <button class="btn btn-white" type="button" (click)="onDisplayModeChange(1)"
+                [ngClass]="{'btn-secondary btn-lg active': displayMode === 1}">
+                <i class="fa fa-th"></i>
+              </button>
+              <button class="btn btn-white" type="button" (click)="onDisplayModeChange(2)"
+                [ngClass]="{'btn-secondary btn-lg active': displayMode === 2}">
+                <i class="fa fa-list"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

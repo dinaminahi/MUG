@@ -9,6 +9,7 @@ import { GameCategory } from "../../game-category-icons/game-category";
   styleUrls: ["./page-events.component.scss"],
 })
 export class PageEventsComponent implements OnInit {
+  value;
   searchText;
   loading: boolean = true;
   selectedCategories = [];

@@ -1,3 +1,5 @@
+@import "../../../sass/variables";
+
 // .page-heading-message {
 //   background-color: #003049;
 //   padding: 30px 0 25px;
@@ -37,14 +39,14 @@ app-event-item {
 
 .create-event-btn {
   background-color: transparent;
-  border-radius: 28px;
+  border-radius: 8px;
   border: 3px solid #f2efea;
   display: inline-block;
   cursor: pointer;
   color: #f2efea;
   font-family: Arial;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 400;
   padding: 12px 60px;
   text-decoration: none;
   margin: 25px auto;
@@ -109,4 +111,34 @@ app-event-item {
     content: "No matches";
     margin: 0 15px;
   }
+}
+
+.example-form-field {
+  width: 300px;
+  color: white;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+  font-size: 20px;
+
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+  border-bottom: 3px solid;
+  line-height: 20px;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: $color-main !important;
+  border-bottom: 3px solid;
+}
+
+.mat-input-element {
+  line-height: 10px !important;
+  font-size: 20px;
 }

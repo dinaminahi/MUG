@@ -71,6 +71,18 @@ router.post(
             },
             rating: 0
           }
+
+        });
+        user.save().then((response) => {
+          res.status(201).json({
+            message: "User successfully created!",
+            result: response
+          });
+        }).catch(error => {
+          res.status(500).json({
+            error: error
+          });
+
         });
         user
           .save()
@@ -131,6 +143,19 @@ router.post('/signin', (req, res, next) => {
       return res.status(401).json({
         message: 'Authentication failed'
       });
+
+    }
+    let jwtToken = jwt.sign({
+      email: getUser.email,
+      userId: getUser._id
+    }, "longer-secret-is-better", {
+      expiresIn: "10h"
+    });
+    res.status(200).json({
+      token: jwtToken,
+      expiresIn: 360000,
+      _id: getUser._id
+
     });
 });
 
