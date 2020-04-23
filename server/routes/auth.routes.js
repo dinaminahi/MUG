@@ -4,29 +4,32 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/userSchema');
 const authorize = require('../middlewares/auth');
-const { check, validationResult } = require('express-validator');
+const {
+  check,
+  validationResult
+} = require('express-validator');
 
 // Sign-up
 router.post(
   '/register-user',
   [
     check('name')
-      .not()
-      .isEmpty()
-      .isLength({
-        min: 3
-      })
-      .withMessage('Name must be atleast 3 characters long'),
+    .not()
+    .isEmpty()
+    .isLength({
+      min: 3
+    })
+    .withMessage('Name must be atleast 3 characters long'),
     check('email', 'Email is required')
-      .not()
-      .isEmpty(),
+    .not()
+    .isEmpty(),
     check('password', 'Password should be between 5 to 8 characters long')
-      .not()
-      .isEmpty()
-      .isLength({
-        min: 5,
-        max: 16
-      })
+    .not()
+    .isEmpty()
+    .isLength({
+      min: 5,
+      max: 16
+    })
   ],
   (req, res, next) => {
     const errors = validationResult(req);
@@ -40,8 +43,7 @@ router.post(
           password: hash,
           email: req.body.email,
           personal: {
-            photoUrl:
-              'https://res.cloudinary.com/deji/image/upload/v1489787662/blank_photo_mqvivv.png',
+            photoUrl: 'https://res.cloudinary.com/deji/image/upload/v1489787662/blank_photo_mqvivv.png',
             name: req.body.name,
             firstName: '',
             lastName: '',
@@ -71,18 +73,6 @@ router.post(
             },
             rating: 0
           }
-
-        });
-        user.save().then((response) => {
-          res.status(201).json({
-            message: "User successfully created!",
-            result: response
-          });
-        }).catch(error => {
-          res.status(500).json({
-            error: error
-          });
-
         });
         user
           .save()
@@ -106,8 +96,8 @@ router.post(
 router.post('/signin', (req, res, next) => {
   let getUser;
   User.findOne({
-    email: req.body.email
-  })
+      email: req.body.email
+    })
     .then(user => {
       if (!user) {
         return res.status(401).json({
@@ -123,13 +113,11 @@ router.post('/signin', (req, res, next) => {
           message: 'Authentication failed'
         });
       }
-      let jwtToken = jwt.sign(
-        {
+      let jwtToken = jwt.sign({
           email: getUser.email,
           userId: getUser._id
         },
-        'longer-secret-is-better',
-        {
+        'longer-secret-is-better', {
           expiresIn: '24h'
         }
       );
@@ -143,19 +131,6 @@ router.post('/signin', (req, res, next) => {
       return res.status(401).json({
         message: 'Authentication failed'
       });
-
-    }
-    let jwtToken = jwt.sign({
-      email: getUser.email,
-      userId: getUser._id
-    }, "longer-secret-is-better", {
-      expiresIn: "10h"
-    });
-    res.status(200).json({
-      token: jwtToken,
-      expiresIn: 360000,
-      _id: getUser._id
-
     });
 });
 
@@ -186,8 +161,7 @@ router.route('/user-profile/:id').get(authorize, (req, res, next) => {
 // Update User
 router.route('/update-user/:id').put((req, res, next) => {
   User.findByIdAndUpdate(
-    req.params.id,
-    {
+    req.params.id, {
       $set: req.body
     },
     (error, data) => {
