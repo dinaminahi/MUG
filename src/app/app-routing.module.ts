@@ -36,7 +36,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] // - check if loggedin or not
   },
   {
-    path: 'useraccount',
+    path: 'useraccount/:id',
     component: PageUserAccountComponent,
     canActivate: [AuthGuard] // - check if loggedin or not
   },

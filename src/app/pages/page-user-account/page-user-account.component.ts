@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './../../shared/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from './../page-users/user';
 
 @Component({
@@ -17,10 +17,13 @@ export class PageUserAccountComponent implements OnInit {
   favouriteEvents: boolean = false;
   favouriteGames: boolean = false;
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private actRout: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    let id = this.authService.UserId;
+    let id = this.actRout.snapshot.paramMap.get('id');
     this.authService.getUserProfile(id).subscribe(res => {
       this.user = res.msg;
     });

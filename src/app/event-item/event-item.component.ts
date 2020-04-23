@@ -37,6 +37,6 @@ export class EventItemComponent implements OnInit, OnChanges {
   }
 
   redirectToUserPage(user) {
-    this.router.navigate(['/user-profile', user._id]);
+    this.router.navigate(['/useraccount', user._id]);
   }
 }

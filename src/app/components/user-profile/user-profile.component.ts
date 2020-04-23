@@ -18,6 +18,8 @@ export class UserProfileComponent implements OnInit {
   expectedUserCity: String;
   userId: string;
   currUserId: string;
+  favouriteGames: any;
+  favouriteGamesNames = [];
 
   constructor(
     private authService: AuthService,
@@ -34,7 +36,7 @@ export class UserProfileComponent implements OnInit {
         this.expectedUser = res.msg;
         this.expectedUserCity = res.msg.personal.location.address.substring(
           0,
-          res[0].personal.location.address.indexOf(',')
+          res.msg.personal.location.address.indexOf(',')
         );
       });
     } else {

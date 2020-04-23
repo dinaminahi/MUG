@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export class UserItem {
   _id: mongoose.Types.ObjectId;
@@ -34,4 +34,5 @@ export class UserItem {
       advanced: [];
     };
   };
+  favoritedGames: [];
 }
