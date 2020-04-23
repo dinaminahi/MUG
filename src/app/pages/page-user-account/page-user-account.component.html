@@ -1,4 +1,25 @@
-!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!
-!!!!!!!!!!!
-!!!!!!!!!
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-12">
+            <app-user-profile></app-user-profile>
+        </div>
+        <div class="col-lg-7 col-12 mt-5">
+            <button type="button" (click)="joinedClick()">Joined events</button>
+            <button type="button" (click)="favouriteEventsClick()">Favourite events</button>
+            <button type="button" (click)="createdClick()">Created events</button>
+            <button type="button" (click)="favouriteGamesClick()">Favourite games</button>
+
+            <app-users-favorites-games *ngIf="favouriteGames" [favoritedGames]="user?.games.favorited">
+            </app-users-favorites-games>
+
+            <app-users-favorites-events *ngIf="favouriteEvents" [favoritedEvents]="user?.events.interested">
+            </app-users-favorites-events>
+
+            <app-users-subscribed-events *ngIf="joined" [subscribedEvents]="user?.events.subscribed">
+            </app-users-subscribed-events>
+
+            <app-users-created-events *ngIf="created" [createdEvents]="user?.events.created">
+            </app-users-created-events>
+        </div>
+    </div>
+</div>

@@ -1,18 +1,12 @@
 <div class="event-item my-3 z-depth-1" data-id="{{ event?._id }}">
   <div class="event-header dark-grey-text">
-    <span
-      ><i class="far fa-calendar-alt"></i>
-      {{ event?.dateTime | date: "dd.MM.yyyy" }}</span
-    >
+    <span><i class="far fa-calendar-alt"></i>
+      {{ event?.dateTime | date: "dd.MM.yyyy" }}</span>
     <span>
       <i class="far fa-clock"></i>
-      {{ event?.dateTime | date: "HH:mm" }}</span
-    >
+      {{ event?.dateTime | date: "HH:mm" }}</span>
     <span class="heart-wrapper">
-      <app-add-to-favorites
-        [eventId]="event?._id"
-        class="heart-icon"
-      ></app-add-to-favorites>
+      <app-add-to-favorites [eventId]="event?._id" class="heart-icon"></app-add-to-favorites>
     </span>
   </div>
   <section class="text-center dark-grey-text">
@@ -23,7 +17,9 @@
     <h2>{{ event?.eventName }}</h2>
 
     <div class="button-wrapper">
-      <app-button-join [eventId]="event?._id" class="join"></app-button-join>
+      <app-button-join *ngIf="!event?.canceled" [eventId]="event?._id" class="join"></app-button-join>
+      <button type="button" [disabled]="event?.canceled" *ngIf="event?.canceled"
+        class="btn btn-danger">Canceled</button>
       <!-- <button class="subm">JOIN</button> -->
       <button (click)="onSelect(event)" class="more">
         MORE INFO
@@ -31,18 +27,12 @@
     </div>
   </section>
   <div class="footer text-center dark-grey-text">
-    <span class="address"
-      ><span
-        ><i class="fas fa-map-marker" title="Локація"></i>
-        {{ event?.location.address }}</span
-      ></span
-    >
+    <span class="address"><span><i class="fas fa-map-marker" title="Локація"></i>
+        {{ event?.location.address }}</span></span>
     <div class="description z-depth-1 text-muted">
       <div class="attenders-icons">
-        <app-participants-count
-          [count]="event?.players.count"
-          [joined]="event?.players.joined"
-        ></app-participants-count>
+        <app-participants-count [count]="event?.players.count" [joined]="event?.players.joined">
+        </app-participants-count>
       </div>
       <div class="description-text">
         {{ event?.description.slice(0, 50) }}...
@@ -52,32 +42,24 @@
         <div>
           <span class="label">
             <i class="far fa-clock" title="Тривалісь зустрічі"></i>Тривалісь
-            зустрічі:</span
-          ><b> {{ event?.duration }}</b>
+            зустрічі:</span><b> {{ event?.duration }}</b>
         </div>
         <div class="age">
           <span class="label">
             <i class="fas fa-baby"></i>
-            <i class="fas fa-child" title="Вік гравців"></i> Вік гравців:</span
-          ><b> {{ event?.players.age.min }} - {{ event?.players.age.max }}</b>
+            <i class="fas fa-child" title="Вік гравців"></i> Вік гравців:</span><b> {{ event?.players.age.min }} -
+            {{ event?.players.age.max }}</b>
         </div>
         <div class="count">
           <span class="label">
             <i class="fas fa-users" title="Кількість гравців"></i> Кількість
-            гравців:</span
-          ><b>
-            {{ event?.players.count.min }} - {{ event?.players.count.max }}</b
-          >
+            гравців:</span><b>
+            {{ event?.players.count.min }} - {{ event?.players.count.max }}</b>
         </div>
         <div class="organizer">
           <span class="label">
-            <i class="far fa-address-card" title="Організатор"></i
-            >Організатор:</span
-          ><b>
-            <button
-              class="organizerName"
-              (click)="redirectToUserPage(organizer)"
-            >
+            <i class="far fa-address-card" title="Організатор"></i>Організатор:</span><b>
+            <button class="organizerName" (click)="redirectToUserPage(organizer)">
               {{ organizer?.personal.firstName || organizer?.personal.name }}
             </button>
           </b>

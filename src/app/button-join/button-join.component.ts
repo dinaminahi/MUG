@@ -76,8 +76,8 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
-      width: "450px",
-      height: "640px",
+      width: "767px",
+      height: "530px",
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {});
