@@ -1,8 +1,8 @@
 import { Component, Input } from "@angular/core";
-import { User } from "../pages/page-users/user";
+import { UserItem } from "../components/user-profile/user";
 import { DataService } from "../data.service";
-import mongoose from "mongoose";
 import { AuthService } from "../shared/auth.service";
+import mongoose from "mongoose";
 
 @Component({
   selector: "app-add-to-favorites",
@@ -16,17 +16,15 @@ export class AddToFavoritesComponent {
   favoritedGames: string[];
   isFavorited: boolean;
   isLoading: boolean;
-  user: User;
+  user: UserItem;
 
   constructor(
     private _dataService: DataService,
     public authService: AuthService
   ) {
-
-    if(this.authService.isLoggedIn) {
-      let id = this.authService.UserId;
-      this.authService.getUserProfile(id).subscribe((res) => {
-        this.user = res.msg;
+    if (this.authService.isLoggedIn) {
+      this.authService.getCurrentUserData().subscribe((user) => {
+        this.user = user;
         if (!this.user) {
           return false;
         }
@@ -42,7 +40,6 @@ export class AddToFavoritesComponent {
         }
       });
     }
-    
   }
 
   ngOnInit(): void {}

@@ -33,7 +33,7 @@ export class PageEventsComponent implements OnInit {
   categoriesCurrent: GameCategory[] = [];
   events: EventItem[];
   selectedEvent: EventItem;
-  selectedDateTimes: Date[] = [];
+  selectedDateTimes: string[] = [];
   selectedGameNames: string[] = [];
   eventDateTimes: string[];
   gameName: string[];
@@ -44,7 +44,7 @@ export class PageEventsComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this._dataService.eventsShared.subscribe((events) => {
-      this.events = events;
+      this.events = this.getTodayAndUpcomingEvents(events);
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
@@ -64,6 +64,7 @@ export class PageEventsComponent implements OnInit {
     this.categoriesCurrent = this.categories.filter((category) =>
       this.events.some(
         (event) =>
+          event.agame[0] &&
           event.agame[0].category &&
           event.agame[0].category.length &&
           event.agame[0].category.indexOf(category.name) !== -1
@@ -91,8 +92,16 @@ export class PageEventsComponent implements OnInit {
     return [...new Set(this.events.map((e) => e.dateFormated))];
   }
 
+  getTodayAndUpcomingEvents(events) {
+    return events.filter((e) => new Date(e.dateTime) >= new Date());
+  }
+
   filterGameName() {
-    return [...new Set(this.events.map((event) => event.agame[0].name))];
+    return [
+      ...new Set(
+        this.events.map((event) => event.agame[0] && event.agame[0].name)
+      ),
+    ];
   }
 
   onCategoriesChange(value) {

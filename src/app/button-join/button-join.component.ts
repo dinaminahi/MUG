@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { User } from "../pages/page-users/user";
+import { Component, Input, OnInit, OnChanges } from "@angular/core";
+import { UserItem } from "../components/user-profile/user";
 import { DataService } from "../data.service";
 import mongoose from "mongoose";
 import { AuthService } from "../shared/auth.service";
@@ -15,36 +15,45 @@ import { SigninComponent } from "./../components/signin/signin.component";
   templateUrl: "./button-join.component.html",
   styleUrls: ["./button-join.component.scss"],
 })
-export class ButtonJoinComponent {
+export class ButtonJoinComponent implements OnInit, OnChanges {
   @Input() eventId: mongoose.Types.ObjectId;
   subscribedEvents: string[];
   isSubscribed: boolean;
   isLoading: boolean;
   isFull: boolean;
-  user: User;
+  user: UserItem;
 
   constructor(
     private _dataService: DataService,
     public authService: AuthService,
     public dialog: MatDialog
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     if (this.authService.isLoggedIn) {
-      let id = this.authService.UserId;
-      this.authService.getUserProfile(id).subscribe((res) => {
-        this.user = res.msg;
-        if (!this.user) {
+      this.authService.getCurrentUserData().subscribe((user) => {
+        if (!user) {
           return false;
         }
+        this.user = user;
         if (this.eventId) {
-          this.isSubscribed = !!(
-            this.user.events.subscribed.indexOf(this.eventId) > -1
-          );
+          this.setIsSubscribed();
         }
       });
     }
   }
 
-  ngOnInit(): void {}
+  setIsSubscribed() {
+    this.isSubscribed = !!(
+      this.user.events.subscribed.indexOf(this.eventId) > -1
+    );
+  }
+
+  ngOnChanges() {
+    if (this.eventId && this.user) {
+      this.setIsSubscribed();
+    }
+  }
 
   toggleSubscribed() {
     if (this.authService.isLoggedIn) {

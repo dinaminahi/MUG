@@ -58,7 +58,11 @@
         </div>
         <div class="organizer">
           <span class="label">
-            <i class="far fa-address-card" title="Організатор"></i>Організатор:</span><b> Джавала Любомира</b>
+            <i class="far fa-address-card" title="Організатор"></i>Організатор:</span><b>
+            <button class="organizerName" (click)="redirectToUserPage(organizer)">
+              {{ organizer?.personal.firstName || organizer?.personal.name }}
+            </button>
+          </b>
           <!-- organizer: {{ event?.players.organizer }} -->
         </div>
       </div>
