@@ -1,3 +1,5 @@
+@import "../../../sass/variables";
+
 html,
 body,
 header,
@@ -8,7 +10,7 @@ header,
 
 .btn {
   border-radius: 5px;
-  border: solid 3px white !important;
+  border: solid 3px white;
   letter-spacing: 5px;
 }
 
@@ -52,3 +54,192 @@ header,
 //   -webkit-text-stroke: 2px black;
 //   // padding-top: 7%;
 // }
+
+
+
+
+@media screen and (max-width: 767px) {
+  .mug-heading {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: black;
+    color: $color-orange;
+    width: 100%;
+    background-image: linear-gradient(to left,
+        transparent,
+        transparent 50%,
+        white 50%,
+        white);
+    background-position: -100% 0;
+    background-size: 200% 100%;
+    transition: all .25s ease-in;
+  }
+
+  .mug-heading:hover {
+    background-position: 0 0;
+    color: black;
+
+    .btn-change {
+      color: $color-orange;
+      border: solid 3px$color-orange;
+      background: transparent;
+    }
+
+    h1:hover:before {
+      width: 100%;
+    }
+
+    h2:hover:before {
+      width: 100%;
+    }
+
+    p:hover:before {
+      width: 100%;
+    }
+
+    h3:hover:before {
+      width: 100%;
+    }
+
+    h1::first-letter {
+      color: $color-orange;
+    }
+
+    h2::first-letter {
+      color: $color-orange;
+    }
+
+    h3::first-letter {
+      color: $color-orange;
+    }
+  }
+
+  header {
+    display: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    font-size: 12em;
+    font-weight: 600;
+    line-height: 1em;
+    letter-spacing: 4px;
+  }
+
+  h1 {
+    top: 20%;
+    left: 44%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  h1:before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 38%;
+    color: $color-main-blue;
+    width: 0;
+    overflow: hidden;
+    transition: 2s;
+  }
+
+  h2 {
+    top: 36%;
+    left: 44%;
+    transform: translate(-50%, -50%);
+  }
+
+  h2:before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 33%;
+    color: $color-main-blue;
+    width: 0;
+    overflow: hidden;
+    transition: 2s;
+  }
+
+  p {
+    top: 52%;
+    left: 57%;
+    transform: translate(-50%, -50%);
+  }
+
+  p:before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $color-main-blue;
+    width: 0;
+    overflow: hidden;
+    transition: 2s;
+
+  }
+
+  h3 {
+    top: 65%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+  }
+
+  h3:before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 21.5%;
+    color: $color-main-blue;
+    width: 0;
+    overflow: hidden;
+    transition: 2s;
+  }
+
+  .btn-change {
+    border-radius: 5px;
+    border: solid 3px white;
+    letter-spacing: 5px;
+    background: transparent;
+    color: white;
+    padding: 15px 55px;
+    font-size: 25px;
+  }
+
+  button {
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  //   h1:before {
+  //     content: attr(data-text);
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     color: white;
+  //     width: 50%;
+  //     overflow: hidden;
+  //     transition: 1s;
+  //   }
+
+  //   h1:hover::before {
+  //     width: 100%
+  //   }
+  // }
+}
+
+@media screen and (min-width: 768px) {
+  .mug-heading {
+    display: none;
+  }
+}
