@@ -70,7 +70,8 @@ router.post(
               advanced: []
             },
             rating: 0
-          }
+          },
+          notificationsId: []
         });
         user
           .save()
@@ -81,6 +82,7 @@ router.post(
             });
           })
           .catch(error => {
+            console.log(error);
             res.status(500).json({
               error: error
             });

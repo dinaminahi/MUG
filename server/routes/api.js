@@ -25,6 +25,7 @@ const Game = require('./../models/gameSchema');
 const Event = require('./../models/eventSchema');
 const User = require('./../models/userSchema');
 const Comment = require('./../models/commentSchema');
+const Notification = require('./../models/notificationSchema');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -644,6 +645,11 @@ router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
 });
 
 router.post('/cancelevent', (req, res) => {
+  const notification = new Notification({
+    text: 'was canceled!',
+    canceledEvent: req.body.eventId
+  });
+
   Event.findOneAndUpdate(
     {
       _id: req.body.eventId,
@@ -656,6 +662,19 @@ router.post('/cancelevent', (req, res) => {
       if (err) {
         sendError(err, res);
       } else {
+        event.players.joined.forEach(user => {
+          User.findByIdAndUpdate(
+            { _id: user._id },
+            {
+              $push: {
+                notificationsId: mongoose.Types.ObjectId(notification._id)
+              }
+            },
+            (err, user) => {
+              console.log(user);
+            }
+          );
+        });
         response.data = event;
         res.json(response);
       }
