@@ -121,6 +121,18 @@ header,
     display: none;
   }
 
+  h1::first-letter {
+    color: white;
+  }
+
+  h2::first-letter {
+    color: white;
+  }
+
+  h3::first-letter {
+    color: white;
+  }
+
   h1,
   h2,
   h3,
@@ -135,7 +147,7 @@ header,
   }
 
   h1 {
-    top: 20%;
+    top: 23%;
     left: 44%;
     transform: translate(-50%, -50%);
   }
@@ -153,8 +165,8 @@ header,
   }
 
   h2 {
-    top: 36%;
-    left: 44%;
+    top: 39%;
+    left: 45%;
     transform: translate(-50%, -50%);
   }
 
