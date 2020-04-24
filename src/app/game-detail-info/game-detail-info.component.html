@@ -6,6 +6,16 @@
   <div class="row">
     <div class="col">
       <div class="game-item">
+        <div class="favorites">
+          <div>
+            Вподобати гру
+            <app-add-to-favorites [gameId]="game?._id"></app-add-to-favorites>
+          </div>
+          <div>
+            Кількість подій з цією грою:
+            <span class="icons"> 125 <i class="fas fa-award"></i></span>
+          </div>
+        </div>
         <div class="wrapp-carousel">
           <app-games-carousel
             [imgs]="game?.photoUrl"
@@ -13,7 +23,7 @@
           ></app-games-carousel>
         </div>
         <section class="game-content">
-          <div class="game-meta text-left">
+          <div class="game-meta">
             <div>
               <span class="label">
                 <i class="far fa-clock" title="Тривалісь гри"></i>
@@ -40,59 +50,31 @@
               <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
             </div>
           </div>
-          <h2 class="game-title">
-            <span>{{ game?.name }}</span>
-          </h2>
+
           <div class="category">
             <app-game-category-icons
               [categories]="game?.categories"
             ></app-game-category-icons>
             <!-- {{ game?.category }} -->
           </div>
+          <h2 class="game-title">
+            <span>{{ game?.name }}</span>
+          </h2>
+
           <div class="container">
             <div class="row">
-              <div class="col-md-9 order-md-2">
-                <div class="description">
-                  {{ game?.description }}
-                </div>
-                <!-- <div class="instructionUrl">
+              <div class="description">
+                {{ game?.description }}
+              </div>
+              <!-- <div class="instructionUrl">
                 <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
               </div> -->
-              </div>
-              <div class="col-md-3 order-md-1">
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    Рейтинг гри на сайті
-                    <span class="icons"><i class="fas fa-award"></i></span>
-                  </li>
-                  <li class="list-group-item">
-                    Вподобати гру
-                    <span class="icons">
-                      <app-add-to-favorites
-                        [gameId]="game?._id"
-                      ></app-add-to-favorites>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    Поділитися
-                    <span class="icons"><i class="fab fa-facebook"></i></span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="icons"
-                      ><button class="subm">
-                        Створити подію з цією грою
-                      </button></span
-                    >
-                  </li>
-                  <li class="list-group-item">
-                    <span class="icons"
-                      ><button class="back" (click)="gotoGames()">
-                        Повернутися до списку ігор
-                      </button></span
-                    >
-                  </li>
-                </ul>
-              </div>
+              <button class="subm">
+                Створити подію з цією грою
+              </button>
+              <button class="back" (click)="gotoGames()">
+                Повернутися до списку ігор
+              </button>
             </div>
           </div>
         </section>

@@ -1,12 +1,25 @@
 .game-item {
-  padding: 0 20px;
-  margin: 40px 0 0;
-
+  padding: 0;
+  margin: 0;
   background-color: #fff;
   position: relative;
 
+  .favorites {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    z-index: 10;
+    margin: 0;
+    padding: 10px;
+    background-color: #e3920e;
+    color: #f9f3ee;
+    font-family: "Kelly Slab", cursive;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
   .wrapp-carousel {
-    background-color: #f5f3eb;
+    background-color: #f9f3ee;
   }
   .img {
     margin: 0;
@@ -26,10 +39,10 @@
 
   .game-content {
     position: relative;
-    margin: 0px;
+    margin: 0 auto;
     padding: 0px;
-    border-top: solid 1px #3a3535;
-    box-shadow: 0 -2px 0px -1px #f4f4f4;
+    border-top: solid 1px #e3920e;
+    box-shadow: 0 -2px 0px -1px #f9f3ee;
   }
 
   .game-title {
@@ -39,7 +52,7 @@
     margin: 10px 0 0;
     padding: 10px;
     font-size: 2.2rem;
-
+    color: #003049;
     z-index: 10;
   }
 }
@@ -49,6 +62,9 @@
   margin: 0 0 10px;
   padding: 10px;
   font-size: 1.2rem;
+  .icon-wrap {
+    color: #e3920e;
+  }
 }
 
 .game-meta {
@@ -64,7 +80,7 @@
     white-space: nowrap;
 
     & + div {
-      margin-left: 25px;
+      margin-left: 20px;
     }
   }
 
@@ -76,7 +92,7 @@
 
     i {
       font-size: 1.3rem;
-      color: #003049;
+      color: #e3920e;
     }
 
     + b {
@@ -96,28 +112,15 @@
   }
 }
 
-.list-group {
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .icons {
-      font-size: 14px;
-      i {
-        font-size: 1.4rem;
-      }
-    }
-  }
-}
-
 button {
-  display: block;
-  width: 100%;
-  background: none;
-  color: black;
-  border: none;
-  text-align: left;
-  padding-left: 0;
+  background-color: #e3920e;
+  border-radius: 5px;
+  color: #f9f3ee;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+  margin: 10px;
 }
 
 button:hover {
@@ -127,7 +130,7 @@ button:hover {
   margin: 0;
   padding: 0;
   margin-bottom: 20px;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f9f3ee;
   font-size: 18px;
   line-height: 1.5;
 }
