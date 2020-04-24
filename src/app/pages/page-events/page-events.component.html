@@ -1,11 +1,26 @@
-<div class="map-wrapper">
-  <agm-map [latitude]="geo.latitude" [longitude]="geo.longitude" [zoom]="geo.zoom" [fitBounds]="true">
-    <agm-marker *ngFor="
+<div
+  [ngClass]="{
+    'map-wrapper': true,
+    hiddenOnMobile: !showMap
+  }"
+>
+  <agm-map
+    [latitude]="geo.latitude"
+    [longitude]="geo.longitude"
+    [zoom]="geo.zoom"
+    [fitBounds]="true"
+  >
+    <agm-marker
+      *ngFor="
         let event of events
           | eventsFilter: selectedCategories:selectedDateTimes:selectedGameNames
-      " [latitude]="event.location.geo.latitude" [longitude]="event.location.geo.longitude"
-      (markerClick)="highlightItem(event)" [iconUrl]="event === selectedEvent ? icons.active : icons.default"
-      [agmFitBounds]="true">
+      "
+      [latitude]="event.location.geo.latitude"
+      [longitude]="event.location.geo.longitude"
+      (markerClick)="highlightItem(event)"
+      [iconUrl]="event === selectedEvent ? icons.active : icons.default"
+      [agmFitBounds]="true"
+    >
       <div><i class="fa fa-truck" aria-hidden="true"></i></div>
       <agm-info-window>
         <app-small-event-item [event]="event"></app-small-event-item>
@@ -14,66 +29,82 @@
   </agm-map>
 </div>
 
-<!--  -->
-<div><a></a></div>
-
-<!--  -->
 <div class="container">
-  <div class="filters-wrapp z-depth-1">
-    <div class="row">
-      <div class="col-md m-auto">
-        <button class="create-event-btn" routerLinkActive="active" routerLink="/pageaddevent">
-          Create an event
-        </button>
-      </div>
-      <div class="col-md m-auto p-auto">
-        <mat-form-field class="example-form-field mt-4">
-          <mat-label>Search Game</mat-label>
-          <input matInput type="search" [(ngModel)]="searchText" [(ngModel)]="value">
-          <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <!-- <h2 class="text-center mb-0">Some filters</h2> -->
-      </div>
-      <div class="col-md m-auto p-auto">
-        <div class="filters-category">
-          <app-filter-category [categories]="categoriesCurrent" (toggle)="onCategoriesChange($event)">
-          </app-filter-category>
-        </div>
-        <div class="filters-date">
-          <app-filter-date [datesFormatted]="eventDateTimes" (toggle)="onDateTimeChange($event)"></app-filter-date>
-        </div>
-        <div class="filters-game-name">
-          <app-filter-game-name [games]="gameName" (toggle)="onGameNameChange($event)"></app-filter-game-name>
+  <div class="controls">
+    <div class="filter-search-wrap">
+      <div class="filters-wrap">
+        <h3>Filter by:</h3>
+        <div class="filters-wrap-inner">
+          <div class="filters-category">
+            <app-filter-category
+              [categories]="categoriesCurrent"
+              (toggle)="onCategoriesChange($event)"
+            >
+            </app-filter-category>
+          </div>
+          <div class="filters-date">
+            <app-filter-date
+              [datesFormatted]="eventDateTimes"
+              (toggle)="onDateTimeChange($event)"
+            ></app-filter-date>
+          </div>
+          <div class="filters-game-name">
+            <app-filter-game-name
+              [games]="gameName"
+              (toggle)="onGameNameChange($event)"
+            ></app-filter-game-name>
+          </div>
         </div>
       </div>
-
-
-
+      <div class="search-wrap">
+        <input
+          type="search"
+          [(ngModel)]="searchText"
+          placeholder="Search by any text"
+        />
+      </div>
     </div>
+    <button
+      class="create-event-btn"
+      routerLinkActive="active"
+      routerLink="/pageaddevent"
+    >
+      Create an event
+    </button>
+    <button class="open-map" (click)="toggleShowMap()">
+      {{ showMap ? "Сlose events map" : "Open events map" }}
+    </button>
   </div>
 
+  <!--Navbar-->
+  <!--/.Navbar-->
 
   <app-spinner *ngIf="loading"></app-spinner>
   <div class="event-list" *ngIf="!loading">
     <h2 class="panel-heading mb-5 pt-3">
       Upcomming Events
-      <span *ngIf="selectedCategories.length">sorted by: {{ selectedCategories }}
-      </span>
+      <!-- <span *ngIf="selectedCategories.length"
+        >sorted by: {{ selectedCategories }}
+      </span> -->
     </h2>
 
     <div class="eventsList row">
-      <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="
+      <div
+        class="col-xl-3 col-lg-4 col-sm-6"
+        *ngFor="
           let event of events
             | eventsFilter
               : selectedCategories
               : selectedDateTimes
               : selectedGameNames
             | filter: searchText
-        ">
-        <app-event-item [event]="event" [ngClass]="{ selected: event === selectedEvent }"
-          (click)="highlightItem(event)"></app-event-item>
+        "
+      >
+        <app-event-item
+          [event]="event"
+          [ngClass]="{ selected: event === selectedEvent }"
+          (click)="highlightItem(event)"
+        ></app-event-item>
       </div>
     </div>
   </div>

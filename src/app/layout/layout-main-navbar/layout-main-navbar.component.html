@@ -62,8 +62,37 @@
           </div>
         </li>
       </ul>
-    </links>
-    <!-- Collapsible content -->
-  </mdb-navbar>
-  <!--/.Navbar-->
-</div>
+
+    </div>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto pr-5">
+      <!--  <a>     routerLinkActive="active" routerLink="/sign-in"
+        -->
+      <li class="nav-item">
+        <a *ngIf="!this.authService.isLoggedIn" (click)="openDialog()" class="nav-link waves-light" mdbWavesEffect>
+          LogIn
+        </a>
+      </li>
+      <!-- Dropdown if not loged-->
+
+      <li *ngIf="this.authService.isLoggedIn" class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <img src="{{this.authService.UserPhoto}}" class="rounded-circle z-depth-0 pr-3" alt="avatar image"
+            height="40" />
+          Profile<span class="caret"></span>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a routerLinkActive="active" routerLink="/useraccount/{{authService.UserId}}"
+            class="dropdown-item waves-light" mdbWavesEffect>My
+            account</a>
+          <div class="divider dropdown-divider"></div>
+          <a (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect>Log out</a>
+        </div>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+</mdb-navbar>
+<!--/.Navbar-->
+

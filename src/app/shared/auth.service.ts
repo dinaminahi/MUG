@@ -1,23 +1,23 @@
-import { Injectable } from "@angular/core";
-import { User } from "./user";
-import { Observable, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
-import { UserItem } from "../components/user-profile/user";
+import { Injectable } from '@angular/core';
+import { User } from './user';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { UserItem } from '../components/user-profile/user';
 
 import {
   HttpClient,
   HttpHeaders,
-  HttpErrorResponse,
-} from "@angular/common/http";
-import { Router } from "@angular/router";
+  HttpErrorResponse
+} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class AuthService {
-  endpoint: string = "http://localhost:4000/authApi";
-  headers = new HttpHeaders().set("Content-Type", "application/json");
+  endpoint: string = 'http://localhost:4000/authApi';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
   private userSource = new BehaviorSubject<UserItem>(undefined);
   userShared = this.userSource.asObservable();
@@ -38,13 +38,13 @@ export class AuthService {
       .post<any>(`${this.endpoint}/signin`, user)
       .subscribe((res: any) => {
         // console.log(res);
-        localStorage.setItem("access_token", res.token);
+        localStorage.setItem('access_token', res.token);
 
-        localStorage.setItem("userId", res._id);
+        localStorage.setItem('userId', res._id);
 
-        this.getUserProfile(res._id).subscribe((res) => {
-          localStorage.setItem("userPhoto", res.msg.personal.photoUrl);
-          localStorage.setItem("userName", res.msg.personal.name);
+        this.getUserProfile(res._id).subscribe(res => {
+          localStorage.setItem('userPhoto', res.msg.personal.photoUrl);
+          localStorage.setItem('userName', res.msg.personal.name);
 
           this.currentUser = res;
           // this.router.navigate(["home/"]); // -- naviganes after susseful ligin
@@ -56,34 +56,34 @@ export class AuthService {
   // We are getting JWT token from the API response and storing in the local storage,
   //then in the getToken() method, we are accessing the token via local storage getItem() method.
   getToken() {
-    return localStorage.getItem("access_token");
+    return localStorage.getItem('access_token');
   }
 
   // the isLoggedIn method returns true if the user is logged in else returns false.
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem("access_token");
+    let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;
   }
 
   get UserId(): any {
-    return localStorage.getItem("userId");
+    return localStorage.getItem('userId');
   }
 
   get UserName(): any {
-    return localStorage.getItem("userName");
+    return localStorage.getItem('userName');
   }
 
   get UserPhoto(): any {
-    return localStorage.getItem("userPhoto");
+    return localStorage.getItem('userPhoto');
   }
 
   doLogout() {
-    let removeToken = localStorage.removeItem("access_token");
-    let removeUserId = localStorage.removeItem("userId");
-    let removeUserPhoto = localStorage.removeItem("userPhoto");
-    let removeUserName = localStorage.removeItem("userName");
+    let removeToken = localStorage.removeItem('access_token');
+    let removeUserId = localStorage.removeItem('userId');
+    let removeUserPhoto = localStorage.removeItem('userPhoto');
+    let removeUserName = localStorage.removeItem('userName');
     if (removeToken == null) {
-      this.router.navigate(["log-in"]);
+      this.router.navigate(['log-in']);
     }
   }
 
@@ -94,11 +94,9 @@ export class AuthService {
   // In order to avoid multiple API calls triggered in this case, components are calling this method
   // instead of the getUserProfile() directly. This way we are sure that the API is called only once
   getCurrentUserData() {
-    if (!this.isUserAPICallMade) {
+    if (!this.isUserAPICallMade && this.UserId) {
       this.isUserAPICallMade = true;
-      this.getUserProfile(this.UserId).subscribe((res) => {
-        this.userSource.next(res.msg);
-      });
+      this.getUserProfile(this.UserId).subscribe();
     }
     return this.userShared;
   }
@@ -108,6 +106,9 @@ export class AuthService {
     let authApi = `${this.endpoint}/user-profile/${id}`;
     return this.http.get(authApi, { headers: this.headers }).pipe(
       map((res: any) => {
+        if (this.UserId && res.msg && res.msg._id === this.UserId) {
+          this.userSource.next(res.msg);
+        }
         return res || {};
       }),
       catchError(this.handleError)
@@ -116,7 +117,7 @@ export class AuthService {
 
   // Error
   handleError(error: HttpErrorResponse) {
-    let msg = "";
+    let msg = '';
     if (error.error instanceof ErrorEvent) {
       // client-side error
       msg = error.error.message;

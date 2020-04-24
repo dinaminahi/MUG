@@ -102,10 +102,14 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { SearchFilterPipe } from "./search-filter.pipe";
 import { AddGameFormComponent } from "./add-game-form/add-game-form.component";
 import { DateFormatPipe } from "./date-format.pipe";
-import { UserCreatedEventItemComponent } from "./user-created-event-item/user-created-event-item.component";
-import { DialogForCancelBtnComponent } from "./dialog-for-cancel-btn/dialog-for-cancel-btn.component";
+
 import { LayoutGamesComponent } from "./layout/layout-games/layout-games.component";
 import { LayoutHeaderMainComponent } from "./layout/layout-header-main/layout-header-main.component";
+
+import { UserCreatedEventItemComponent } from './user-created-event-item/user-created-event-item.component';
+import { DialogForCancelBtnComponent } from './dialog-for-cancel-btn/dialog-for-cancel-btn.component';
+import { FavGameNamesComponent } from './fav-game-names/fav-game-names.component';
+
 
 @NgModule({
   declarations: [
@@ -168,8 +172,11 @@ import { LayoutHeaderMainComponent } from "./layout/layout-header-main/layout-he
     DateFormatPipe,
     UserCreatedEventItemComponent,
     DialogForCancelBtnComponent,
+
     LayoutGamesComponent,
-    LayoutHeaderMainComponent,
+
+    FavGameNamesComponent,
+
   ],
   imports: [
     RouterModule,

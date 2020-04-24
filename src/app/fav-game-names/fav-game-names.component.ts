@@ -4,11 +4,11 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-users-favorites-games',
-  templateUrl: './users-favorites-games.component.html',
-  styleUrls: ['./users-favorites-games.component.scss']
+  selector: 'app-fav-game-names',
+  templateUrl: './fav-game-names.component.html',
+  styleUrls: ['./fav-game-names.component.scss']
 })
-export class UsersFavoritesGamesComponent {
+export class FavGameNamesComponent {
   @Input() favoritedGames: string;
   games: Game[];
 

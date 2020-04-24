@@ -1,6 +1,6 @@
-<div *ngIf="!events">
+<div *ngIf="events?.length === 0" class="mt-5">
   <h2 class="panel-heading">You didn't create events</h2>
-  <button type="button" (click)="goToAddEvent()">Create event</button>
+  <a routerLink="/pageaddevent">Create event</a>
 </div>
 
 <div class="row">

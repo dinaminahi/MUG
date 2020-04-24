@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { UserItem } from '../components/user-profile/user';
 import { DataService } from '../data.service';
-import mongoose from 'mongoose';
 import { AuthService } from '../shared/auth.service';
 import {
   MatDialog,
@@ -16,7 +15,7 @@ import { SigninComponent } from './../components/signin/signin.component';
   styleUrls: ['./button-join.component.scss']
 })
 export class ButtonJoinComponent implements OnInit, OnChanges {
-  @Input() eventId: mongoose.Types.ObjectId;
+  @Input() eventId: string;
   subscribedEvents: string[];
   isSubscribed: boolean;
   isLoading: boolean;

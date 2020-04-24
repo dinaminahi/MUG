@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { CheckboxItem } from "./checkbox-item";
+import { CheckboxItem } from "../filter-category/checkbox-item";
 
 @Component({
   selector: "app-filter-game-name",
   templateUrl: "./filter-game-name.component.html",
-  styleUrls: ["./filter-game-name.component.scss"],
+  styleUrls: ["../filter-category/filter-category.component.scss"],
 })
 export class FilterGameNameComponent {
   @Input() games: string[];

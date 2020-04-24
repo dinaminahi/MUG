@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export class EventItem {
   _id: mongoose.Types.ObjectId;
@@ -29,7 +29,7 @@ export class EventItem {
     };
   };
   dateTime: string;
-  dateFormated: string;
+  dateFormated: string[];
   duration: string;
   organizer: mongoose.Types.ObjectId;
   players: {

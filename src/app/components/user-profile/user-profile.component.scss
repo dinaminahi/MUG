@@ -1,54 +1,52 @@
 .userPhoto {
-    img {
-        width: 150px;
-        height: 170px;
-    }
+  img {
+    width: 150px;
+    height: 170px;
+  }
 }
 
 .user-data {
-    width: 400px;
-    margin: 50px auto;
-    border-radius: 10px;
-    position: relative;
+  margin: 50px auto;
+  border-radius: 10px;
+  position: relative;
 
-    i {
-        opacity: 0.5;
+  i {
+    opacity: 0.5;
+  }
+
+  .edit-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+  }
+
+  .photo {
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
     }
+  }
 
-    .edit-btn {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        cursor: pointer;
-
+  .contacts {
+    h4 {
+      font-weight: 500;
+      margin-bottom: 7px;
     }
+  }
 
-    .photo {
-        img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+  .favourite-games {
+    .game-item {
+      background-color: lightgrey;
+      margin: 5px;
+      padding: 7px 13px;
+      border-radius: 5px;
+
+      p {
+        margin-bottom: 0;
+      }
     }
-
-    .contacts {
-        h4 {
-            font-weight: 500;
-            margin-bottom: 7px;
-        }
-    }
-
-    .favourite-games {
-        .game-item {
-            background-color: lightgrey;
-            margin: 5px;
-            padding: 7px 13px;
-            border-radius: 5px;
-
-            p {
-                margin-bottom: 0;
-            }
-        }
-    }
+  }
 }

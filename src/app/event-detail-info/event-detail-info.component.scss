@@ -1,4 +1,4 @@
-@import "./../../sass/variables";
+@import './../../sass/variables';
 h2 {
   font-size: 38px;
 }
@@ -19,7 +19,7 @@ h3 {
 }
 
 .main-header {
-  background-image: url("https://cdn.thewirecutter.com/wp-content/uploads/2018/03/boardgamesforadults-2x1-7452.jpg");
+  background-image: url('https://cdn.thewirecutter.com/wp-content/uploads/2018/03/boardgamesforadults-2x1-7452.jpg');
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -57,26 +57,6 @@ h3 {
   .fa-twitter-square,
   .fa-linkedin {
     color: $color-main-blue;
-  }
-}
-
-.subscribe {
-  .add-btn {
-    background-color: $color-orange;
-    border-radius: 5px;
-    border: 1px solid $color-orange;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 17px;
-    font-weight: 600;
-    padding: 15px 76px;
-    text-decoration: none;
-  }
-  .add-btn:active {
-    position: relative;
-    top: 1px;
   }
 }
 

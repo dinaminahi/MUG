@@ -28,11 +28,7 @@ const Comment = require('./../models/commentSchema');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  fileupload({
-    useTempFiles: true
-  })
-);
+app.use(fileupload({ useTempFiles: true }));
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 mongoose.connect(
@@ -56,7 +52,24 @@ let response = {
 
 router.get('/events_extended/:eventId', (req, res) => {
   let eventId = req.params.eventId;
-  Event.find({ _id: eventId }, (err, event) => {
+  Event.aggregate([
+    {
+      $match: {
+        _id: mongoose.Types.ObjectId(eventId)
+      }
+    },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'organizer',
+        foreignField: '_id',
+        as: 'organizerInfo'
+      }
+    },
+    {
+      $unwind: '$organizer'
+    }
+  ]).exec((err, event) => {
     if (err) {
       sendError(err, res);
     } else {
@@ -76,42 +89,44 @@ router.get('/events_extended', (req, res) => {
         as: 'agame'
       }
     },
-    { $unwind: '$game' },
+    {
+      $unwind: '$game'
+    },
     {
       $lookup: {
         from: 'users',
-        let: { joined: '$players.joined' },
+        let: {
+          joined: '$players.joined'
+        },
         pipeline: [
-          { $match: { $expr: { $in: ['$_id', '$$joined'] } } },
-          { $project: { personal: 1 } }
+          {
+            $match: {
+              $expr: {
+                $in: ['$_id', '$$joined']
+              }
+            }
+          },
+          {
+            $project: {
+              personal: 1
+            }
+          }
         ],
         as: 'players.joined'
       }
+    },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'organizer',
+        foreignField: '_id',
+        as: 'organizerInfo'
+      }
+    },
+    {
+      $unwind: '$organizer'
     }
   ]).exec((err, events) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = events;
-      res.json(response);
-    }
-  });
-});
-
-router.get('/events/:eventId', (req, res) => {
-  let eventId = req.params.eventId;
-  Event.find({ _id: eventId }, (err, event) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = event;
-      res.json(response);
-    }
-  });
-});
-
-router.get('/events', (req, res) => {
-  Event.find({}, function(err, events) {
     if (err) {
       sendError(err, res);
     } else {
@@ -125,7 +140,9 @@ router.get('/comments/:eventId', (req, res) => {
   let idOfEvent = req.params.eventId;
   Comment.aggregate([
     {
-      $match: { eventId: mongoose.Types.ObjectId(idOfEvent) }
+      $match: {
+        eventId: mongoose.Types.ObjectId(idOfEvent)
+      }
     },
     {
       $lookup: {
@@ -182,7 +199,11 @@ router.get('/games', (req, res) => {
 router.get('/games/:gameId', (req, res) => {
   let gameId = req.params.gameId;
   Game.aggregate([
-    { $match: { _id: mongoose.Types.ObjectId(gameId) } },
+    {
+      $match: {
+        _id: mongoose.Types.ObjectId(gameId)
+      }
+    },
     {
       $lookup: {
         from: 'categories',
@@ -264,13 +285,21 @@ router.post('/addevent', (req, res) => {
         const events = user.events;
         events.created.push(eventId);
         events.subscribed.push(eventId);
-        User.update({ _id: userId }, { events: events }, function(err) {
-          if (err) {
-            sendError(err, res);
-          } else {
-            res.json(events.created);
+        User.update(
+          {
+            _id: userId
+          },
+          {
+            events: events
+          },
+          function(err) {
+            if (err) {
+              sendError(err, res);
+            } else {
+              res.json(events.created);
+            }
           }
-        });
+        );
       }
     });
   });
@@ -317,14 +346,21 @@ router.put('/favorite-games', (req, res) => {
           games.favorited.splice(index, 1);
         }
       }
-
-      User.update({ _id: userId }, { games: games }, function(err) {
-        if (err) {
-          sendError(err, res);
-        } else {
-          res.json(games.favorited);
+      User.update(
+        {
+          _id: userId
+        },
+        {
+          games: games
+        },
+        function(err) {
+          if (err) {
+            sendError(err, res);
+          } else {
+            res.json(games.favorited);
+          }
         }
-      });
+      );
     }
   });
 });
@@ -347,14 +383,21 @@ router.put('/favorite-events', (req, res) => {
           events.interested.splice(index, 1);
         }
       }
-
-      User.update({ _id: userId }, { events: events }, function(err) {
-        if (err) {
-          sendError(err, res);
-        } else {
-          res.json(events.interested);
+      User.update(
+        {
+          _id: userId
+        },
+        {
+          events: events
+        },
+        function(err) {
+          if (err) {
+            sendError(err, res);
+          } else {
+            res.json(events.interested);
+          }
         }
-      });
+      );
     }
   });
 });
@@ -364,43 +407,54 @@ router.put('/join-to-event', (req, res) => {
   let eventPlayers;
   // Save user's id into event's event.players.joined array and inctement event.players.count.curren
   // if toggle is 'true', otherwise do opposite
-  Event.find({ _id: eventId }, (err, event) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      eventPlayers = event[0].players || {};
-      eventPlayers.joined = eventPlayers.joined || [];
-      const joinedPlayersIndex = eventPlayers.joined.indexOf(userId);
-      if (toggle) {
-        if (
-          joinedPlayersIndex === -1 &&
-          eventPlayers.count.current < eventPlayers.count.max
-        ) {
-          eventPlayers.joined.push(userId);
-          eventPlayers.count.current = Math.min(
-            eventPlayers.count.current + 1,
-            eventPlayers.count.max
-          );
-        }
+  Event.find(
+    {
+      _id: eventId
+    },
+    (err, event) => {
+      if (err) {
+        sendError(err, res);
       } else {
-        if (joinedPlayersIndex > -1) {
-          eventPlayers.joined.splice(joinedPlayersIndex, 1);
-          eventPlayers.count.current = Math.max(
-            eventPlayers.count.current - 1,
-            0
-          );
+        eventPlayers = event[0].players || {};
+        eventPlayers.joined = eventPlayers.joined || [];
+        const joinedPlayersIndex = eventPlayers.joined.indexOf(userId);
+        if (toggle) {
+          if (
+            joinedPlayersIndex === -1 &&
+            eventPlayers.count.current < eventPlayers.count.max
+          ) {
+            eventPlayers.joined.push(userId);
+            eventPlayers.count.current = Math.min(
+              eventPlayers.count.current + 1,
+              eventPlayers.count.max
+            );
+          }
+        } else {
+          if (joinedPlayersIndex > -1) {
+            eventPlayers.joined.splice(joinedPlayersIndex, 1);
+            eventPlayers.count.current = Math.max(
+              eventPlayers.count.current - 1,
+              0
+            );
+          }
         }
-      }
 
-      Event.updateOne({ _id: eventId }, { players: eventPlayers }, function(
-        err
-      ) {
-        if (err) {
-          sendError(err, res);
-        }
-      });
+        Event.updateOne(
+          {
+            _id: eventId
+          },
+          {
+            players: eventPlayers
+          },
+          function(err) {
+            if (err) {
+              sendError(err, res);
+            }
+          }
+        );
+      }
     }
-  });
+  );
 
   // save event's id into user's  events.subscribed event
   // if toggle is 'true', otherwise do opposite
@@ -420,52 +474,84 @@ router.put('/join-to-event', (req, res) => {
           events.subscribed.splice(index, 1);
         }
       }
-
-      User.updateOne({ _id: userId }, { events: events }, function(err) {
-        if (err) {
-          sendError(err, res);
-        } else {
-          Event.aggregate([
-            {
-              $match: { _id: mongoose.Types.ObjectId(eventId) }
-            },
-            {
-              $lookup: {
-                from: 'users',
-                let: { joined: '$players.joined' },
-                pipeline: [
-                  { $match: { $expr: { $in: ['$_id', '$$joined'] } } },
-                  { $project: { personal: 1 } }
-                ],
-                as: 'players.joined'
+      User.updateOne(
+        {
+          _id: userId
+        },
+        {
+          events: events
+        },
+        function(err) {
+          if (err) {
+            sendError(err, res);
+          } else {
+            Event.aggregate([
+              {
+                $match: {
+                  _id: mongoose.Types.ObjectId(eventId)
+                }
+              },
+              {
+                $lookup: {
+                  from: 'users',
+                  let: {
+                    joined: '$players.joined'
+                  },
+                  pipeline: [
+                    {
+                      $match: {
+                        $expr: {
+                          $in: ['$_id', '$$joined']
+                        }
+                      }
+                    },
+                    {
+                      $project: {
+                        personal: 1
+                      }
+                    }
+                  ],
+                  as: 'players.joined'
+                }
               }
-            }
-          ]).exec((err, events2) => {
-            if (err) {
-              sendError(err, res);
-            } else {
-              res.json({
-                event: { players: events2[0].players },
-                user: { events: { subscribed: events.subscribed } }
-              });
-            }
-          });
+            ]).exec((err, events2) => {
+              if (err) {
+                sendError(err, res);
+              } else {
+                res.json({
+                  event: {
+                    players: events2[0].players
+                  },
+                  user: {
+                    events: {
+                      subscribed: events.subscribed
+                    }
+                  }
+                });
+              }
+            });
+          }
         }
-      });
+      );
     }
   });
 });
 
 router.get('/userinfo/:userId', (req, res) => {
   let userId = req.params.userId;
-  User.find({ _id: userId }, (err, user) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = user;
-      res.json(response);
+  User.find(
+    {
+      _id: userId
+    },
+    (err, user) => {
+      if (err) {
+        sendError(err, res);
+      } else {
+        response.data = user;
+        res.json(response);
+      }
     }
-  });
+  );
 });
 
 router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
@@ -502,21 +588,30 @@ router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
   }
 
   for (let prop in params) if (!params[prop]) delete params[prop];
+
   for (let prop in params.personal)
     if (!params.personal[prop]) delete params.personal[prop];
+
   for (let prop in params.personal.location)
     if (!params.personal.location[prop]) delete params.personal.location[prop];
+
   for (let prop in params.personal.location.geo)
     if (!params.personal.location.geo[prop])
       delete params.personal.location.geo[prop];
 
-  User.update({ _id: userId }, convertToDotNotation(params), function(err) {
-    if (err) {
-      sendError(err, res);
-    } else {
-      console.log('upadeted');
+  User.update(
+    {
+      _id: userId
+    },
+    convertToDotNotation(params),
+    function(err) {
+      if (err) {
+        sendError(err, res);
+      } else {
+        console.log('upadeted');
+      }
     }
-  });
+  );
 
   if (file) {
     cloudinary.uploader.upload(
@@ -528,8 +623,12 @@ router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
       },
       (err, result) => {
         User.update(
-          { _id: userId },
-          { 'personal.photoUrl': result.url },
+          {
+            _id: userId
+          },
+          {
+            'personal.photoUrl': result.url
+          },
           function(err) {
             console.log('update photo');
             response.data = result;
@@ -546,8 +645,13 @@ router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
 
 router.post('/cancelevent', (req, res) => {
   Event.findOneAndUpdate(
-    { _id: req.body.eventId, organizer: req.body.userId },
-    { canceled: true },
+    {
+      _id: req.body.eventId,
+      organizer: req.body.userId
+    },
+    {
+      canceled: true
+    },
     (err, event) => {
       if (err) {
         sendError(err, res);
@@ -594,8 +698,14 @@ router.post('/addgame', upload.array('photos'), (req, res) => {
         },
         (err, result) => {
           Game.update(
-            { name: req.body.name },
-            { $push: { photoUrl: result.url } },
+            {
+              name: req.body.name
+            },
+            {
+              $push: {
+                photoUrl: result.url
+              }
+            },
             function(err) {
               console.log('pushed photo');
             }

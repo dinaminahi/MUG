@@ -38,6 +38,7 @@ export class PageEventsComponent implements OnInit {
   selectedGameNames: string[] = [];
   eventDateTimes: string[];
   gameName: string[];
+  showMap: boolean = false;
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {}
@@ -59,6 +60,10 @@ export class PageEventsComponent implements OnInit {
     });
   }
 
+  toggleShowMap() {
+    this.showMap = !this.showMap;
+  }
+
   filterCategories() {
     // Filter out categories which are not exist on any event in current page
     // So each filtering checkbox will show at least one event
@@ -74,23 +79,62 @@ export class PageEventsComponent implements OnInit {
   }
 
   filterDateTimes() {
-    // Filter unique dates of all event in current page
-    // Format a date string based on event.dateTime which will not contain a hours/minutes,
-    // so we will have less unique dates if a low of events happen in a same date
-    // save this string to custom event.dateFormated property to mach event after filtering happens by the dateFormated string
-    // so the original event.dateTime could be passed to the filter pipe
     this.events.forEach((e) => {
-      const date = new Date(e.dateTime);
-      e.dateFormated = `${
-        date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
-      }.${
-        date.getMonth() + 1 < 10
-          ? "0" + (date.getMonth() + 1)
-          : date.getMonth() + 1
-      }.${date.getFullYear()}`;
+      e.dateFormated = this.getCustomDates(e.dateTime).filteredLabels;
     });
 
-    return [...new Set(this.events.map((e) => e.dateFormated))];
+    // result will contain generated array of all date labels but in random order
+    // so instead of this we return a separate getCustomDates().allLabels property
+    // which contains the same array but correctly ordered
+    // const result = [
+    //   ...new Set(
+    //     this.events
+    //       .map((e) => e.dateFormated)
+    //       .reduce((acc, val) => acc.concat(val), [])
+    //   ),
+    // ];
+
+    return this.getCustomDates().allLabels;
+  }
+
+  getCustomDates(eventDateString = "") {
+    let endOfToday = new Date();
+    endOfToday.setHours(23, 59, 59, 99);
+    let dayOfWeek = endOfToday.getDay(); //0-6
+    let todayDay = endOfToday.getDate();
+
+    let endOfWeek = new Date();
+    endOfWeek.setDate(todayDay + (7 - dayOfWeek));
+    endOfWeek.setHours(23, 59, 59, 999);
+
+    let endOfNextWeek = new Date();
+    endOfNextWeek.setDate(todayDay + (14 - dayOfWeek));
+    endOfNextWeek.setHours(23, 59, 59, 999);
+
+    let endOfMonth = new Date(
+      endOfToday.getFullYear(),
+      endOfToday.getMonth() + 1,
+      0
+    );
+    endOfMonth.setHours(23, 59, 59, 999);
+
+    let eventDate = new Date(eventDateString);
+
+    const customDatesFlags = {
+      Today: eventDate.getTime() <= endOfToday.getTime(),
+      "This week": eventDate.getTime() <= endOfWeek.getTime(),
+      "Next week":
+        eventDate.getTime() > endOfWeek.getTime() &&
+        eventDate.getTime() <= endOfNextWeek.getTime(),
+      "This month": eventDate.getTime() <= endOfMonth.getTime(),
+    };
+
+    return {
+      filteredLabels: Object.keys(customDatesFlags).filter(
+        (key) => customDatesFlags[key]
+      ),
+      allLabels: Object.keys(customDatesFlags),
+    };
   }
 
   getTodayAndUpcomingEvents(events) {
@@ -110,7 +154,9 @@ export class PageEventsComponent implements OnInit {
   }
   onDateTimeChange(datesCheckedInFilter) {
     this.selectedDateTimes = this.events
-      .filter((e) => datesCheckedInFilter.includes(e.dateFormated))
+      .filter((e) =>
+        datesCheckedInFilter.some((r) => e.dateFormated.includes(r))
+      )
       .map((e) => e.dateTime);
   }
   onGameNameChange(names) {
