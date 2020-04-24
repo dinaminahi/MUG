@@ -1,11 +1,21 @@
 <div class="map-wrapper">
-  <agm-map [latitude]="geo.latitude" [longitude]="geo.longitude" [zoom]="geo.zoom" [fitBounds]="true">
-    <agm-marker *ngFor="
+  <agm-map
+    [latitude]="geo.latitude"
+    [longitude]="geo.longitude"
+    [zoom]="geo.zoom"
+    [fitBounds]="true"
+  >
+    <agm-marker
+      *ngFor="
         let event of events
           | eventsFilter: selectedCategories:selectedDateTimes:selectedGameNames
-      " [latitude]="event.location.geo.latitude" [longitude]="event.location.geo.longitude"
-      (markerClick)="highlightItem(event)" [iconUrl]="event === selectedEvent ? icons.active : icons.default"
-      [agmFitBounds]="true">
+      "
+      [latitude]="event.location.geo.latitude"
+      [longitude]="event.location.geo.longitude"
+      (markerClick)="highlightItem(event)"
+      [iconUrl]="event === selectedEvent ? icons.active : icons.default"
+      [agmFitBounds]="true"
+    >
       <div><i class="fa fa-truck" aria-hidden="true"></i></div>
       <agm-info-window>
         <app-small-event-item [event]="event"></app-small-event-item>
@@ -15,64 +25,48 @@
 </div>
 
 <div class="container">
-  <div class="filters-wrapp">
-    <div class="row align-items-center">
-      <div class="col-7">
+  <div class="controls">
+    <div class="filters-wrap">
+      <h3>Filter by:</h3>
+      <div class="filters-wrap-inner">
         <div class="filters-category">
-          <app-filter-category [categories]="categoriesCurrent" (toggle)="onCategoriesChange($event)">
+          <app-filter-category
+            [categories]="categoriesCurrent"
+            (toggle)="onCategoriesChange($event)"
+          >
           </app-filter-category>
         </div>
         <div class="filters-date">
-          <app-filter-date [datesFormatted]="eventDateTimes" (toggle)="onDateTimeChange($event)"></app-filter-date>
+          <app-filter-date
+            [datesFormatted]="eventDateTimes"
+            (toggle)="onDateTimeChange($event)"
+          ></app-filter-date>
         </div>
         <div class="filters-game-name">
-          <app-filter-game-name [games]="gameName" (toggle)="onGameNameChange($event)"></app-filter-game-name>
+          <app-filter-game-name
+            [games]="gameName"
+            (toggle)="onGameNameChange($event)"
+          ></app-filter-game-name>
         </div>
-        <div class="md-form">
-          <input type="search" [(ngModel)]="searchText" placeholder="Search by any text" />
-        </div>
-        <!-- <h2 class="text-center mb-0">Some filters</h2> -->
-      </div>
-
-      <div class="col-5 text-center">
-        <button class="create-event-btn" routerLinkActive="active" routerLink="/pageaddevent">
-          Create an event
-        </button>
       </div>
     </div>
+    <div class="search-wrap">
+      <input
+        type="search"
+        [(ngModel)]="searchText"
+        placeholder="Search by any text"
+      />
+    </div>
+    <button
+      class="create-event-btn"
+      routerLinkActive="active"
+      routerLink="/pageaddevent"
+    >
+      Create an event
+    </button>
   </div>
 
   <!--Navbar-->
-  <div class="filters-wrapp">
-    <mdb-navbar SideClass="filters-wrapp navbar navbar-expand-lg navbar-dark indigo">
-      <!-- Collapsible content -->
-      <links>
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-          <!-- Dropdown -->
-          <li class="nav-item dropdown" dropdown>
-            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-              Basic dropdown<span class="caret"></span></a>
-            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
-              <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
-            </div>
-          </li>
-        </ul>
-        <!-- Links -->
-
-        <!-- Search form -->
-
-        <div class="md-form my-0">
-          <input class="form-control mr-sm-2" type="search" [(ngModel)]="searchText" placeholder="Search by any text" />
-        </div>
-      </links>
-      <!-- Collapsible content -->
-    </mdb-navbar>
-  </div>
   <!--/.Navbar-->
 
   <app-spinner *ngIf="loading"></app-spinner>
@@ -85,16 +79,22 @@
     </h2>
 
     <div class="eventsList row">
-      <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="
+      <div
+        class="col-xl-3 col-lg-4 col-sm-6"
+        *ngFor="
           let event of events
             | eventsFilter
               : selectedCategories
               : selectedDateTimes
               : selectedGameNames
             | filter: searchText
-        ">
-        <app-event-item [event]="event" [ngClass]="{ selected: event === selectedEvent }"
-          (click)="highlightItem(event)"></app-event-item>
+        "
+      >
+        <app-event-item
+          [event]="event"
+          [ngClass]="{ selected: event === selectedEvent }"
+          (click)="highlightItem(event)"
+        ></app-event-item>
       </div>
     </div>
   </div>
