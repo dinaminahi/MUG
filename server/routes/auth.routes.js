@@ -149,47 +149,73 @@ router.route('/').get((req, res) => {
 
 // Get Single User
 router.route('/user-profile/:id').get(authorize, (req, res, next) => {
-  User.findById(req.params.id, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.status(200).json({
-        msg: data
-      });
-    }
-  });
-});
-
-// Update User
-router.route('/update-user/:id').put((req, res, next) => {
-  User.findByIdAndUpdate(
-    req.params.id,
+  let userId = req.params.id;
+  User.aggregate([
     {
-      $set: req.body
+      $match: {
+        _id: mongoose.Types.ObjectId(userId)
+      }
     },
-    (error, data) => {
-      if (error) {
-        console.log(error);
-        return next(error);
-      } else {
-        res.json(data);
-        console.log('User successfully updated!');
+    {
+      $lookup: {
+        from: 'notifications',
+        localField: 'notificationsId',
+        foreignField: '_id',
+        as: 'notifications'
       }
     }
-  );
-});
-
-// Delete User
-router.route('/delete-user/:id').delete((req, res, next) => {
-  User.findByIdAndRemove(req.params.id, (error, data) => {
-    if (error) {
-      return next(error);
+  ]).exec((err, data) => {
+    if (err) {
+      return next(err);
     } else {
+      console.log(data);
       res.status(200).json({
         msg: data
       });
     }
   });
+
+  // User.findById(req.params.id, (error, data) => {
+  //   if (error) {
+  //     return next(error);
+  //   } else {
+  //     res.status(200).json({
+  //       msg: data
+  //     });
+  //   }
+  // });
 });
+
+// // Update User
+// router.route('/update-user/:id').put((req, res, next) => {
+//   User.findByIdAndUpdate(
+//     req.params.id,
+//     {
+//       $set: req.body
+//     },
+//     (error, data) => {
+//       if (error) {
+//         console.log(error);
+//         return next(error);
+//       } else {
+//         res.json(data);
+//         console.log('User successfully updated!');
+//       }
+//     }
+//   );
+// });
+
+// // Delete User
+// router.route('/delete-user/:id').delete((req, res, next) => {
+//   User.findByIdAndRemove(req.params.id, (error, data) => {
+//     if (error) {
+//       return next(error);
+//     } else {
+//       res.status(200).json({
+//         msg: data
+//       });
+//     }
+//   });
+// });
 
 module.exports = router;

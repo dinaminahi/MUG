@@ -540,19 +540,28 @@ router.put('/join-to-event', (req, res) => {
 
 router.get('/userinfo/:userId', (req, res) => {
   let userId = req.params.userId;
-  User.find(
+  User.aggregate([
     {
-      _id: userId
+      $match: {
+        _id: mongoose.Types.ObjectId(userId)
+      }
     },
-    (err, user) => {
-      if (err) {
-        sendError(err, res);
-      } else {
-        response.data = user;
-        res.json(response);
+    {
+      $lookup: {
+        from: 'notifications',
+        localField: 'notificationsId',
+        foreignField: '_id',
+        as: 'notifications'
       }
     }
-  );
+  ]).exec((err, user) => {
+    if (err) {
+      sendError(err, res);
+    } else {
+      response.data = user;
+      res.json(response);
+    }
+  });
 });
 
 router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
@@ -649,6 +658,8 @@ router.post('/cancelevent', (req, res) => {
     text: 'was canceled!',
     canceledEvent: req.body.eventId
   });
+
+  notification.save();
 
   Event.findOneAndUpdate(
     {

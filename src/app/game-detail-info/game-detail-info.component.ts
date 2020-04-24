@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { switchMap } from "rxjs/operators";
-import { DataService } from "../data.service";
-import { HttpClient } from "@angular/common/http";
-import { Game } from "../game/game";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { DataService } from '../data.service';
+import { HttpClient } from '@angular/common/http';
+import { Game } from '../game/game';
+import { Router } from '@angular/router';
 // import { GameCategoryIconsComponent } from "../game-category-icons";
-import { from } from "rxjs";
+import { from } from 'rxjs';
 
 @Component({
-  selector: "app-game-detail-info",
-  templateUrl: "./game-detail-info.component.html",
-  styleUrls: ["./game-detail-info.component.scss"],
+  selector: 'app-game-detail-info',
+  templateUrl: './game-detail-info.component.html',
+  styleUrls: ['./game-detail-info.component.scss']
 })
 export class GameDetailInfoComponent implements OnInit {
   game: Game;
@@ -23,8 +23,8 @@ export class GameDetailInfoComponent implements OnInit {
     private router: Router,
     private _dataService: DataService
   ) {
-    let id = this.route.snapshot.paramMap.get("id");
-    this._dataService.getGameById(id).subscribe((res) => {
+    let id = this.route.snapshot.paramMap.get('id');
+    this._dataService.getGameById(id).subscribe(res => {
       this.game = res[0];
 
       if (this.gameFromJson) {
@@ -39,15 +39,15 @@ export class GameDetailInfoComponent implements OnInit {
     this.game = {
       ...this.game,
       ...{
-        photoUrl: this.gameFromJson.photoUrl, // an Array
-      },
+        photoUrl: this.gameFromJson.photoUrl // an Array
+      }
     };
   }
 
   ngOnInit(): void {
-    let id = parseInt(this.route.snapshot.paramMap.get("id"));
-    this.http.get("assets/game-object.json").subscribe((data: Game[]) => {
-      this.gameFromJson = data.find((game) => game._id === id);
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.http.get('assets/game-object.json').subscribe((data: Game[]) => {
+      this.gameFromJson = data.find(game => game._id === id);
       if (this.game) {
         this.mergeGameObj();
       }
@@ -55,6 +55,6 @@ export class GameDetailInfoComponent implements OnInit {
   }
 
   gotoGames() {
-    this.router.navigate(["/games"]);
+    this.router.navigate(['/games']);
   }
 }
