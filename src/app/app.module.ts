@@ -105,6 +105,7 @@ import { DateFormatPipe } from "./date-format.pipe";
 import { UserCreatedEventItemComponent } from './user-created-event-item/user-created-event-item.component';
 import { DialogForCancelBtnComponent } from './dialog-for-cancel-btn/dialog-for-cancel-btn.component';
 import { FavGameNamesComponent } from './fav-game-names/fav-game-names.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -168,6 +169,7 @@ import { FavGameNamesComponent } from './fav-game-names/fav-game-names.component
     UserCreatedEventItemComponent,
     DialogForCancelBtnComponent,
     FavGameNamesComponent,
+    NotificationsComponent,
   ],
   imports: [
     RouterModule,

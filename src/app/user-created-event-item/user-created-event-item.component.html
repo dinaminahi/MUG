@@ -19,14 +19,14 @@
         <div class="button-wrapper">
             <button *ngIf="currUserId === event?.organizer" type="button" class="btn btn-danger" [disabled]="cancel"
                 (click)="openDialog(event._id)" mat-raised-button>{{cancel ? 'Canceled by you' : 'Cancel'}}</button>
-            <app-button-join *ngIf="currUserId !== event?.organizer" [eventId]="event?._id" class="join">
-            </app-button-join>
-            <button type="button" [disabled]="event?.canceled"
-                *ngIf="event?.canceled && currUserId !== event?.organizer" class="btn btn-danger">Canceled</button>
-            <!-- <button class="subm">JOIN</button> -->
-            <button (click)="onSelect(event)" class="more">
-                MORE INFO
-            </button>
+            <app-button-join *ngIf="currUserId !== event?.organizer && !event?.canceled" [eventId]="event?._id"
+                class="join">
+                <button type="button" [disabled]="event?.canceled"
+                    *ngIf="event?.canceled && currUserId !== event?.organizer" class="btn btn-danger">Canceled</button>
+                <!-- <button class="subm">JOIN</button> -->
+                <button (click)="onSelect(event)" class="more">
+                    MORE INFO
+                </button>
         </div>
     </section>
     <div class="footer text-center dark-grey-text">
