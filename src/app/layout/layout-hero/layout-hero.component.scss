@@ -96,7 +96,7 @@ header,
       width: 100%;
     }
 
-    p:hover:before {
+    h4:hover:before {
       width: 100%;
     }
 
@@ -136,7 +136,7 @@ header,
   h1,
   h2,
   h3,
-  p {
+  h4 {
     padding: 0;
     margin: 0;
     position: absolute;
@@ -181,13 +181,13 @@ header,
     transition: 2s;
   }
 
-  p {
+  h4 {
     top: 52%;
     left: 57%;
     transform: translate(-50%, -50%);
   }
 
-  p:before {
+  h4:before {
     content: attr(data-text);
     position: absolute;
     top: 0;
