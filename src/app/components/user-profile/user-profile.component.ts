@@ -29,30 +29,17 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._dataService.getUserById(this.authService.UserId).subscribe(res => {
-      console.log(res[0]);
-    });
-
     this.userId = this.actRoute.snapshot.paramMap.get('id');
     this.currUserId = this.authService.UserId;
-    if (this.userId) {
-      this.authService.getUserProfile(this.userId).subscribe(res => {
-        this.expectedUser = res.msg;
-        this.expectedUserCity = res.msg.personal.location.address.substring(
-          0,
-          res.msg.personal.location.address.indexOf(',')
-        );
-      });
-    } else {
-      // this.userId = this.authService.UserId;
-      this._dataService.getUserById(this.currUserId).subscribe(res => {
-        this.expectedUser = res[0];
-        this.expectedUserCity = res[0].personal.location.address.substring(
-          0,
-          res[0].personal.location.address.indexOf(',')
-        );
-      });
-    }
+
+    this._dataService.getUserById(this.currUserId).subscribe(res => {
+      this.expectedUser = res[0];
+      console.log(this.expectedUser);
+      this.expectedUserCity = res[0].personal.location.address.substring(
+        0,
+        res[0].personal.location.address.indexOf(',')
+      );
+    });
   }
 
   goEdit() {

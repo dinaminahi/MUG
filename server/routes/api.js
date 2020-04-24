@@ -693,6 +693,15 @@ router.post('/cancelevent', (req, res) => {
   );
 });
 
+router.delete('/deletenotification/:id', (req, res) => {
+  const deletedId = req.params.id;
+  Notification.findOneAndDelete({ _id: deletedId }, err => {
+    if (!err) {
+      console.log('deleted');
+    }
+  });
+});
+
 router.post('/addgame', upload.array('photos'), (req, res) => {
   let files = req.files;
 

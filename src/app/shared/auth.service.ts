@@ -107,7 +107,6 @@ export class AuthService {
     return this.http.get(authApi, { headers: this.headers }).pipe(
       map((res: any) => {
         if (this.UserId && res.msg && res.msg._id === this.UserId) {
-          console.log(res.msg);
           this.userSource.next(res.msg);
         }
         return res || {};

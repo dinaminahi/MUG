@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from './../data.service';
 
 @Component({
   selector: 'app-notifications',
@@ -7,7 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NotificationsComponent implements OnInit {
   @Input() notifications: any;
-  constructor() {}
+  constructor(private _dataService: DataService) {}
 
   ngOnInit(): void {}
+
+  delNotification(notificationId) {
+    this._dataService.deleteNotification(notificationId).subscribe(res => {
+      console.log('deleted!');
+    });
+  }
 }

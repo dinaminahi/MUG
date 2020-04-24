@@ -149,41 +149,15 @@ router.route('/').get((req, res) => {
 
 // Get Single User
 router.route('/user-profile/:id').get(authorize, (req, res, next) => {
-  let userId = req.params.id;
-  User.aggregate([
-    {
-      $match: {
-        _id: mongoose.Types.ObjectId(userId)
-      }
-    },
-    {
-      $lookup: {
-        from: 'notifications',
-        localField: 'notificationsId',
-        foreignField: '_id',
-        as: 'notifications'
-      }
-    }
-  ]).exec((err, data) => {
-    if (err) {
-      return next(err);
+  User.findById(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
     } else {
-      console.log(data);
       res.status(200).json({
         msg: data
       });
     }
   });
-
-  // User.findById(req.params.id, (error, data) => {
-  //   if (error) {
-  //     return next(error);
-  //   } else {
-  //     res.status(200).json({
-  //       msg: data
-  //     });
-  //   }
-  // });
 });
 
 // // Update User
