@@ -237,6 +237,10 @@
     padding: 0px 15px 25px;
     box-shadow: none !important;
     outline: none !important;
+
+    &:before {
+      display: none;
+    }
   }
 }
 

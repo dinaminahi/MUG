@@ -55,6 +55,7 @@ app-event-item {
 .map-wrapper {
   position: relative;
   z-index: 0;
+  display: block;
 }
 
 .controls {
@@ -74,7 +75,11 @@ app-event-item {
   align-items: flex-start;
   font-size: 16px;
   font-weight: 600;
-
+  .filter-search-wrap {
+    display: flex;
+    justify-content: space-between;
+    flex: 1 0 auto;
+  }
   .filters-wrap {
     flex: 0 0 auto;
 
@@ -108,12 +113,12 @@ app-event-item {
       }
     }
   }
-  .create-event-btn {
+  .create-event-btn,
+  .open-map {
     flex: 0 0 auto;
     background-color: #fff;
     border: none;
     border-radius: 4px;
-    display: inline-block;
     cursor: pointer;
     color: $color-orange;
     font-size: 16px;
@@ -126,6 +131,12 @@ app-event-item {
       position: relative;
       top: 1px;
     }
+  }
+  .create-event-btn {
+    display: inline-block;
+  }
+  .open-map {
+    display: none;
   }
 }
 
@@ -144,17 +155,30 @@ app-event-item {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .controls {
-    display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px;
+
+    .create-event-btn {
+      margin: 0 auto 30px;
+      width: 250px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .controls {
+    .filter-search-wrap {
+      flex-direction: column-reverse;
+      align-items: center;
+      width: 100%;
+    }
 
     .search-wrap {
       width: 100%;
       margin: 20px 0;
-      padding: 0 10px;
     }
 
     .create-event-btn {
@@ -162,17 +186,45 @@ app-event-item {
     }
 
     .filters-wrap {
-      margin: 30px 0 0 !important;
+      margin: 30px 0px 0;
+      width: 100%;
+
+      .filters-wrap-inner {
+        margin: 0 -15px;
+
+        & > div {
+          flex: 1 1 33.3%;
+          padding: 0 15px;
+        }
+      }
     }
   }
 }
 @media (max-width: 425px) {
-  .controls {
-    padding: 20px 0;
+  .hiddenOnMobile {
+    display: none;
+  }
 
+  agm-map {
+    height: 300px;
+  }
+
+  .controls {
+    padding: 30px 20px 20px;
+    margin-top: 0px;
+
+    .open-map {
+      display: inline-block;
+      margin: 0 auto 10px;
+      width: 250px;
+    }
+    .create-event-btn {
+      margin: 0 auto;
+      width: 250px;
+    }
     .filters-wrap {
       width: 100%;
-      padding: 0 20px;
+      padding: 0 10px;
     }
     .filters-wrap-inner {
       flex-direction: column;
@@ -181,7 +233,7 @@ app-event-item {
     .search-wrap {
       width: 100%;
       margin: 35px 0 20px;
-      padding: 0 10px;
+      padding: 0px;
     }
   }
 }

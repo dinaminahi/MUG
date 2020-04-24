@@ -37,6 +37,7 @@ export class PageEventsComponent implements OnInit {
   selectedGameNames: string[] = [];
   eventDateTimes: string[];
   gameName: string[];
+  showMap: boolean = false;
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {}
@@ -51,12 +52,15 @@ export class PageEventsComponent implements OnInit {
     });
     this._dataService.getEvents().subscribe((res) => {
       this.loading = false;
-      console.log(res);
     });
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
       this.events && this.filterCategories();
     });
+  }
+
+  toggleShowMap() {
+    this.showMap = !this.showMap;
   }
 
   filterCategories() {
