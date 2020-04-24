@@ -6,9 +6,7 @@
   </div>
   <a href="javascript:void(0)" (click)="onSelect(game)" class="game-item-link">
     <div class="category-icons icons-block">
-      <app-game-category-icons
-        [categories]="game?.categories"
-      ></app-game-category-icons>
+      <app-game-category-icons [categories]="game?.categories"></app-game-category-icons>
 
       <span class="arrow"></span>
     </div>
