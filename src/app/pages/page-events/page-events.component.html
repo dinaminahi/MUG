@@ -1,4 +1,9 @@
-<div class="map-wrapper">
+<div
+  [ngClass]="{
+    'map-wrapper': true,
+    hiddenOnMobile: !showMap
+  }"
+>
   <agm-map
     [latitude]="geo.latitude"
     [longitude]="geo.longitude"
@@ -26,36 +31,38 @@
 
 <div class="container">
   <div class="controls">
-    <div class="filters-wrap">
-      <h3>Filter by:</h3>
-      <div class="filters-wrap-inner">
-        <div class="filters-category">
-          <app-filter-category
-            [categories]="categoriesCurrent"
-            (toggle)="onCategoriesChange($event)"
-          >
-          </app-filter-category>
-        </div>
-        <div class="filters-date">
-          <app-filter-date
-            [datesFormatted]="eventDateTimes"
-            (toggle)="onDateTimeChange($event)"
-          ></app-filter-date>
-        </div>
-        <div class="filters-game-name">
-          <app-filter-game-name
-            [games]="gameName"
-            (toggle)="onGameNameChange($event)"
-          ></app-filter-game-name>
+    <div class="filter-search-wrap">
+      <div class="filters-wrap">
+        <h3>Filter by:</h3>
+        <div class="filters-wrap-inner">
+          <div class="filters-category">
+            <app-filter-category
+              [categories]="categoriesCurrent"
+              (toggle)="onCategoriesChange($event)"
+            >
+            </app-filter-category>
+          </div>
+          <div class="filters-date">
+            <app-filter-date
+              [datesFormatted]="eventDateTimes"
+              (toggle)="onDateTimeChange($event)"
+            ></app-filter-date>
+          </div>
+          <div class="filters-game-name">
+            <app-filter-game-name
+              [games]="gameName"
+              (toggle)="onGameNameChange($event)"
+            ></app-filter-game-name>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="search-wrap">
-      <input
-        type="search"
-        [(ngModel)]="searchText"
-        placeholder="Search by any text"
-      />
+      <div class="search-wrap">
+        <input
+          type="search"
+          [(ngModel)]="searchText"
+          placeholder="Search by any text"
+        />
+      </div>
     </div>
     <button
       class="create-event-btn"
@@ -63,6 +70,9 @@
       routerLink="/pageaddevent"
     >
       Create an event
+    </button>
+    <button class="open-map" (click)="toggleShowMap()">
+      {{ showMap ? "Сlose events map" : "Open events map" }}
     </button>
   </div>
 
