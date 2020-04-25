@@ -34,17 +34,8 @@ export class LayoutMainNavbarComponent implements OnInit {
       height: "auto",
       maxWidth: "100vw",
       disableClose: true,
-      // data: {
-      //   name: this.name,
-      //   password: this.password,
-      //   email: this.password,
-      // },
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      // alert("Are You Shoore?");
-      // this.name = result; -  could add to user name
-    });
-    // this.dialog.open(SigninComponent);
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   sigupUser() {
