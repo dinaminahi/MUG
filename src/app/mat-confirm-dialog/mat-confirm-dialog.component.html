@@ -1,1 +1,13 @@
-<p>mat-confirm-dialog works!</p>
+<div class="content">
+  <button matDialogClose type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="heading">
+
+    <h1>You have to <b>LOGIN</b></h1>
+    <h1>If You want to continue.</h1>
+  </div>
+  <button (click)="openDialog()" mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
+    Continue
+  </button>
+</div>
