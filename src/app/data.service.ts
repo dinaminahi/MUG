@@ -126,7 +126,7 @@ export class DataService {
     return this._http.post<any>(`/api/addgame`, newGame).pipe(
       tap(newGame => console.log(`added game = ${JSON.stringify(newGame)}`)),
       catchError(error => {
-        return 'error';
+        return error;
       })
     );
   }
@@ -139,7 +139,20 @@ export class DataService {
           console.log(`canceled event = ${JSON.stringify(newEvent)}`)
         ),
         catchError(error => {
-          return 'error';
+          return error;
+        })
+      );
+  }
+
+  deleteNotification(notificationId: string, userId: string) {
+    return this._http
+      .put<any>(`/api/deletenotification`, { notificationId, userId })
+      .pipe(
+        tap(deletedNotif =>
+          console.log(`deleted notif = ${JSON.stringify(deletedNotif)}`)
+        ),
+        catchError(error => {
+          return error;
         })
       );
   }
