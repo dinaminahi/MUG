@@ -1,27 +1,12 @@
-@import "../../sass/variables";
-
 .game-item {
-  padding: 0;
-  margin: 0;
+  padding: 0 20px;
+  margin: 40px 0 0;
+
   background-color: #fff;
   position: relative;
 
-  .favorites {
-    position: absolute;
-    top: 40px;
-    right: 20px;
-    z-index: 10;
-    margin: 0;
-    padding: 10px;
-    background-color: $color-orange;
-    color: #f9f3ee;
-    font-family: "Kelly Slab", cursive;
-    font-size: 20px;
-    line-height: 1.4;
-  }
-
   .wrapp-carousel {
-    background-color: #f9f3ee;
+    background-color: #f5f3eb;
   }
   .img {
     margin: 0;
@@ -41,10 +26,10 @@
 
   .game-content {
     position: relative;
-    margin: 0 auto;
+    margin: 0px;
     padding: 0px;
-    border-top: solid 1px $color-orange;
-    box-shadow: 0 -2px 0px -1px #f9f3ee;
+    border-top: solid 1px #3a3535;
+    box-shadow: 0 -2px 0px -1px #f4f4f4;
   }
 
   .game-title {
@@ -54,7 +39,7 @@
     margin: 10px 0 0;
     padding: 10px;
     font-size: 2.2rem;
-    color: #003049;
+
     z-index: 10;
   }
 }
@@ -64,12 +49,6 @@
   margin: 0 0 10px;
   padding: 10px;
   font-size: 1.2rem;
-
-  .icon-wrap {
-    i {
-      color: $color-orange;
-    }
-  }
 }
 
 .game-meta {
@@ -85,7 +64,7 @@
     white-space: nowrap;
 
     & + div {
-      margin-left: 20px;
+      margin-left: 25px;
     }
   }
 
@@ -97,7 +76,7 @@
 
     i {
       font-size: 1.3rem;
-      color: $color-orange;
+      color: #003049;
     }
 
     + b {
@@ -117,31 +96,38 @@
   }
 }
 
-.create-event-btn {
-  flex: 0 0 auto;
-  background-color: $color-orange;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 12px 40px;
-  text-decoration: none;
-  margin: 20px auto;
-  display: block;
-
-  &:active {
-    position: relative;
-    top: 1px;
+.list-group {
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .icons {
+      font-size: 14px;
+      i {
+        font-size: 1.4rem;
+      }
+    }
   }
+}
+
+button {
+  display: block;
+  width: 100%;
+  background: none;
+  color: black;
+  border: none;
+  text-align: left;
+  padding-left: 0;
+}
+
+button:hover {
 }
 
 .description {
   margin: 0;
   padding: 0;
   margin-bottom: 20px;
-  border-bottom: 1px solid #f9f3ee;
+  border-bottom: 1px solid #f4f4f4;
   font-size: 18px;
   line-height: 1.5;
 }

@@ -25,7 +25,6 @@ const Game = require('./../models/gameSchema');
 const Event = require('./../models/eventSchema');
 const User = require('./../models/userSchema');
 const Comment = require('./../models/commentSchema');
-const Notification = require('./../models/notificationSchema');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -540,28 +539,19 @@ router.put('/join-to-event', (req, res) => {
 
 router.get('/userinfo/:userId', (req, res) => {
   let userId = req.params.userId;
-  User.aggregate([
+  User.find(
     {
-      $match: {
-        _id: mongoose.Types.ObjectId(userId)
-      }
+      _id: userId
     },
-    {
-      $lookup: {
-        from: 'notifications',
-        localField: 'notificationsId',
-        foreignField: '_id',
-        as: 'notifications'
+    (err, user) => {
+      if (err) {
+        sendError(err, res);
+      } else {
+        response.data = user;
+        res.json(response);
       }
     }
-  ]).exec((err, user) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = user;
-      res.json(response);
-    }
-  });
+  );
 });
 
 router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
@@ -654,13 +644,6 @@ router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
 });
 
 router.post('/cancelevent', (req, res) => {
-  const notification = new Notification({
-    text: 'was canceled!',
-    canceledEvent: req.body.eventId
-  });
-
-  notification.save();
-
   Event.findOneAndUpdate(
     {
       _id: req.body.eventId,
@@ -673,38 +656,7 @@ router.post('/cancelevent', (req, res) => {
       if (err) {
         sendError(err, res);
       } else {
-        event.players.joined.forEach(user => {
-          User.findByIdAndUpdate(
-            { _id: user._id },
-            {
-              $push: {
-                notificationsId: mongoose.Types.ObjectId(notification._id)
-              }
-            },
-            (err, user) => {
-              console.log(user);
-            }
-          );
-        });
         response.data = event;
-        res.json(response);
-      }
-    }
-  );
-});
-
-router.put('/deletenotification', (req, res) => {
-  const deletedId = req.body.notificationId;
-  const userId = req.body.userId;
-
-  User.findOneAndUpdate(
-    { _id: userId },
-    { $pull: { notificationsId: deletedId } },
-    (err, user) => {
-      if (err) {
-        sendError(err, res);
-      } else {
-        response.data = user;
         res.json(response);
       }
     }

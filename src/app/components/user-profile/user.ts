@@ -34,5 +34,5 @@ export class UserItem {
       advanced: [];
     };
   };
-  notifications: [];
+  favoritedGames: [];
 }

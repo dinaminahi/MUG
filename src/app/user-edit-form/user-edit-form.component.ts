@@ -128,7 +128,7 @@ export class UserEditFormComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/useraccount', this.authService.UserId]);
+    this.router.navigate(['/user-profile', this.authService.UserId]);
   }
 
   selectFile(event) {
@@ -185,7 +185,7 @@ export class UserEditFormComponent implements OnInit {
       .subscribe(editedUser => {
         this.loading = false;
         localStorage.setItem('userPhoto', editedUser.data.url);
-        this.router.navigate(['/useraccount', this.authService.UserId]);
+        this.router.navigate(['/useraccount']);
       });
   }
 

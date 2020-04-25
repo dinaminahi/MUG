@@ -5,8 +5,6 @@ import {
   OnChanges,
   HostListener,
 } from "@angular/core";
-import { DataService } from "../data.service";
-import { EventItem } from "../event-item/event-item";
 
 @Component({
   selector: "app-carousel",
@@ -14,16 +12,14 @@ import { EventItem } from "../event-item/event-item";
   styleUrls: ["./carousel.component.scss"],
 })
 export class CarouselComponent implements OnInit, OnChanges {
-  events: EventItem[];
+  @Input() events: [];
+  constructor() {}
   slides1: any = [[]];
   slides2: any = [[]];
   slides3: any = [[]];
   carouselDisplayMode: number;
   TABLET_BREAKPOINT: number = 768;
   DESKTOP_BREAKPOINT: number = 1024;
-
-  constructor(private _dataService: DataService) {}
-
   chunk(arr, chunkSize) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
@@ -43,7 +39,14 @@ export class CarouselComponent implements OnInit, OnChanges {
       this.carouselDisplayMode = 3;
     }
   }
-  ngOnChanges() {}
+  ngOnChanges() {
+    if (this.events) {
+      this.slides1 = this.events;
+      this.slides2 = this.chunk(this.events, 2);
+      this.slides3 = this.chunk(this.events, 3);
+      this.switchLayout();
+    }
+  }
   @HostListener("window:resize")
   onWindowResize() {
     if (this.events) {
@@ -51,32 +54,5 @@ export class CarouselComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
-    this._dataService.getEvents().subscribe((events) => {
-      if (events) {
-        this.events = this.filterNexTenDaysEvents(events);
-        this.slides1 = this.events;
-        this.slides2 = this.chunk(this.events, 2);
-        this.slides3 = this.chunk(this.events, 3);
-        this.switchLayout();
-      }
-    });
-  }
-
-  filterNexTenDaysEvents(events) {
-    return events.filter((e) => {
-      const today = new Date();
-
-      const endDate = new Date();
-      endDate.setDate(today.getDate() + 10);
-      endDate.setHours(23, 59, 59, 99);
-
-      const eventDate = new Date(e.dateTime);
-
-      return (
-        eventDate.getTime() >= today.getTime() &&
-        eventDate.getTime() <= endDate.getTime()
-      );
-    });
-  }
+  ngOnInit(): void {}
 }

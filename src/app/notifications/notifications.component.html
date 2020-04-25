@@ -1,4 +1,0 @@
-<div *ngFor="let notification of notifications" class="notifications">
-    <p><i class="fas fa-bell pr-3"></i><a routerLink="/events/{{notification.canceledEvent}}">Event</a>
-        {{notification?.text}}<i class="fas fa-trash-alt pl-5" (click)="delNotification(notification._id)"></i></p>
-</div>

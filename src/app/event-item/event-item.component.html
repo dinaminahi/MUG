@@ -64,21 +64,20 @@
       <div class="footer-meta text-left">
         <div>
           <span class="label">
-            <i class="far fa-clock" title="Тривалісь зустрічі"></i>Duration of
-            the meeting:</span
+            <i class="far fa-clock" title="Тривалісь зустрічі"></i>Тривалісь
+            зустрічі:</span
           ><b> {{ event?.duration }}</b>
         </div>
         <div class="age">
           <span class="label">
             <i class="fas fa-baby"></i>
-            <i class="fas fa-child" title="Вік гравців"></i> Age of
-            players:</span
+            <i class="fas fa-child" title="Вік гравців"></i> Вік гравців:</span
           ><b> {{ event?.players.age.min }} - {{ event?.players.age.max }}</b>
         </div>
         <div class="count">
           <span class="label">
-            <i class="fas fa-users" title="Кількість гравців"></i> Count of
-            players:</span
+            <i class="fas fa-users" title="Кількість гравців"></i> Кількість
+            гравців:</span
           ><b>
             {{ event?.players.count.min }} - {{ event?.players.count.max }}</b
           >
@@ -86,7 +85,7 @@
         <div class="organizer" *ngIf="this.organizer">
           <span class="label">
             <i class="far fa-address-card" title="Організатор"></i
-            >Organizer:</span
+            >Організатор:</span
           ><b>
             <button
               class="organizerName"
