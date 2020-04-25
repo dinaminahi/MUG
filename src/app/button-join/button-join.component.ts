@@ -8,6 +8,7 @@ import {
   MAT_DIALOG_DATA,
 } from "@angular/material/dialog";
 import { MatConfirmDialogComponent } from "./../mat-confirm-dialog/mat-confirm-dialog.component";
+import { SigninComponent } from "./../components/signin/signin.component";
 
 @Component({
   selector: "app-button-join",
@@ -16,6 +17,8 @@ import { MatConfirmDialogComponent } from "./../mat-confirm-dialog/mat-confirm-d
 })
 export class ButtonJoinComponent implements OnInit, OnChanges {
   @Input() eventId: string;
+  @Input() playersCount: any;
+  @Input() canceled: boolean;
   subscribedEvents: string[];
   isSubscribed: boolean;
   isLoading: boolean;
@@ -43,14 +46,17 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
   }
 
   setIsSubscribed() {
-    this.isSubscribed = !!(
-      this.user.events.subscribed.indexOf(this.eventId) > -1
-    );
+    this.isSubscribed =
+      this.user &&
+      this.eventId &&
+      !!(this.user.events.subscribed.indexOf(this.eventId) > -1);
   }
 
   ngOnChanges() {
-    if (this.eventId && this.user) {
-      this.setIsSubscribed();
+    this.setIsSubscribed();
+
+    if (this.playersCount) {
+      this.isFull = this.playersCount.current >= this.playersCount.max;
     }
   }
 
@@ -74,9 +80,9 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
   }
   //--vyzov okna dialoga ---
   openDialog(): void {
-    const dialogRef = this.dialog.open(MatConfirmDialogComponent, {
-      width: "390px",
-      // height: "530px",
+    const dialogRef = this.dialog.open(SigninComponent, {
+      width: "767px",
+      height: "530px",
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {});

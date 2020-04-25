@@ -23,11 +23,8 @@
     }
   }
 
-  &.isLoading {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-
+  &.isLoading,
+  &.isCanceled,
   &.isFull:not(.isSubscribed) {
     opacity: 0.3;
     pointer-events: none;

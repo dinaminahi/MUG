@@ -24,19 +24,11 @@
 
     <div class="button-wrapper">
       <app-button-join
-        *ngIf="!event?.canceled"
         [eventId]="event?._id"
+        [playersCount]="event?.players.count"
+        [canceled]="event?.canceled"
         class="join"
       ></app-button-join>
-      <button
-        type="button"
-        [disabled]="event?.canceled"
-        *ngIf="event?.canceled"
-        class="canceled-button"
-      >
-        Canceled
-      </button>
-      <!-- <button class="subm">JOIN</button> -->
       <button (click)="onSelect(event)" class="more">
         MORE INFO
       </button>
