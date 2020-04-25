@@ -107,10 +107,13 @@ export class DataService {
       );
   }
 
-  public addEvent(newEvent) {
-    return this._http.post('/api/addevent', newEvent).subscribe(data => {
-      console.log(data);
-    });
+  addEvent(newEvent) {
+    return this._http.post<any>(`/api/addevent`, newEvent).pipe(
+      tap(newEvent => console.log(`added game = ${JSON.stringify(newEvent)}`)),
+      catchError(error => {
+        return error;
+      })
+    );
   }
 
   editUser(newUser, id: string) {
