@@ -7,18 +7,10 @@
 <div class="container" *ngIf="!loading">
   <div class="controls">
     <div class="search-wrap">
-      <input
-        type="search"
-        [(ngModel)]="searchText"
-        placeholder="Search by any text"
-      />
+      <input type="search" [(ngModel)]="searchText" placeholder="Search by any text" />
     </div>
 
-    <button
-      class="create-game-btn"
-      routerLinkActive="active"
-      routerLink="/pageaddgame"
-    >
+    <button class="create-game-btn" (click)="goAddGame()">
       Add new Game
     </button>
   </div>
@@ -34,10 +26,7 @@
       </div>
 
       <!-- not use<div class="col-lg-4 col-md-6"> -->
-      <div
-        class="col-lg-3 col-md-4 col-sm-6"
-        *ngFor="let game of games | filter: searchText"
-      >
+      <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let game of games | filter: searchText">
         <app-game *ngIf="displayMode !== 2" [game]="game"></app-game>
       </div>
       <!-- not use </div> -->

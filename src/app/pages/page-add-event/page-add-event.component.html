@@ -50,7 +50,7 @@
           <p [class.d-none]="game.valid || game.untouched" class="text-danger error">Please, choose the game</p>
           <select class="custom-select" [class.is-invalid]="game.invalid && game.touched">
             <option value="" disabled>I want to play</option>
-            <option *ngFor="let game of games">{{ game }}</option>
+            <option class="my-5" *ngFor="let game of games">{{ game }}</option>
           </select>
         </div>
 
@@ -60,15 +60,18 @@
               <div class="col-md-6  col-sm-12 text-center">
                 <label>Players age</label>
                 <div formGroupName="age">
-                  <input type="number" class="num-input mr-5" formControlName="min" min="3" max="120" placeholder="min">
-                  <input type="number" class="num-input " formControlName="max" min="3" max="120" placeholder="max">
+                  <input type="number" class="num-input mr-3" formControlName="min" min="3" max="120" placeholder="min">
+                  <i class="fas fa-minus"></i>
+                  <input type="number" class="num-input ml-3 " formControlName="max" min="3" max="120"
+                    placeholder="max">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12 text-center">
                 <label>Players amount</label>
                 <div formGroupName="count">
-                  <input type="number" class="num-input  mr-5" formControlName="min" min="2" max="10" placeholder="min">
-                  <input type="number" class="num-input" formControlName="max" min="2" max="10" placeholder="max">
+                  <input type="number" class="num-input  mr-3" formControlName="min" min="2" max="10" placeholder="min">
+                  <i class="fas fa-minus"></i>
+                  <input type="number" class="num-input ml-3" formControlName="max" min="2" max="10" placeholder="max">
                 </div>
               </div>
             </div>
@@ -84,22 +87,15 @@
 
           <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" class="custom-control-input" id="defaultInline1" name="experiance"
-              formControlName="experiance" value="begginer" checked>
-            <label class="custom-control-label" for="defaultInline1">Begginer</label>
+              formControlName="experiance" value="intermediate" checked>
+            <label class="custom-control-label" for="defaultInline1">Intermediate</label>
           </div>
 
           <!-- Default inline 2-->
           <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" class="custom-control-input" id="defaultInline2" name="experiance"
-              formControlName="experiance" value="intermediate">
-            <label class="custom-control-label" for="defaultInline2">Intermediate</label>
-          </div>
-
-          <!-- Default inline 3-->
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="defaultInline3" name="experiance"
               formControlName="experiance" value="advanced">
-            <label class="custom-control-label" for="defaultInline3">Advanced</label>
+            <label class="custom-control-label" for="defaultInline2">Advanced</label>
           </div>
         </div>
 
