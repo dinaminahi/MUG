@@ -102,6 +102,10 @@ export class AuthService {
     return this.userShared;
   }
 
+  updateCurrenUser(user) {
+    this.userSource.next(user);
+  }
+
   // User profile
   getUserProfile(id): Observable<any> {
     let authApi = `${this.endpoint}/user-profile/${id}`;
