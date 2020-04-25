@@ -75,16 +75,19 @@
             {{ event?.players.count.min }} - {{ event?.players.count.max }}</b
           >
         </div>
-        <div class="organizer" *ngIf="this.organizer">
+        <div class="organizer" *ngIf="authService.isLoggedIn">
           <span class="label">
             <i class="far fa-address-card" title="Організатор"></i
             >Organizer:</span
           ><b>
             <button
               class="organizerName"
-              (click)="redirectToUserPage(organizer)"
+              (click)="redirectToUserPage((event?.organizerInfo)[0])"
             >
-              {{ organizer?.personal.firstName || organizer?.personal.name }}
+              {{
+                (event?.organizerInfo)[0].personal.firstName ||
+                  (event?.organizerInfo)[0].personal.name
+              }}
             </button>
           </b>
         </div>
