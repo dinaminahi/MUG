@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from './../../shared/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { User } from './../page-users/user';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { AuthService } from "./../../shared/auth.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { UserItem } from "src/app/components/user-profile/user";
 
 @Component({
-  selector: 'app-page-user-account',
-  templateUrl: './page-user-account.component.html',
-  styleUrls: ['./page-user-account.component.scss']
+  selector: "app-page-user-account",
+  templateUrl: "./page-user-account.component.html",
+  styleUrls: ["./page-user-account.component.scss"],
 })
 export class PageUserAccountComponent implements OnInit {
-  public user: User;
+  public user: UserItem;
 
   joined: boolean = true;
   created: boolean = false;
@@ -23,8 +23,8 @@ export class PageUserAccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let id = this.actRout.snapshot.paramMap.get('id');
-    this.authService.getUserProfile(id).subscribe(res => {
+    let id = this.actRout.snapshot.paramMap.get("id");
+    this.authService.getUserProfile(id).subscribe((res) => {
       this.user = res.msg;
     });
   }

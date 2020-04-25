@@ -185,7 +185,8 @@ export class DataService {
       .put<any>("/api/favorite-games", { gameId, userId, toggle })
       .pipe(
         map((response) => {
-          this.favoritedGames = response.data;
+          this.currentUser.games.favorited = response;
+          this.authService.updateCurrenUser(this.currentUser);
           return response;
         })
       );
@@ -200,7 +201,8 @@ export class DataService {
       .put<any>("/api/favorite-events", { eventId, userId, toggle })
       .pipe(
         map((response) => {
-          this.favoritedEvents = response.data;
+          this.currentUser.events.interested = response;
+          this.authService.updateCurrenUser(this.currentUser);
           return response;
         })
       );
