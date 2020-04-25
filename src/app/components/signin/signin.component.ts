@@ -53,6 +53,10 @@ export class SigninComponent implements OnInit {
     signInButton.addEventListener("click", () => {
       container.classList.remove("right-panel-active");
     });
+    const signUpButtonSubmit = document.getElementById("submit-up");
+    signUpButtonSubmit.addEventListener("click", () => {
+      container.classList.remove("right-panel-active");
+    });
   }
 
   loginUser() {
