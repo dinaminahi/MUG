@@ -6,47 +6,97 @@ header,
 
 }
 
-.btn {
-  border-radius: 50px;
-  letter-spacing: 5px;
-}
-
-
-.bg-x2 {
-  background-image: url("src/img/Vector.png");
-  height: 85%;
-  // background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  // background-attachment: fixed;
-  // background-color: white;
-  z-index: 2;
-}
-
-.bg {
+.bg-first-layer {
   background-image: url("src/img/bg_x.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  // z-index: 1;
+  // z-index: 0;
 }
 
-.section-button {
-  padding-top: 5%;
+// .bg-second-layer {
+//   background-image: url("src/img/Vector.png");
+//   height: 85%;
+//   // background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   // background-attachment: fixed;
+//   // background-color: white;
+//   z-index: 1;
+// }
 
-  p.font-size {
-    font-size: 25px;
-    line-height: 5vh;
-    letter-spacing: 2.5px;
-  }
+
+//   p.font-size {
+//     font-size: 25px;
+//     line-height: 5vh;
+//     letter-spacing: 2.5px;
+//   }
+// }
+
+
+
+.main-heading {
+  position: relative;
+  // display: flex;
+  // flex-direction: row;
+  padding: 5%;
+  max-width: 80%;
+  margin: 0 auto;
+
 }
+
 
 h1 {
-  font-size: 90px;
+  position: absolute;
+  font-size: 40vw;
+  font-weight: 500;
   line-height: 7vh;
-  -webkit-text-stroke: 2px black;
+  // -webkit-text-stroke: 2px black;
   // padding-top: 7%;
+  background-color: black;
+  color: white;
+}
+
+.m-letter {
+  top: 53%;
+  left: 18%;
+  transform: translate(-50%, -50%);
+  line-height: .8vh;
+}
+
+
+.g-letter {
+  top: 53%;
+  left: 86%;
+  transform: translate(-50%, -50%);
+}
+
+.u-letter {
+  top: 68%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.and-letter {
+  top: 42%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  position: absolute;
+  font-size: 40vw;
+  line-height: 7vh;
+  background-color: black;
+  color: white;
+}
+
+h3 {
+  position: absolute;
+  font-size: 10vw;
+  line-height: 7vh;
+  background-color: black;
+  color: white;
 }
