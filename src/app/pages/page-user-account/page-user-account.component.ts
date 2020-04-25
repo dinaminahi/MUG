@@ -24,9 +24,15 @@ export class PageUserAccountComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.actRout.snapshot.paramMap.get("id");
-    this.authService.getUserProfile(id).subscribe((res) => {
-      this.user = res.msg;
-    });
+    if (id === this.authService.UserId) {
+      this.authService.getCurrentUserData().subscribe((user) => {
+        this.user = user;
+      });
+    } else {
+      this.authService.getUserProfile(id).subscribe((res) => {
+        this.user = res.msg;
+      });
+    }
   }
 
   joinedClick() {

@@ -24,22 +24,19 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private actRoute: ActivatedRoute,
-    private router: Router,
-    private _dataService: DataService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.userId = this.actRoute.snapshot.paramMap.get("id");
-    this.currUserId = this.authService.UserId;
-
-    this._dataService.getUserById(this.currUserId).subscribe((res) => {
-      this.expectedUser = res[0];
+    this.authService.getUserProfile(this.userId).subscribe((res) => {
+      this.expectedUser = res.msg;
       if (!this.expectedUser) {
         return false;
       }
-      this.expectedUserCity = res[0].personal.location.address.substring(
+      this.expectedUserCity = res.msg.personal.location.address.substring(
         0,
-        res[0].personal.location.address.indexOf(",")
+        res.msg.personal.location.address.indexOf(",")
       );
     });
   }
