@@ -1,4 +1,4 @@
-@import "./../../../sass/variables";
+@import './../../../sass/variables';
 
 .container {
   margin: 100px auto;
@@ -10,6 +10,11 @@
 
 label {
   font-size: 20px;
+}
+
+.error {
+  display: inline;
+  margin-left: 7px;
 }
 
 .num-input {

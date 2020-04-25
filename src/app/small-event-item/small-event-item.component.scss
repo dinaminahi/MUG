@@ -1,0 +1,27 @@
+@import './../../sass/variables';
+.map-info {
+  position: relative;
+
+  .event-name {
+    color: $color-orange;
+    font-weight: bold;
+  }
+  .image-wrap {
+    img {
+      height: 140px;
+      width: auto;
+    }
+  }
+  .button-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    // margin: auto;
+  }
+  .more-info {
+    background-color: $color-main-blue;
+    color: #ffffff;
+  }
+}

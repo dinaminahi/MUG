@@ -3,7 +3,6 @@
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
       <h1 class="text-center main-heading">Create your event</h1>
-      <!-- <p><strong>id:</strong> {{userSchema.id}}</p> -->
 
       <div class="form-group">
         <label>Event name</label>
@@ -13,27 +12,28 @@
 
       <div class="form-group">
         <label>Event description</label>
+        <p [class.d-none]="description.valid || description.untouched" class="text-danger error">Event description is
+          required</p>
         <textarea formControlName="description" [class.is-invalid]="description.invalid && description.touched" rows="3"
           class="form-control"></textarea>
-        <p [class.d-none]="description.valid || description.untouched" class="text-danger">Event description is
-          required</p>
       </div>
 
       <div class="form-group" formGroupName="location">
         <label>Location</label>
+        <p [class.d-none]="address.valid || address.untouched" class="text-danger error">Please specify the location
+          of event</p>
         <input type="text" formControlName="address" #search [formControl]="searchControl" autocomplete="off"
           autocapitalize="off" spellcheck="false" class="form-control" placeholder="{{ myForm.value.location.address }}"
           [class.is-invalid]="address.invalid && address.touched">
-        <p [class.d-none]="address.valid || address.untouched" class="text-danger">Please specify the location
-          of event</p>
+
       </div>
 
       <div class="form-group">
         <label>Date and time</label>
+        <p [class.d-none]="dateTime.valid || dateTime.untouched" class="text-danger error">Please specify the date and
+          time of event</p>
         <input type="datetime-local" formControlName="dateTime" class="form-control"
           [class.is-invalid]="dateTime.invalid && dateTime.touched">
-        <p [class.d-none]="dateTime.valid || dateTime.untouched" class="text-danger">Please specify the date and
-          time of event</p>
       </div>
 
       <div class="form-group">
@@ -47,11 +47,11 @@
 
         <div class="form-group">
           <label>Choose the game</label>
+          <p [class.d-none]="game.valid || game.untouched" class="text-danger error">Please, choose the game</p>
           <select formControlName="game" class="custom-select" [class.is-invalid]="game.invalid && game.touched">
             <option value="" disabled>I want to play</option>
             <option *ngFor="let game of games">{{ game }}</option>
           </select>
-          <p [class.d-none]="game.valid || game.untouched" class="text-danger">Please, choose the game</p>
         </div>
 
         <div formGroupName="players">
@@ -111,7 +111,7 @@
 
       <div>
         <button type="submit" class="btn create-btn my-4 btn-block" [disabled]="!myForm.valid">Create</button>
-        <small [class.d-none]="myForm.valid" class="text-danger">Please, fill in the form correctly</small>
+        <p [class.d-none]="myForm.valid || myForm.untouched" class="text-danger">Please, fill in the form correctly</p>
       </div>
 
     </form>
