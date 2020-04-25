@@ -22,25 +22,25 @@ let userSchema = new Schema({
       }
     },
     dateOfBirth: Number,
-    description: String,
+    description: String
   },
   events: {
     subscribed: [mongoose.ObjectId],
     interested: [mongoose.ObjectId],
-    created: [mongoose.ObjectId],
+    created: [mongoose.ObjectId]
   },
   games: {
     favorited: [mongoose.ObjectId], // game id's or some part of game objects
-    skillLevel:
-    {
+    skillLevel: {
       novice: [mongoose.ObjectId],
       beginner: [mongoose.ObjectId],
       intermediate: [mongoose.ObjectId],
       advanced: [mongoose.ObjectId]
     },
     rating: Number // likes counter form other users
-  }
- });
+  },
+  notificationsId: [mongoose.ObjectId]
+});
 
 userSchema.plugin(uniqueValidator, {
   message: 'Email already in use.'

@@ -70,7 +70,8 @@ router.post(
               advanced: []
             },
             rating: 0
-          }
+          },
+          notificationsId: []
         });
         user
           .save()
@@ -81,6 +82,7 @@ router.post(
             });
           })
           .catch(error => {
+            console.log(error);
             res.status(500).json({
               error: error
             });
@@ -158,36 +160,36 @@ router.route('/user-profile/:id').get(authorize, (req, res, next) => {
   });
 });
 
-// Update User
-router.route('/update-user/:id').put((req, res, next) => {
-  User.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: req.body
-    },
-    (error, data) => {
-      if (error) {
-        console.log(error);
-        return next(error);
-      } else {
-        res.json(data);
-        console.log('User successfully updated!');
-      }
-    }
-  );
-});
+// // Update User
+// router.route('/update-user/:id').put((req, res, next) => {
+//   User.findByIdAndUpdate(
+//     req.params.id,
+//     {
+//       $set: req.body
+//     },
+//     (error, data) => {
+//       if (error) {
+//         console.log(error);
+//         return next(error);
+//       } else {
+//         res.json(data);
+//         console.log('User successfully updated!');
+//       }
+//     }
+//   );
+// });
 
-// Delete User
-router.route('/delete-user/:id').delete((req, res, next) => {
-  User.findByIdAndRemove(req.params.id, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.status(200).json({
-        msg: data
-      });
-    }
-  });
-});
+// // Delete User
+// router.route('/delete-user/:id').delete((req, res, next) => {
+//   User.findByIdAndRemove(req.params.id, (error, data) => {
+//     if (error) {
+//       return next(error);
+//     } else {
+//       res.status(200).json({
+//         msg: data
+//       });
+//     }
+//   });
+// });
 
 module.exports = router;
