@@ -110,6 +110,7 @@ import { UserCreatedEventItemComponent } from './user-created-event-item/user-cr
 import { DialogForCancelBtnComponent } from './dialog-for-cancel-btn/dialog-for-cancel-btn.component';
 import { FavGameNamesComponent } from './fav-game-names/fav-game-names.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -176,7 +177,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     LayoutGamesComponent,
 
     FavGameNamesComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     RouterModule,

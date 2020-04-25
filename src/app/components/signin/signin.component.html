@@ -3,11 +3,11 @@
     <form action="#" [formGroup]="signupForm" (ngSubmit)="registerUser()">
       <h1>Create Account</h1>
       <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
       </div>
-      <span>or use your email for registration</span>
+      <span style="font-size: 15px;">Use your email for registration</span>
       <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
       <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
@@ -23,11 +23,11 @@
     <form action="#" [formGroup]="signinForm" (ngSubmit)="loginUser()">
       <h1>Sign in</h1>
       <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
       </div>
-      <span>or use your account</span>
+      <span style="font-size: 15px;">Use your account</span>
 
       <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
 
@@ -46,7 +46,7 @@
         <h1>Welcome Back!</h1>
         <p>To keep connected with us please login with your personal info</p>
         <button class="ghost" id="signIn">Sign In</button>
-        <button mat-dialog-close (click)="onNoClick()" class="no-thx">
+        <button mat-dialog-close class="no-thx">
           No, Thanks!
         </button>
       </div>
@@ -54,7 +54,7 @@
         <h1>Hello, Friend!</h1>
         <p>Enter your personal details and start journey with us</p>
         <button class="ghost" id="signUp">Sign Up</button>
-        <button mat-dialog-close (click)="onNoClick()" class="no-thx">
+        <button mat-dialog-close class="no-thx">
           No, Thanks!
         </button>
       </div>
