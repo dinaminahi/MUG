@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
     this.userId = this.actRoute.snapshot.paramMap.get('id');
     this.currUserId = this.authService.UserId;
 
-    this._dataService.getUserById(this.currUserId).subscribe(res => {
+    this._dataService.getUserById(this.userId).subscribe(res => {
       this.expectedUser = res[0];
       console.log(this.expectedUser);
       this.expectedUserCity = res[0].personal.location.address.substring(
