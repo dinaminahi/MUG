@@ -69,12 +69,17 @@
               <!-- <div class="instructionUrl">
                 <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
               </div> -->
-              <button class="subm">
-                Створити подію з цією грою
+              <button
+                class="create-event-btn"
+                routerLinkActive="active"
+                routerLink="/pageaddevent"
+              >
+                Create an event with this game
               </button>
-              <button class="back" (click)="gotoGames()">
+
+              <!-- <button class="back" (click)="gotoGames()">
                 Повернутися до списку ігор
-              </button>
+              </button> -->
             </div>
           </div>
         </section>

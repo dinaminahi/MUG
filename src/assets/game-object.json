@@ -1,6 +1,6 @@
 [
   {
-    "_id": 7,
+    "_id": "5e8e1b0b6bf9923c8873c5b0",
     "name": "Ticket to Ride Junior: Європа",
     "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
@@ -15,15 +15,15 @@
     "playersMinAge": 6,
     "playersCount": { "min": 2, "max": 4 },
     "playTimeMinutes": { "min": 15, "max": 30 },
-    "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-bilet-na-poezd-junior-evropa-na-russkom-jazyke_65354990.pdf",
+    "instructionUrl": "",
     "photoUrl": [
-      "https://hod-konem.com/imgs/bg2575.jpg",
+      "assets/img/game/ticket-to-ride-junior-evropa/ticket-to-ride-junior-evropa0.jpg",
       "assets/img/game/ticket-to-ride-junior-evropa/ticket-to-ride-junior-evropa1.jpg",
       "assets/img/game/ticket-to-ride-junior-evropa/ticket-to-ride-junior-evropa2.jpg"
     ]
   },
   {
-    "_id": 3,
+    "_id": "5e8e1bb47e858c359053b3e6",
     "name": "Каркассон. Амазонка",
     "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
@@ -34,14 +34,14 @@
     "playersMinAge": 8,
     "playersCount": { "min": 2, "max": 5 },
     "playTimeMinutes": { "min": 35, "max": 45 },
-    "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-karkasson.-amazonka-na-russkom-jazyke_53578135.pdf",
+    "instructionUrl": "",
     "photoUrl": [
-      "https://geekach.com.ua/content/images/46/karkasson.-amazonka-carcassonne-amazonas-89694379214568.png",
-      "assets/img/game/carcassonne-amazonas/carcassonneamazonas.jpg"
+      "assets/img/game/carcassonne-amazonas/carcassonneamazonas0.jpg",
+      "assets/img/game/carcassonne-amazonas/carcassonneamazonas1.jpg"
     ]
   },
   {
-    "_id": 2,
+    "_id": "5e8e1ce6205f8845d069fee0",
     "name": "Жах Аркхема",
     "categories": [
       {
@@ -61,19 +61,19 @@
     "playersMinAge": 14,
     "playersCount": { "min": 1, "max": 6 },
     "playTimeMinutes": { "min": 120, "max": 180 },
-    "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uzhas-arkxema.-tretja-redakcija-na-russkom-jazyke-42957111.pdf",
+    "instructionUrl": "",
     "photoUrl": [
-      "https://small-bunny.com.ua/content/images/1/nastolnaja-igra-uzhas-arkhjema-kartochnaja-igra-88686834330952_small11.jpg",
-      "assets/img/game/arkham-horror/arkham-horror1.png",
-      "assets/img/game/arkham-horror/arkham-horror2.png",
-      "assets/img/game/arkham-horror/arkham-horror3.png",
+      "assets/img/game/arkham-horror/arkham-horror0.jpg",
+      "assets/img/game/arkham-horror/arkham-horror1.jpg",
+      "assets/img/game/arkham-horror/arkham-horror2.jpg",
+      "assets/img/game/arkham-horror/arkham-horror3.jpg",
       "assets/img/game/arkham-horror/arkham-horror4.jpg",
       "assets/img/game/arkham-horror/arkham-horror5.jpg",
       "assets/img/game/arkham-horror/arkham-horror6.jpg"
     ]
   },
   {
-    "_id": 1,
+    "_id": "5e8e1d6db8b49a43a88109d1",
     "name": "UNO ",
     "categories": [
       {
@@ -92,14 +92,15 @@
     "playersMinAge": 7,
     "playersCount": { "min": 2, "max": 10 },
     "playTimeMinutes": { "min": 25, "max": 30 },
-    "instructionUrl": "https://geekach.com.ua/content/files/pravila-nastolnoy-igry-uno-uno-na-russkom-jazyke-50553094.pdf",
+    "instructionUrl": "",
     "photoUrl": [
-      "https://geekach.com.ua/content/images/19/uno-79193027886944.jpg",
-      "assets/img/game/uno/uno1.jpg"
+      "assets/img/game/uno/uno0.jpg",
+      "assets/img/game/uno/uno1.jpg",
+      "assets/img/game/uno/uno2.jpg"
     ]
   },
   {
-    "_id": 4,
+    "_id": "5e8e20b3b99234135c068891",
     "name": "Merchant Cove",
     "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
@@ -114,10 +115,10 @@
     "playersMinAge": 14,
     "playersCount": { "min": 2, "max": 4 },
     "playTimeMinutes": { "min": 45, "max": 75 },
-    "instructionUrl": "https://finalfrontiergames.com/?page_id=1669",
+    "instructionUrl": "",
     "photoUrl": [
-      "https://boardgameshop.nl/wp-content/uploads/2019/09/Merchants-Cove-Overview.png",
       "assets/img/game/merchant-cove/merchant_cove.jpg",
+      "assets/img/game/merchant-cove/merchant_cove0.jpg",
       "assets/img/game/merchant-cove/merchant_cove1.jpg",
       "assets/img/game/merchant-cove/merchant_cove2.jpg",
       "assets/img/game/merchant-cove/merchant_cove3.jpg",
@@ -125,11 +126,11 @@
       "assets/img/game/merchant-cove/merchant_cove5.jpg",
       "assets/img/game/merchant-cove/merchant_cove6.jpg",
       "assets/img/game/merchant-cove/merchant_cove7.jpg",
-      "assets/img/game/merchant-cove/merchant_cove8.png"
+      "assets/img/game/merchant-cove/merchant_cove8.jpg"
     ]
   },
   {
-    "_id": 5,
+    "_id": "5e8e218b7088e010e083eb60",
     "name": "Pangea",
     "categories": [
       {
@@ -144,21 +145,20 @@
     "playersMinAge": 14,
     "playersCount": { "min": 2, "max": 4 },
     "playTimeMinutes": { "min": 90, "max": 120 },
-    "instructionUrl": "https://www.kickstarter.com/projects/redimpgames/pangea-0",
+    "instructionUrl": "",
     "photoUrl": [
-      "assets/img/game/pangea/pangea.jpg",
-      "assets/img/game/pangea/pangea1.png",
+      "assets/img/game/pangea/pangea0.jpg",
       "assets/img/game/pangea/pangea2.jpg",
       "assets/img/game/pangea/pangea3.jpg",
       "assets/img/game/pangea/pangea4.jpg",
       "assets/img/game/pangea/pangea5.jpg",
-      "assets/img/game/pangea/pangea6.png",
-      "assets/img/game/pangea/pangea7.png",
+      "assets/img/game/pangea/pangea6.jpg",
+      "assets/img/game/pangea/pangea7.jpg",
       "assets/img/game/pangea/pangea8.jpg"
     ]
   },
   {
-    "_id": 6,
+    "_id": "5e8e231bbaa99e316c879412",
     "name": "Root",
     "categories": [
       { "name": "strategy", "label": "Стратегії", "iconClass": "fas fa-brain" },
@@ -169,9 +169,9 @@
     "playersMinAge": 8,
     "playersCount": { "min": 2, "max": 5 },
     "playTimeMinutes": { "min": 30, "max": 45 },
-    "instructionUrl": "https://www.kickstarter.com/projects/2074786394/root-a-game-of-woodland-might-and-right",
+    "instructionUrl": "",
     "photoUrl": [
-      "https://cache.escapistmagazine.com/2019/07/08084352/Card-Fan-Hi-rez-e1562596062659.jpg",
+      "assets/img/game/root/root0.jpg",
       "assets/img/game/root/root1.jpg",
       "assets/img/game/root/root2.jpg",
       "assets/img/game/root/root3.jpg"
