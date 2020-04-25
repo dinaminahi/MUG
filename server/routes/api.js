@@ -693,13 +693,22 @@ router.post('/cancelevent', (req, res) => {
   );
 });
 
-router.delete('/deletenotification/:id', (req, res) => {
-  const deletedId = req.params.id;
-  Notification.findOneAndDelete({ _id: deletedId }, err => {
-    if (!err) {
-      console.log('deleted');
+router.put('/deletenotification', (req, res) => {
+  const deletedId = req.body.notificationId;
+  const userId = req.body.userId;
+
+  User.findOneAndUpdate(
+    { _id: userId },
+    { $pull: { notificationsId: deletedId } },
+    (err, user) => {
+      if (err) {
+        sendError(err, res);
+      } else {
+        response.data = user;
+        res.json(response);
+      }
     }
-  });
+  );
 });
 
 router.post('/addgame', upload.array('photos'), (req, res) => {

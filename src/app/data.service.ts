@@ -144,9 +144,9 @@ export class DataService {
       );
   }
 
-  deleteNotification(notificationId: string) {
+  deleteNotification(notificationId: string, userId: string) {
     return this._http
-      .delete<any>(`/api/deletenotification/${notificationId}`)
+      .put<any>(`/api/deletenotification`, { notificationId, userId })
       .pipe(
         tap(deletedNotif =>
           console.log(`deleted notif = ${JSON.stringify(deletedNotif)}`)
