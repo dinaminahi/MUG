@@ -1,47 +1,31 @@
 <div class="page-heading-message bg-img">
-  <div class=" text-container">
+  <div class="text-container">
     <h2>Find the GAME you want to PLAY</h2>
   </div>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>
 <div class="container" *ngIf="!loading">
-  <div class="games-list">
-
-    <div class="filters-wrapp">
-      <div class="row align-items-center">
-
-        <div class="col-7">
-          <!--  -->
-          <div class="btn-group btn-lg pull-left">
-            <button class="btn btn-white" type="button" (click)="onDisplayModeChange(1)"
-              [ngClass]="{'btn-secondary btn-lg active': displayMode === 1}">
-              <i class="fa fa-th"></i>
-            </button>
-            <button class="btn btn-white" type="button" (click)="onDisplayModeChange(2)"
-              [ngClass]="{'btn-secondary btn-lg active': displayMode === 2}">
-              <i class="fa fa-list"></i>
-            </button>
-          </div>
-          <!--  -->
-          <mat-form-field class="example-form-field">
-            <mat-label>Search Game</mat-label>
-            <input matInput type="search" [(ngModel)]="searchText" [(ngModel)]="value">
-            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-
-        <div class="col-5 text-center">
-          <button class="create-event-btn" routerLinkActive="active" routerLink="/pageaddgame">
-            Add new Game
-          </button>
-        </div>
-      </div>
+  <div class="controls">
+    <div class="search-wrap">
+      <input
+        type="search"
+        [(ngModel)]="searchText"
+        placeholder="Search by any text"
+      />
     </div>
-    <!--  -->
-    <div class=" row py-5 my-5">
 
+    <button
+      class="create-game-btn"
+      routerLinkActive="active"
+      routerLink="/pageaddgame"
+    >
+      Add new Game
+    </button>
+  </div>
+
+  <div class="games-list">
+    <!--  -->
+    <div class="row">
       <!-- List  look style -->
       <div class="row" *ngIf="displayMode === 2">
         <div *ngFor="let game of games | filter: searchText">
@@ -50,7 +34,10 @@
       </div>
 
       <!-- not use<div class="col-lg-4 col-md-6"> -->
-      <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let game of games | filter: searchText">
+      <div
+        class="col-lg-3 col-md-4 col-sm-6"
+        *ngFor="let game of games | filter: searchText"
+      >
         <app-game *ngIf="displayMode !== 2" [game]="game"></app-game>
       </div>
       <!-- not use </div> -->
