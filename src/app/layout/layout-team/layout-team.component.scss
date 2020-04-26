@@ -1,0 +1,155 @@
+@import "../../../sass/variables";
+
+* {
+  box-sizing: border-box;
+
+}
+
+h2 {
+  display: block;
+  font-weight: 700;
+  font-size: 3vw;
+  ;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+
+h4 {
+  font-size: 1.5vw;
+}
+
+.site-heading h2 span {
+
+  color: #ff5a6e;
+}
+
+.site-heading h4 {
+  display: inline-block;
+  padding-bottom: 20px;
+  position: relative;
+  text-transform: capitalize;
+  z-index: 1;
+}
+
+.site-heading h4::before {
+  background: #ff5a6e none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+}
+
+.site-heading h2 span {
+  color: #ff5a6e;
+}
+
+.site-heading {
+  margin-top: 50px;
+  padding-top: 30px;
+
+  overflow: hidden;
+
+
+}
+
+.container {
+  position: relative;
+  height: auto;
+  margin: 30px auto 100px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 0px;
+}
+
+.card {
+  width: 330px;
+  height: 448px;
+  margin: 0 auto;
+  position: relative;
+
+  color: #fff;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 4px solid white;
+  transition: .5s;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 20px 20px rgba(0, 0, 0, .4);
+}
+
+.img-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: .5s;
+}
+
+.card:hover .img-box {
+  opacity: .5;
+}
+
+.img-box img {
+  width: 100%;
+
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  bottom: -100%;
+  padding: 20px;
+  text-align: center;
+  transition: .5s;
+}
+
+.card:hover .content {
+  bottom: 0;
+}
+
+.card:nth-child(1) .content {
+  background: linear-gradient(0deg, $color-alert, transparent)
+}
+
+.card:nth-child(2) .content {
+  background: linear-gradient(0deg, $color-orange, transparent)
+}
+
+.card:nth-child(3) .content {
+  background: linear-gradient(0deg, $color-main-blue, transparent)
+}
+
+.content span {
+  color: #ffeb3b;
+  font-size: 1vw;
+}
+
+.content ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 0;
+}
+
+.content ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+.content ul li a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+
+// -------------
