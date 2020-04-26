@@ -2,8 +2,11 @@
   border-radius: 5px;
   background-color: white;
   padding: 40px;
-  button {
+  .no {
     background-color: orange;
     color: white;
+  }
+  .yes {
+    background-color: orangered;
   }
 }

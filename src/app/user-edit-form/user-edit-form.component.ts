@@ -184,7 +184,9 @@ export class UserEditFormComponent implements OnInit {
       .editUser(formData, this.authService.UserId)
       .subscribe(editedUser => {
         this.loading = false;
-        localStorage.setItem('userPhoto', editedUser.data.url);
+        if (editedUser.data.url) {
+          localStorage.setItem('userPhoto', editedUser.data.url);
+        }
         this.router.navigate(['/useraccount', this.authService.UserId]);
       });
   }

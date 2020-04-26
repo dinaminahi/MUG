@@ -5,4 +5,4 @@ const notificationSchema = new mongoose.Schema({
   canceledEvent: mongoose.ObjectId
 });
 
-module.exports = mongoose.model('Notification', notificationSchema);
+module.exports = notificationSchema;

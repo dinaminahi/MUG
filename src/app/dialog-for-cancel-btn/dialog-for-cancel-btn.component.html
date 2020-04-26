@@ -1,7 +1,11 @@
 <div class="dialog">
     <h2 mat-dialog-title>Cancel event</h2>
-    <mat-dialog-content>Are you sure you want to cancel this event?</mat-dialog-content>
+    <mat-dialog-content>
+        <h3>Are you sure you want to cancel this event?</h3>
+        <h4>You can't undo this action</h4>
+    </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-button mat-dialog-close mat-dialog-close="true" class="btn">Yes</button>
+        <button mat-button mat-dialog-close mat-dialog-close="true" class="btn yes">Yes</button>
+        <button mat-button mat-dialog-close mat-dialog-close="false" class="btn no">No</button>
     </mat-dialog-actions>
 </div>

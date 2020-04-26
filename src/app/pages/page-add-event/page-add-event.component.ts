@@ -3,29 +3,29 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  NgZone,
-} from "@angular/core";
+  NgZone
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormControl,
-  Validators,
-} from "@angular/forms";
+  Validators
+} from '@angular/forms';
 
-import { MapsAPILoader } from "@agm/core";
-import {} from "googlemaps";
-import { ActivatedRoute } from "@angular/router";
+import { MapsAPILoader } from '@agm/core';
+import {} from 'googlemaps';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { DataService } from "../../data.service";
-import { AuthService } from "./../../shared/auth.service";
+import { DataService } from '../../data.service';
+import { AuthService } from './../../shared/auth.service';
 
 @Component({
-  selector: "app-page-add-event",
-  templateUrl: "./page-add-event.component.html",
-  styleUrls: ["./page-add-event.component.scss"],
+  selector: 'app-page-add-event',
+  templateUrl: './page-add-event.component.html',
+  styleUrls: ['./page-add-event.component.scss']
 })
 export class PageAddEventComponent implements OnInit {
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   public zoom: number; //////////////
@@ -42,19 +42,19 @@ export class PageAddEventComponent implements OnInit {
   //to choose game for event, later it will be from json file or db
   games = [];
   get game() {
-    return this.myForm.get("game");
+    return this.myForm.get('game');
   }
 
   get description() {
-    return this.myForm.get("description");
+    return this.myForm.get('description');
   }
 
   get address() {
-    return this.myForm.get(["location", "address"]);
+    return this.myForm.get(['location', 'address']);
   }
 
   get dateTime() {
-    return this.myForm.get("dateTime");
+    return this.myForm.get('dateTime');
   }
 
   constructor(
@@ -63,44 +63,44 @@ export class PageAddEventComponent implements OnInit {
     private ngZone: NgZone,
     private _dataService: DataService,
     public authService: AuthService,
-    private actRoute: ActivatedRoute
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this._dataService.getGames().subscribe((res) => {
-      res.forEach((game) => this.games.push(game.name));
+    this._dataService.getGames().subscribe(res => {
+      res.forEach(game => this.games.push(game.name));
       console.log(this.games);
       console.log(res);
     });
 
     this.myForm = this.fb.group({
-      eventName: [""],
-      game: ["", Validators.required],
-      dateTime: ["", Validators.required],
-      duration: [""],
+      eventName: [''],
+      game: ['', Validators.required],
+      dateTime: ['', Validators.required],
+      duration: [''],
       location: this.fb.group({
-        address: ["", Validators.required],
+        address: ['', Validators.required],
         geo: this.fb.group({
           latitude: [],
-          longitude: [],
-        }),
+          longitude: []
+        })
       }),
-      description: ["", Validators.required],
+      description: ['', Validators.required],
       players: this.fb.group({
         age: this.fb.group({
           min: [],
-          max: [],
+          max: []
         }),
         count: this.fb.group({
           min: [],
           max: [],
-          current: 1,
+          current: 1
         }),
         following: [[]],
-        experiance: ["novice"],
+        experiance: ['novice']
       }),
       organizer: this.authService.UserId,
-      canceled: false,
+      canceled: false
     });
 
     this.zoom = 8;
@@ -116,10 +116,10 @@ export class PageAddEventComponent implements OnInit {
       const autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
-          types: [],
+          types: []
         }
       );
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
           if (place.geometry === undefined || place.geometry === null) {
@@ -128,7 +128,7 @@ export class PageAddEventComponent implements OnInit {
 
           const latlong = {
             latitude: place.geometry.location.lat(),
-            longitude: place.geometry.location.lng(),
+            longitude: place.geometry.location.lng()
           };
 
           this.myForm.value.location.geo.longitude = latlong.longitude;
@@ -144,13 +144,14 @@ export class PageAddEventComponent implements OnInit {
   }
 
   onSubmit() {
-    this._dataService.addEvent(this.myForm.value);
-    console.log(this.myForm.value);
+    this._dataService.addEvent(this.myForm.value).subscribe(res => {
+      this.router.navigate(['/events']);
+    });
   }
 
   private setCurrentPosition() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;

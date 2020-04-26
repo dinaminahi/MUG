@@ -1,61 +1,51 @@
-<app-spinner *ngIf="loading"></app-spinner>
-
-<div class="container" *ngIf="!loading">
+<div class="container z-depth-1 py-5">
   <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
       <h1 class="text-center main-heading">Create a game</h1>
 
       <div class="form-group">
-        <label>Select images</label>
+        <label class="mb-3">Select images</label>
+        <br>
         <input type="file" name="image" multiple (change)="selectMultipleImages($event)">
       </div>
 
       <div class="form-group">
         <label>Game name</label>
-        <input type="text" formControlName="name" class="form-control">
+        <input type="text" class="form-control">
       </div>
 
       <div class="form-group">
         <label>Game description</label>
-        <textarea formControlName="description" [class.is-invalid]="description.invalid && description.touched" rows="3"
-          class="form-control"></textarea>
-        <p [class.d-none]="description.valid || description.untouched" class="text-danger">Game description is
+        <p [class.d-none]="description.valid || description.untouched" class=" error text-danger">Game description is
           required</p>
+        <textarea formControlName="description" [class.is-invalid]="description.invalid && description.touched"
+          rows="3"></textarea>
       </div>
 
       <div formArrayName="categories" class="my-4">
-        <label>Choose categories</label>
+        <label class="mb-3">Choose categories</label>
 
-        <div *ngFor="let category of categories.controls; let i = index">
-          <h3 class="mb-1">Category {{i+1}}</h3>
+        <div class="mb-3" *ngFor="let category of categories.controls; let i = index">
+          <h3 class="mb-2">Category {{i+1}}</h3>
           <select [formControlName]="i" class="custom-select">
             <option *ngFor="let name of categoriesNames">{{ name }}</option>
           </select>
         </div>
-        <button (click)="addOneMoreCategory()" type="button" class="btn btn-info mt-3">Add one more category</button>
+        <button (click)="addOneMoreCategory()" type="button" class="add-category mt-3">Add one more category</button>
 
 
       </div>
 
       <div class="form-group">
         <label>Players min age</label>
-        <input type="number" formControlName="playersMinAge" class="form-control">
+        <input type="number" formControlName="playersMinAge">
       </div>
 
       <div class="form-group">
         <label>Instruction url</label>
-        <input type="text" formControlName="instructionUrl" class="form-control">
+        <input type="text" formControlName="instructionUrl">
       </div>
-
-      <!-- <div class="form-group">
-            <label>Choose the game</label>
-            <select formControlName="game" class="custom-select" [class.is-invalid]="game.invalid && game.touched">
-              <option value="" disabled>I want to play</option>
-              <option *ngFor="let game of games">{{ game }}</option>
-            </select>
-            <p [class.d-none]="game.valid || game.untouched" class="text-danger">Please, choose the game</p>
-          </div> -->
 
       <div class="players">
         <div class="my-5">
@@ -63,26 +53,30 @@
             <div class="col-md-6  col-sm-12 text-center">
               <label>Players count</label>
               <div formGroupName="playersCount">
-                <input type="number" class="num-input form-control mr-5" formControlName="min" min="2" max="9"
+                <input type="number" class="num-input form-control mr-3" formControlName="min" min="2" max="9"
                   placeholder="min">
-                <input type="number" class="num-input form-control" formControlName="max" min="3" max="10"
+                <i class="fas fa-minus"></i>
+                <input type="number" class="num-input form-control ml-3" formControlName="max" min="3" max="10"
                   placeholder="max">
               </div>
             </div>
             <div class="col-md-6 col-sm-12 text-center">
               <label>Time to play</label>
               <div formGroupName="playTimeMinutes">
-                <input type="number" class="num-input form-control mr-5" formControlName="min" min="5"
+                <input type="number" class="num-input form-control mr-3" formControlName="min" min="5"
                   placeholder="min">
-                <input type="number" class="num-input form-control" formControlName="max" min="5" placeholder="max">
+                <i class="fas fa-minus"></i>
+                <input type="number" class="num-input form-control ml-3" formControlName="max" min="5"
+                  placeholder="max">
               </div>
             </div>
           </div>
         </div>
       </div>
       <div>
-        <button type="submit" class="btn create-btn my-4 btn-block" [disabled]="!myForm.valid">Create</button>
-        <small [class.d-none]="myForm.valid" class="text-danger">Please, fill in the form correctly</small>
+        <button type="submit" class="create-btn my-4" [disabled]="!myForm.valid">Create</button>
+        <p [class.d-none]="myForm.valid || myForm.untouched" class="text-danger">Please, fill in the form
+          correctly</p>
       </div>
     </form>
   </section>

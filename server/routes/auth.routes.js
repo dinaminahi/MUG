@@ -71,7 +71,7 @@ router.post(
             },
             rating: 0
           },
-          notificationsId: []
+          notifications: []
         });
         user
           .save()
