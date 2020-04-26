@@ -16,7 +16,7 @@ section {
   transform: translate(-50%, -50%);
   height: 85vh;
   width: 93vw;
-  background: #262626;
+  background: $color-orange;
   display: flex;
 }
 
@@ -60,7 +60,7 @@ section {
 
 @-webkit-keyframes scale {
   100% {
-    transform: scaleX(1.5) scaleY(1.5);
+    transform: scaleX(1.2) scaleY(1.2);
   }
 }
 
@@ -278,9 +278,9 @@ button {
 // }
 // -------------------------------------------
 // ----------------------------------------------
-@media(max-width:1026px) {}
 
-@media screen and (max-width: 1027px) {
+
+@media screen and (max-width: 1031px) {
 
   .imageBox {
     display: none;
@@ -288,8 +288,8 @@ button {
 
   .text {
     margin: 0;
-
   }
+
 
   .mug-heading {
     display: block;
