@@ -7,6 +7,7 @@ import { DataService } from "../../data.service";
 import { EventItem } from "../../event-item/event-item";
 import { Game } from "src/app/game/game";
 import { map } from "rxjs/operators";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-page-user-account",
@@ -22,7 +23,7 @@ export class PageUserAccountComponent implements OnInit {
   favouriteGames: boolean = false;
   events: EventItem[] = [];
   isCurrentUser: boolean;
-
+  userDataSubscription: Subscription;
   allEvents: EventItem[] = [];
   allGames: Game[] = [];
 
@@ -55,20 +56,25 @@ export class PageUserAccountComponent implements OnInit {
   }
 
   getUserData(id) {
+    this.userDataSubscription && this.userDataSubscription.unsubscribe();
     if (id === this.authService.UserId) {
       this.isCurrentUser = true;
-      this.authService.getCurrentUserData().subscribe((user) => {
-        this.user = user;
-        this.updateFilteredEventsData();
-        this.updateFilteredGamesData();
-      });
+      this.userDataSubscription = this.authService
+        .getCurrentUserData()
+        .subscribe((user) => {
+          this.user = user;
+          this.updateFilteredEventsData();
+          this.updateFilteredGamesData();
+        });
     } else {
       this.isCurrentUser = false;
-      this.authService.getUserProfile(id).subscribe((res) => {
-        this.user = res.msg;
-        this.updateFilteredEventsData();
-        this.updateFilteredGamesData();
-      });
+      this.userDataSubscription = this.authService
+        .getUserProfile(id)
+        .subscribe((res) => {
+          this.user = res.msg;
+          this.updateFilteredEventsData();
+          this.updateFilteredGamesData();
+        });
     }
   }
 
