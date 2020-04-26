@@ -3,8 +3,7 @@
     <h2>Find the GAME you want to PLAY</h2>
   </div>
 </div>
-<app-spinner *ngIf="loading"></app-spinner>
-<div class="container" *ngIf="!loading">
+<div class="container">
   <div class="controls">
     <div class="search-wrap">
       <input type="search" [(ngModel)]="searchText" placeholder="Search by any text" />
@@ -16,6 +15,9 @@
   </div>
 
   <div class="games-list">
+    <div class="loader">
+      <app-spinner *ngIf="loading"></app-spinner>
+    </div>
     <!--  -->
     <div class="row">
       <!-- List  look style -->

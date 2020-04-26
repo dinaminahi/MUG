@@ -53,7 +53,6 @@ export class PageEventsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this._dataService.eventsShared.subscribe(events => {
       this.events = this.getTodayAndUpcomingEvents(events);
       this.categories && this.filterCategories();

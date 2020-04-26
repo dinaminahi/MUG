@@ -50,15 +50,17 @@
   <!--Navbar-->
   <!--/.Navbar-->
 
-  <app-spinner *ngIf="loading"></app-spinner>
-  <div class="event-list" *ngIf="!loading">
+
+  <div class="event-list">
     <h2 class="panel-heading mb-5 pt-3">
       Upcomming Events
       <!-- <span *ngIf="selectedCategories.length"
         >sorted by: {{ selectedCategories }}
       </span> -->
     </h2>
-
+    <div *ngIf="loading" class="loader">
+      <app-spinner></app-spinner>
+    </div>
     <div class="eventsList row">
       <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="
           let event of events
