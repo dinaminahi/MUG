@@ -8,6 +8,8 @@ import { Game } from "../game/game";
 })
 export class UsersFavoritesGamesComponent {
   @Input() favoritedGames: Game[];
+  @Input() isCurrentUser: boolean;
+  @Input() userName: string;
 
   constructor() {}
 }

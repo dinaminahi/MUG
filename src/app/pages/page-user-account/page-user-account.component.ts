@@ -6,6 +6,7 @@ import { UserItem } from "src/app/components/user-profile/user";
 import { DataService } from "../../data.service";
 import { EventItem } from "../../event-item/event-item";
 import { Game } from "src/app/game/game";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-page-user-account",
@@ -20,6 +21,7 @@ export class PageUserAccountComponent implements OnInit {
   favouriteEvents: boolean = false;
   favouriteGames: boolean = false;
   events: EventItem[] = [];
+  isCurrentUser: boolean;
 
   allEvents: EventItem[] = [];
   allGames: Game[] = [];
@@ -32,26 +34,14 @@ export class PageUserAccountComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private actRout: ActivatedRoute,
+    private actRoute: ActivatedRoute,
     private _dataService: DataService
   ) {}
 
   ngOnInit(): void {
-    let id = this.actRout.snapshot.paramMap.get("id");
-
-    if (id === this.authService.UserId) {
-      this.authService.getCurrentUserData().subscribe((user) => {
-        this.user = user;
-        this.updateFilteredEventsData();
-        this.updateFilteredGamesData();
-      });
-    } else {
-      this.authService.getUserProfile(id).subscribe((res) => {
-        this.user = res.msg;
-        this.updateFilteredEventsData();
-        this.updateFilteredGamesData();
-      });
-    }
+    this.actRoute.params.pipe(map((p) => p.id)).subscribe((id) => {
+      this.getUserData(id);
+    });
 
     this._dataService.getEvents().subscribe((res) => {
       this.allEvents = res;
@@ -62,6 +52,24 @@ export class PageUserAccountComponent implements OnInit {
       this.allGames = res;
       this.updateFilteredGamesData();
     });
+  }
+
+  getUserData(id) {
+    if (id === this.authService.UserId) {
+      this.isCurrentUser = true;
+      this.authService.getCurrentUserData().subscribe((user) => {
+        this.user = user;
+        this.updateFilteredEventsData();
+        this.updateFilteredGamesData();
+      });
+    } else {
+      this.isCurrentUser = false;
+      this.authService.getUserProfile(id).subscribe((res) => {
+        this.user = res.msg;
+        this.updateFilteredEventsData();
+        this.updateFilteredGamesData();
+      });
+    }
   }
 
   joinedClick() {

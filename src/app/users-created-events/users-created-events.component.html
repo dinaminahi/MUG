@@ -1,5 +1,7 @@
 <div *ngIf="createdEvents?.length === 0" class="mt-5">
-  <h2 class="panel-heading">You didn't create events</h2>
+  <h2 class="panel-heading">
+    {{ isCurrentUser ? "You" : userName }} didn't create events
+  </h2>
   <a routerLink="/pageaddevent">Create event</a>
 </div>
 

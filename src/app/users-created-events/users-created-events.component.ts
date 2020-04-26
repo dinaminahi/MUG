@@ -8,6 +8,8 @@ import { EventItem } from "../event-item/event-item";
 })
 export class UsersCreatedEventsComponent {
   @Input() createdEvents: EventItem[];
+  @Input() isCurrentUser: boolean;
+  @Input() userName: string;
 
   constructor() {}
 }
