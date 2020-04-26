@@ -38,7 +38,6 @@ export class UserProfileComponent implements OnInit {
     this.currUserId = this.authService.UserId;
     this.authService.getUserProfile(this.userId).subscribe((res) => {
       this.expectedUser = res.msg;
-      console.log(this.expectedUser);
       this.expectedUserCity = res.msg.personal.location.address.substring(
         0,
         res.msg.personal.location.address.indexOf(",")
