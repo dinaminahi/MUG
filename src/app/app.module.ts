@@ -111,6 +111,7 @@ import { DialogForCancelBtnComponent } from "./dialog-for-cancel-btn/dialog-for-
 import { FavGameNamesComponent } from "./fav-game-names/fav-game-names.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { MatConfirmDialogComponent } from "./mat-confirm-dialog/mat-confirm-dialog.component";
+import { LayoutTimeLineComponent } from './layout/layout-time-line/layout-time-line.component';
 
 @NgModule({
   declarations: [
@@ -179,6 +180,7 @@ import { MatConfirmDialogComponent } from "./mat-confirm-dialog/mat-confirm-dial
     FavGameNamesComponent,
     NotificationsComponent,
     MatConfirmDialogComponent,
+    LayoutTimeLineComponent,
   ],
   imports: [
     RouterModule,
