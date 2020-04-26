@@ -82,6 +82,7 @@ export class AuthService {
     let removeUserId = localStorage.removeItem('userId');
     let removeUserPhoto = localStorage.removeItem('userPhoto');
     let removeUserName = localStorage.removeItem('userName');
+    this.userSource.next(undefined);
     if (removeToken == null) {
       this.router.navigate(['log-in']);
     }
@@ -99,6 +100,10 @@ export class AuthService {
       this.getUserProfile(this.UserId).subscribe();
     }
     return this.userShared;
+  }
+
+  updateCurrenUser(user) {
+    this.userSource.next(user);
   }
 
   // User profile

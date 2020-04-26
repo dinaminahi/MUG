@@ -24,8 +24,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private actRoute: ActivatedRoute,
-    private router: Router,
-    private _dataService: DataService
+    private router: Router
   ) {}
 
   ngOnInit(): void {

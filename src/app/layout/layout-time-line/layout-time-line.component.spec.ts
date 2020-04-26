@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageUsersComponent } from './page-users.component';
+import { LayoutTimeLineComponent } from './layout-time-line.component';
 
-describe('PageUsersComponent', () => {
-  let component: PageUsersComponent;
-  let fixture: ComponentFixture<PageUsersComponent>;
+describe('LayoutTimeLineComponent', () => {
+  let component: LayoutTimeLineComponent;
+  let fixture: ComponentFixture<LayoutTimeLineComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageUsersComponent ]
+      declarations: [ LayoutTimeLineComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageUsersComponent);
+    fixture = TestBed.createComponent(LayoutTimeLineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,10 +7,11 @@ import { Game } from './game/game';
 import { Observable, from } from 'rxjs';
 import { Comment } from './comment-item/comment';
 import { catchError, retry } from 'rxjs/operators';
-import { User } from './pages/page-users/user';
+import { User } from './pages/page-user-account/user';
 import { UserItem } from './components/user-profile/user';
 import { GameCategory } from './game-category-icons/game-category';
 import { EmitterVisitorContext } from '@angular/compiler';
+import { AuthService } from './shared/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
@@ -29,7 +30,11 @@ export class DataService {
   private eventsSource = new BehaviorSubject<EventItem[]>([]);
   eventsShared = this.eventsSource.asObservable();
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, public authService: AuthService) {
+    this.authService.getCurrentUserData().subscribe(user => {
+      this.currentUser = user;
+    });
+  }
 
   public getEventById(id: String): Observable<EventItem> {
     return this._http
@@ -181,7 +186,8 @@ export class DataService {
       .put<any>('/api/favorite-games', { gameId, userId, toggle })
       .pipe(
         map(response => {
-          this.favoritedGames = response.data;
+          this.currentUser.games.favorited = response;
+          this.authService.updateCurrenUser(this.currentUser);
           return response;
         })
       );
@@ -196,7 +202,8 @@ export class DataService {
       .put<any>('/api/favorite-events', { eventId, userId, toggle })
       .pipe(
         map(response => {
-          this.favoritedEvents = response.data;
+          this.currentUser.events.interested = response;
+          this.authService.updateCurrenUser(this.currentUser);
           return response;
         })
       );
@@ -212,12 +219,13 @@ export class DataService {
       .pipe(
         map(response => {
           const currentEvents = this.eventsSource.getValue();
-          console.log(currentEvents);
           const currentEvent = currentEvents.find(
             event => event._id === eventId
           );
           currentEvent.players = response.event.players;
           this.eventsSource.next(currentEvents);
+          this.currentUser.events.subscribed = response.user.events.subscribed;
+          this.authService.updateCurrenUser(this.currentUser);
           return response;
         })
       );

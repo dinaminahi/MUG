@@ -3,9 +3,12 @@
     isSubscribed: isSubscribed,
     isLoading: isLoading,
     isFull: isFull,
+    isCanceled: canceled,
     'join ': true
   }"
   (click)="toggleSubscribed()"
 >
-  {{ isSubscribed ? "LEAVE" : "JOIN" }}
+  {{
+    canceled ? "CANCELED" : isSubscribed ? "LEAVE" : isFull ? "FULL" : "JOIN"
+  }}
 </button>
