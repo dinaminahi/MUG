@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="user">
   <div class="row">
     <div class="col-md-4 col-12">
       <app-user-profile></app-user-profile>
@@ -29,23 +29,34 @@
 
       <app-users-favorites-games
         *ngIf="favouriteGames"
+        [isCurrentUser]="isCurrentUser"
+        [userName]="user?.personal.name"
         [favoritedGames]="favoritedGames"
       >
       </app-users-favorites-games>
 
       <app-users-favorites-events
         *ngIf="favouriteEvents"
+        [isCurrentUser]="isCurrentUser"
+        [userName]="user?.personal.name"
         [favoritedEvents]="favoritedEvents"
       >
       </app-users-favorites-events>
 
       <app-users-subscribed-events
         *ngIf="joined"
+        [isCurrentUser]="isCurrentUser"
+        [userName]="user?.personal.name"
         [subscribedEvents]="joinedEvents"
       >
       </app-users-subscribed-events>
 
-      <app-users-created-events *ngIf="created" [createdEvents]="createdEvents">
+      <app-users-created-events
+        *ngIf="created"
+        [isCurrentUser]="isCurrentUser"
+        [userName]="user?.personal.name"
+        [createdEvents]="createdEvents"
+      >
       </app-users-created-events>
     </div>
   </div>
