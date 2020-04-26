@@ -32,12 +32,12 @@ export class UserProfileComponent implements OnInit {
     this.userId = this.actRoute.snapshot.paramMap.get('id');
     this.currUserId = this.authService.UserId;
 
-    this._dataService.getUserById(this.userId).subscribe(res => {
-      this.expectedUser = res[0];
+    this.authService.getUserProfile(this.userId).subscribe(res => {
+      this.expectedUser = res.msg;
       console.log(this.expectedUser);
-      this.expectedUserCity = res[0].personal.location.address.substring(
+      this.expectedUserCity = res.msg.personal.location.address.substring(
         0,
-        res[0].personal.location.address.indexOf(',')
+        res.msg.personal.location.address.indexOf(',')
       );
     });
   }

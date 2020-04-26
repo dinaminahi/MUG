@@ -25,7 +25,6 @@ const Game = require('./../models/gameSchema');
 const Event = require('./../models/eventSchema');
 const User = require('./../models/userSchema');
 const Comment = require('./../models/commentSchema');
-const Notification = require('./../models/notificationSchema');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -538,31 +537,31 @@ router.put('/join-to-event', (req, res) => {
   });
 });
 
-router.get('/userinfo/:userId', (req, res) => {
-  let userId = req.params.userId;
-  User.aggregate([
-    {
-      $match: {
-        _id: mongoose.Types.ObjectId(userId)
-      }
-    },
-    {
-      $lookup: {
-        from: 'notifications',
-        localField: 'notificationsId',
-        foreignField: '_id',
-        as: 'notifications'
-      }
-    }
-  ]).exec((err, user) => {
-    if (err) {
-      sendError(err, res);
-    } else {
-      response.data = user;
-      res.json(response);
-    }
-  });
-});
+// router.get('/userinfo/:userId', (req, res) => {
+//   let userId = req.params.userId;
+//   User.aggregate([
+//     {
+//       $match: {
+//         _id: mongoose.Types.ObjectId(userId)
+//       }
+//     },
+//     {
+//       $lookup: {
+//         from: 'notifications',
+//         localField: 'notificationsId',
+//         foreignField: '_id',
+//         as: 'notifications'
+//       }
+//     }
+//   ]).exec((err, user) => {
+//     if (err) {
+//       sendError(err, res);
+//     } else {
+//       response.data = user;
+//       res.json(response);
+//     }
+//   });
+// });
 
 router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
   let userId = req.params.userId;
@@ -654,12 +653,12 @@ router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
 });
 
 router.post('/cancelevent', (req, res) => {
-  const notification = new Notification({
-    text: 'was canceled!',
-    canceledEvent: req.body.eventId
-  });
+  // const notification = new Notification({
+  //   text: 'was canceled!',
+  //   canceledEvent: req.body.eventId
+  // });
 
-  notification.save();
+  // notification.save();
 
   Event.findOneAndUpdate(
     {
@@ -678,7 +677,10 @@ router.post('/cancelevent', (req, res) => {
             { _id: user._id },
             {
               $push: {
-                notificationsId: mongoose.Types.ObjectId(notification._id)
+                notifications: {
+                  text: 'was canceled!',
+                  canceledEvent: req.body.eventId
+                }
               }
             },
             (err, user) => {
@@ -694,17 +696,23 @@ router.post('/cancelevent', (req, res) => {
 });
 
 router.put('/deletenotification', (req, res) => {
-  const deletedId = req.body.notificationId;
+  const notificationId = req.body.notificationId;
+
   const userId = req.body.userId;
 
   User.findOneAndUpdate(
     { _id: userId },
-    { $pull: { notificationsId: deletedId } },
+    {
+      $pull: {
+        notifications: { _id: notificationId }
+      }
+    },
     (err, user) => {
       if (err) {
         sendError(err, res);
       } else {
-        response.data = user;
+        response.data = user.notifications;
+        console.log(user);
         res.json(response);
       }
     }
