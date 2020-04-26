@@ -64,19 +64,21 @@ export class CarouselComponent implements OnInit, OnChanges {
   }
 
   filterNexTenDaysEvents(events) {
-    return events.filter((e) => {
-      const today = new Date();
+    return events
+      .filter((e) => {
+        const today = new Date();
 
-      const endDate = new Date();
-      endDate.setDate(today.getDate() + 10);
-      endDate.setHours(23, 59, 59, 99);
+        const endDate = new Date();
+        endDate.setDate(today.getDate() + 10);
+        endDate.setHours(23, 59, 59, 99);
 
-      const eventDate = new Date(e.dateTime);
+        const eventDate = new Date(e.dateTime);
 
-      return (
-        eventDate.getTime() >= today.getTime() &&
-        eventDate.getTime() <= endDate.getTime()
-      );
-    });
+        return (
+          eventDate.getTime() >= today.getTime() &&
+          eventDate.getTime() <= endDate.getTime()
+        );
+      })
+      .slice(0, 12);
   }
 }
