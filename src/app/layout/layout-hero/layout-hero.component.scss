@@ -1,64 +1,284 @@
 @import "../../../sass/variables";
 
-html,
-body,
-header,
-.view {
+.body {
+  position: relative;
   height: 100%;
-  // background-color: hsl(271, 19%, 31%);
-}
-
-.btn {
-  border-radius: 5px;
-  border: solid 3px white;
-  letter-spacing: 5px;
+  margin: 0;
+  padding: 0;
+  background: $color-orange; // background-color: hsl(271, 19%, 31%);
 }
 
 
-
-.bg-x2 {
-  background-image: url("src/img/Vector.png");
-  height: 85%;
-  // background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  // background-attachment: fixed;
-  // background-color: white;
-  z-index: 2;
+section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 85vh;
+  width: 93vw;
+  background: #262626;
+  display: flex;
 }
 
-.bg {
-  background-image: url("src/img/bg_x.jpg");
-  height: 100%;
+.content {
+  width: 50%;
+  // height: 100%;
+  min-height: 100vh; // -- tutu otstup vniz
+  background-color: black;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, .5);
+  box-sizing: border-box;
+  border: 0px solid white;
+}
+
+.imageBox {
+  position: relative;
+  width: 50%;
+  min-height: 100vh;
+  background-color: $color-orange;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, .5); // height: 100%;
+  box-sizing: border-box;
+  border: 0px solid white;
+}
+
+.imageBox1 {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("src/assets/img/home_page_img/hero2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  z-index: 1;
+  transition: .5s;
+  opacity: 0;
 }
 
-.section-button {
-  // padding-top: 5%;
+.imageBox2 {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("src/assets/img/home_page_img/hero3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: .5s;
+  opacity: 1;
 
-  p.font-size {
-    font-size: 25px;
-    line-height: 5vh;
-    letter-spacing: 2.5px;
+}
+
+.mug-heading {
+  position: relative;
+  color: $color-orange;
+  background-image: linear-gradient(to left,
+      transparent,
+      transparent 50%,
+      white 50%,
+      white);
+  background-position: -100% 0;
+  background-size: 200% 100%;
+  transition: all .35s ease-in;
+}
+
+.mug-heading:hover {
+  background-position: 0 0;
+  color: black;
+
+  .btn-change {
+    color: $color-orange;
+    border: solid 3px$color-orange;
+    background: transparent;
+  }
+
+  &+.imageBox .imageBox1 {
+    opacity: 1;
+  }
+
+  &+.imageBox .imageBox2 {
+    opacity: 0;
+  }
+
+  h1:hover:before {
+    width: 100%;
+  }
+
+  h2:hover:before {
+    width: 100%;
+  }
+
+  h4:hover:before {
+    width: 100%;
+  }
+
+  h3:hover:before {
+    width: 100%;
+  }
+
+  h1::first-letter {
+    color: $color-orange;
+  }
+
+  h2::first-letter {
+    color: $color-orange;
+  }
+
+  h3::first-letter {
+    color: $color-orange;
   }
 }
 
-// h1 {
-//   font-size: 90px;
-//   line-height: 7vh;
-//   -webkit-text-stroke: 2px black;
-//   // padding-top: 7%;
+header {
+  display: none;
+}
+
+h1::first-letter {
+  color: white;
+}
+
+h2::first-letter {
+  color: white;
+}
+
+h3::first-letter {
+  color: white;
+}
+
+.text {
+  position: relative;
+  margin: 60px auto;
+  padding: 20px;
+  height: 100%;
+
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+  margin-left: 1vw;
+  position: absolute;
+  font-size: 10em;
+  font-weight: 600;
+  line-height: 1em;
+  letter-spacing: 4px;
+}
+
+h1 {
+  top: 10%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+
+h1:before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 38%;
+  color: $color-main-blue;
+  width: 0;
+  overflow: hidden;
+  transition: 2s;
+}
+
+h2 {
+  top: 25%;
+  left: 36%;
+  transform: translate(-50%, -50%);
+}
+
+h2:before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 33%;
+  color: $color-main-blue;
+  width: 0;
+  overflow: hidden;
+  transition: 2s;
+}
+
+h4 {
+  top: 37%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+h4:before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $color-main-blue;
+  width: 0;
+  overflow: hidden;
+  transition: 2s;
+
+}
+
+h3 {
+  top: 49%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+}
+
+h3:before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 21.5%;
+  color: $color-main-blue;
+  width: 0;
+  overflow: hidden;
+  transition: 2s;
+}
+
+.btn-change {
+  border-radius: 5px;
+  border: solid 3px white;
+  letter-spacing: 5px;
+  background: transparent;
+  color: white;
+  padding: 15px 55px;
+  font-size: 25px;
+}
+
+button {
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//   h1:before {
+//     content: attr(data-text);
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     color: white;
+//     width: 50%;
+//     overflow: hidden;
+//     transition: 1s;
+//   }
+
+//   h1:hover::before {
+//     width: 100%
+//   }
 // }
+// -------------------------------------------
+// ----------------------------------------------
+@media(max-width:1026px) {}
 
+@media screen and (max-width: 1027px) {
 
+  .imageBox {
+    display: none;
+  }
 
+  .text {
+    margin: 0;
 
-@media screen and (max-width: 767px) {
+  }
+
   .mug-heading {
     display: block;
     position: relative;
@@ -147,7 +367,7 @@ header,
   }
 
   h1 {
-    top: 23%;
+    top: 16%;
     left: 44%;
     transform: translate(-50%, -50%);
   }
@@ -165,7 +385,7 @@ header,
   }
 
   h2 {
-    top: 39%;
+    top: 33%;
     left: 45%;
     transform: translate(-50%, -50%);
   }
@@ -182,7 +402,7 @@ header,
   }
 
   h4 {
-    top: 52%;
+    top: 46%;
     left: 57%;
     transform: translate(-50%, -50%);
   }
@@ -200,8 +420,8 @@ header,
   }
 
   h3 {
-    top: 65%;
-    left: 45%;
+    top: 60%;
+    left: 50%;
     transform: translate(-50%, -50%);
   }
 
@@ -228,7 +448,7 @@ header,
 
   button {
     position: absolute;
-    top: 82%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -248,10 +468,4 @@ header,
   //     width: 100%
   //   }
   // }
-}
-
-@media screen and (min-width: 768px) {
-  .mug-heading {
-    display: none;
-  }
 }
