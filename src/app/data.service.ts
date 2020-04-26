@@ -7,7 +7,7 @@ import { Game } from "./game/game";
 import { Observable, from } from "rxjs";
 import { Comment } from "./comment-item/comment";
 import { catchError, retry } from "rxjs/operators";
-import { User } from "./pages/page-users/user";
+import { User } from "./pages/page-user-account/user";
 import { UserItem } from "./components/user-profile/user";
 import { GameCategory } from "./game-category-icons/game-category";
 import { EmitterVisitorContext } from "@angular/compiler";

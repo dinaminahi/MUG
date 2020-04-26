@@ -24,7 +24,6 @@ import { PageAddEventComponent } from "./pages/page-add-event/page-add-event.com
 import { PageGamesComponent } from "./pages/page-games/page-games.component";
 import { PageContactsComponent } from "./pages/page-contacts/page-contacts.component";
 import { PageNewsComponent } from "./pages/page-news/page-news.component";
-import { PageUsersComponent } from "./pages/page-users/page-users.component";
 // import { PageLoginComponent } from "./pages/page-login/page-login.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 import { LayoutHeaderComponent } from "./layout/layout-header/layout-header.component";
@@ -111,7 +110,7 @@ import { DialogForCancelBtnComponent } from "./dialog-for-cancel-btn/dialog-for-
 import { FavGameNamesComponent } from "./fav-game-names/fav-game-names.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { MatConfirmDialogComponent } from "./mat-confirm-dialog/mat-confirm-dialog.component";
-import { LayoutTimeLineComponent } from './layout/layout-time-line/layout-time-line.component';
+import { LayoutTimeLineComponent } from "./layout/layout-time-line/layout-time-line.component";
 
 @NgModule({
   declarations: [
@@ -122,7 +121,6 @@ import { LayoutTimeLineComponent } from './layout/layout-time-line/layout-time-l
     PageGamesComponent,
     PageContactsComponent,
     PageNewsComponent,
-    PageUsersComponent,
     // PageLoginComponent,
     PageNotFoundComponent,
     LayoutHeaderComponent,
