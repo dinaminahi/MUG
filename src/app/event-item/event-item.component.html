@@ -24,19 +24,11 @@
 
     <div class="button-wrapper">
       <app-button-join
-        *ngIf="!event?.canceled"
         [eventId]="event?._id"
+        [playersCount]="event?.players.count"
+        [canceled]="event?.canceled"
         class="join"
       ></app-button-join>
-      <button
-        type="button"
-        [disabled]="event?.canceled"
-        *ngIf="event?.canceled"
-        class="canceled-button"
-      >
-        Canceled
-      </button>
-      <!-- <button class="subm">JOIN</button> -->
       <button (click)="onSelect(event)" class="more">
         MORE INFO
       </button>
@@ -83,16 +75,19 @@
             {{ event?.players.count.min }} - {{ event?.players.count.max }}</b
           >
         </div>
-        <div class="organizer" *ngIf="this.organizer">
+        <div class="organizer" *ngIf="authService.isLoggedIn">
           <span class="label">
             <i class="far fa-address-card" title="Організатор"></i
             >Organizer:</span
           ><b>
             <button
               class="organizerName"
-              (click)="redirectToUserPage(organizer)"
+              (click)="redirectToUserPage((event?.organizerInfo)[0])"
             >
-              {{ organizer?.personal.firstName || organizer?.personal.name }}
+              {{
+                (event?.organizerInfo)[0].personal.firstName ||
+                  (event?.organizerInfo)[0].personal.name
+              }}
             </button>
           </b>
         </div>
