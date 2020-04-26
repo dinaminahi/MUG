@@ -1,23 +1,23 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormControl,
-  Validators,
-} from "@angular/forms";
-import { DataService } from "./../data.service";
-import { AuthService } from "./../shared/auth.service";
+  Validators
+} from '@angular/forms';
+import { DataService } from './../data.service';
+import { AuthService } from './../shared/auth.service';
 import {
   MatDialog,
   MatDialogRef,
-  MAT_DIALOG_DATA,
-} from "@angular/material/dialog";
-import { SigninComponent } from "./../components/signin/signin.component";
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
+import { SigninComponent } from './../components/signin/signin.component';
 
 @Component({
-  selector: "app-add-comment-box",
-  templateUrl: "./add-comment-box.component.html",
-  styleUrls: ["./add-comment-box.component.scss"],
+  selector: 'app-add-comment-box',
+  templateUrl: './add-comment-box.component.html',
+  styleUrls: ['./add-comment-box.component.scss']
 })
 export class AddCommentBoxComponent implements OnInit {
   @Input() eventId: string;
@@ -37,27 +37,27 @@ export class AddCommentBoxComponent implements OnInit {
     let photo = this.authService.UserPhoto;
 
     this.commentForm = this.fb.group({
-      text: "",
+      text: '',
       date: new Date().toLocaleString(),
       userId: userId,
       user: this.fb.group({
         personal: this.fb.group({
           name: name,
-          photoUrl: photo,
-        }),
+          photoUrl: photo
+        })
       }),
-      eventId: this.eventId,
+      eventId: this.eventId
     });
   }
 
   onSubmit() {
     if (this.authService.isLoggedIn) {
       this.loading = true;
-      this._dataService.addComment(this.commentForm.value).subscribe((res) => {
+      this._dataService.addComment(this.commentForm.value).subscribe(res => {
         console.log(res);
         this.loading = false;
         this._dataService.comments.push(this.commentForm.value);
-        this.commentForm.controls["text"].reset();
+        this.commentForm.controls['text'].reset();
       });
     } else {
       this.openDialog();
@@ -66,8 +66,9 @@ export class AddCommentBoxComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SigninComponent, {
-      width: "450px",
+      width: '767px',
+      height: '530px'
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }

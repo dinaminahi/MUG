@@ -1,11 +1,36 @@
-@import "./../../sass/variables";
+@import './../../sass/variables';
 
 .container {
   margin: 100px auto;
+  background-color: #ffffff;
+  border-radius: 8px;
 }
 
 .main-heading {
   font-size: 36px;
+  font-family: $font-family-alt;
+  font-weight: bold;
+  color: $color-main-blue;
+}
+
+input,
+textarea {
+  padding-left: 10px;
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  background-color: white;
+}
+
+.error {
+  display: inline;
+  margin-left: 7px;
 }
 
 label {
@@ -18,29 +43,33 @@ label {
 }
 
 .create-btn {
-  background-color: $color-main;
-  border: none;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  text-decoration: none;
-}
+  border-radius: 4px;
+  border: 2px solid $color-orange;
+  background-color: transparent;
+  color: $color-orange;
+  font-size: 16px;
+  padding: 6px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
 
-.create-btn:active {
-  position: relative;
-  top: 1px;
-}
-
-.create-btn:disabled {
-  background-color: $color-main;
-  opacity: 1;
-}
-
-.notLoginMsg {
-  height: 71.5vh;
-  text-align: center;
-  h1 {
-    position: relative;
-    top: 50%;
+  &:active {
+    transform: scale(0.95);
   }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.add-category {
+  border-radius: 4px;
+  border: 2px solid $color-main-blue;
+  background-color: transparent;
+  color: $color-main-blue;
+  font-size: 16px;
+  padding: 6px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
 }

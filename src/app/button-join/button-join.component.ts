@@ -8,6 +8,7 @@ import {
   MAT_DIALOG_DATA,
 } from "@angular/material/dialog";
 import { MatConfirmDialogComponent } from "./../mat-confirm-dialog/mat-confirm-dialog.component";
+import { SigninComponent } from "./../components/signin/signin.component";
 
 @Component({
   selector: "app-button-join",
@@ -16,11 +17,12 @@ import { MatConfirmDialogComponent } from "./../mat-confirm-dialog/mat-confirm-d
 })
 export class ButtonJoinComponent implements OnInit, OnChanges {
   @Input() eventId: string;
-  subscribedEvents: string[];
+  @Input() playersCount: any;
+  @Input() canceled: boolean;
   isSubscribed: boolean;
   isLoading: boolean;
   isFull: boolean;
-  user: UserItem;
+  currentUser: UserItem;
 
   constructor(
     private _dataService: DataService,
@@ -34,7 +36,7 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
         if (!user) {
           return false;
         }
-        this.user = user;
+        this.currentUser = user;
         if (this.eventId) {
           this.setIsSubscribed();
         }
@@ -43,15 +45,20 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
   }
 
   setIsSubscribed() {
-    this.isSubscribed = !!(
-      this.user.events.subscribed.indexOf(this.eventId) > -1
-    );
+    this.isSubscribed =
+      this.currentUser &&
+      this.eventId &&
+      !!(this.currentUser.events.subscribed.indexOf(this.eventId) > -1);
+  }
+
+  setIsFull() {
+    this.isFull =
+      this.playersCount && this.playersCount.current >= this.playersCount.max;
   }
 
   ngOnChanges() {
-    if (this.eventId && this.user) {
-      this.setIsSubscribed();
-    }
+    this.setIsSubscribed();
+    this.setIsFull();
   }
 
   toggleSubscribed() {
@@ -59,13 +66,9 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
       this.isLoading = true;
       if (this.eventId) {
         this._dataService
-          .joinToEvent(this.eventId, this.user._id, !this.isSubscribed)
-          .subscribe((res) => {
+          .joinToEvent(this.eventId, this.currentUser._id, !this.isSubscribed)
+          .subscribe(() => {
             this.isLoading = false;
-            this.isFull =
-              res.event.players.count.current >= res.event.players.count.max;
-            this.isSubscribed = !this.isSubscribed;
-            this.subscribedEvents = res.user.events.subscribed;
           });
       }
     } else {
@@ -74,9 +77,9 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
   }
   //--vyzov okna dialoga ---
   openDialog(): void {
-    const dialogRef = this.dialog.open(MatConfirmDialogComponent, {
-      width: "390px",
-      // height: "530px",
+    const dialogRef = this.dialog.open(SigninComponent, {
+      width: "767px",
+      height: "530px",
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {});

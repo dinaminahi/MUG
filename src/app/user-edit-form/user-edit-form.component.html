@@ -1,10 +1,12 @@
-<app-spinner *ngIf="loading"></app-spinner>
+<div class="loader">
+    <app-spinner *ngIf="loading"></app-spinner>
+</div>
 
-<div class="container my-5">
+<div class="container z-depth-1 py-5">
     <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
         <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
 
-            <p class="h4 mb-4">Personal information</p>
+            <h1 class="text-center main-heading">Personal Information</h1>
             <div class="form-group">
                 <div class="userPhoto mb-3">
                     <img [src]="userImage" alt="Your photo" width="150" height="150">
@@ -60,8 +62,8 @@
                         placeholder="{{expectedUser?.personal?.location?.address}}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-info px-5 my-4 mr-4" [disabled]="!personalInfoForm.valid">Save</button>
-            <button type="button" (click)="cancel()" class="btn btn-danger my-4">Cancel</button>
+            <button type="submit" class="save-btn px-5 my-4 mr-4" [disabled]="!personalInfoForm.valid">Save</button>
+            <button type="button" (click)="cancel()" class="cancel-btn my-4">Cancel</button>
         </form>
     </section>
 </div>
