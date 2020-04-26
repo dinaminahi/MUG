@@ -1,52 +1,39 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-12">
-      <app-user-profile></app-user-profile>
+      <app-user-profile [expectedUser]="user"></app-user-profile>
     </div>
     <div class="col-md-8 col-12 mt-5">
       <div class="anchors z-depth-1 mt-1">
         <div class="py-3" (click)="joinedClick()" [class.chosen-a]="joined">
           <p>Joined events</p>
         </div>
-        <div
-          class="py-3"
-          (click)="favouriteEventsClick()"
-          [class.chosen-a]="favouriteEvents"
-        >
+        <div class="py-3" (click)="favouriteEventsClick()" [class.chosen-a]="favouriteEvents">
           <p>Favourite events</p>
         </div>
         <div class="py-3" (click)="createdClick()" [class.chosen-a]="created">
           <p>Created events</p>
         </div>
-        <div
-          class="py-3"
-          (click)="favouriteGamesClick()"
-          [class.chosen-a]="favouriteGames"
-        >
+        <div class="py-3" (click)="favouriteGamesClick()" [class.chosen-a]="favouriteGames">
           <p>Favourite games</p>
+        </div>
+        <div class="py-3" (click)="pastEventsClick()" [class.chosen-a]="pastEvents">
+          <p>Past events</p>
         </div>
       </div>
 
-      <app-users-favorites-games
-        *ngIf="favouriteGames"
-        [favoritedGames]="favoritedGames"
-      >
+      <app-users-favorites-games *ngIf="favouriteGames" [favoritedGames]="favoritedGames">
       </app-users-favorites-games>
 
-      <app-users-favorites-events
-        *ngIf="favouriteEvents"
-        [favoritedEvents]="favoritedEvents"
-      >
+      <app-users-favorites-events *ngIf="favouriteEvents" [favoritedEvents]="favoritedEvents">
       </app-users-favorites-events>
 
-      <app-users-subscribed-events
-        *ngIf="joined"
-        [subscribedEvents]="joinedEvents"
-      >
+      <app-users-subscribed-events *ngIf="joined" [subscribedEvents]="subscribedFutureEvents">
       </app-users-subscribed-events>
 
       <app-users-created-events *ngIf="created" [createdEvents]="createdEvents">
       </app-users-created-events>
+      <app-users-past-events [subscribedPastEvents]="subscribedPastEvents" *ngIf="pastEvents"></app-users-past-events>
     </div>
   </div>
 </div>

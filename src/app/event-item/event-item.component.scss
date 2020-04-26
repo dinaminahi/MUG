@@ -1,4 +1,4 @@
-@import "../../sass/_variables.scss"; // this is not cool!
+@import '../../sass/_variables.scss'; // this is not cool!
 
 .event-item {
   position: relative;
@@ -7,7 +7,7 @@
   background: #fff;
 
   &:after {
-    content: "";
+    content: '';
     display: block;
     height: 0;
     overflow: hidden;
@@ -132,14 +132,24 @@
     pointer-events: none;
   }
 }
-
+.btn-cancel {
+  cursor: pointer;
+  text-align: center;
+  width: 100px;
+  background: $color-orange;
+  color: #fff;
+  padding: 2px 10px;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  border: $color-alert solid 2px;
+  border-radius: 4px;
+}
 .description {
   margin-top: 13px;
   padding: 15px 30px 30px;
   display: none;
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     background-color: #fff;
     height: 10px;

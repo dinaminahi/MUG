@@ -1,8 +1,8 @@
-<div class="container z-depth-1 py-5">
-  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+<div class="container z-depth-1">
+  <section class="px-5 mx-md-5 text-lg-left dark-grey-text">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
-      <h1 class="text-center main-heading">Create your event</h1>
+      <h1 class="text-center main-heading mb-5">Create your event</h1>
 
       <div class="form-group">
         <label>Event name</label>
@@ -48,7 +48,7 @@
         <div class="form-group">
           <label>Choose the game</label>
           <p [class.d-none]="game.valid || game.untouched" class="text-danger error">Please, choose the game</p>
-          <select class="custom-select" [class.is-invalid]="game.invalid && game.touched">
+          <select formControlName="game" class="custom-select" [class.is-invalid]="game.invalid && game.touched">
             <option value="" disabled>I want to play</option>
             <option class="my-5" *ngFor="let game of games">{{ game }}</option>
           </select>
@@ -101,7 +101,7 @@
 
       </div>
 
-      <div>
+      <div class="text-right">
         <button type="submit" class="create-btn my-4" [disabled]="!myForm.valid">Create</button>
         <p [class.d-none]="myForm.valid || myForm.untouched" class="text-danger">Please, fill in the form correctly</p>
       </div>

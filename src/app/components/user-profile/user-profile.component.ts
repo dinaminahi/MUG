@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../shared/auth.service';
 import { DataService } from './../../data.service';
 import { UserItem } from './user';
+import { EventItem } from 'src/app/event-item/event-item';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,15 +12,13 @@ import { UserItem } from './user';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  @Input() expectedUser: UserItem;
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
-  expectedUser: UserItem;
   expectedUserCity: String;
   userId: string;
   currUserId: string;
-  favouriteGames: any;
-  favouriteGamesNames = [];
 
   constructor(
     private authService: AuthService,
@@ -30,15 +29,19 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.actRoute.snapshot.paramMap.get('id');
     this.currUserId = this.authService.UserId;
+    this.expectedUserCity = this.expectedUser.personal.location.address.substring(
+      0,
+      this.expectedUser.personal.location.address.indexOf(',')
+    );
 
-    this.authService.getUserProfile(this.userId).subscribe(res => {
-      this.expectedUser = res.msg;
-      console.log(this.expectedUser);
-      this.expectedUserCity = res.msg.personal.location.address.substring(
-        0,
-        res.msg.personal.location.address.indexOf(',')
-      );
-    });
+    // this.authService.getUserProfile(this.userId).subscribe(res => {
+    //   this.expectedUser = res.msg;
+    //   console.log(this.expectedUser);
+    //   this.expectedUserCity = res.msg.personal.location.address.substring(
+    //     0,
+    //     res.msg.personal.location.address.indexOf(',')
+    //   );
+    // });
   }
 
   goEdit() {
