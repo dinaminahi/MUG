@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { EventItem } from './event-item';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { DataService } from './../data.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,6 +18,7 @@ export class EventItemComponent implements OnInit, OnChanges {
   constructor(
     public authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private _dataService: DataService,
     private dialog: MatDialog
   ) {}
@@ -47,11 +48,17 @@ export class EventItemComponent implements OnInit, OnChanges {
   }
 
   cancelEvent(eventId: string, userId: string) {
-    console.log(this.event.canceled);
     if (!this.cancel) {
       this._dataService.cancelEvent(eventId, userId).subscribe(res => {
         console.log('canceled');
         this.cancel = true;
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: {
+            canceled: eventId
+          },
+          queryParamsHandling: 'merge'
+        });
       });
     }
   }

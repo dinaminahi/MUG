@@ -38,6 +38,7 @@ section {
   box-shadow: 0 15px 20px rgba(0, 0, 0, .5); // height: 100%;
   box-sizing: border-box;
   border: 0px solid white;
+  overflow: hidden;
 }
 
 .imageBox1 {
@@ -50,7 +51,19 @@ section {
   background-size: cover;
   transition: .5s;
   opacity: 0;
+
+  -webkit-animation: scale 15s linear infinite;
+
 }
+
+
+
+@-webkit-keyframes scale {
+  100% {
+    transform: scaleX(1.5) scaleY(1.5);
+  }
+}
+
 
 .imageBox2 {
   position: absolute;
@@ -62,7 +75,6 @@ section {
   background-size: cover;
   transition: .5s;
   opacity: 1;
-
 }
 
 .mug-heading {
