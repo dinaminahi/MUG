@@ -1,0 +1,197 @@
+@import "../../../sass/variables";
+
+.content {
+  position: relative;
+  width: 100%;
+  height: 45vh;
+  background: white transparent;
+}
+
+// .how-it-works {
+//   position: relative;
+//   width: 100%;
+//   height: 100vh;
+//   background: white;
+// }
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 400px;
+  // background: #fff;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  transition: 0.5s;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    transform: translate(-50%, -50%) rotateY(-30deg) skewY(4deg);
+  }
+
+  &:hover .text {
+    transform: rotateY(30deg) skewY(-5deg);
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-top: 20px solid $color-orange;
+    border-left: 20px solid $color-orange;
+    box-sizing: border-box;
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    box-sizing: border-box;
+    border-bottom: 20px solid $color-orange;
+    border-right: 20px solid $color-orange;
+  }
+}
+
+.box .text {
+  position: absolute;
+  top: 30px;
+  left: -30px;
+  background: #262626;
+  width: calc(100% + 60px);
+  height: calc(100% - 60px);
+  transition: 0.5s;
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 5px 10px rgba (0, 0, 0, 0.5);
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.5);
+
+  div {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    padding: 40px 80px;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 3;
+
+    .step {
+      font-size: 100px;
+      color: $color-orange;
+    }
+
+    h2 {
+      margin: 20px 0 20px;
+      padding: 0;
+      color: #fff;
+      font-size: 40px;
+
+      span {
+        color: $color-orange;
+        font-size: 25px;
+      }
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      padding: 0;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 1px;
+
+      span {
+        color: $color-orange;
+      }
+    }
+  }
+}
+
+// .box:hover {
+//   transform: rotateY(30deg) skewY(-5deg)
+// }
+
+// .box:hover .text {
+//   transform: rotateY(30deg) skewY(-5deg)
+// }
+
+.fas {
+  width: 80px;
+  height: 80px;
+  background: $color-orange;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  font-size: 45px;
+}
+
+.fas.fa1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.fas.fa2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.col-md-12,
+col-md-6 {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 1240px;
+  padding-top: 80px;
+  margin-top: 80px;
+}
+
+// heading
+h4 {
+  display: block;
+  font-weight: 700;
+  font-size: 3vw;
+  line-height: normal;
+  text-transform: uppercase;
+  // padding-bottom: 20px;
+}
+
+heading-text {
+  background: grey;
+}
+
+.site-heading h4 span {
+  color: #ff5a6e;
+}
+
+.site-heading h4::before {
+  background: #ff5a6e none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 3px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+}
+
+.site-heading h3 span {
+  color: #ff5a6e;
+}

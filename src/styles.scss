@@ -12,7 +12,6 @@ body {
 }
 
 body {
-  margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   background: #f8f8f8;
 }
@@ -20,7 +19,8 @@ body {
 // ----navbar
 .navbar {
   // border-top: 3px solid $color-orange;
-  padding: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 // -- navbar
@@ -119,16 +119,6 @@ body {
 
 .gm-style-iw {
   max-height: 500px !important;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .mat-dialog-container {
