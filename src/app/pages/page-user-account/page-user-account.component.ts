@@ -1,23 +1,24 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { AuthService } from "./../../shared/auth.service";
-import { Router, ActivatedRoute } from "@angular/router";
-import { UserItem } from "src/app/components/user-profile/user";
-import { DataService } from "../../data.service";
-import { EventItem } from "../../event-item/event-item";
-import { Game } from "src/app/game/game";
-import { map } from "rxjs/operators";
-import { Subscription } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from './../../shared/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserItem } from 'src/app/components/user-profile/user';
+import { DataService } from '../../data.service';
+import { EventItem } from '../../event-item/event-item';
+import { Game } from 'src/app/game/game';
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-page-user-account",
-  templateUrl: "./page-user-account.component.html",
-  styleUrls: ["./page-user-account.component.scss"],
+  selector: 'app-page-user-account',
+  templateUrl: './page-user-account.component.html',
+  styleUrls: ['./page-user-account.component.scss']
 })
 export class PageUserAccountComponent implements OnInit {
   public user: UserItem;
 
   joined: boolean = true;
+  pastEvents: boolean = false;
   created: boolean = false;
   favouriteEvents: boolean = false;
   favouriteGames: boolean = false;
@@ -27,9 +28,9 @@ export class PageUserAccountComponent implements OnInit {
   allEvents: EventItem[] = [];
   allGames: Game[] = [];
 
-  subscribedEvents: EventItem[] = [];
+  subscribedFutureEvents: EventItem[] = [];
+  subscribedPastEvents: EventItem[] = [];
   favoritedEvents: EventItem[] = [];
-  joinedEvents: EventItem[] = [];
   createdEvents: EventItem[] = [];
   favoritedGames: Game[] = [];
 
@@ -40,16 +41,16 @@ export class PageUserAccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.actRoute.params.pipe(map((p) => p.id)).subscribe((id) => {
+    this.actRoute.params.pipe(map(p => p.id)).subscribe(id => {
       this.getUserData(id);
     });
 
-    this._dataService.getEvents().subscribe((res) => {
+    this._dataService.getEvents().subscribe(res => {
       this.allEvents = res;
       this.updateFilteredEventsData();
     });
 
-    this._dataService.getGames().subscribe((res) => {
+    this._dataService.getGames().subscribe(res => {
       this.allGames = res;
       this.updateFilteredGamesData();
     });
@@ -61,7 +62,7 @@ export class PageUserAccountComponent implements OnInit {
       this.isCurrentUser = true;
       this.userDataSubscription = this.authService
         .getCurrentUserData()
-        .subscribe((user) => {
+        .subscribe(user => {
           this.user = user;
           this.updateFilteredEventsData();
           this.updateFilteredGamesData();
@@ -70,7 +71,7 @@ export class PageUserAccountComponent implements OnInit {
       this.isCurrentUser = false;
       this.userDataSubscription = this.authService
         .getUserProfile(id)
-        .subscribe((res) => {
+        .subscribe(res => {
           this.user = res.msg;
           this.updateFilteredEventsData();
           this.updateFilteredGamesData();
@@ -83,6 +84,7 @@ export class PageUserAccountComponent implements OnInit {
     this.created = false;
     this.favouriteEvents = false;
     this.favouriteGames = false;
+    this.pastEvents = false;
   }
 
   createdClick() {
@@ -90,6 +92,7 @@ export class PageUserAccountComponent implements OnInit {
     this.created = true;
     this.favouriteEvents = false;
     this.favouriteGames = false;
+    this.pastEvents = false;
   }
 
   favouriteEventsClick() {
@@ -97,6 +100,7 @@ export class PageUserAccountComponent implements OnInit {
     this.created = false;
     this.favouriteEvents = true;
     this.favouriteGames = false;
+    this.pastEvents = false;
   }
 
   favouriteGamesClick() {
@@ -104,6 +108,19 @@ export class PageUserAccountComponent implements OnInit {
     this.created = false;
     this.favouriteEvents = false;
     this.favouriteGames = true;
+    this.pastEvents = false;
+  }
+
+  pastEventsClick() {
+    this.joined = false;
+    this.created = false;
+    this.favouriteEvents = false;
+    this.favouriteGames = false;
+    this.pastEvents = true;
+  }
+
+  getTodayAndUpcomingEvents(events) {
+    return events.filter(e => new Date(e.dateTime) >= new Date());
   }
 
   updateFilteredEventsData() {
@@ -111,20 +128,24 @@ export class PageUserAccountComponent implements OnInit {
       return false;
     }
 
-    this.subscribedEvents = this.allEvents.filter(
-      (event) => this.user.events.subscribed.indexOf(event._id) !== -1
+    this.subscribedFutureEvents = this.allEvents.filter(
+      event =>
+        this.user.events.subscribed.indexOf(event._id) !== -1 &&
+        new Date(event.dateTime) >= new Date()
+    );
+
+    this.subscribedPastEvents = this.allEvents.filter(
+      event =>
+        this.user.events.subscribed.indexOf(event._id) !== -1 &&
+        new Date(event.dateTime) <= new Date()
     );
 
     this.favoritedEvents = this.allEvents.filter(
-      (event) => this.user.events.interested.indexOf(event._id) !== -1
-    );
-
-    this.joinedEvents = this.allEvents.filter(
-      (event) => this.user.events.subscribed.indexOf(event._id) !== -1
+      event => this.user.events.interested.indexOf(event._id) !== -1
     );
 
     this.createdEvents = this.allEvents.filter(
-      (event) => this.user.events.created.indexOf(event._id) !== -1
+      event => this.user.events.created.indexOf(event._id) !== -1
     );
   }
 
@@ -134,7 +155,7 @@ export class PageUserAccountComponent implements OnInit {
     }
 
     this.favoritedGames = this.allGames.filter(
-      (event) => this.user.games.favorited.indexOf(event._id) !== -1
+      event => this.user.games.favorited.indexOf(event._id) !== -1
     );
   }
 }

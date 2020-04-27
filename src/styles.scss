@@ -1,11 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
-@import "./sass/variables"; // this is not cool!
-@import "./../src/sass/variables";
-
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+@import './sass/variables'; // this is not cool!
+@import './../src/sass/variables';
 
 html,
 body {
@@ -13,20 +12,16 @@ body {
 }
 
 body {
-
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   background: #f8f8f8;
 }
 
-
 // ----navbar
 .navbar {
-  // border-top: 3px solid $color-orange; 
+  // border-top: 3px solid $color-orange;
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
-
 
 // -- navbar
 
@@ -126,16 +121,12 @@ body {
   max-height: 500px !important;
 }
 
-
-
 .mat-dialog-container {
   background-color: #3f729b;
-
 }
 
 @media screen and (max-width: 768px) {
   #cdk-owrlay-0 {
     height: auto;
-
   }
 }

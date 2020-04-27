@@ -2,6 +2,7 @@
 
 .container {
   margin: 100px auto;
+  padding: 70px 0;
   background-color: #ffffff;
   border-radius: 8px;
 }
@@ -13,7 +14,7 @@
   color: $color-main-blue;
 }
 
-input,
+input:not(.image-upload),
 textarea {
   padding-left: 10px;
   background-color: #eee;
@@ -38,7 +39,7 @@ label {
 }
 
 .num-input {
-  width: 80px;
+  width: 80px !important;
   display: inline;
 }
 

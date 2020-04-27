@@ -52,13 +52,15 @@ export class AddCommentBoxComponent implements OnInit {
 
   onSubmit() {
     if (this.authService.isLoggedIn) {
-      this.loading = true;
-      this._dataService.addComment(this.commentForm.value).subscribe(res => {
-        console.log(res);
-        this.loading = false;
-        this._dataService.comments.push(this.commentForm.value);
-        this.commentForm.controls['text'].reset();
-      });
+      if (this.commentForm.value.text) {
+        this.loading = true;
+        this._dataService.addComment(this.commentForm.value).subscribe(res => {
+          console.log(res);
+          this.loading = false;
+          this._dataService.comments.push(this.commentForm.value);
+          this.commentForm.controls['text'].reset();
+        });
+      }
     } else {
       this.openDialog();
     }

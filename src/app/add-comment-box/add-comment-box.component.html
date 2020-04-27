@@ -1,4 +1,6 @@
-<app-spinner *ngIf="loading"></app-spinner>
+<div class="loader">
+    <app-spinner *ngIf="loading"></app-spinner>
+</div>
 
 <div>
     <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">

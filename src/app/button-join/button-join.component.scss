@@ -1,4 +1,4 @@
-@import "../../sass/_variables.scss"; // this is not cool!
+@import '../../sass/_variables.scss'; // this is not cool!
 
 .join {
   cursor: pointer;
@@ -28,5 +28,13 @@
   &.isFull:not(.isSubscribed) {
     opacity: 0.3;
     pointer-events: none;
+  }
+}
+
+:host-context(.join-event-detail) {
+  .join {
+    width: 160px;
+    margin-bottom: 45px;
+    padding: 10px 30px;
   }
 }
