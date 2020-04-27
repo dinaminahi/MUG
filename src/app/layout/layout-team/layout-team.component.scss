@@ -9,7 +9,6 @@ h2 {
   display: block;
   font-weight: 700;
   font-size: 3vw;
-  ;
   text-transform: uppercase;
   padding-bottom: 10px;
 }
@@ -39,7 +38,7 @@ heading-text {
   background: #ff5a6e none repeat scroll 0 0;
   bottom: 0;
   content: "";
-  height: 2px;
+  height: 3px;
   left: 50%;
   margin-left: -25px;
   position: absolute;
@@ -53,10 +52,7 @@ heading-text {
 .site-heading {
   margin-top: 50px;
   padding-top: 30px;
-
   overflow: hidden;
-
-
 }
 
 .container {

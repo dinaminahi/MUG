@@ -1,3 +1,54 @@
 .join {
   display: none !important;
 }
+
+
+h2 {
+  display: block;
+  font-weight: 700;
+  font-size: 3vw;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+
+h4 {
+  font-size: 1.5vw;
+}
+
+heading-text {
+  background: grey;
+}
+
+.site-heading h2 span {
+
+  color: #ff5a6e;
+}
+
+.site-heading h4 {
+  display: inline-block;
+  padding-bottom: 20px;
+  position: relative;
+  text-transform: capitalize;
+  z-index: 1;
+}
+
+.site-heading h4::before {
+  background: #ff5a6e none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 3px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+}
+
+.site-heading h2 span {
+  color: #ff5a6e;
+}
+
+.site-heading {
+  margin-top: 50px;
+  padding-top: 30px;
+  overflow: hidden;
+}
