@@ -4,7 +4,7 @@
 
 <div class="event-detail container">
     <div class="row">
-        <div class="col-sm-8 pl-5 py-5">
+        <div class="col-sm-8 pl-sm-5 py-5 text-center text-sm-left">
             <h1 class="title mb-4">{{ expectedEvent?.eventName }}</h1>
             <p><i class="fas fa-clock event-icon mr-2 fa-lg"></i>Date and time</p>
             <h4 class="mb-4">{{ expectedEvent?.dateTime }}</h4>
@@ -14,14 +14,13 @@
             <p><i class="fab fa-facebook-square fa-2x mr-3"></i><i class="fab fa-instagram fa-2x mr-3"></i><i
                     class="fab fa-twitter-square fa-2x mr-3"></i><i class="fab fa-linkedin fa-2x"></i></p>
         </div>
-        <div class="col-sm-4 pr-5  position-relative subscribe my-auto">
+        <div class="col-sm-4 pr-sm-5  position-relative subscribe my-auto">
             <h2 class="text-center mb-4">Subscribe now</h2>
             <p class="text-center">Click to add to your calendar</p>
             <div class="text-center mt-4">
-                <app-button-join *ngIf="!expectedEvent?.canceled" [eventId]="expectedEvent?._id">
+                <app-button-join [eventId]="expectedEvent?._id" [playersCount]="expectedEvent?.players?.count"
+                    [canceled]="expectedEvent?.canceled" class="join-event-detail">
                 </app-button-join>
-                <button type="button" [disabled]="expectedEvent?.canceled" *ngIf="expectedEvent?.canceled"
-                    class="btn btn-danger mb-5">Canceled</button>
             </div>
         </div>
     </div>
@@ -53,7 +52,7 @@
         </div>
     </div>
 
-    <h3>Comments</h3>
+    <h3 class="my-5">Comments</h3>
 
     <div class="comments my-5" *ngFor="let comment of comments">
         <app-comment-item [comment]="comment"></app-comment-item>

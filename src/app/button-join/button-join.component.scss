@@ -29,7 +29,12 @@
     opacity: 0.3;
     pointer-events: none;
   }
+}
 
-  &.isCanceled:hover {
+:host-context(.join-event-detail) {
+  .join {
+    width: 160px;
+    margin-bottom: 45px;
+    padding: 10px 30px;
   }
 }

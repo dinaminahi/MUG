@@ -48,26 +48,22 @@
       </div>
 
       <div class="players">
-        <div class="my-5">
+        <div class="form-group my-5">
           <div class="row">
             <div class="col-md-6  col-sm-12 text-center">
               <label>Players count</label>
               <div formGroupName="playersCount">
-                <input type="number" class="num-input form-control mr-3" formControlName="min" min="2" max="9"
-                  placeholder="min">
+                <input type="number" class="num-input mr-3" formControlName="min" min="2" max="9" placeholder="min">
                 <i class="fas fa-minus"></i>
-                <input type="number" class="num-input form-control ml-3" formControlName="max" min="3" max="10"
-                  placeholder="max">
+                <input type="number" class="num-input ml-3" formControlName="max" min="3" max="10" placeholder="max">
               </div>
             </div>
             <div class="col-md-6 col-sm-12 text-center">
               <label>Time to play</label>
               <div formGroupName="playTimeMinutes">
-                <input type="number" class="num-input form-control mr-3" formControlName="min" min="5"
-                  placeholder="min">
+                <input type="number" class="num-input mr-3" formControlName="min" min="5" placeholder="min">
                 <i class="fas fa-minus"></i>
-                <input type="number" class="num-input form-control ml-3" formControlName="max" min="5"
-                  placeholder="max">
+                <input type="number" class="num-input ml-3" formControlName="max" min="5" placeholder="max">
               </div>
             </div>
           </div>
