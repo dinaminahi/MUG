@@ -1,3 +1,5 @@
+@import './../../../sass/variables';
+
 .anchors {
   border-radius: 5px;
   display: flex;
@@ -11,14 +13,14 @@
     cursor: pointer;
   }
 }
-// .underlineO {
-//     border-bottom: 1px solid orange;
-//   }
-
-//   .underlineG {
-//     border-bottom: 1px solid orange;
-//   }
 
 .chosen-a {
-  border-bottom: 2px solid orange;
+  border-bottom: 3px solid $color-orange;
+}
+
+@media (max-width: 768px) {
+  .anchors {
+    flex-direction: column;
+    text-align: center;
+  }
 }

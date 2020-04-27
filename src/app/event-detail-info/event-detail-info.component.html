@@ -2,20 +2,21 @@
     <div class="main-header"></div>
 </header>
 
-<div class="event-detail container">
-    <div class="row">
+<div class="event-detail container animated bounceInDown">
+    <div class="row event-detail-2">
+        <i class="fas fa1 fa-dice-two"></i>
+        <i class="fas fa4 fa-dice-two"></i>
+
         <div class="col-sm-8 pl-sm-5 py-5 text-center text-sm-left">
             <h1 class="title mb-4">{{ expectedEvent?.eventName }}</h1>
             <p><i class="fas fa-clock event-icon mr-2 fa-lg"></i>Date and time</p>
             <h4 class="mb-4">{{ expectedEvent?.dateTime }}</h4>
             <p><i class="fas fa-map-marker-alt event-icon mr-2 fa-lg"></i>Address</p>
             <h4>{{ expectedEvent?.location?.address }}</h4>
-            <p class="mt-5">Share with friends</p>
-            <p><i class="fab fa-facebook-square fa-2x mr-3"></i><i class="fab fa-instagram fa-2x mr-3"></i><i
-                    class="fab fa-twitter-square fa-2x mr-3"></i><i class="fab fa-linkedin fa-2x"></i></p>
+
         </div>
         <div class="col-sm-4 pr-sm-5  position-relative subscribe my-auto">
-            <h2 class="text-center mb-4">Subscribe now</h2>
+            <h2 class="text-center title mb-4">Subscribe now</h2>
             <p class="text-center">Click to add to your calendar</p>
             <div class="text-center mt-4">
                 <app-button-join [eventId]="expectedEvent?._id" [playersCount]="expectedEvent?.players?.count"
@@ -27,16 +28,25 @@
 </div>
 <div class="container event-description">
     <div class="row">
-        <div class="col-sm-8 pl-3 py-5">
-            <h3>Event details</h3>
+        <div class="col-sm-8 event-description-main px-3 py-5">
+            <h3 class="title">Event details</h3>
             <p class="event-description-text">{{expectedEvent?.description}}</p>
-            <p class="mt-4">Age of players: <span class="pl-4">{{ expectedEvent?.players?.age?.min }} -
-                    {{ expectedEvent?.players?.age?.max }}</span></p>
-            <p class="mt-2">Amount of players: <span class="pl-4">{{ expectedEvent?.players?.count?.min }} -
-                    {{ expectedEvent?.players?.count?.max }}</span></p>
-            <p class="mt-2">Event duration: <span class="pl-4">{{ expectedEvent?.duration }}</span></p>
-            <p class="mt-2">Do you need experience for this event?<span
-                    class="pl-4">{{ expectedEvent?.players?.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
+            <ul class="mt-5">
+                <li>Age of players: <span class="pl-4">{{ expectedEvent?.players?.age?.min }} -
+                        {{ expectedEvent?.players?.age?.max }}</span></li>
+                <li>Amount of players: <span class="pl-4">{{ expectedEvent?.players?.count?.min }} -
+                        {{ expectedEvent?.players?.count?.max }}</span>
+                </li>
+                <li>Event duration: <span class="pl-4">{{ expectedEvent?.duration }}</span></li>
+                <li>Do you need experience for this event?<span
+                        class="pl-4">{{ expectedEvent?.players?.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
+                </li>
+            </ul>
+            <p class="mt-2">Share with friends</p>
+            <p><a href="https://www.facebook.com/"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
+                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-2x mr-3"></i></a>
+                <a href="https://twitter.com"><i class="fab fa-twitter-square fa-2x mr-3"></i></a>
+                <a href="www.linkedin.com"><i class="fab fa-linkedin fa-2x"></i></a>
             </p>
         </div>
         <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">
@@ -52,17 +62,22 @@
         </div>
     </div>
 
-    <h3 class="my-5">Comments</h3>
+</div>
+<div class="comments container">
+    <h3 class="my-5 title">Comments</h3>
 
-    <div class="comments my-5" *ngFor="let comment of comments">
+    <div class="my-5" *ngFor="let comment of comments">
         <app-comment-item [comment]="comment"></app-comment-item>
     </div>
     <div class="add-comment mb-5">
         <app-add-comment-box [eventId]="eventId"></app-add-comment-box>
     </div>
-    <a class="mt-5 back-btn" (click)="gotoEvents()">Back to all events</a>
+
 </div>
+
 <div class="container map pb-5 px-0">
+    <!-- <a class="my-5 back-btn" (click)="gotoEvents()">Back to all events</a> -->
+
     <app-map [geo]="geo"></app-map>
     <div class="text-center mt-5">
         <p><span>Address</span></p>
