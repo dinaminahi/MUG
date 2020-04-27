@@ -1,4 +1,4 @@
-@import "../../../sass/variables";
+@import '../../../sass/variables';
 
 @mixin placeholder {
   &::-webkit-input-placeholder {
@@ -40,7 +40,7 @@
 }
 
 .bg-img {
-  background-image: url("src/img/gabeg-bg.jpg");
+  background-image: url('src/img/gabeg-bg.jpg');
   background-size: cover;
   background-position: center center;
   height: 400px;
@@ -112,7 +112,7 @@
     flex: 1 0 auto;
     margin: 0 20px 0 0;
 
-    input[type="search"] {
+    input[type='search'] {
       border: 1px solid #f2efea;
       border-radius: 4px;
       background: none;
@@ -161,4 +161,11 @@
       margin: 10px 0;
     }
   }
+}
+
+.loader {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translate(-50%, 0);
 }

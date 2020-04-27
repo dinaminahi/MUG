@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const uniqueValidator = require('mongoose-unique-validator');
+const notificationSchema = require('./notificationSchema');
 
 let userSchema = new Schema({
   password: String,
@@ -39,7 +40,7 @@ let userSchema = new Schema({
     },
     rating: Number // likes counter form other users
   },
-  notificationsId: [mongoose.ObjectId]
+  notifications: [notificationSchema]
 });
 
 userSchema.plugin(uniqueValidator, {

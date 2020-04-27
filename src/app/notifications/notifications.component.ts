@@ -17,9 +17,11 @@ export class NotificationsComponent implements OnInit {
   ngOnInit(): void {}
 
   delNotification(notificationId) {
+    console.log(notificationId);
     this._dataService
       .deleteNotification(notificationId, this.authService.UserId)
       .subscribe(res => {
+        console.log(this.notifications);
         const i = this.notifications.findIndex(
           notif => notif._id === notificationId
         );

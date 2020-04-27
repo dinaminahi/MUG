@@ -1,43 +1,70 @@
-<div class="user-data z-depth-1">
-  <i *ngIf="userId === currUserId" class="far fa-edit edit-btn fa-lg" (click)="goEdit()"></i>
+<div class="user-data z-depth-1" *ngIf="expectedUser">
+  <i
+    *ngIf="userId === currUserId"
+    class="far fa-edit edit-btn fa-lg"
+    (click)="goEdit()"
+  ></i>
 
   <div class="photo py-5 text-center">
-    <img [src]="expectedUser?.personal?.photoUrl" alt="User photo">
-    <h2 class="name my-1">{{expectedUser?.personal?.firstName ? expectedUser?.personal?.firstName : 'First name'}}
-      {{expectedUser?.personal?.lastName ? expectedUser?.personal?.lastName : 'Last Name'}}</h2>
-    <p class="username">{{expectedUser?.personal?.name}}</p>
-    <p class="city mb-4"><i
-        class="fas fa-map-marker-alt event-icon mr-2 "></i>{{expectedUserCity ? expectedUserCity : 'Unknown'}}
+    <img [src]="expectedUser?.personal?.photoUrl" alt="User photo" />
+    <h2 class="name my-1">
+      {{
+        expectedUser?.personal?.firstName
+          ? expectedUser?.personal?.firstName
+          : "First name"
+      }}
+      {{
+        expectedUser?.personal?.lastName
+          ? expectedUser?.personal?.lastName
+          : "Last Name"
+      }}
+    </h2>
+    <p class="username">{{ expectedUser?.personal?.name }}</p>
+    <p class="city mb-4">
+      <i class="fas fa-map-marker-alt event-icon mr-2"></i
+      >{{ expectedUserCity ? expectedUserCity : "Unknown" }}
     </p>
-    <p class="social-media"><i class="fab fa-facebook-square mr-5 fa-2x"></i><i
-        class="fab fa-twitter-square mr-5 fa-2x"></i><i class="fab fa-instagram fa-2x"></i></p>
+    <p class="social-media">
+      <i class="fab fa-facebook-square mr-5 fa-2x"></i
+      ><i class="fab fa-twitter-square mr-5 fa-2x"></i
+      ><i class="fab fa-instagram fa-2x"></i>
+    </p>
   </div>
 
-  <hr>
-
+  <hr />
 
   <div class="contacts">
-
     <h2 class="text-center">Contacts</h2>
 
     <div class="pl-4 pb-4">
       <h4>Email</h4>
-      <p class="email">{{expectedUser?.email}}</p>
+      <p class="email">{{ expectedUser?.email }}</p>
 
       <h4>Phone number</h4>
-      <p class="phone">{{expectedUser?.personal?.phone ? expectedUser?.personal?.phone : 'Unknown'}}</p>
+      <p class="phone">
+        {{
+          expectedUser?.personal?.phone
+            ? expectedUser?.personal?.phone
+            : "Unknown"
+        }}
+      </p>
 
       <h4>Location</h4>
       <p class="location">
-        {{expectedUser?.personal?.location?.address ? expectedUser?.personal?.location?.address : 'Unknown'}}</p>
-
+        {{
+          expectedUser?.personal?.location?.address
+            ? expectedUser?.personal?.location?.address
+            : "Unknown"
+        }}
+      </p>
     </div>
   </div>
 
-  <hr>
+  <hr />
   <div *ngIf="userId === currUserId" class="px-5 pb-5">
     <h2>Notifications</h2>
-    <app-notifications [notifications]="expectedUser?.notifications"></app-notifications>
+    <app-notifications
+      [notifications]="expectedUser?.notifications"
+    ></app-notifications>
   </div>
-
 </div>

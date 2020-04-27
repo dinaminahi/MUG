@@ -1,4 +1,4 @@
-@import "../../../sass/variables";
+@import '../../../sass/variables';
 
 // .page-heading-message {
 //   background-color: #003049;
@@ -99,7 +99,7 @@ app-event-item {
     flex: 1 0 auto;
     margin: 0 20px;
 
-    input[type="search"] {
+    input[type='search'] {
       border: 1px solid #f2efea;
       border-radius: 4px;
       background: none;
@@ -150,7 +150,7 @@ app-event-item {
 
 .eventsList {
   &:empty:before {
-    content: "No matches";
+    content: 'No matches';
     margin: 0 15px;
   }
 }
@@ -236,4 +236,11 @@ app-event-item {
       padding: 0px;
     }
   }
+}
+
+.loader {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translate(-50%, 0);
 }

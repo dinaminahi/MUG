@@ -38,7 +38,7 @@ export class UserCreatedEventItemComponent implements OnInit {
   openDialog(eventId) {
     let dialogRef = this.dialog.open(DialogForCancelBtnComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if (result === 'true') {
         this.cancelEvent(eventId, this.authService.UserId);
       }
     });
