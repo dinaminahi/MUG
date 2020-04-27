@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { DataService } from "../data.service";
 import { EventItem } from "../event-item/event-item";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-carousel",
@@ -22,7 +23,7 @@ export class CarouselComponent implements OnInit, OnChanges {
   TABLET_BREAKPOINT: number = 768;
   DESKTOP_BREAKPOINT: number = 1024;
 
-  constructor(private _dataService: DataService) {}
+  constructor(private _dataService: DataService, private router: Router) {}
 
   chunk(arr, chunkSize) {
     let R = [];
@@ -54,7 +55,7 @@ export class CarouselComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this._dataService.getEvents().subscribe((events) => {
       if (events) {
-        this.events = this.filterNexTenDaysEvents(events);
+        this.events = this.filterNexTwentyDaysEvents(events);
         this.slides1 = this.events;
         this.slides2 = this.chunk(this.events, 2);
         this.slides3 = this.chunk(this.events, 3);
@@ -63,13 +64,13 @@ export class CarouselComponent implements OnInit, OnChanges {
     });
   }
 
-  filterNexTenDaysEvents(events) {
+  filterNexTwentyDaysEvents(events) {
     return events
       .filter((e) => {
         const today = new Date();
 
         const endDate = new Date();
-        endDate.setDate(today.getDate() + 10);
+        endDate.setDate(today.getDate() + 20);
         endDate.setHours(23, 59, 59, 99);
 
         const eventDate = new Date(e.dateTime);
@@ -80,5 +81,9 @@ export class CarouselComponent implements OnInit, OnChanges {
         );
       })
       .slice(0, 12);
+  }
+
+  gotoEvents() {
+    this.router.navigate(["/events"]);
   }
 }
