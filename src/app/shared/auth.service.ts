@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  endpoint: string = 'http://localhost:4000/authApi';
+  endpoint: string = 'http://mug-development.eastus.cloudapp.azure.com:4000/authApi';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
   private userSource = new BehaviorSubject<UserItem>(undefined);
