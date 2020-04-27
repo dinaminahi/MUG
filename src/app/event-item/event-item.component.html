@@ -17,10 +17,11 @@
     <h2>{{ event?.eventName }}</h2>
 
     <div class="button-wrapper">
-      <app-button-join *ngIf="currUserId !== event?.organizer || cancel" [eventId]="event?._id"
+      <app-button-join *ngIf="currUserId !== event?.organizer" [eventId]="event?._id"
         [playersCount]="event?.players.count" [canceled]="event?.canceled" class="join"></app-button-join>
-      <button *ngIf="currUserId === event?.organizer && !cancel" type="button" class="btn-cancel join"
-        [disabled]="cancel" (click)="openDialog(event._id)" mat-raised-button>Cancel</button>
+      <button *ngIf="currUserId === event?.organizer" type="button" class="btn-cancel join" [disabled]="cancel"
+        (click)="openDialog(event._id)" [class.canceled-button]="cancel"
+        mat-raised-button>{{cancel ? 'Canceled' : 'Cancel'}}</button>
       <button (click)="onSelect(event)" class="more">
         MORE INFO
       </button>
