@@ -1,4 +1,4 @@
-@import "../../../sass/variables";
+@import '../../../sass/variables';
 
 .content {
   position: relative;
@@ -36,7 +36,7 @@
   }
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -52,7 +52,7 @@
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -184,7 +184,7 @@ heading-text {
 .site-heading h4::before {
   background: #ff5a6e none repeat scroll 0 0;
   bottom: 0;
-  content: "";
+  content: '';
   height: 3px;
   left: 50%;
   margin-left: -25px;
