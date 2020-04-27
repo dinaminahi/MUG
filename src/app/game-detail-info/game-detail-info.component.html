@@ -2,21 +2,22 @@
   <div class="main-header"></div>
 </header>
 
-<div class="game-detail">
+<div class="game-detail container">
   <div class="row">
     <div class="col">
       <div class="game-item">
-        <div class="favorites">
-          <div>
-            Вподобати гру
+        <div class="rating">
+          <i class="fas fa-award">25</i>
+
+          <span class="label-rating">Count of events with this game</span>
+        </div>
+        <div class="favorite">
+          <div class="icon-wrap">
             <app-add-to-favorites [gameId]="game?._id"></app-add-to-favorites>
           </div>
-          <div>
-            Кількість подій з цією грою:
-            <span class="icons"> 125 <i class="fas fa-award"></i></span>
-          </div>
         </div>
-        <div class="wrapp-carousel">
+
+        <div class="wrap-carousel">
           <app-games-carousel
             [imgs]="game?.photoUrl"
             [title]="game?.name"
@@ -61,7 +62,7 @@
             <span>{{ game?.name }}</span>
           </h2>
 
-          <div class="container">
+          <div>
             <div class="row">
               <div class="description">
                 {{ game?.description }}

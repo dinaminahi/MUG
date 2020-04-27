@@ -6,21 +6,60 @@
   background-color: #fff;
   position: relative;
 
-  .favorites {
+  .favorite {
     position: absolute;
+    z-index: 2;
     top: 40px;
-    right: 20px;
-    z-index: 10;
-    margin: 0;
+    right: 30px;
+    font-size: 2.5rem;
+    background-color: #f4f4f4;
+    border: solid 1px #3a3535;
+    box-shadow: 0 0 0 1px #f4f4f4;
+    border-radius: 100%;
     padding: 10px;
-    background-color: $color-orange;
-    color: #f9f3ee;
-    font-family: "Kelly Slab", cursive;
-    font-size: 20px;
-    line-height: 1.4;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .icon-wrap {
+      transform: scale(0.7);
+    }
+  }
+  .rating {
+    position: absolute;
+    z-index: 2;
+    top: 70px;
+    right: 50px;
+    font-size: 2.5rem;
+    padding: 20px;
+    width: 30px;
+    height: 30px;
+    color: $color-attention;
+    i {
+      transform: scale(0.7);
+      top: 0;
+      right: 0;
+    }
+
+    .label-rating {
+      position: absolute;
+      z-index: 2;
+      width: 50px;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.1;
+      opacity: 0.7;
+      white-space: normal;
+      display: none;
+    }
   }
 
-  .wrapp-carousel {
+  .rating:hover .label-rating {
+    display: block;
+  }
+
+  .wrap-carousel {
     background-color: #f9f3ee;
   }
   .img {
