@@ -1,12 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { DataService } from "../../data.service";
-import { EventItem } from "../../event-item/event-item";
-import { GameCategory } from "../../game-category-icons/game-category";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../../data.service';
+import { AuthService } from './../../shared/auth.service';
+import { EventItem } from '../../event-item/event-item';
+import { GameCategory } from '../../game-category-icons/game-category';
+import { MatDialog } from '@angular/material/dialog';
+import { SigninComponent } from './../../components/signin/signin.component';
 
 @Component({
-  selector: "app-page-events",
-  templateUrl: "./page-events.component.html",
-  styleUrls: ["./page-events.component.scss"],
+  selector: 'app-page-events',
+  templateUrl: './page-events.component.html',
+  styleUrls: ['./page-events.component.scss']
 })
 export class PageEventsComponent implements OnInit {
   value;
@@ -16,19 +20,19 @@ export class PageEventsComponent implements OnInit {
   geo = { latitude: 49.8377225, longitude: 24.032017, zoom: 15 };
   icons = {
     default: {
-      url: "assets/icons/meeple-blue.svg",
+      url: 'assets/icons/meeple-blue.svg',
       scaledSize: {
         width: 30,
-        height: 30,
-      },
+        height: 30
+      }
     },
     active: {
-      url: "assets/icons/meeple-orange.svg",
+      url: 'assets/icons/meeple-orange.svg',
       scaledSize: {
         width: 30,
-        height: 30,
-      },
-    },
+        height: 30
+      }
+    }
   };
   categories: GameCategory[] = [];
   categoriesCurrent: GameCategory[] = [];
@@ -41,20 +45,24 @@ export class PageEventsComponent implements OnInit {
   showMap: boolean = false;
 
   // Create an instance of the DataService through dependency injection
-  constructor(private _dataService: DataService) {}
+  constructor(
+    private _dataService: DataService,
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.loading = true;
-    this._dataService.eventsShared.subscribe((events) => {
+    this._dataService.eventsShared.subscribe(events => {
       this.events = this.getTodayAndUpcomingEvents(events);
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
     });
-    this._dataService.getEvents().subscribe((res) => {
+    this._dataService.getEvents().subscribe(res => {
       this.loading = false;
     });
-    this._dataService.getCategories().subscribe((res) => {
+    this._dataService.getCategories().subscribe(res => {
       this.categories = res;
       this.events && this.filterCategories();
     });
@@ -67,9 +75,9 @@ export class PageEventsComponent implements OnInit {
   filterCategories() {
     // Filter out categories which are not exist on any event in current page
     // So each filtering checkbox will show at least one event
-    this.categoriesCurrent = this.categories.filter((category) =>
+    this.categoriesCurrent = this.categories.filter(category =>
       this.events.some(
-        (event) =>
+        event =>
           event.agame[0] &&
           event.agame[0].category &&
           event.agame[0].category.length &&
@@ -79,7 +87,7 @@ export class PageEventsComponent implements OnInit {
   }
 
   filterDateTimes() {
-    this.events.forEach((e) => {
+    this.events.forEach(e => {
       e.dateFormated = this.getCustomDates(e.dateTime).filteredLabels;
     });
 
@@ -97,7 +105,7 @@ export class PageEventsComponent implements OnInit {
     return this.getCustomDates().allLabels;
   }
 
-  getCustomDates(eventDateString = "") {
+  getCustomDates(eventDateString = '') {
     let endOfToday = new Date();
     endOfToday.setHours(23, 59, 59, 99);
     let dayOfWeek = endOfToday.getDay(); //0-6
@@ -122,30 +130,30 @@ export class PageEventsComponent implements OnInit {
 
     const customDatesFlags = {
       Today: eventDate.getTime() <= endOfToday.getTime(),
-      "This week": eventDate.getTime() <= endOfWeek.getTime(),
-      "Next week":
+      'This week': eventDate.getTime() <= endOfWeek.getTime(),
+      'Next week':
         eventDate.getTime() > endOfWeek.getTime() &&
         eventDate.getTime() <= endOfNextWeek.getTime(),
-      "This month": eventDate.getTime() <= endOfMonth.getTime(),
+      'This month': eventDate.getTime() <= endOfMonth.getTime()
     };
 
     return {
       filteredLabels: Object.keys(customDatesFlags).filter(
-        (key) => customDatesFlags[key]
+        key => customDatesFlags[key]
       ),
-      allLabels: Object.keys(customDatesFlags),
+      allLabels: Object.keys(customDatesFlags)
     };
   }
 
   getTodayAndUpcomingEvents(events) {
-    return events.filter((e) => new Date(e.dateTime) >= new Date());
+    return events.filter(e => new Date(e.dateTime) >= new Date());
   }
 
   filterGameName() {
     return [
       ...new Set(
-        this.events.map((event) => event.agame[0] && event.agame[0].name)
-      ),
+        this.events.map(event => event.agame[0] && event.agame[0].name)
+      )
     ];
   }
 
@@ -154,10 +162,8 @@ export class PageEventsComponent implements OnInit {
   }
   onDateTimeChange(datesCheckedInFilter) {
     this.selectedDateTimes = this.events
-      .filter((e) =>
-        datesCheckedInFilter.some((r) => e.dateFormated.includes(r))
-      )
-      .map((e) => e.dateTime);
+      .filter(e => datesCheckedInFilter.some(r => e.dateFormated.includes(r)))
+      .map(e => e.dateTime);
   }
   onGameNameChange(names) {
     this.selectedGameNames = names;
@@ -169,5 +175,22 @@ export class PageEventsComponent implements OnInit {
     } else {
       this.selectedEvent = event;
     }
+  }
+
+  goAddEvent() {
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(['/pageaddevent']);
+    } else {
+      this.openDialog();
+    }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SigninComponent, {
+      width: '767px',
+      height: '530px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }

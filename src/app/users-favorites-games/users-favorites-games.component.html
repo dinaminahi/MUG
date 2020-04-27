@@ -1,10 +1,13 @@
-<div *ngIf="games?.length === 0" class="mt-5">
-  <h2 class="panel-heading">You don't have favourite games</h2>
+<div *ngIf="favoritedGames?.length === 0" class="mt-5">
+  <h2 class="panel-heading">
+    {{ isCurrentUser ? "You don't" : userName + " doesn't" }} have favourite
+    games
+  </h2>
   <a routerLink="/games">Find game</a>
 </div>
 
 <div class="row mt-3">
-  <div class="col-lg-6 col-md-12 col-sm-12" *ngFor="let game of games">
+  <div class="col-lg-6 col-md-12 col-sm-12" *ngFor="let game of favoritedGames">
     <app-game [game]="game"></app-game>
   </div>
 </div>

@@ -185,7 +185,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     line-height: 1.1;
-    padding: 5px 0px 0px;
+    padding: 4px 0px 0px;
   }
 
   i {
@@ -201,6 +201,7 @@
     background: none;
     color: $color-orange;
     font-weight: bold;
+    line-height: 1.1;
 
     &:hover {
       text-decoration: underline;

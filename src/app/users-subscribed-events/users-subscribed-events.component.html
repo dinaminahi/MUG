@@ -1,10 +1,16 @@
-<div *ngIf="events?.length === 0" class="mt-5">
-  <h2 class="panel-heading">You didn't subscribe any event</h2>
+<div *ngIf="subscribedEvents?.length === 0" class="mt-5">
+  <h2 class="panel-heading">
+    {{ isCurrentUser ? "You don't" : userName + " doesn't" }} subscribed to any
+    event
+  </h2>
   <a routerLink="/events">Find event</a>
 </div>
 
 <div class="row">
-  <div class="col-lg-6 col-md-12 col-sm-12" *ngFor="let event of events">
+  <div
+    class="col-lg-6 col-md-12 col-sm-12"
+    *ngFor="let event of subscribedEvents"
+  >
     <app-event-item [event]="event"></app-event-item>
   </div>
 </div>
