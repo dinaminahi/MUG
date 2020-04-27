@@ -1,4 +1,6 @@
 <button
+  mdbTooltip="{{ isFavorited ? 'Remove from favorites' : 'Add to favorites' }}"
+  placement="top"
   [ngClass]="{
     isFavorited: this.isFavorited,
     isLoading: this.isLoading,
