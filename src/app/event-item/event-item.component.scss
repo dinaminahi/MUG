@@ -1,4 +1,4 @@
-@import '../../sass/_variables.scss'; // this is not cool!
+@import "../../sass/_variables.scss"; // this is not cool!
 
 .event-item {
   position: relative;
@@ -11,7 +11,7 @@
     repeat;
 
   &:after {
-    content: '';
+    content: "";
     display: block;
     height: 0;
     overflow: hidden;
@@ -122,6 +122,7 @@
     color: $color-orange;
     text-decoration: underline;
     margin-left: 20px;
+    outline: none;
   }
   .canceled-button {
     cursor: pointer;
@@ -135,6 +136,7 @@
     border-radius: 4px;
     opacity: 0.8;
     pointer-events: none;
+    outline: none;
   }
 }
 .btn-cancel {
@@ -144,9 +146,10 @@
   background: $color-alert;
   color: #fff;
   padding: 2px 10px;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   border: $color-alert solid 2px;
   border-radius: 4px;
+  outline: none;
 }
 .description {
   margin-top: 13px;
@@ -154,7 +157,7 @@
   display: none;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     background-color: #fff;
     height: 10px;

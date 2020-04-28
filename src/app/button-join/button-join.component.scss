@@ -1,4 +1,4 @@
-@import '../../sass/_variables.scss'; // this is not cool!
+@import "../../sass/_variables.scss"; // this is not cool!
 
 .join {
   cursor: pointer;
@@ -10,6 +10,7 @@
   padding: 10px 10px;
   border: $color-orange solid 2px;
   border-radius: 4px;
+  outline: none;
 
   &:active {
     background: darken($color-orange, 5%);
