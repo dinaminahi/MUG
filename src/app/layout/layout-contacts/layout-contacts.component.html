@@ -1,11 +1,52 @@
-<div class=" px-0">
+<div class="contacts rgba-black-strong text-center">
 
-  <!--Section: Content-->
-  <section class="yd-5 ">
+  <div class="black-opacity">
+    <!--Section: Content-->
+    <div class="body container">
 
-    <div class="rgba-black-strong rounded p-5">
+      <div class="container-1 text-center">
+        <h2 class="text-center mt-4">Contact us</h2>
+        <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+          <div class="row100">
+            <div class="col1">
+              <div class="input-box">
+                <input type="text" formControlName="name" name="name" required="required">
+                <span class="text">Your name</span>
+                <span class="line"></span>
+              </div>
+            </div>
+            <div class="col1">
+              <div class="input-box">
+                <input type="email" formControlName="email" name="email" required="required">
+                <span class="text">Email</span>
+                <span class="line"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row100">
+            <div class="col1">
+              <div class="input-box textarea">
+                <textarea name="message" formControlName="message" required="required"></textarea>
+                <span class="text">Type your message here...</span>
+                <span class="line"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row100">
+            <div class="col1">
+              <input type="submit" class="submit" value="Send">
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+
+
+
+    <!-- <div class="rgba-black-strong rounded p-5">
       <div class="container my-5 py-5" id="contacts-elem">
-        <!-- Section heading -->
         <h2 class="text-warning  text-center font-weight-bold mt-3 mb-5">Contact Us</h2>
 
         <form class="mx-md-5" action="">
@@ -16,17 +57,14 @@
               <div class="card">
                 <div class="card-body px-4">
 
-                  <!-- Name -->
                   <div class="md-form md-outline mt-0">
                     <input type="text" id="name" class="form-control">
                     <label for="name">Your Name</label>
                   </div>
-                  <!-- Email -->
                   <div class="md-form md-outline">
                     <input type="text" id="email" class="form-control">
                     <label for="email">Your Email Address</label>
                   </div>
-                  <!-- Message -->
                   <div class="md-form md-outline">
                     <textarea id="message" class="md-textarea form-control" rows="3"></textarea>
                     <label for="message">Your Message</label>
@@ -58,9 +96,12 @@
         </form>
       </div>
 
-    </div>
+    </div> -->
 
-  </section>
+
+
+
+  </div>
   <!--Section: Content-->
 
 

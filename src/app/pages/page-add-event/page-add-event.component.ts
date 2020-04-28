@@ -144,8 +144,10 @@ export class PageAddEventComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.myForm.value);
     this._dataService.addEvent(this.myForm.value).subscribe(res => {
       this.router.navigate(['/events']);
+      console.log(res);
     });
   }
 

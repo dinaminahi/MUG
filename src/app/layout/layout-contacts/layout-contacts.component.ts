@@ -1,19 +1,28 @@
-import { Component, OnInit } from "@angular/core";
-
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 @Component({
-  selector: "app-layout-contacts",
-  templateUrl: "./layout-contacts.component.html",
-  styleUrls: ["./layout-contacts.component.scss"],
+  selector: 'app-layout-contacts',
+  templateUrl: './layout-contacts.component.html',
+  styleUrls: ['./layout-contacts.component.scss']
 })
 export class LayoutContactsComponent implements OnInit {
-  constructor() {}
+  myForm: FormGroup;
+
+  constructor(private http: HttpClient, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    (function () {
-      "use strict";
+    this.myForm = this.fb.group({
+      name: '',
+      email: ['', Validators.email],
+      message: ''
+    });
+
+    (function() {
+      'use strict';
 
       // define variables
-      var items = document.querySelectorAll(".timeline li");
+      var items = document.querySelectorAll('.timeline li');
 
       // check if an element is in viewport
       // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
@@ -32,15 +41,27 @@ export class LayoutContactsComponent implements OnInit {
       function callbackFunc() {
         for (var i = 0; i < items.length; i++) {
           if (isElementInViewport(items[i])) {
-            items[i].classList.add("in-view");
+            items[i].classList.add('in-view');
           }
         }
       }
 
       // listen for events
-      window.addEventListener("load", callbackFunc);
-      window.addEventListener("resize", callbackFunc);
-      window.addEventListener("scroll", callbackFunc);
+      window.addEventListener('load', callbackFunc);
+      window.addEventListener('resize', callbackFunc);
+      window.addEventListener('scroll', callbackFunc);
     })();
+  }
+
+  onSubmit() {
+    return this.http
+      .post('https://formspree.io/xknqwzbe', {
+        name: this.myForm.value.name,
+        email: this.myForm.value.email,
+        message: this.myForm.value.message
+      })
+      .subscribe(res => {
+        this.myForm.reset();
+      });
   }
 }

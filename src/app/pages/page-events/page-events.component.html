@@ -1,17 +1,9 @@
-<div
-  [ngClass]="{
+<div [ngClass]="{
     'map-wrapper': true,
     hiddenOnMobile: !showMap
-  }"
->
-  <agm-map
-    [latitude]="geo.latitude"
-    [longitude]="geo.longitude"
-    [zoom]="geo.zoom"
-    [fitBounds]="true"
-  >
-    <agm-marker
-      *ngFor="
+  }">
+  <agm-map [latitude]="geo.latitude" [longitude]="geo.longitude" [zoom]="geo.zoom" [fitBounds]="true">
+    <agm-marker *ngFor="
         let event of events
           | eventsFilter
             : selectedCategories
@@ -19,13 +11,9 @@
             : selectedGameNames
             : hideCanceled
             : hideFull
-      "
-      [latitude]="event.location.geo.latitude"
-      [longitude]="event.location.geo.longitude"
-      (markerClick)="highlightItem(event)"
-      [iconUrl]="event === selectedEvent ? icons.active : icons.default"
-      [agmFitBounds]="true"
-    >
+      " [latitude]="event.location.geo.latitude" [longitude]="event.location.geo.longitude"
+      (markerClick)="highlightItem(event)" [iconUrl]="event === selectedEvent ? icons.active : icons.default"
+      [agmFitBounds]="true">
       <div><i class="fa fa-truck" aria-hidden="true"></i></div>
       <agm-info-window>
         <app-small-event-item [event]="event"></app-small-event-item>
@@ -41,48 +29,30 @@
         <h3>Filter by:</h3>
         <div class="filters-wrap-inner">
           <div class="filters-game-name">
-            <app-filter-game-name
-              [games]="gameName"
-              (toggle)="onGameNameChange($event)"
-            ></app-filter-game-name>
+            <app-filter-game-name [games]="gameName" (toggle)="onGameNameChange($event)"></app-filter-game-name>
           </div>
           <div class="filters-category">
-            <app-filter-category
-              [categories]="categoriesCurrent"
-              (toggle)="onCategoriesChange($event)"
-            >
+            <app-filter-category [categories]="categoriesCurrent" (toggle)="onCategoriesChange($event)">
             </app-filter-category>
           </div>
           <div class="filters-date">
-            <app-filter-date
-              [datesFormatted]="eventDateTimes"
-              (toggle)="onDateTimeChange($event)"
-            ></app-filter-date>
+            <app-filter-date [datesFormatted]="eventDateTimes" (toggle)="onDateTimeChange($event)"></app-filter-date>
           </div>
         </div>
 
         <div class="checkboxes-wrap">
-          <app-filter-checkbox
-            [label]="'Hide full events'"
-            (toggle)="onHideFullChange($event)"
-          ></app-filter-checkbox>
-          <app-filter-checkbox
-            [label]="'Hide canceled events'"
-            (toggle)="onHideCanceledChange($event)"
-          ></app-filter-checkbox>
+          <app-filter-checkbox [label]="'Hide full events'" (toggle)="onHideFullChange($event)"></app-filter-checkbox>
+          <app-filter-checkbox [label]="'Hide canceled events'" (toggle)="onHideCanceledChange($event)">
+          </app-filter-checkbox>
         </div>
       </div>
 
       <div class="search-wrap">
-        <input
-          type="search"
-          [(ngModel)]="searchText"
-          placeholder="Search by any text"
-        />
+        <input type="search" [(ngModel)]="searchText" placeholder="Search by any text" />
       </div>
     </div>
     <button class="create-event-btn" (click)="goAddEvent()">
-      Create an event
+      Create event
     </button>
     <button class="open-map" (click)="toggleShowMap()">
       {{ showMap ? "Сlose events map" : "Open events map" }}
@@ -103,9 +73,7 @@
       <app-spinner></app-spinner>
     </div>
     <div class="eventsList row">
-      <div
-        class="col-xl-3 col-lg-4 col-sm-6"
-        *ngFor="
+      <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="
           let event of events
             | eventsFilter
               : selectedCategories
@@ -114,13 +82,9 @@
               : hideCanceled
               : hideFull
             | filter: searchText
-        "
-      >
-        <app-event-item
-          [event]="event"
-          [ngClass]="{ selected: event === selectedEvent }"
-          (click)="highlightItem(event)"
-        ></app-event-item>
+        ">
+        <app-event-item [event]="event" [ngClass]="{ selected: event === selectedEvent }"
+          (click)="highlightItem(event)"></app-event-item>
       </div>
     </div>
   </div>
