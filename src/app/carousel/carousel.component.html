@@ -5,15 +5,22 @@
     <div class="row heading-text">
       <div class="col-md-12">
         <div class="site-heading text-center">
-          <h2>Nearest <span>EVENTs</span></h2>
+          <h2>
+            Nearest
+            <span><a class="back-btn" (click)="gotoEvents()">EVENTS</a></span>
+          </h2>
           <h4>Join now to have fun and finde new friends!</h4>
         </div>
       </div>
     </div>
 
-
-    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
-      [animation]="'slide'" [ngSwitch]="carouselDisplayMode">
+    <mdb-carousel
+      [isControls]="true"
+      class="carousel-multi-item multi-animation"
+      [type]="'carousel-multi-item'"
+      [animation]="'slide'"
+      [ngSwitch]="carouselDisplayMode"
+    >
       <ng-container *ngSwitchCase="1">
         <mdb-carousel-item *ngFor="let event of slides1; let i = index">
           <div class="row w-100 mx-auto">
