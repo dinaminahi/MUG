@@ -27,7 +27,7 @@
           <div class="game-meta">
             <div>
               <span class="label">
-                <i class="far fa-clock" title="Duration of the game"></i>
+                <i class="far fa-clock"></i>
                 <span class="label-text">Duration</span>
               </span>
               <b>
@@ -38,14 +38,14 @@
             <div class="age">
               <span class="label">
                 <i class="fas fa-baby"></i>
-                <i class="fas fa-child" title="Minimum age of players"></i>
-                <span class="label-text">Min.age</span>
+                <i class="fas fa-child"></i>
+                <span class="label-text">Minimum&nbsp;age</span>
               </span>
               <b>{{ game?.playersMinAge }}</b>
             </div>
             <div class="count">
               <span class="label">
-                <i class="fas fa-users" title="Count of players"></i>
+                <i class="fas fa-users"></i>
                 <span class="label-text">Count</span>
               </span>
               <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
@@ -57,6 +57,7 @@
         <div class="category">
           <app-game-category-icons
             [categories]="game?.categories"
+            [showTooltip]="false"
           ></app-game-category-icons>
         </div>
         <h2 class="game-title">
