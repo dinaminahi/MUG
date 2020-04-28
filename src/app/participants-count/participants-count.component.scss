@@ -1,3 +1,5 @@
+@import "../../sass/variables";
+
 .participants-count {
   position: relative;
   text-align: left;
@@ -12,19 +14,19 @@
   }
 
   i {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    color: #c2c1bf;
-    text-shadow: -1px -1px #7f7f7f;
-    margin: 0 4px 0 0;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url("../../assets/icons/meeple-blue.svg") no-repeat
+      center/contain;
 
-    &.filled {
-      color: #ff7315;
-      text-shadow: 1px 1px #666;
-      position: relative;
-      top: -1px;
-      left: -1px;
+    & + i {
+      margin-left: 3px;
     }
+  }
+
+  .current i {
+    background-image: url("../../assets/icons/meeple-orange.svg");
   }
 
   .users {
@@ -32,8 +34,7 @@
     justify-content: flex-start;
 
     button {
-      border: #ccc solid 0.5px;
-      box-shadow: 1px 1px 1px 1px #999;
+      border: $color-orange solid 1px;
       border-radius: 50%;
       padding: 0;
       background: #fff url("../../assets/icons/meeple-orange.svg") no-repeat
@@ -43,7 +44,7 @@
       line-height: 0;
       width: 30px;
       height: 30px;
-      margin: 0 2px 0 -4px;
+      margin: -2px 4px -5px -4px;
     }
 
     i.filled {

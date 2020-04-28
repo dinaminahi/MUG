@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
-@import '~@fortawesome/fontawesome-free/css/all.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
-@import './sass/variables'; // this is not cool!
-@import './../src/sass/variables';
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
+@import "./sass/variables"; // this is not cool!
+@import "./../src/sass/variables";
 
 html,
 body {
@@ -12,19 +12,15 @@ body {
 }
 
 body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #f8f8f8;
 }
 
 // ----navbar
 .navbar {
   // border-top: 3px solid $color-orange;
-  padding-top: 15px;
   padding-bottom: 15px;
 }
-
-// -- navbar
-
 // Home page carousel with multi items
 .carousel.carousel-multi-item {
   padding-bottom: 50px;
@@ -72,7 +68,7 @@ body {
 
 // Game page carousel with thumbnails
 .carousel-thumbnails {
-  padding-bottom: 50px;
+  margin-bottom: 50px;
 
   .carousel-item {
     height: 200px;
@@ -82,11 +78,11 @@ body {
     }
 
     @media (min-width: 768px) {
-      height: 350px;
+      height: 300px;
     }
 
     @media (min-width: 992px) {
-      height: 400px;
+      height: 300px;
     }
 
     img {
@@ -99,21 +95,33 @@ body {
   }
 
   .carousel-indicators {
+    margin-bottom: -50px;
+
     li {
       width: auto !important;
       height: 30px !important;
-      border-radius: 0 !important;
+      border-radius: 4px !important;
       border: none !important;
+      opacity: 1 !important;
+      margin: 0 5px !important;
 
       &.active {
-        outline: #000 solid 1px;
+        outline: $color-orange solid 2px;
       }
 
       img {
-        width: auto !important;
+        width: 100% !important;
         height: 100%;
+        object-fit: cover;
       }
     }
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: $color-orange;
+    padding: 5px;
+    border-radius: 50%;
   }
 }
 
@@ -129,4 +137,20 @@ body {
   #cdk-owrlay-0 {
     height: auto;
   }
+}
+
+.tooltip-inner {
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 1.5rem 2.5rem;
+  border-radius: 4px;
+  background-color: #ff6f59;
+  color: #fff;
+}
+.tooltip-top .tooltip-arrow.arrow:before {
+  border-top-color: #ff6f59;
+}
+.tooltip-left .tooltip-arrow.arrow:before {
+  border-left-color: #ff6f59;
 }
