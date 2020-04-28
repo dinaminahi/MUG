@@ -6,7 +6,7 @@ import {
   EventEmitter,
   OnChanges,
 } from "@angular/core";
-import { CheckboxItem } from "./checkbox-item";
+import { CheckboxItem } from "../filter-checkbox/checkbox-item";
 import { GameCategory } from "../game-category-icons/game-category";
 
 @Component({

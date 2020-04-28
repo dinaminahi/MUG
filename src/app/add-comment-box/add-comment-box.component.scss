@@ -11,3 +11,10 @@
   border: $color-orange solid 2px;
   border-radius: 4px;
 }
+
+.loader {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

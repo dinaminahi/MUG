@@ -16,6 +16,7 @@ export class EventDetailInfoComponent implements OnInit {
   comments: Comment[];
   eventId: string;
   organizor: any;
+  currUserId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +27,7 @@ export class EventDetailInfoComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
+    this.currUserId = this.authService.UserId;
     this.eventId = id;
 
     this._dataService.getEventById(id).subscribe(res => {

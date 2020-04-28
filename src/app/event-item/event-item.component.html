@@ -1,18 +1,12 @@
 <div class="event-item my-3 z-depth-1" data-id="{{ event?._id }}">
   <div class="event-header dark-grey-text">
-    <span
-      ><i class="far fa-calendar-alt"></i>
-      {{ event?.dateTime | date: "dd.MM.yyyy" }}</span
-    >
+    <span><i class="far fa-calendar-alt"></i>
+      {{ event?.dateTime | date: "dd.MM.yyyy" }}</span>
     <span>
       <i class="far fa-clock"></i>
-      {{ event?.dateTime | date: "HH:mm" }}</span
-    >
+      {{ event?.dateTime | date: "HH:mm" }}</span>
     <span class="heart-wrapper">
-      <app-add-to-favorites
-        [eventId]="event?._id"
-        class="heart-icon"
-      ></app-add-to-favorites>
+      <app-add-to-favorites [eventId]="event?._id" class="heart-icon"></app-add-to-favorites>
     </span>
   </div>
   <section class="text-center dark-grey-text">
@@ -23,30 +17,22 @@
     <h2>{{ event?.eventName }}</h2>
 
     <div class="button-wrapper">
-      <app-button-join
-        [eventId]="event?._id"
-        [playersCount]="event?.players.count"
-        [canceled]="event?.canceled"
-        class="join"
-      ></app-button-join>
+      <app-button-join *ngIf="currUserId !== event?.organizer" [eventId]="event?._id"
+        [playersCount]="event?.players.count" [canceled]="event?.canceled" class="join"></app-button-join>
+      <button *ngIf="currUserId === event?.organizer" type="button" class="btn-cancel join" [disabled]="cancel"
+        (click)="openDialog(event._id)" [class.canceled-button]="cancel"
+        mat-raised-button>{{cancel ? 'Canceled' : 'Cancel'}}</button>
       <button (click)="onSelect(event)" class="more">
         MORE INFO
       </button>
     </div>
   </section>
   <div class="footer text-center dark-grey-text">
-    <span class="address"
-      ><span
-        ><i class="fas fa-map-marker" title="Локація"></i>
-        {{ event?.location.address }}</span
-      ></span
-    >
+    <span class="address"><span><i class="fas fa-map-marker" title="Локація"></i>
+        {{ event?.location.address }}</span></span>
     <div class="description z-depth-1 text-muted">
       <div class="attenders-icons">
-        <app-participants-count
-          [count]="event?.players.count"
-          [joined]="event?.players.joined"
-        >
+        <app-participants-count [count]="event?.players.count" [joined]="event?.players.joined">
         </app-participants-count>
       </div>
       <div class="description-text">
@@ -57,33 +43,24 @@
         <div>
           <span class="label">
             <i class="far fa-clock" title="Тривалісь зустрічі"></i>Duration of
-            the meeting:</span
-          ><b> {{ event?.duration }}</b>
+            the meeting:</span><b> {{ event?.duration }}</b>
         </div>
         <div class="age">
           <span class="label">
             <i class="fas fa-baby"></i>
             <i class="fas fa-child" title="Вік гравців"></i> Age of
-            players:</span
-          ><b> {{ event?.players.age.min }} - {{ event?.players.age.max }}</b>
+            players:</span><b> {{ event?.players.age.min }} - {{ event?.players.age.max }}</b>
         </div>
         <div class="count">
           <span class="label">
             <i class="fas fa-users" title="Кількість гравців"></i> Count of
-            players:</span
-          ><b>
-            {{ event?.players.count.min }} - {{ event?.players.count.max }}</b
-          >
+            players:</span><b>
+            {{ event?.players.count.min }} - {{ event?.players.count.max }}</b>
         </div>
         <div class="organizer" *ngIf="authService.isLoggedIn">
           <span class="label">
-            <i class="far fa-address-card" title="Організатор"></i
-            >Organizer:</span
-          ><b>
-            <button
-              class="organizerName"
-              (click)="redirectToUserPage((event?.organizerInfo)[0])"
-            >
+            <i class="far fa-address-card" title="Організатор"></i>Organizer:</span><b>
+            <button class="organizerName" (click)="redirectToUserPage((event?.organizerInfo)[0])">
               {{
                 (event?.organizerInfo)[0].personal.firstName ||
                   (event?.organizerInfo)[0].personal.name

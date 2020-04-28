@@ -52,3 +52,19 @@ heading-text {
   padding-top: 30px;
   overflow: hidden;
 }
+
+@media screen and (max-width:415px) {
+  h2 {
+    display: block;
+    font-weight: 700;
+    font-size: 9vw;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 5vw;
+    padding: 0 30px;
+    line-height: 32px;
+  }
+}

@@ -105,12 +105,13 @@ import { DateFormatPipe } from "./date-format.pipe";
 import { LayoutGamesComponent } from "./layout/layout-games/layout-games.component";
 import { LayoutHeaderMainComponent } from "./layout/layout-header-main/layout-header-main.component";
 
-import { UserCreatedEventItemComponent } from "./user-created-event-item/user-created-event-item.component";
 import { DialogForCancelBtnComponent } from "./dialog-for-cancel-btn/dialog-for-cancel-btn.component";
 import { FavGameNamesComponent } from "./fav-game-names/fav-game-names.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { MatConfirmDialogComponent } from "./mat-confirm-dialog/mat-confirm-dialog.component";
 import { LayoutTimeLineComponent } from "./layout/layout-time-line/layout-time-line.component";
+import { UsersPastEventsComponent } from "./users-past-events/users-past-events.component";
+import { FilterCheckboxComponent } from "./filter-checkbox/filter-checkbox.component";
 
 @NgModule({
   declarations: [
@@ -170,7 +171,6 @@ import { LayoutTimeLineComponent } from "./layout/layout-time-line/layout-time-l
     SearchFilterPipe,
     AddGameFormComponent,
     DateFormatPipe,
-    UserCreatedEventItemComponent,
     DialogForCancelBtnComponent,
 
     LayoutGamesComponent,
@@ -179,6 +179,8 @@ import { LayoutTimeLineComponent } from "./layout/layout-time-line/layout-time-l
     NotificationsComponent,
     MatConfirmDialogComponent,
     LayoutTimeLineComponent,
+    UsersPastEventsComponent,
+    FilterCheckboxComponent,
   ],
   imports: [
     RouterModule,

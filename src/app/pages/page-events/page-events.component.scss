@@ -1,4 +1,4 @@
-@import '../../../sass/variables';
+@import "../../../sass/variables";
 
 // .page-heading-message {
 //   background-color: #003049;
@@ -61,12 +61,12 @@ app-event-item {
 .controls {
   background-color: $color-orange;
   color: #fff;
-  border-radius: 10px;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 5;
   margin-top: -45px;
-  margin-bottom: 5px;
-  padding: 50px 20px 40px;
+  margin-bottom: 30px;
+  padding: 50px 20px 20px;
   // position: -webkit-sticky;
   // position: sticky;
   top: 0;
@@ -93,13 +93,23 @@ app-event-item {
       display: flex;
       justify-content: space-between;
     }
+
+    .checkboxes-wrap {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 10px;
+
+      app-filter-checkbox + app-filter-checkbox {
+        margin-left: 20px;
+      }
+    }
   }
 
   .search-wrap {
     flex: 1 0 auto;
     margin: 0 20px;
 
-    input[type='search'] {
+    input[type="search"] {
       border: 1px solid #f2efea;
       border-radius: 4px;
       background: none;
@@ -140,6 +150,16 @@ app-event-item {
   }
 }
 
+.panel-heading {
+  text-align: center;
+  font-family: "Kelly Slab", cursive;
+  font-weight: bold;
+  margin: 10px 0 20px;
+  padding: 10px;
+  font-size: 2.2rem;
+  color: #003049;
+}
+
 /*style the box*/
 .gm-style-iw {
   width: 250px !important;
@@ -150,7 +170,7 @@ app-event-item {
 
 .eventsList {
   &:empty:before {
-    content: 'No matches';
+    content: "No matches";
     margin: 0 15px;
   }
 }

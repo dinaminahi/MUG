@@ -1,25 +1,23 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "./../../shared/auth.service";
-import { UserItem } from "./user";
-import { map } from "rxjs/operators";
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './../../shared/auth.service';
+import { UserItem } from './user';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.scss"],
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   expectedUser: UserItem;
   expectedUserCity: String;
   userId: string;
   currUserId: string;
-  favouriteGames: any;
-  favouriteGamesNames = [];
 
   constructor(
     private authService: AuthService,
@@ -28,24 +26,30 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.actRoute.params.pipe(map((p) => p.id)).subscribe((id) => {
+    // this.userId = this.actRoute.snapshot.paramMap.get('id');
+    this.actRoute.params.pipe(map(p => p.id)).subscribe(id => {
       this.getUserData(id);
+    });
+    this.actRoute.queryParamMap.subscribe(queryParams => {
+      let canceledEventId = queryParams.get('canceled');
+      console.log(canceledEventId);
+      this.getUserData(this.actRoute.snapshot.paramMap.get('id'));
     });
   }
 
   getUserData(id) {
     this.userId = id;
     this.currUserId = this.authService.UserId;
-    this.authService.getUserProfile(this.userId).subscribe((res) => {
+    this.authService.getUserProfile(this.userId).subscribe(res => {
       this.expectedUser = res.msg;
       this.expectedUserCity = res.msg.personal.location.address.substring(
         0,
-        res.msg.personal.location.address.indexOf(",")
+        res.msg.personal.location.address.indexOf(',')
       );
     });
   }
 
   goEdit() {
-    this.router.navigate(["/user-edit", this.authService.UserId]);
+    this.router.navigate(['/user-edit', this.authService.UserId]);
   }
 }
