@@ -14,7 +14,7 @@ export class EventsFilterPipe implements PipeTransform {
     hideFull: boolean
   ): EventItem[] {
     if (
-      !events ||
+      !events.length ||
       !(
         categories.length ||
         dates.length ||
