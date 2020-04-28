@@ -1,6 +1,6 @@
 <!--Navbar-->
 
-<mdb-navbar SideClass="navbar navbar-expand-md navbar-dark unique-color" [containerInside]="false" mdbStickyHeader>
+<mdb-navbar SideClass="navbar  navbar-expand-md navbar-dark unique-color" [containerInside]="false" mdbStickyHeader>
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="pl-5 navbar-brand font-weight-bold" routerLink="/home" routerLinkActive="active">MUG</a>
   </mdb-navbar-brand>
@@ -25,10 +25,10 @@
           <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/news"
             routerLinkActive="active">News</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link waves-light nav-link-lt" mdbWavesEffect routerLink="/about"
             routerLinkActive="active">About</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a (click)="Scrolldown()" class="nav-link waves-light nav-link-lt" mdbWavesEffect pageScroll
             [routerLink]="['home']" href="#contacts-elem">Contacts</a>
