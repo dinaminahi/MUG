@@ -60,23 +60,22 @@ heading-text {
 
 
 // ---------------
-.body {
-  margin: 0;
-  padding: 0;
-  background: #262626;
 
-}
 
 .team {
+  margin: 0;
+  padding: 0;
   padding: 50px 0;
   height: 100vh;
   box-sizing: border-box;
+  background: #262626;
 }
 
 .contain {
   width: 80%;
   max-width: 1100px;
   margin: 50px auto;
+  position: relative;
 }
 
 .row {
@@ -207,6 +206,25 @@ heading-text {
   .contain {
     width: 90%;
     margin: 20px auto;
+  }
+
+  .row .column {
+
+    width: calc(50% - 20px);
+    margin-bottom: 20px;
+  }
+}
+
+@media(max-width:600px) {
+  .contain {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .row .column {
+
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
   }
 }
 
