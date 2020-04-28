@@ -93,18 +93,20 @@ export class PageEventsComponent implements OnInit {
       e.dateFormated = this.getCustomDates(e.dateTime).filteredLabels;
     });
 
-    // result will contain generated array of all date labels but in random order
+    // the customDateLabelsExistedInEvents will contain generated array of all date labels but in random order
     // so instead of this we return a separate getCustomDates().allLabels property
-    // which contains the same array but correctly ordered
-    // const result = [
-    //   ...new Set(
-    //     this.events
-    //       .map((e) => e.dateFormated)
-    //       .reduce((acc, val) => acc.concat(val), [])
-    //   ),
-    // ];
+    // which contains the same array but correctly ordered but filter it by existence inside the customDateLabelsExistedInEvents
+    const customDateLabelsExistedInEvents = [
+      ...new Set(
+        this.events
+          .map((e) => e.dateFormated)
+          .reduce((acc, val) => acc.concat(val), [])
+      ),
+    ];
 
-    return this.getCustomDates().allLabels;
+    return this.getCustomDates().allLabels.filter((label) =>
+      customDateLabelsExistedInEvents.includes(label)
+    );
   }
 
   getCustomDates(eventDateString = "") {
