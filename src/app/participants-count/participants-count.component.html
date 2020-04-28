@@ -1,15 +1,9 @@
 <div class="participants-count">
   <div class="max" *ngIf="count.max !== null">
-    <i
-      class="fas fa-user-alt"
-      *ngFor="let item of [].constructor(count.max)"
-    ></i>
+    <i *ngFor="let item of [].constructor(count.max)"></i>
   </div>
   <div class="current" *ngIf="count.current !== null">
-    <i
-      class="fas fa-user-alt filled"
-      *ngFor="let item of [].constructor(count.current)"
-    ></i>
+    <i *ngFor="let item of [].constructor(count.current)"></i>
   </div>
   <div *ngIf="this.authService.UserId" class="users">
     <button
