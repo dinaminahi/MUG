@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { CheckboxItem } from "../filter-category/checkbox-item";
+import { CheckboxItem } from "../filter-checkbox/checkbox-item";
 
 @Component({
   selector: "app-filter-date",
