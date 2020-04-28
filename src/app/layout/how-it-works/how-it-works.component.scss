@@ -19,13 +19,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 400px;
+  width: 20vw;
+  height: 32vh;
   // background: #fff;
   transform-style: preserve-3d;
   perspective: 2000px;
   transition: 0.5s;
-  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 
   &:hover {
     transform: translate(-50%, -50%) rotateY(-30deg) skewY(4deg);
