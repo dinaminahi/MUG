@@ -12,6 +12,7 @@ import mongoose from "mongoose";
 export class AddToFavoritesComponent {
   @Input() gameId: mongoose.Types.ObjectId;
   @Input() eventId: mongoose.Types.ObjectId;
+  @Input() tooltipPlacement: string;
   isFavorited: boolean;
   isLoading: boolean;
   user: UserItem;

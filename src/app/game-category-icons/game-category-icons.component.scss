@@ -1,3 +1,5 @@
+@import "../../sass/variables";
+
 .icon-wrap {
   i {
     & + b {
@@ -5,7 +7,7 @@
     }
   }
   & + .icon-wrap {
-    margin-left: 15px;
+    margin-left: 20px;
   }
 }
 
@@ -21,6 +23,18 @@
 
     & + .icon-wrap {
       margin: 0px;
+    }
+  }
+}
+
+:host-context(.game-detail) {
+  .icon-wrap {
+    i {
+      color: $color-orange;
+      vertical-align: middle;
+    }
+    b {
+      font-size: 14px;
     }
   }
 }

@@ -2,28 +2,28 @@
   <div class="main-header"></div>
 </header>
 
-<div class="game-detail container">
-  <div class="row">
-    <div class="col">
-      <div class="game-item">
-        <div class="rating">
-          <i class="fas fa-award">25</i>
-
-          <span class="label-rating">Count of events with this game</span>
-        </div>
+<div class="game-detail">
+  <div class="game-item">
+    <div class="wrap-carousel">
+      <div class="container">
         <div class="favorite">
           <div class="icon-wrap">
-            <app-add-to-favorites [gameId]="game?._id"></app-add-to-favorites>
+            <app-add-to-favorites
+              [gameId]="game?._id"
+              [tooltipPlacement]="'left'"
+            ></app-add-to-favorites>
           </div>
         </div>
+        <app-games-carousel
+          [imgs]="game?.photoUrl"
+          [title]="game?.name"
+        ></app-games-carousel>
+      </div>
+    </div>
 
-        <div class="wrap-carousel">
-          <app-games-carousel
-            [imgs]="game?.photoUrl"
-            [title]="game?.name"
-          ></app-games-carousel>
-        </div>
-        <section class="game-content">
+    <section class="game-content">
+      <div class="game-meta-wrap">
+        <div class="container">
           <div class="game-meta">
             <div>
               <span class="label">
@@ -51,40 +51,51 @@
               <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="category">
+          <app-game-category-icons
+            [categories]="game?.categories"
+          ></app-game-category-icons>
+        </div>
+        <h2 class="game-title">
+          <span>{{ game?.name }}</span>
+        </h2>
 
-          <div class="category">
-            <app-game-category-icons
-              [categories]="game?.categories"
-            ></app-game-category-icons>
-            <!-- {{ game?.category }} -->
-          </div>
-          <h2 class="game-title">
-            <span>{{ game?.name }}</span>
-          </h2>
-
-          <div>
-            <div class="row">
-              <div class="description">
-                {{ game?.description }}
-              </div>
-              <!-- <div class="instructionUrl">
+        <div class="description">
+          {{ game?.description }}
+        </div>
+        <!-- <div class="instructionUrl">
                 <b>Детальніша інструкція: </b>{{ game?.instructionUrl }}
               </div> -->
-              <button
-                class="create-event-btn"
-                routerLinkActive="active"
-                routerLink="/pageaddevent"
-              >
-                Create an event with this game
-              </button>
-
-              <!-- <button class="back" (click)="gotoGames()">
-                Повернутися до списку ігор
-              </button> -->
+      </div>
+      <div class="create-event-btn-wrap">
+        <button
+          class="create-event-btn"
+          routerLinkActive="active"
+          routerLink="/pageaddevent"
+        >
+          Create an event with this game
+        </button>
+      </div>
+      <div class="related-events" *ngIf="relatedEvents.length">
+        <div class="container">
+          <h2>Check the nearest upcoming events with this game</h2>
+          <div class="row">
+            <div
+              class="col-lg-4 col-md-6 col-sm-12"
+              *ngFor="let event of relatedEvents"
+            >
+              <app-event-item [event]="event"></app-event-item>
             </div>
           </div>
-        </section>
+        </div>
       </div>
-    </div>
+
+      <!-- <button class="back" (click)="gotoGames()">
+                Повернутися до списку ігор
+              </button> -->
+    </section>
   </div>
 </div>

@@ -68,7 +68,7 @@ body {
 
 // Game page carousel with thumbnails
 .carousel-thumbnails {
-  padding-bottom: 50px;
+  margin-bottom: 50px;
 
   .carousel-item {
     height: 200px;
@@ -78,11 +78,11 @@ body {
     }
 
     @media (min-width: 768px) {
-      height: 350px;
+      height: 300px;
     }
 
     @media (min-width: 992px) {
-      height: 400px;
+      height: 300px;
     }
 
     img {
@@ -95,21 +95,33 @@ body {
   }
 
   .carousel-indicators {
+    margin-bottom: -50px;
+
     li {
       width: auto !important;
       height: 30px !important;
-      border-radius: 0 !important;
+      border-radius: 4px !important;
       border: none !important;
+      opacity: 1 !important;
+      margin: 0 5px !important;
 
       &.active {
-        outline: #000 solid 1px;
+        outline: $color-orange solid 2px;
       }
 
       img {
-        width: auto !important;
+        width: 100% !important;
         height: 100%;
+        object-fit: cover;
       }
     }
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: $color-orange;
+    padding: 5px;
+    border-radius: 50%;
   }
 }
 
@@ -131,8 +143,14 @@ body {
   font-size: 12px;
   line-height: 1.2;
   white-space: nowrap;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2.5rem;
   border-radius: 4px;
   background-color: #ff6f59;
   color: #fff;
+}
+.tooltip-top .tooltip-arrow.arrow:before {
+  border-top-color: #ff6f59;
+}
+.tooltip-left .tooltip-arrow.arrow:before {
+  border-left-color: #ff6f59;
 }

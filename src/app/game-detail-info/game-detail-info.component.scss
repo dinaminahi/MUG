@@ -1,5 +1,9 @@
 @import "../../sass/variables";
 
+.container {
+  position: relative;
+}
+
 .game-item {
   padding: 0;
   margin: 0;
@@ -9,12 +13,11 @@
   .favorite {
     position: absolute;
     z-index: 2;
-    top: 40px;
+    top: 0px;
     right: 30px;
     font-size: 2.5rem;
-    background-color: #f4f4f4;
+    background-color: #fff;
     border: solid 1px #3a3535;
-    box-shadow: 0 0 0 1px #f4f4f4;
     border-radius: 100%;
     padding: 10px;
     width: 30px;
@@ -22,46 +25,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .icon-wrap {
-      transform: scale(0.7);
-    }
-  }
-  .rating {
-    position: absolute;
-    z-index: 2;
-    top: 70px;
-    right: 50px;
-    font-size: 2.5rem;
-    padding: 20px;
-    width: 30px;
-    height: 30px;
-    color: $color-attention;
-    i {
-      transform: scale(0.7);
-      top: 0;
-      right: 0;
-    }
-
-    .label-rating {
-      position: absolute;
-      z-index: 2;
-      width: 50px;
-      font-size: 11px;
-      text-align: center;
-      line-height: 1.1;
-      opacity: 0.7;
-      white-space: normal;
-      display: none;
-    }
-  }
-
-  .rating:hover .label-rating {
-    display: block;
   }
 
   .wrap-carousel {
+    padding: 3rem 0 2rem;
     background-color: #f9f3ee;
   }
+
   .img {
     margin: 0;
     position: relative;
@@ -90,7 +60,7 @@
     text-align: center;
     font-family: "Kelly Slab", cursive;
     font-weight: bold;
-    margin: 10px 0 0;
+    margin: 10px 0 20px;
     padding: 10px;
     font-size: 2.2rem;
     color: #003049;
@@ -103,17 +73,14 @@
   margin: 0 0 10px;
   padding: 10px;
   font-size: 1.2rem;
-
-  .icon-wrap {
-    i {
-      color: $color-orange;
-    }
-  }
 }
 
-.game-meta {
+.game-meta-wrap {
   background: #f4f4f4;
   padding: 15px;
+  margin-bottom: 30px;
+}
+.game-meta {
   margin: 0;
   display: flex;
   flex-wrap: nowrap;
@@ -156,8 +123,20 @@
   }
 }
 
+.description {
+  margin: 0;
+  margin-bottom: 40px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.create-event-btn-wrap {
+  padding: 30px 0;
+  text-align: center;
+  background: #f4f4f4;
+}
+
 .create-event-btn {
-  flex: 0 0 auto;
   background-color: $color-orange;
   border: none;
   border-radius: 4px;
@@ -167,8 +146,7 @@
   font-weight: 600;
   padding: 12px 40px;
   text-decoration: none;
-  margin: 20px auto;
-  display: block;
+  margin: 0 auto;
 
   &:active {
     position: relative;
@@ -176,11 +154,13 @@
   }
 }
 
-.description {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #f9f3ee;
-  font-size: 18px;
-  line-height: 1.5;
+h2 {
+  text-align: center;
+  font-family: "Kelly Slab", cursive;
+  font-weight: bold;
+  margin: 40px 0 10px;
+  padding: 10px;
+  font-size: 1.6rem;
+  color: #003049;
+  z-index: 10;
 }
