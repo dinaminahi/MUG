@@ -38,15 +38,16 @@
                         {{ expectedEvent?.players?.count?.max }}</span>
                 </li>
                 <li>Event duration: <span class="pl-4">{{ expectedEvent?.duration }}</span></li>
-                <li>Do you need experience for this event?<span
-                        class="pl-4">{{ expectedEvent?.players?.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
+                <li>Experience<span class="pl-4">{{expectedEvent?.players?.experiance}}</span>
                 </li>
             </ul>
-            <p class="mt-2">Share with friends</p>
-            <p><a href="https://www.facebook.com/"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
-                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-2x mr-3"></i></a>
-                <a href="https://twitter.com"><i class="fab fa-twitter-square fa-2x mr-3"></i></a>
-                <a href="www.linkedin.com"><i class="fab fa-linkedin fa-2x"></i></a>
+            <app-participants-count [count]="expectedEvent?.players?.count" [joined]="expectedEvent?.players?.joined">
+            </app-participants-count>
+            <p class="mt-4">Share with friends</p>
+            <p><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram fa-2x mr-3"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square fa-2x mr-3"></i></a>
+                <a href="www.linkedin.com" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
             </p>
         </div>
         <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">

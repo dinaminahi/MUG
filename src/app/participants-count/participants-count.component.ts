@@ -21,6 +21,8 @@ export class ParticipantsCountComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {
+    console.log(this.joined);
+    console.log(this.count);
     if (this.count && this.joined) {
       // console.log(this.count, this.joined);
       // normalize output if the count/joined test DB records contains issues

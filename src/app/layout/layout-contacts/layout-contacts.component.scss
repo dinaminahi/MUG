@@ -1,30 +1,184 @@
-.yd-5 {
+@import './../../../sass/variables';
+// .yd-5 {
+//   background-color: black;
+//   background-size: cover;
+//   background-position: center center;
+//   height: 100%;
+//   // background-position: center;
+//   background-repeat: no-repeat;
+//   background-attachment: fixed;
+//   // z-index: 1;
+//   height: 730px;
+// }
+
+// .btn {
+//   background-color: orange;
+// // }
+
+// .rgba-black-strong,
+// .rgba-black-strong:after {
+//   height: 100%;
+// }
+
+// .card {
+//   position: relative;
+// }
+
+// @media screen and (max-width: 768px) {
+//   .adress {
+//     display: none;
+//   }
+// }
+
+// .container {
+// }
+
+.contacts {
   background-image: url('src/assets/img/home_page_img/bg-x3.png');
   background-size: cover;
   background-position: center center;
-  height: 100%;
   // background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   // z-index: 1;
-  height: 730px;
+  height: 500px;
 }
 
-.btn {
-  background-color: orange;
+.black-opacity {
+  background-color: rgba(0, 0, 0, 0.363);
+  padding: 70px 0;
+  margin-bottom: 100px;
 }
 
-.rgba-black-strong,
-.rgba-black-strong:after {
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+  background-color: #fff;
+}
+
+.container-1 {
+  color: #ff5a6e;
+  width: 100%;
+  background-color: #fff;
+}
+
+.container-1 h2 {
+  width: 100%;
+  font-weight: 700;
+  font-size: 3vw;
+  text-transform: uppercase;
+  color: #ff5a6e;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.container-1 .row100 {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.container-1 .row100 .col1 {
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  margin: 30px 0 10px;
+  transition: 0.5s;
+}
+
+.container-1 .row100 .input-box {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  color: #ff5a6e;
+}
+
+.container-1 .row100 .input-box input,
+.container-1 .row100 .input-box.textarea textarea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  padding: 0 10px;
+  z-index: 1;
+  color: #000;
+  display: block;
+}
+
+.container-1 .row100 .input-box .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  display: block;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.container-1 .row100 .input-box input:focus + .text,
+.container-1 .row100 .input-box input:valid + .text {
+  top: -35px;
+  left: -10px;
+}
+
+.container-1 .row100 .input-box .line {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ff5a6e;
+  transition: 0.5s;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.container-1 .row100 .input-box input:focus ~ .line,
+.container-1 .row100 .input-box input:valid ~ .line {
   height: 100%;
 }
 
-.card {
+.container-1 .row100 .input-box.textarea {
   position: relative;
+  width: 100%;
+  height: 100px;
+  padding: 10px 0;
 }
 
-@media screen and (max-width: 768px) {
-  .adress {
-    display: none;
-  }
+.container-1 .row100 .input-box.textarea textarea {
+  height: 100%;
+  resize: none;
+}
+
+.container-1 .row100 .input-box textarea:focus + .text,
+.container-1 .row100 .input-box textarea:valid + .text {
+  top: -35px;
+  left: -10px;
+}
+
+.container-1 .row100 .input-box textarea:focus ~ .line,
+.container-1 .row100 .input-box textarea:valid ~ .line {
+  height: 100%;
+}
+
+.submit {
+  border: none;
+  padding: 7px 35px;
+  cursor: pointer;
+  outline: none;
+  background-color: #ff5a6e;
+  color: #fff;
+  font-size: 25px;
+  border-radius: 2px;
 }

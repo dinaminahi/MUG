@@ -9,6 +9,7 @@
       </div>
       <span style="font-size: 15px;">Use your email for registration</span>
       <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
+      <p [class.d-none]="email.valid || email.untouched" class="text-danger"></p>
       <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
         formControlName="password" />
