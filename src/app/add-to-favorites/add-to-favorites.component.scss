@@ -1,5 +1,9 @@
 button {
   outline: none;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 .heart {
   cursor: pointer;
