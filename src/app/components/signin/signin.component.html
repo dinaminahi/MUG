@@ -2,19 +2,19 @@
   <div class="form-container sign-up-container">
     <form action="#" [formGroup]="signupForm" (ngSubmit)="registerUser()">
       <h1>Create Account</h1>
-      <div class="social-container">
-        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
-      </div>
-      <span style="font-size: 15px;">Use your email for registration</span>
-      <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
-      <p [class.d-none]="email.valid || email.untouched" class="text-danger"></p>
-      <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
+
+      <span style="font-size: 15px;">All fields required</span>
+      <input type="text" matInput placeholder="User Name" required name="name" formControlName="name"
+        [class.is-invalid]="nameUp.invalid && nameUp.touched" />
+      <p [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required</p>
+      <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email"
+        [class.is-invalid]="emailUp.invalid && emailUp.touched" />
+      <p [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is required</p>
+
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-        formControlName="password" />
-      <!-- <input matInput placeholder="Password" type="password" required minlength="6" name="repassword"
-        formControlName="repassword" /> -->
+        formControlName="password" [class.is-invalid]="passwordUp.invalid && passwordUp.touched" />
+      <p [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is required</p>
+
       <button id="submit-up" (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
         Sign Up
       </button>
@@ -23,22 +23,18 @@
   <div class="form-container sign-in-container">
     <form action="#" [formGroup]="signinForm" (ngSubmit)="loginUser()">
       <h1>Sign in</h1>
-      <div class="social-container">
-        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
-      </div>
+
       <span style="font-size: 15px;">All fields required</span>
 
-      <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
-      <p [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error"></p>
+      <input type="email" matInput placeholder="Email" required name="email" formControlName="email"
+        [class.is-invalid]="emailIn.invalid && emailIn.touched" />
+      <p [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is required</p>
 
 
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-        formControlName="password" />
-      <p [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error"></p>
+        formControlName="password" [class.is-invalid]="passwordIn.invalid && passwordIn.touched" />
+      <p [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is required</p>
 
-      <a href="#">Forgot your password?</a>
       <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
         Sign In
       </button>
@@ -74,15 +70,17 @@
       <mat-tab label="Sign In" [selectedIndex]='1'>
         <mat-card-content>
           <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your account</span>
-            <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
+
+            <span>All fields required</span>
+            <input type="email" matInput placeholder="Email" required name="email" formControlName="email"
+              [class.is-invalid]="emailIn.invalid && emailIn.touched" />
+            <p [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is required</p>
+
             <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-              formControlName="password" />
+              formControlName="password" [class.is-invalid]="passwordIn.invalid && passwordIn.touched" />
+            <p [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is required
+            </p>
+
             <a href="#">Forgot your password?</a>
 
             <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
@@ -99,22 +97,23 @@
       <mat-tab label="Sign Up">
         <mat-card-content>
           <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your email for registration</span>
-            <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
-            <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
-            <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-              formControlName="password" />
-            <!-- <mat-form-field>
-              <input matInput placeholder="Password" type="password" required minlength="6" name="repassword"
-                formControlName="repassword" />
 
-              <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field> -->
+            <span>All fields required</span>
+            <input type="text" matInput placeholder="User Name" required name="name" formControlName="name"
+              [class.is-invalid]="nameUp.invalid && nameUp.touched" />
+            <p [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required
+            </p>
+
+            <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email"
+              [class.is-invalid]="emailUp.invalid && emailUp.touched" />
+            <p [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is required</p>
+
+            <input matInput placeholder="Password" type="password" required minlength="6" name="password"
+              formControlName="password" [class.is-invalid]="passwordUp.invalid && passwordUp.touched" />
+            <p [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is required
+            </p>
+
+
             <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
               Sign Up
             </button>

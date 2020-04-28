@@ -31,7 +31,7 @@ export class SigninComponent implements OnInit {
     return this.signupForm.get('email');
   }
   get passwordUp() {
-    return this.signupForm.get('[password]');
+    return this.signupForm.get('password');
   }
 
   constructor(
