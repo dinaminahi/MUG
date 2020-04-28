@@ -62,21 +62,24 @@ heading-text {
 // ---------------
 
 
+
 .team {
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+  padding: 0 auto;
   padding: 50px 0;
-  height: 100vh;
+
   box-sizing: border-box;
   background: #262626;
+  // padding-bottom: 50px;
+  // margin-bottom: 50px;
 }
 
-.contain {
-  width: 80%;
-  max-width: 1100px;
-  margin: 50px auto;
-  position: relative;
-}
+// .contain {
+//   width: 80%;
+//   max-width: 1100px;
+//   margin: 50px auto;
+//   position: relative;
+// }
 
 .row {
   position: relative;
@@ -216,8 +219,8 @@ heading-text {
 }
 
 @media(max-width:600px) {
-  .contain {
-    width: 90%;
+  .container {
+    width: 91%;
     margin: 20px auto;
   }
 
