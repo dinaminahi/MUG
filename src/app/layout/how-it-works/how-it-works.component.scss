@@ -23,9 +23,11 @@
     display: none;
   }
 
-  .row {
-    display: none !important;
-  }
+
+  // .hide {
+  //   display: box;
+  // }
+
 
   .box {
     position: absolute;
@@ -159,12 +161,7 @@
     z-index: 1;
   }
 
-  .col-md-12,
-  col-md-6 {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-height: 10px;
-  }
+
 
   .container {
     max-width: 1240px;
