@@ -46,8 +46,12 @@ body {
     }
   }
 
+  .carousel-item {
+    padding-bottom: 10px;
+  }
+
   .carousel-indicators {
-    bottom: 20px;
+    bottom: 30px;
 
     li {
       background: $color-orange;
