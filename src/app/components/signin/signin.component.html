@@ -28,13 +28,16 @@
         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
       </div>
-      <span style="font-size: 15px;">Use your account</span>
+      <span style="font-size: 15px;">All fields required</span>
 
       <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
+      <p [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error"></p>
 
 
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
         formControlName="password" />
+      <p [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error"></p>
+
       <a href="#">Forgot your password?</a>
       <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
         Sign In

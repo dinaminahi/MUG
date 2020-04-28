@@ -1,17 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataService } from './../data.service';
 import { AuthService } from './../shared/auth.service';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { SigninComponent } from './../components/signin/signin.component';
 
 @Component({
