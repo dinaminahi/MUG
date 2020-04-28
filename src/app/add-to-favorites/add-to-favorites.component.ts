@@ -16,6 +16,7 @@ export class AddToFavoritesComponent {
   isFavorited: boolean;
   isLoading: boolean;
   user: UserItem;
+  isDisabled: boolean = true;
 
   constructor(
     private _dataService: DataService,
@@ -27,6 +28,7 @@ export class AddToFavoritesComponent {
         if (!this.user) {
           return false;
         }
+        this.isDisabled = false;
         this.setIsFavorited();
       });
     }

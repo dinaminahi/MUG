@@ -5,13 +5,13 @@
 
   .favorite {
     position: absolute;
-    z-index: 2;
+    z-index: 6;
     top: 10px;
     right: 10px;
     font-size: 2.5rem;
     background-color: #fff;
     border: solid 1px $color-main-blue;
-    box-shadow: 0 0 0 1px $color-main;
+    box-shadow: 0 0 0 1px #fff;
     border-radius: 100%;
     padding: 10px;
     width: 30px;
@@ -30,7 +30,7 @@
     z-index: 5;
 
     &:hover {
-      box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
       border-radius: 4px;
     }
   }
@@ -118,7 +118,7 @@
       data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHUlEQVQYV2PMycmRmjJlyjMGKGCEMTAEYCoxVAAAT+0IBdzYUhIAAAAASUVORK5CYII=
          )
       repeat;
-    color: $color-main-blue;
+    color: #333;
     border-radius: 0 0 3px 3px;
   }
 
@@ -141,6 +141,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
+  background: rgba(199, 199, 199, 0.2);
 
   & > div {
     white-space: nowrap;
@@ -171,6 +172,7 @@
       line-height: 1.2;
       opacity: 0.8;
       white-space: normal;
+      color: #333;
     }
 
     & + b {

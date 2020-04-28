@@ -9,10 +9,11 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-game-category-icons",
   templateUrl: "./game-category-icons.component.html",
-  styleUrls: ["./game-category-icons.component.scss"]
+  styleUrls: ["./game-category-icons.component.scss"],
 })
 export class GameCategoryIconsComponent implements OnInit {
   @Input() categories: GameCategory[];
+  @Input() showTooltip: boolean = true;
 
   constructor(private http: HttpClient) {}
 
