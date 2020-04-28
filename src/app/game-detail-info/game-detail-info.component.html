@@ -27,8 +27,8 @@
           <div class="game-meta">
             <div>
               <span class="label">
-                <i class="far fa-clock" title="Тривалісь гри"></i>
-                <span class="label-text">Тривалісь гри</span>
+                <i class="far fa-clock" title="Duration of the game"></i>
+                <span class="label-text">Duration</span>
               </span>
               <b>
                 {{ game?.playTimeMinutes.min }} -
@@ -38,15 +38,15 @@
             <div class="age">
               <span class="label">
                 <i class="fas fa-baby"></i>
-                <i class="fas fa-child" title="Мінімальний вік гравців"></i>
-                <span class="label-text">Мінімальний вік гравців</span>
+                <i class="fas fa-child" title="Minimum age of players"></i>
+                <span class="label-text">Min.age</span>
               </span>
               <b>{{ game?.playersMinAge }}</b>
             </div>
             <div class="count">
               <span class="label">
-                <i class="fas fa-users" title="Кількість гравців"></i>
-                <span class="label-text">Кількість гравців</span>
+                <i class="fas fa-users" title="Count of players"></i>
+                <span class="label-text">Count</span>
               </span>
               <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
             </div>
@@ -76,7 +76,7 @@
           routerLinkActive="active"
           routerLink="/pageaddevent"
         >
-          Create an event with this game
+          Create Event for Game
         </button>
       </div>
       <div class="related-events" *ngIf="relatedEvents.length">

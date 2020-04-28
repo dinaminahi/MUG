@@ -136,6 +136,7 @@ app-event-item {
     padding: 12px 40px;
     text-decoration: none;
     margin: 0 0 0 20px;
+    outline: none;
 
     &:active {
       position: relative;
@@ -168,12 +169,12 @@ app-event-item {
   border-radius: 2px 2px 0 0;
 }
 
-.eventsList {
-  &:empty:before {
-    content: "No matches";
-    margin: 0 15px;
-  }
-}
+// .eventsList {
+//   &:empty:before {
+//     content: "No matches";
+//     margin: 0 15px;
+//   }
+// }
 
 @media (max-width: 991px) {
   .controls {

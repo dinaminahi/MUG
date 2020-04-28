@@ -13,7 +13,7 @@ body {
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: #ffffff;
+  background: #fff;
 }
 
 // ----navbar
@@ -21,6 +21,7 @@ body {
   // border-top: 3px solid $color-orange;
   padding-bottom: 15px;
 }
+
 // Home page carousel with multi items
 .carousel.carousel-multi-item {
   padding-bottom: 50px;
@@ -148,9 +149,11 @@ body {
   background-color: #ff6f59;
   color: #fff;
 }
+
 .tooltip-top .tooltip-arrow.arrow:before {
   border-top-color: #ff6f59;
 }
+
 .tooltip-left .tooltip-arrow.arrow:before {
   border-left-color: #ff6f59;
 }

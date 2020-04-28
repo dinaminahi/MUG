@@ -6,7 +6,9 @@
   </div>
   <a href="javascript:void(0)" (click)="onSelect(game)" class="game-item-link">
     <div class="category-icons icons-block">
-      <app-game-category-icons [categories]="game?.categories"></app-game-category-icons>
+      <app-game-category-icons
+        [categories]="game?.categories"
+      ></app-game-category-icons>
 
       <span class="arrow"></span>
     </div>
@@ -20,27 +22,27 @@
       </h2>
 
       <div class="game-meta text-left">
-        <div class="duration" title="Тривалісь гри">
+        <div class="duration" title="Duration of the game">
           <span class="label">
             <i class="far fa-clock"></i>
-            <span class="label-text">Тривалісь гри</span>
+            <span class="label-text">Duration of the game</span>
           </span>
           <b>
             {{ game?.playTimeMinutes.min }} - {{ game?.playTimeMinutes.max }}
           </b>
         </div>
-        <div class="age" title="Мінімальний вік гравців">
+        <div class="age" title="Minimum age of players">
           <span class="label">
             <i class="fas fa-baby"></i>
             <i class="fas fa-child"></i>
-            <span class="label-text">Мінімальний вік гравців</span>
+            <span class="label-text">Minimum age of players</span>
           </span>
           <b>{{ game?.playersMinAge }}</b>
         </div>
-        <div class="count" title="Кількість гравців">
+        <div class="count" title="Count of players">
           <span class="label">
             <i class="fas fa-users"></i>
-            <span class="label-text">Кількість гравців</span>
+            <span class="label-text">Count of players</span>
           </span>
           <b>{{ game?.playersCount.min }} - {{ game?.playersCount.max }}</b>
         </div>

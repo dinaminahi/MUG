@@ -28,15 +28,15 @@
       <div class="filters-wrap">
         <h3>Filter by:</h3>
         <div class="filters-wrap-inner">
+          <div class="filters-game-name">
+            <app-filter-game-name [games]="gameName" (toggle)="onGameNameChange($event)"></app-filter-game-name>
+          </div>
           <div class="filters-category">
             <app-filter-category [categories]="categoriesCurrent" (toggle)="onCategoriesChange($event)">
             </app-filter-category>
           </div>
           <div class="filters-date">
             <app-filter-date [datesFormatted]="eventDateTimes" (toggle)="onDateTimeChange($event)"></app-filter-date>
-          </div>
-          <div class="filters-game-name">
-            <app-filter-game-name [games]="gameName" (toggle)="onGameNameChange($event)"></app-filter-game-name>
           </div>
         </div>
 
