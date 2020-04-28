@@ -9,7 +9,7 @@ h1 {
 }
 
 h4 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -19,7 +19,7 @@ h3 {
 }
 
 .main-header {
-  background-image: url('https://cdn.thewirecutter.com/wp-content/uploads/2018/03/boardgamesforadults-2x1-7452.jpg');
+  background-image: url('./../../assets/img/home_page_img/hero3.jpg');
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -28,14 +28,40 @@ h3 {
   z-index: 0;
 }
 
+.title {
+  font-family: $font-family-alt;
+  font-weight: bold;
+}
+
 .event-detail {
-  border-radius: 10px;
-  box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
   position: relative;
   margin-top: -150px;
+  border: 20px solid black;
   z-index: 1;
   background-color: white;
   color: #1a1b1e;
+
+  .fas:not(.event-icon) {
+    width: 50px;
+    height: 50px;
+    // background: $color-orange;
+    color: black;
+    text-align: center;
+    line-height: 50px;
+    font-size: 40px;
+    position: absolute;
+  }
+
+  .fas.fa1 {
+    top: 0;
+    left: 0;
+  }
+
+  .fas.fa4 {
+    bottom: 0;
+    right: 0;
+  }
 
   .goToGame-btn {
     color: #bbbbc0;
@@ -51,6 +77,11 @@ h3 {
   p {
     color: rgb(160, 160, 163);
   }
+}
+
+.event-description {
+  margin: 80px auto;
+  color: #1a1b1e;
 
   .fa-facebook-square,
   .fa-instagram,
@@ -58,13 +89,32 @@ h3 {
   .fa-linkedin {
     color: $color-main-blue;
   }
-}
 
-.event-description {
-  margin: 80px auto;
-  color: #1a1b1e;
+  .event-description-main {
+    border-left: 15px solid $color-orange;
+  }
 
-  p {
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
+  li {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-bottom: 10px;
+  }
+  li:last-child {
+    padding-bottom: 20px;
+  }
+
+  li::before {
+    content: '\1F3B2';
+    color: darkorange;
+    font-size: 12px;
+    padding-right: 8px;
+  }
+  li {
     color: rgb(160, 160, 163);
   }
 
@@ -78,8 +128,9 @@ h3 {
   }
 
   .organisor {
-    border-radius: 10px;
-    box-shadow: 0px 0px 23px -6px rgba(0, 0, 0, 0.15);
+    // border-radius: 10px;
+    border: 15px solid $color-main-blue;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
 
     img {
       width: 60px;

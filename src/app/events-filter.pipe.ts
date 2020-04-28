@@ -9,9 +9,20 @@ export class EventsFilterPipe implements PipeTransform {
     events: EventItem[],
     categories: string[],
     dates: string[],
-    gameNames: string[]
+    gameNames: string[],
+    hideCanceled: boolean,
+    hideFull: boolean
   ): EventItem[] {
-    if (!events || !(categories.length || dates.length || gameNames.length)) {
+    if (
+      !events ||
+      !(
+        categories.length ||
+        dates.length ||
+        gameNames.length ||
+        hideCanceled ||
+        hideFull
+      )
+    ) {
       return events;
     }
 
@@ -33,7 +44,25 @@ export class EventsFilterPipe implements PipeTransform {
         gameNameFilterPass = gameNames.includes(event.agame[0].name);
       }
 
-      return categoryFilterPass && dateFilterPass && gameNameFilterPass;
+      let hideCanceledFilterPass = true;
+      if (hideCanceled) {
+        hideCanceledFilterPass = !event.canceled;
+      }
+
+      let hideFullFilterPass = true;
+      if (hideFull) {
+        hideFullFilterPass = !(
+          event.players.count.current >= event.players.count.max
+        );
+      }
+
+      return (
+        categoryFilterPass &&
+        dateFilterPass &&
+        gameNameFilterPass &&
+        hideCanceledFilterPass &&
+        hideFullFilterPass
+      );
     });
   }
 }

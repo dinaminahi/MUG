@@ -11,13 +11,35 @@
   margin: 100px auto;
   background-color: #ffffff;
   border-radius: 8px;
+  padding: 70px 0;
+  position: relative;
+
+  .fas {
+    width: 60px;
+    height: 60px;
+    color: $color-orange;
+    // box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 60px;
+    font-size: 40px;
+    position: absolute;
+  }
+
+  .fas.fa1 {
+    top: 20px;
+    right: 20px;
+  }
 }
 
 label {
   font-size: 20px;
 }
 
-input,
+section {
+  border-left: 15px solid $color-orange;
+}
+
+input:not(.image-upload),
 textarea {
   padding-left: 10px;
   background-color: #eee;

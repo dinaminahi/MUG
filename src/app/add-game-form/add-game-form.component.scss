@@ -2,8 +2,26 @@
 
 .container {
   margin: 100px auto;
+  padding: 70px 0;
   background-color: #ffffff;
   border-radius: 8px;
+  position: relative;
+
+  .fas:not(.fa-minus) {
+    width: 60px;
+    height: 60px;
+    color: $color-orange;
+    // box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 60px;
+    font-size: 40px;
+    position: absolute;
+  }
+
+  .fas.fa1 {
+    top: 20px;
+    right: 20px;
+  }
 }
 
 .main-heading {
@@ -13,7 +31,7 @@
   color: $color-main-blue;
 }
 
-input,
+input:not(.image-upload),
 textarea {
   padding-left: 10px;
   background-color: #eee;
@@ -38,8 +56,12 @@ label {
 }
 
 .num-input {
-  width: 80px;
+  width: 80px !important;
   display: inline;
+}
+
+section {
+  border-left: 15px solid $color-orange;
 }
 
 .create-btn {
