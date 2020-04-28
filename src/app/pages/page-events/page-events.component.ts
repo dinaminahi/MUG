@@ -36,7 +36,7 @@ export class PageEventsComponent implements OnInit {
   };
   categories: GameCategory[] = [];
   categoriesCurrent: GameCategory[] = [];
-  events: EventItem[];
+  events: EventItem[] = [];
   selectedEvent: EventItem;
   selectedDateTimes: string[] = [];
   selectedGameNames: string[] = [];
@@ -55,14 +55,13 @@ export class PageEventsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._dataService.eventsShared.subscribe((events) => {
+    //this._dataService.eventsShared.subscribe((events) => {});
+    this._dataService.getEvents().subscribe((events) => {
+      this.loading = false;
       this.events = this.getTodayAndUpcomingEvents(events);
       this.categories && this.filterCategories();
       this.eventDateTimes = this.filterDateTimes();
       this.gameName = this.filterGameName();
-    });
-    this._dataService.getEvents().subscribe((res) => {
-      this.loading = false;
     });
     this._dataService.getCategories().subscribe((res) => {
       this.categories = res;
