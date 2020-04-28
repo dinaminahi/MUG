@@ -111,7 +111,6 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { MatConfirmDialogComponent } from "./mat-confirm-dialog/mat-confirm-dialog.component";
 import { LayoutTimeLineComponent } from "./layout/layout-time-line/layout-time-line.component";
 import { UsersPastEventsComponent } from "./users-past-events/users-past-events.component";
-import { UserCreatedEventItemComponent } from "./user-created-event-item/user-created-event-item.component";
 import { FilterCheckboxComponent } from "./filter-checkbox/filter-checkbox.component";
 
 @NgModule({
