@@ -1,1 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+}
 
+.containe {
+  width: 1200px;
+  height: 600px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  background: rgb(0, 0, 0, 0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.containe .box {
+  position: relative;
+  width: calc(400px - 30px);
+  height: calc(300px - 30px);
+  background: #262626;
+  float: left;
+  margin: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 5px 10 px rga(0, 0, 0, 0.8);
+}
+
+
+
+.content {
+  position: relative;
+  background-image: url('src/assets/img/home_page_img/bg-x3.png');
+  background-position: center center;
+  height: 100%;
+  // background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  // z-index: 1;
+  // height: 730px;
+}
