@@ -85,6 +85,7 @@ heading-text {
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  margin: 0 !important;
 }
 
 .mgt50px {
@@ -243,23 +244,7 @@ heading-text {
 
   h4 {
     font-size: 5vw;
-    padding: 0 70px;
+    padding: 0 40px;
     line-height: 32px;
   }
 }
-
-// @media (min-width:416px) and (max-width:1215px) {
-//   h2 {
-//     display: block;
-//     font-weight: 700;
-//     font-size: 5vw;
-//     text-transform: uppercase;
-//     padding-bottom: 10px;
-//   }
-
-//   h4 {
-//     font-size: 2vw;
-//     padding: 0 70px;
-//     line-height: 32px;
-//   }
-// }
