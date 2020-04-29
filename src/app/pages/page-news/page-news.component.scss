@@ -2,10 +2,6 @@
   bottom: 0;
 }
 
-.container {
-  padding-bottom: 25px
-}
-
 .bg-shadow {
   background: rgba(76, 76, 76, 0);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(179, 171, 171, 0)), color-stop(49%, rgba(48, 48, 48, 0.37)), color-stop(100%, rgba(19, 19, 19, 0.8)));
@@ -90,7 +86,6 @@ heading-text {
   color: #ff5a6e;
 }
 
-
 .site-heading {
   margin-top: 50px;
   padding-top: 30px;
@@ -98,8 +93,8 @@ heading-text {
 }
 
 @media screen and (max-width:415px) {
-  h1 {
-    // padding-top: 25px;
+  h {
+    padding-top: 25px;
     display: block;
     font-weight: 700;
     font-size: 9vw;
@@ -116,7 +111,7 @@ heading-text {
     height: 3px;
     left: 44%;
     margin-top: 0;
-    margin-bottom: -15px;
+    margin-bottom: 15px;
     position: absolute;
     width: 50px;
   }
@@ -140,6 +135,6 @@ heading-text {
 
 
   .site-heading {
-    padding-top: 5px;
+    padding-top: 70px;
   }
 }
