@@ -19,7 +19,7 @@ body {
 // ----navbar
 .navbar {
   // border-top: 3px solid $color-orange;
-  padding-bottom: 15px;
+  padding: 15px 0;
 }
 
 // Home page carousel with multi items
@@ -148,6 +148,7 @@ body {
 .tooltip.tooltip-top {
   padding-bottom: 5px !important;
 }
+
 .tooltip-inner {
   font-size: 12px;
   line-height: 1.2;
