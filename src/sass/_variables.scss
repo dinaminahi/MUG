@@ -1,5 +1,5 @@
 $color-main: #003049;
-$color-main-blue: #3f729b;
+$color-main-blue: rgb(51, 181, 229);
 $color-text: #eae2b7;
 $color-alert: #d62828;
 $color-attention: #ef3054;
@@ -8,6 +8,8 @@ $color-orange-1: #f77f00;
 $font-family-alt: "Kelly Slab",
 cursive;
 
+$new-main: rgb(51, 181, 229);
+$old-main:#3f729b;
 // hot to use it : We need to import the file in order to use it:
 // @import "../../../sass/variables"; // this is not cool!
 //
