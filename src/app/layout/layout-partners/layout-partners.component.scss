@@ -73,3 +73,33 @@ heading-text {
     line-height: 32px;
   }
 }
+
+@media screen and (max-width:415px) {
+  h2 {
+    display: block;
+    font-weight: 700;
+    font-size: 9vw;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+
+  .site-heading h2::before {
+    background: #000 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    margin-left: -25px;
+    margin-bottom: 15px;
+    position: absolute;
+    width: 50px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .site-heading {
+    margin: 0;
+  }
+}

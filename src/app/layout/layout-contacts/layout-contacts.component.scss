@@ -223,13 +223,7 @@ h4 {
 
 
 @media screen and (max-width:415px) {
-  .hide {
-    display: none;
-  }
 
-  h2 {
-    margin: 0;
-  }
 
   .container-1 {
     margin-top: 15px;
@@ -238,8 +232,35 @@ h4 {
   .container-1 .row100 .col1 {
     position: relative;
     width: 95%;
-    // padding: 0 10px;
-    // margin: 30px 0 10px;
-    // transition: 0.5s;
+  }
+
+
+  h2 {
+    display: block;
+    font-weight: 700;
+    font-size: 9vw;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+
+  .site-heading h2::before {
+    background: #000 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    position: absolute;
+    width: 50px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .site-heading {
+    margin: 0;
   }
 }
