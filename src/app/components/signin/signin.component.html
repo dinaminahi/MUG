@@ -6,14 +6,17 @@
       <span style="font-size: 15px;">All fields required</span>
       <input type="text" matInput placeholder="User Name" required name="name" formControlName="name"
         [class.is-invalid]="nameUp.invalid && nameUp.touched" />
-      <p [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required</p>
+      <small [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Name is required</small>
+
+      <!-- <p [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required</p> -->
       <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email"
         [class.is-invalid]="emailUp.invalid && emailUp.touched" />
-      <p [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is required</p>
+      <small [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is required</small>
 
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
         formControlName="password" [class.is-invalid]="passwordUp.invalid && passwordUp.touched" />
-      <p [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is required</p>
+      <small [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is
+        required</small>
 
       <button id="submit-up" (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
         Sign Up
@@ -28,12 +31,13 @@
 
       <input type="email" matInput placeholder="Email" required name="email" formControlName="email"
         [class.is-invalid]="emailIn.invalid && emailIn.touched" />
-      <p [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is required</p>
+      <small [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is required</small>
 
 
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
         formControlName="password" [class.is-invalid]="passwordIn.invalid && passwordIn.touched" />
-      <p [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is required</p>
+      <small [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is
+        required</small>
 
       <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
         Sign In
@@ -74,12 +78,14 @@
             <span>All fields required</span>
             <input type="email" matInput placeholder="Email" required name="email" formControlName="email"
               [class.is-invalid]="emailIn.invalid && emailIn.touched" />
-            <p [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is required</p>
+            <small [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is
+              required</small>
 
             <input matInput placeholder="Password" type="password" required minlength="6" name="password"
               formControlName="password" [class.is-invalid]="passwordIn.invalid && passwordIn.touched" />
-            <p [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is required
-            </p>
+            <small [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is
+              required
+            </small>
 
             <a href="#">Forgot your password?</a>
 
@@ -101,17 +107,19 @@
             <span>All fields required</span>
             <input type="text" matInput placeholder="User Name" required name="name" formControlName="name"
               [class.is-invalid]="nameUp.invalid && nameUp.touched" />
-            <p [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required
-            </p>
+            <small [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required
+            </small>
 
             <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email"
               [class.is-invalid]="emailUp.invalid && emailUp.touched" />
-            <p [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is required</p>
+            <small [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is
+              required</small>
 
             <input matInput placeholder="Password" type="password" required minlength="6" name="password"
               formControlName="password" [class.is-invalid]="passwordUp.invalid && passwordUp.touched" />
-            <p [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is required
-            </p>
+            <small [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is
+              required
+            </small>
 
 
             <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
