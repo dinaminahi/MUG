@@ -1,14 +1,14 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ParticipantsCount } from './participants-count';
-import { AuthService } from '../shared/auth.service';
-import { DataService } from '../data.service';
+import { Component, Input, OnChanges } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { ParticipantsCount } from "./participants-count";
+import { AuthService } from "../shared/auth.service";
+import { DataService } from "../data.service";
 
 @Component({
-  selector: 'app-participants-count',
-  templateUrl: './participants-count.component.html',
-  styleUrls: ['./participants-count.component.scss']
+  selector: "app-participants-count",
+  templateUrl: "./participants-count.component.html",
+  styleUrls: ["./participants-count.component.scss"],
 })
 export class ParticipantsCountComponent implements OnChanges {
   @Input() count: ParticipantsCount;
@@ -21,10 +21,7 @@ export class ParticipantsCountComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {
-    console.log(this.joined);
-    console.log(this.count);
     if (this.count && this.joined) {
-      // console.log(this.count, this.joined);
       // normalize output if the count/joined test DB records contains issues
       if (this.count.current < 0) {
         this.count.current = 0;
@@ -36,6 +33,6 @@ export class ParticipantsCountComponent implements OnChanges {
   }
 
   onSelect(user) {
-    this.router.navigate(['/useraccount', user._id]);
+    this.router.navigate(["/useraccount", user._id]);
   }
 }

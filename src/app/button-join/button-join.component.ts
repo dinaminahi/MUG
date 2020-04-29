@@ -31,17 +31,15 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    if (this.authService.isLoggedIn) {
-      this.authService.getCurrentUserData().subscribe((user) => {
-        if (!user) {
-          return false;
-        }
-        this.currentUser = user;
-        if (this.eventId) {
-          this.setIsSubscribed();
-        }
-      });
-    }
+    this.authService.getCurrentUserData().subscribe((user) => {
+      if (!user) {
+        return false;
+      }
+      this.currentUser = user;
+      if (this.eventId) {
+        this.setIsSubscribed();
+      }
+    });
   }
 
   setIsSubscribed() {
@@ -62,7 +60,7 @@ export class ButtonJoinComponent implements OnInit, OnChanges {
   }
 
   toggleSubscribed() {
-    if (this.authService.isLoggedIn) {
+    if (this.currentUser) {
       this.isLoading = true;
       if (this.eventId) {
         this._dataService

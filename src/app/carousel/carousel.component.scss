@@ -55,20 +55,46 @@ heading-text {
 
 @media screen and (max-width:415px) {
   h2 {
+    padding-top: 25px;
     display: block;
     font-weight: 700;
     font-size: 9vw;
     text-transform: uppercase;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+
+  }
+
+  .site-heading h2::before {
+    background: #000 none repeat scroll 0 0;
+    bottom: 88px;
+    content: "";
+    height: 3px;
+    left: 44%;
+    margin-top: 0;
+    margin-bottom: 15px;
+    position: absolute;
+    width: 50px;
   }
 
   h4 {
     font-size: 5vw;
-    padding: 0 30px;
+    padding: 10px 30px;
     line-height: 32px;
   }
 
+  .site-heading h4::before {
+    background: #ff5a6e none repeat scroll 0 0;
+    bottom: -2px;
+    content: "";
+    height: 3px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    position: absolute;
+    width: 50px;
+  }
+
+
   .site-heading {
-    padding-top: 60px;
+    padding-top: 70px;
   }
 }

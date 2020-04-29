@@ -1,49 +1,93 @@
 @import './../../../sass/variables';
 
-.contacts {
+h2 {
+  display: block;
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  color: #000;
+}
+
+h4 {
+  font-size: 22px;
+  color: #000;
+}
+
+.site-heading h2 span {
+  color: #ff5a6e;
+}
+
+.site-heading h4 {
+  display: inline-block;
+  padding-bottom: 15px;
+  position: relative;
+  text-transform: capitalize;
+}
+
+.site-heading h4::before {
+  background: #ff5a6e none repeat scroll 0 0;
+  bottom: 0;
+  content: '';
+  height: 3px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+}
+
+.site-heading h2 span {
+  color: #ff5a6e;
+}
+
+// ---------
+.col-lg-6 {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.col-xs-12 {
+  display: flex;
+  justify-content: center;
+}
+
+// -------------
+
+.bgimage {
   background-image: url('src/assets/img/home_page_img/bg-x3.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 500px;
+  height: 80%;
 }
 
 .black-opacity {
   background-color: rgba(0, 0, 0, 0.363);
-  padding: 70px 0;
+  // padding: 70px 0;
+  height: 100%;
+  // margin-bottom: 100px;
 }
 
-@media (max-width: 768px) {
-  .black-opacity {
-    padding: 28px 0;
-  }
-}
+// -------
 
-.body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 30vh;
-  background-color: #fff;
-}
+// .body {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 30vh;
+//   background-color: #fff;
+// }
 
 .container-1 {
   color: #ff5a6e;
-  width: 100%;
+  width: 80%;
   background-color: #fff;
-}
-
-.container-1 h2 {
-  width: 100%;
-  font-weight: 700;
-  font-size: 3vw;
-  text-transform: uppercase;
-  color: #ff5a6e;
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 15px;
+  padding: 20px;
+  padding-top: 5vh;
+  margin-top: 10vh;
 }
 
 .container-1 .row100 {
@@ -84,6 +128,7 @@
   display: block;
 }
 
+.container-1 .row100 .input-box .email,
 .container-1 .row100 .input-box .text {
   position: absolute;
   top: 0;
@@ -96,12 +141,15 @@
   pointer-events: none;
 }
 
+.container-1 .row100 .input-box input:focus + .email,
+.container-1 .row100 .input-box input:valid + .email,
 .container-1 .row100 .input-box input:focus + .text,
 .container-1 .row100 .input-box input:valid + .text {
   top: -35px;
   left: -10px;
 }
 
+.container-1 .row100 .input-box .line1,
 .container-1 .row100 .input-box .line {
   position: absolute;
   bottom: 0;
@@ -114,6 +162,8 @@
   pointer-events: none;
 }
 
+.container-1 .row100 .input-box input:focus ~ .line1,
+.container-1 .row100 .input-box input:valid ~ .line1,
 .container-1 .row100 .input-box input:focus ~ .line,
 .container-1 .row100 .input-box input:valid ~ .line {
   height: 100%;
@@ -131,12 +181,17 @@
   resize: none;
 }
 
+.container-1 .row100 .input-box textarea:focus + .email,
+.container-1 .row100 .input-box textarea:valid + .email,
 .container-1 .row100 .input-box textarea:focus + .text,
 .container-1 .row100 .input-box textarea:valid + .text {
   top: -35px;
   left: -10px;
 }
 
+// ---- tut baga
+.container-1 .row100 .input-box textarea:focus ~ .line1,
+.container-1 .row100 .input-box textarea:valid ~ .line1,
 .container-1 .row100 .input-box textarea:focus ~ .line,
 .container-1 .row100 .input-box textarea:valid ~ .line {
   height: 100%;
@@ -144,11 +199,56 @@
 
 .submit {
   border: none;
-  padding: 7px 35px;
+  padding: 10px 45px;
   cursor: pointer;
   outline: none;
   background-color: #ff5a6e;
   color: #fff;
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 2px;
+}
+
+.submit:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  transition: 0.5;
+}
+
+@media screen and (max-width: 415px) {
+  .container-1 {
+    margin-top: 15px;
+  }
+
+  .container-1 .row100 .col1 {
+    position: relative;
+    width: 95%;
+  }
+
+  h2 {
+    display: block;
+    font-weight: 700;
+    font-size: 9vw;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+
+  .site-heading h2::before {
+    background: #000 none repeat scroll 0 0;
+    bottom: 0;
+    content: '';
+    height: 3px;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    position: absolute;
+    width: 50px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .site-heading {
+    margin: 0;
+  }
 }

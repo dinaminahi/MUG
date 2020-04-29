@@ -4,6 +4,7 @@
   position: relative;
   padding: 10px;
   border-radius: 4px;
+  border: #f0f0f0 solid 1px;
   background: #fff
     url(
     data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHUlEQVQYV2PMycmRmjJlyjMGKGCEMTAEYCoxVAAAT+0IBdzYUhIAAAAASUVORK5CYII=
@@ -16,6 +17,14 @@
     height: 0;
     overflow: hidden;
     clear: both;
+  }
+
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.1s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
   }
 
   .event-header {
@@ -36,7 +45,7 @@
 
     .heart-wrapper {
       position: absolute;
-      top: 5px;
+      top: 1px;
       right: 2px;
     }
   }
@@ -161,9 +170,9 @@
     position: absolute;
     background-color: #fff;
     height: 10px;
-    width: 100%;
     top: -10px;
-    left: 0;
+    left: -1px;
+    right: -1px;
   }
 }
 
@@ -234,6 +243,7 @@
 
     .fa-child {
       margin-left: -12px;
+      margin-right: -5px;
     }
   }
 }
@@ -242,10 +252,14 @@
   .event-item:hover .description {
     display: block;
     position: absolute;
-    left: 0;
+    left: -1px;
     z-index: 5;
     background: #fff;
-    width: 100%;
+    right: -1px;
+    border: #f0f0f0 solid 1px;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
   }
 }
 

@@ -125,11 +125,11 @@
             </small>
 
 
-            <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
+            <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn"
+              [disabled]="!signupForm.valid">
               Sign Up
             </button>
-            <button mat-dialog-close (click)="onNoClick()" [disabled]="!signupForm.valid"
-              class="login-button btn btn-outline-danger waves-effect">
+            <button mat-dialog-close (click)="onNoClick()" class="login-button btn btn-outline-danger waves-effect">
               No, Thanks!
             </button>
           </form>
