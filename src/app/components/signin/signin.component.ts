@@ -17,8 +17,21 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   signupForm: FormGroup;
 
-  get email() {
+  get emailIn() {
     return this.signinForm.get('email');
+  }
+
+  get passwordIn() {
+    return this.signinForm.get('password');
+  }
+  get nameUp() {
+    return this.signupForm.get('name');
+  }
+  get emailUp() {
+    return this.signupForm.get('email');
+  }
+  get passwordUp() {
+    return this.signupForm.get('password');
   }
 
   constructor(
@@ -28,13 +41,12 @@ export class SigninComponent implements OnInit {
   ) {
     this.signinForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
-      password: ['']
+      password: ['', Validators.required]
     });
     this.signupForm = this.fb.group({
-      name: [''],
-      email: [''],
-      password: [''],
-      repassword: ['']
+      name: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required]
     });
   }
 

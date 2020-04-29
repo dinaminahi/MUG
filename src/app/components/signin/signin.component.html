@@ -2,20 +2,24 @@
   <div class="form-container sign-up-container">
     <form action="#" [formGroup]="signupForm" (ngSubmit)="registerUser()">
       <h1>Create Account</h1>
-      <div class="social-container">
-        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
-      </div>
-      <span style="font-size: 15px;">Use your email for registration</span>
-      <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
-      <p [class.d-none]="email.valid || email.untouched" class="text-danger"></p>
-      <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
+
+      <span style="font-size: 15px;">All fields required</span>
+      <input type="text" matInput placeholder="User Name" required name="name" formControlName="name"
+        [class.is-invalid]="nameUp.invalid && nameUp.touched" />
+      <!-- <small [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Name is required</small> -->
+
+      <!-- <p [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required</p> -->
+      <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email"
+        [class.is-invalid]="emailUp.invalid && emailUp.touched" />
+      <small [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is required</small>
+
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-        formControlName="password" />
-      <!-- <input matInput placeholder="Password" type="password" required minlength="6" name="repassword"
-        formControlName="repassword" /> -->
-      <button id="submit-up" (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
+        formControlName="password" [class.is-invalid]="passwordUp.invalid && passwordUp.touched" />
+      <small [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is
+        required</small>
+
+      <button id="submit-up" (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn"
+        [disabled]="!signupForm.valid">
         Sign Up
       </button>
     </form>
@@ -23,20 +27,21 @@
   <div class="form-container sign-in-container">
     <form action="#" [formGroup]="signinForm" (ngSubmit)="loginUser()">
       <h1>Sign in</h1>
-      <div class="social-container">
-        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
-      </div>
-      <span style="font-size: 15px;">Use your account</span>
 
-      <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
+      <span style="font-size: 15px;">All fields required</span>
+
+      <input type="email" matInput placeholder="Email" required name="email" formControlName="email"
+        [class.is-invalid]="emailIn.invalid && emailIn.touched" />
+      <small [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is required</small>
 
 
       <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-        formControlName="password" />
-      <a href="#">Forgot your password?</a>
-      <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
+        formControlName="password" [class.is-invalid]="passwordIn.invalid && passwordIn.touched" />
+      <small [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is
+        required</small>
+
+      <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit"
+        [disabled]="!signinForm.valid">
         Sign In
       </button>
     </form>
@@ -71,18 +76,23 @@
       <mat-tab label="Sign In" [selectedIndex]='1'>
         <mat-card-content>
           <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your account</span>
-            <input type="email" matInput placeholder="Email" required name="email" formControlName="email" />
+
+            <span>All fields required</span>
+            <input type="email" matInput placeholder="Email" required name="email" formControlName="email"
+              [class.is-invalid]="emailIn.invalid && emailIn.touched" />
+            <small [class.d-none]="emailIn.valid || emailIn.untouched" class="text-danger error">Email is
+              required</small>
+
             <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-              formControlName="password" />
+              formControlName="password" [class.is-invalid]="passwordIn.invalid && passwordIn.touched" />
+            <small [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is
+              required
+            </small>
+
             <a href="#">Forgot your password?</a>
 
-            <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
+            <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit"
+              [disabled]="!signinForm.valid">
               Sign In
             </button>
 
@@ -96,23 +106,27 @@
       <mat-tab label="Sign Up">
         <mat-card-content>
           <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your email for registration</span>
-            <input type="text" matInput placeholder="User Name" required name="name" formControlName="name" />
-            <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email" />
-            <input matInput placeholder="Password" type="password" required minlength="6" name="password"
-              formControlName="password" />
-            <!-- <mat-form-field>
-              <input matInput placeholder="Password" type="password" required minlength="6" name="repassword"
-                formControlName="repassword" />
 
-              <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field> -->
-            <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
+            <span>All fields required</span>
+            <input type="text" matInput placeholder="User Name" required name="name" formControlName="name"
+              [class.is-invalid]="nameUp.invalid && nameUp.touched" />
+            <small [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required
+            </small>
+
+            <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email"
+              [class.is-invalid]="emailUp.invalid && emailUp.touched" />
+            <small [class.d-none]="emailUp.valid || emailUp.untouched" class="text-danger error">Email is
+              required</small>
+
+            <input matInput placeholder="Password" type="password" required minlength="6" name="password"
+              formControlName="password" [class.is-invalid]="passwordUp.invalid && passwordUp.touched" />
+            <small [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is
+              required
+            </small>
+
+
+            <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn"
+              [disabled]="!signupForm.valid">
               Sign Up
             </button>
             <button mat-dialog-close (click)="onNoClick()" class="login-button btn btn-outline-danger waves-effect">

@@ -1,5 +1,8 @@
 @import './../../../sass/variables';
 
+.container {
+  min-height: 78.2vh;
+}
 .anchors {
   border-radius: 5px;
   display: flex;
