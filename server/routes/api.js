@@ -1,30 +1,30 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const app = express();
-const mongoose = require("mongoose");
-const fileupload = require("express-fileupload");
-const multer = require("multer");
-const cloudinary = require("cloudinary").v2;
+const mongoose = require('mongoose');
+const fileupload = require('express-fileupload');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
-  cloud_name: "dcronwamq",
-  api_key: "597153926796645",
-  api_secret: "gAET1_v4TT3W4eNwVBGqE78_NzU",
+  cloud_name: 'dcronwamq',
+  api_key: '597153926796645',
+  api_secret: 'gAET1_v4TT3W4eNwVBGqE78_NzU'
 });
 
 const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     cb(null, Date.now() + file.originalname);
-  },
+  }
 });
 
 const upload = multer({ storage });
 
-const Category = require("./../models/categorySchema");
-const Game = require("./../models/gameSchema");
-const Event = require("./../models/eventSchema");
-const User = require("./../models/userSchema");
-const Comment = require("./../models/commentSchema");
+const Category = require('./../models/categorySchema');
+const Game = require('./../models/gameSchema');
+const Event = require('./../models/eventSchema');
+const User = require('./../models/userSchema');
+const Comment = require('./../models/commentSchema');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,12 +32,12 @@ app.use(fileupload({ useTempFiles: true }));
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// database
 mongoose.connect(
-  "mongodb+srv://diana-admin:dianadiana@cluster0-v29yw.mongodb.net/MUG"
+  'mongodb+srv://diana-admin:dianadiana@cluster0-v29yw.mongodb.net/MUG'
 );
 
 const sendError = (err, res) => {
   response.status = 501;
-  response.message = typeof err == "object" ? err.message : err;
+  response.message = typeof err == 'object' ? err.message : err;
   res.status(501).json(response);
 };
 
@@ -45,30 +45,53 @@ const sendError = (err, res) => {
 let response = {
   status: 200,
   data: [],
-  message: null,
+  message: null
 };
 
 // // Get events
 
-router.get("/events_extended/:eventId", (req, res) => {
+router.get('/events_extended/:eventId', (req, res) => {
   let eventId = req.params.eventId;
   Event.aggregate([
     {
       $match: {
-        _id: mongoose.Types.ObjectId(eventId),
-      },
+        _id: mongoose.Types.ObjectId(eventId)
+      }
     },
     {
       $lookup: {
-        from: "users",
-        localField: "organizer",
-        foreignField: "_id",
-        as: "organizerInfo",
-      },
+        from: 'users',
+        localField: 'organizer',
+        foreignField: '_id',
+        as: 'organizerInfo'
+      }
     },
     {
-      $unwind: "$organizer",
+      $unwind: '$organizer'
     },
+    {
+      $lookup: {
+        from: 'users',
+        let: {
+          joined: '$players.joined'
+        },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $in: ['$_id', '$$joined']
+              }
+            }
+          },
+          {
+            $project: {
+              personal: 1
+            }
+          }
+        ],
+        as: 'players.joined'
+      }
+    }
   ]).exec((err, event) => {
     if (err) {
       sendError(err, res);
@@ -79,53 +102,53 @@ router.get("/events_extended/:eventId", (req, res) => {
   });
 });
 
-router.get("/events_extended", (req, res) => {
+router.get('/events_extended', (req, res) => {
   Event.aggregate([
     {
       $lookup: {
-        from: "games",
-        localField: "game",
-        foreignField: "name",
-        as: "agame",
-      },
+        from: 'games',
+        localField: 'game',
+        foreignField: 'name',
+        as: 'agame'
+      }
     },
     {
-      $unwind: "$game",
+      $unwind: '$game'
     },
     {
       $lookup: {
-        from: "users",
+        from: 'users',
         let: {
-          joined: "$players.joined",
+          joined: '$players.joined'
         },
         pipeline: [
           {
             $match: {
               $expr: {
-                $in: ["$_id", "$$joined"],
-              },
-            },
+                $in: ['$_id', '$$joined']
+              }
+            }
           },
           {
             $project: {
-              personal: 1,
-            },
-          },
+              personal: 1
+            }
+          }
         ],
-        as: "players.joined",
-      },
+        as: 'players.joined'
+      }
     },
     {
       $lookup: {
-        from: "users",
-        localField: "organizer",
-        foreignField: "_id",
-        as: "organizerInfo",
-      },
+        from: 'users',
+        localField: 'organizer',
+        foreignField: '_id',
+        as: 'organizerInfo'
+      }
     },
     {
-      $unwind: "$organizer",
-    },
+      $unwind: '$organizer'
+    }
   ]).exec((err, events) => {
     if (err) {
       sendError(err, res);
@@ -136,25 +159,25 @@ router.get("/events_extended", (req, res) => {
   });
 });
 
-router.get("/comments/:eventId", (req, res) => {
+router.get('/comments/:eventId', (req, res) => {
   let idOfEvent = req.params.eventId;
   Comment.aggregate([
     {
       $match: {
-        eventId: mongoose.Types.ObjectId(idOfEvent),
-      },
+        eventId: mongoose.Types.ObjectId(idOfEvent)
+      }
     },
     {
       $lookup: {
-        from: "users",
-        localField: "userId",
-        foreignField: "_id",
-        as: "user",
-      },
+        from: 'users',
+        localField: 'userId',
+        foreignField: '_id',
+        as: 'user'
+      }
     },
     {
-      $unwind: "$user",
-    },
+      $unwind: '$user'
+    }
   ]).exec((err, comments) => {
     if (err) {
       sendError(err, res);
@@ -165,7 +188,7 @@ router.get("/comments/:eventId", (req, res) => {
   });
 });
 
-router.get("/categories", (req, res) => {
+router.get('/categories', (req, res) => {
   Category.find({}, (err, categories) => {
     if (err) {
       sendError(err, res);
@@ -176,16 +199,16 @@ router.get("/categories", (req, res) => {
   });
 });
 
-router.get("/games", (req, res) => {
+router.get('/games', (req, res) => {
   Game.aggregate([
     {
       $lookup: {
-        from: "categories",
-        localField: "category",
-        foreignField: "name",
-        as: "categories",
-      },
-    },
+        from: 'categories',
+        localField: 'category',
+        foreignField: 'name',
+        as: 'categories'
+      }
+    }
   ]).exec((err, games) => {
     if (err) {
       sendError(err, res);
@@ -196,22 +219,22 @@ router.get("/games", (req, res) => {
   });
 });
 
-router.get("/games/:gameId", (req, res) => {
+router.get('/games/:gameId', (req, res) => {
   let gameId = req.params.gameId;
   Game.aggregate([
     {
       $match: {
-        _id: mongoose.Types.ObjectId(gameId),
-      },
+        _id: mongoose.Types.ObjectId(gameId)
+      }
     },
     {
       $lookup: {
-        from: "categories",
-        localField: "category",
-        foreignField: "name",
-        as: "categories",
-      },
-    },
+        from: 'categories',
+        localField: 'category',
+        foreignField: 'name',
+        as: 'categories'
+      }
+    }
   ]).exec((err, game) => {
     if (err) {
       sendError(err, res);
@@ -222,7 +245,7 @@ router.get("/games/:gameId", (req, res) => {
   });
 });
 
-router.get("/favourite-game-names/:userId", (req, res) => {
+router.get('/favourite-game-names/:userId', (req, res) => {
   let userId = req.params.userId;
   let favouriteGameNames = [];
 
@@ -230,7 +253,7 @@ router.get("/favourite-game-names/:userId", (req, res) => {
     if (err) {
       sendError(err, res);
     } else {
-      user.games.favorited.forEach((id) => {
+      user.games.favorited.forEach(id => {
         Game.findById(id, (err, game) => {
           if (err) {
             sendError(err, res);
@@ -244,7 +267,7 @@ router.get("/favourite-game-names/:userId", (req, res) => {
   res.json(favouriteGameNames);
 });
 
-router.post("/addevent", (req, res) => {
+router.post('/addevent', (req, res) => {
   const event = new Event({
     eventName: req.body.eventName,
     game: req.body.game,
@@ -253,32 +276,32 @@ router.post("/addevent", (req, res) => {
       address: req.body.location.address,
       geo: {
         longitude: req.body.location.geo.longitude,
-        latitude: req.body.location.geo.latitude,
-      },
+        latitude: req.body.location.geo.latitude
+      }
     },
     dateTime: req.body.dateTime,
     duration: req.body.duration,
     players: {
       age: {
         min: req.body.players.age.min,
-        max: req.body.players.age.max,
+        max: req.body.players.age.max
       },
       count: {
         min: req.body.players.count.min,
         max: req.body.players.count.max,
-        current: req.body.players.count.current,
+        current: req.body.players.count.current
       },
       joined: [mongoose.Types.ObjectId(req.body.organizer)],
-      experienceNeeded: req.body.players.experience,
+      experienceNeeded: req.body.players.experience
     },
     organizer: mongoose.Types.ObjectId(req.body.organizer),
-    canceled: req.body.canceled,
+    canceled: req.body.canceled
   });
 
-  event.save(function (err, event) {
+  event.save(function(err, event) {
     const eventId = event._id;
     const userId = req.body.organizer;
-    User.findById(userId, function (err, user) {
+    User.findById(userId, function(err, user) {
       if (err) {
         sendError(err, res);
       } else {
@@ -287,12 +310,12 @@ router.post("/addevent", (req, res) => {
         events.subscribed.push(eventId);
         User.update(
           {
-            _id: userId,
+            _id: userId
           },
           {
-            events: events,
+            events: events
           },
-          function (err) {
+          function(err) {
             if (err) {
               sendError(err, res);
             } else {
@@ -303,24 +326,24 @@ router.post("/addevent", (req, res) => {
       }
     });
   });
-  console.log("Event was inserted!");
+  console.log('Event was inserted!');
 });
 
-router.post("/addcomment", (req, res) => {
+router.post('/addcomment', (req, res) => {
   console.log(req.body);
   if (req.body.text) {
     const comment = new Comment({
       text: req.body.text,
       date: req.body.date,
       userId: mongoose.Types.ObjectId(req.body.userId),
-      eventId: mongoose.Types.ObjectId(req.body.eventId),
+      eventId: mongoose.Types.ObjectId(req.body.eventId)
     });
 
-    comment.save((err) => {
+    comment.save(err => {
       if (err) {
         sendError(err, res);
       } else {
-        console.log("Comment was inserted!");
+        console.log('Comment was inserted!');
         response.data = res.statusCode;
         res.json(response);
       }
@@ -328,9 +351,9 @@ router.post("/addcomment", (req, res) => {
   }
 });
 
-router.put("/favorite-games", (req, res) => {
+router.put('/favorite-games', (req, res) => {
   const { userId, gameId, toggle } = req.body;
-  User.findById(userId, function (err, user) {
+  User.findById(userId, function(err, user) {
     if (err) {
       sendError(err, res);
     } else {
@@ -348,12 +371,12 @@ router.put("/favorite-games", (req, res) => {
       }
       User.update(
         {
-          _id: userId,
+          _id: userId
         },
         {
-          games: games,
+          games: games
         },
-        function (err) {
+        function(err) {
           if (err) {
             sendError(err, res);
           } else {
@@ -365,9 +388,9 @@ router.put("/favorite-games", (req, res) => {
   });
 });
 
-router.put("/favorite-events", (req, res) => {
+router.put('/favorite-events', (req, res) => {
   const { userId, eventId, toggle } = req.body;
-  User.findById(userId, function (err, user) {
+  User.findById(userId, function(err, user) {
     if (err) {
       sendError(err, res);
     } else {
@@ -385,12 +408,12 @@ router.put("/favorite-events", (req, res) => {
       }
       User.update(
         {
-          _id: userId,
+          _id: userId
         },
         {
-          events: events,
+          events: events
         },
-        function (err) {
+        function(err) {
           if (err) {
             sendError(err, res);
           } else {
@@ -402,14 +425,14 @@ router.put("/favorite-events", (req, res) => {
   });
 });
 
-router.put("/join-to-event", (req, res) => {
+router.put('/join-to-event', (req, res) => {
   const { userId, eventId, toggle } = req.body;
   let eventPlayers;
   // Save user's id into event's event.players.joined array and inctement event.players.count.curren
   // if toggle is 'true', otherwise do opposite
   Event.find(
     {
-      _id: eventId,
+      _id: eventId
     },
     (err, event) => {
       if (err) {
@@ -441,12 +464,12 @@ router.put("/join-to-event", (req, res) => {
 
         Event.updateOne(
           {
-            _id: eventId,
+            _id: eventId
           },
           {
-            players: eventPlayers,
+            players: eventPlayers
           },
-          function (err) {
+          function(err) {
             if (err) {
               sendError(err, res);
             }
@@ -458,7 +481,7 @@ router.put("/join-to-event", (req, res) => {
 
   // save event's id into user's  events.subscribed event
   // if toggle is 'true', otherwise do opposite
-  User.findById(userId, function (err, user) {
+  User.findById(userId, function(err, user) {
     if (err) {
       sendError(err, res);
     } else {
@@ -476,57 +499,57 @@ router.put("/join-to-event", (req, res) => {
       }
       User.updateOne(
         {
-          _id: userId,
+          _id: userId
         },
         {
-          events: events,
+          events: events
         },
-        function (err) {
+        function(err) {
           if (err) {
             sendError(err, res);
           } else {
             Event.aggregate([
               {
                 $match: {
-                  _id: mongoose.Types.ObjectId(eventId),
-                },
+                  _id: mongoose.Types.ObjectId(eventId)
+                }
               },
               {
                 $lookup: {
-                  from: "users",
+                  from: 'users',
                   let: {
-                    joined: "$players.joined",
+                    joined: '$players.joined'
                   },
                   pipeline: [
                     {
                       $match: {
                         $expr: {
-                          $in: ["$_id", "$$joined"],
-                        },
-                      },
+                          $in: ['$_id', '$$joined']
+                        }
+                      }
                     },
                     {
                       $project: {
-                        personal: 1,
-                      },
-                    },
+                        personal: 1
+                      }
+                    }
                   ],
-                  as: "players.joined",
-                },
-              },
+                  as: 'players.joined'
+                }
+              }
             ]).exec((err, events2) => {
               if (err) {
                 sendError(err, res);
               } else {
                 res.json({
                   event: {
-                    players: events2[0].players,
+                    players: events2[0].players
                   },
                   user: {
                     events: {
-                      subscribed: events.subscribed,
-                    },
-                  },
+                      subscribed: events.subscribed
+                    }
+                  }
                 });
               }
             });
@@ -563,7 +586,7 @@ router.put("/join-to-event", (req, res) => {
 //   });
 // });
 
-router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
+router.post('/edit-user/:userId', upload.single('photo'), (req, res) => {
   let userId = req.params.userId;
   let file = req.file;
   let params = {
@@ -577,18 +600,18 @@ router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
         address: req.body.address,
         geo: {
           longitude: req.body.longitude,
-          latitude: req.body.latitude,
-        },
+          latitude: req.body.latitude
+        }
       },
       dateOfBirth: req.body.dateOfBirth,
-      description: req.body.description,
-    },
+      description: req.body.description
+    }
   };
 
-  function convertToDotNotation(obj, newObj = {}, prefix = "") {
+  function convertToDotNotation(obj, newObj = {}, prefix = '') {
     for (let key in obj) {
-      if (typeof obj[key] === "object") {
-        convertToDotNotation(obj[key], newObj, prefix + key + ".");
+      if (typeof obj[key] === 'object') {
+        convertToDotNotation(obj[key], newObj, prefix + key + '.');
       } else {
         newObj[prefix + key] = obj[key];
       }
@@ -610,14 +633,14 @@ router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
 
   User.update(
     {
-      _id: userId,
+      _id: userId
     },
     convertToDotNotation(params),
-    function (err) {
+    function(err) {
       if (err) {
         sendError(err, res);
       } else {
-        console.log("upadeted");
+        console.log('upadeted');
       }
     }
   );
@@ -628,18 +651,18 @@ router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
       {
         width: 150,
         height: 150,
-        crop: "fit",
+        crop: 'fit'
       },
       (err, result) => {
         User.update(
           {
-            _id: userId,
+            _id: userId
           },
           {
-            "personal.photoUrl": result.url,
+            'personal.photoUrl': result.url
           },
-          function (err) {
-            console.log("update photo");
+          function(err) {
+            console.log('update photo');
             response.data = result;
             res.json(response);
           }
@@ -652,7 +675,7 @@ router.post("/edit-user/:userId", upload.single("photo"), (req, res) => {
   }
 });
 
-router.post("/cancelevent", (req, res) => {
+router.post('/cancelevent', (req, res) => {
   // const notification = new Notification({
   //   text: 'was canceled!',
   //   canceledEvent: req.body.eventId
@@ -663,25 +686,25 @@ router.post("/cancelevent", (req, res) => {
   Event.findOneAndUpdate(
     {
       _id: req.body.eventId,
-      organizer: req.body.userId,
+      organizer: req.body.userId
     },
     {
-      canceled: true,
+      canceled: true
     },
     (err, event) => {
       if (err) {
         sendError(err, res);
       } else {
-        event.players.joined.forEach((user) => {
+        event.players.joined.forEach(user => {
           User.findByIdAndUpdate(
             { _id: user._id },
             {
               $push: {
                 notifications: {
-                  text: "was canceled!",
-                  canceledEvent: req.body.eventId,
-                },
-              },
+                  text: 'was canceled!',
+                  canceledEvent: req.body.eventId
+                }
+              }
             },
             (err, user) => {
               console.log(user);
@@ -695,7 +718,7 @@ router.post("/cancelevent", (req, res) => {
   );
 });
 
-router.put("/deletenotification", (req, res) => {
+router.put('/deletenotification', (req, res) => {
   const notificationId = req.body.notificationId;
 
   const userId = req.body.userId;
@@ -704,8 +727,8 @@ router.put("/deletenotification", (req, res) => {
     { _id: userId },
     {
       $pull: {
-        notifications: { _id: notificationId },
-      },
+        notifications: { _id: notificationId }
+      }
     },
     (err, user) => {
       if (err) {
@@ -719,7 +742,7 @@ router.put("/deletenotification", (req, res) => {
   );
 });
 
-router.post("/addgame", upload.array("photos"), (req, res) => {
+router.post('/addgame', upload.array('photos'), (req, res) => {
   let files = req.files;
 
   console.log(req.body);
@@ -731,14 +754,14 @@ router.post("/addgame", upload.array("photos"), (req, res) => {
     playersMinAge: req.body.playersMinAge,
     playersCount: {
       min: req.body.playersCountMin,
-      max: req.body.playersCountMax,
+      max: req.body.playersCountMax
     },
     playTimeMinutes: {
       min: req.body.timeMin,
-      max: req.body.timeMax,
+      max: req.body.timeMax
     },
     instructionUrl: req.body.instructionUrl,
-    photoUrl: [],
+    photoUrl: []
   });
 
   game.save();
@@ -750,20 +773,20 @@ router.post("/addgame", upload.array("photos"), (req, res) => {
         {
           width: 250,
           height: 200,
-          crop: "fit",
+          crop: 'fit'
         },
         (err, result) => {
           Game.update(
             {
-              name: req.body.name,
+              name: req.body.name
             },
             {
               $push: {
-                photoUrl: result.url,
-              },
+                photoUrl: result.url
+              }
             },
-            function (err) {
-              console.log("pushed photo");
+            function(err) {
+              console.log('pushed photo');
             }
           );
           if (i === files.length - 1) {

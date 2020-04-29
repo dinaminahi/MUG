@@ -38,25 +38,28 @@
                         {{ expectedEvent?.players?.count?.max }}</span>
                 </li>
                 <li>Event duration: <span class="pl-4">{{ expectedEvent?.duration }}</span></li>
-                <li>Do you need experience for this event?<span
-                        class="pl-4">{{ expectedEvent?.players?.experienceNeeded ? 'Yes, for this event experience is required' : 'No, for this event experience is not required'}}</span>
+                <li>Experience<span class="pl-4">{{expectedEvent?.players?.experiance}}</span>
                 </li>
             </ul>
-            <p class="mt-2">Share with friends</p>
-            <p><a href="https://www.facebook.com/"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
-                <a href="https://www.instagram.com"><i class="fab fa-instagram fa-2x mr-3"></i></a>
-                <a href="https://twitter.com"><i class="fab fa-twitter-square fa-2x mr-3"></i></a>
-                <a href="www.linkedin.com"><i class="fab fa-linkedin fa-2x"></i></a>
+            <app-participants-count class="ml-1" [count]="expectedEvent?.players?.count"
+                [joined]="expectedEvent?.players?.joined">
+            </app-participants-count>
+            <p class="mt-4">Share with friends</p>
+            <p><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram fa-2x mr-3"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square fa-2x mr-3"></i></a>
+                <a href="www.linkedin.com" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
             </p>
         </div>
         <div class="col-sm-4 py-5 px-5 organisor position-relative subscribe my-auto">
             <img class="mr-4" src="{{organizor?.personal?.photoUrl}}" align="left" alt="Photo of event author">
-            <p>Event organiser</p>
-            <h3>{{organizor?.personal?.name}}</h3>
+            <p class="pb-2">Event organiser</p>
+            <a class="effect-1" (click)="redirectToUserPage(organizor)">{{organizor?.personal?.name}}</a>
             <p class="mt-5">Phone number</p>
-            <p class="mb-3"><a href="#">{{organizor?.personal?.phone ? organizor?.personal?.phone : 'Unknown'}}</a></p>
-            <p>Email</p>
-            <p class="mb-3"><a href="#">{{organizor?.email}}</a></p>
+            <p class="mb-3"><a>{{organizor?.personal?.phone ? organizor?.personal?.phone : 'Unknown'}}</a></p>
+            <p>City</p>
+            <p class="mb-3"><a>{{organisorCity ? organisorCity : 'Unknown'}}</a>
+            </p>
             <p>Website</p>
             <p><a href="www.google.com">My site</a></p>
         </div>

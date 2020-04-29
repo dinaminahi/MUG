@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../shared/auth.service';
 import { Router } from '@angular/router';
 import {
@@ -17,20 +17,36 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   signupForm: FormGroup;
 
+  get emailIn() {
+    return this.signinForm.get('email');
+  }
+
+  get passwordIn() {
+    return this.signinForm.get('password');
+  }
+  get nameUp() {
+    return this.signupForm.get('name');
+  }
+  get emailUp() {
+    return this.signupForm.get('email');
+  }
+  get passwordUp() {
+    return this.signupForm.get('password');
+  }
+
   constructor(
     public fb: FormBuilder,
     public authService: AuthService,
     public router: Router
   ) {
     this.signinForm = this.fb.group({
-      email: [''],
-      password: ['']
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required]
     });
     this.signupForm = this.fb.group({
-      name: [''],
-      email: [''],
-      password: [''],
-      repassword: ['']
+      name: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required]
     });
   }
 

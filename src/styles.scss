@@ -13,7 +13,8 @@ body {
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: #ffffff;
+  background: #fff;
+  overflow-x: hidden;
 }
 
 // ----navbar
@@ -21,6 +22,7 @@ body {
   // border-top: 3px solid $color-orange;
   padding-bottom: 15px;
 }
+
 // Home page carousel with multi items
 .carousel.carousel-multi-item {
   padding-bottom: 50px;
@@ -44,8 +46,12 @@ body {
     }
   }
 
+  .carousel-item {
+    padding-bottom: 10px;
+  }
+
   .carousel-indicators {
-    bottom: 20px;
+    bottom: 30px;
 
     li {
       background: $color-orange;
@@ -104,6 +110,7 @@ body {
       border: none !important;
       opacity: 1 !important;
       margin: 0 5px !important;
+      max-width: 50px;
 
       &.active {
         outline: $color-orange solid 2px;
@@ -139,6 +146,9 @@ body {
   }
 }
 
+.tooltip.tooltip-top {
+  padding-bottom: 5px !important;
+}
 .tooltip-inner {
   font-size: 12px;
   line-height: 1.2;
@@ -148,9 +158,11 @@ body {
   background-color: #ff6f59;
   color: #fff;
 }
+
 .tooltip-top .tooltip-arrow.arrow:before {
   border-top-color: #ff6f59;
 }
+
 .tooltip-left .tooltip-arrow.arrow:before {
   border-left-color: #ff6f59;
 }

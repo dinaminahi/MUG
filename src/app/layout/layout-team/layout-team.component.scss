@@ -240,11 +240,26 @@ heading-text {
     font-size: 9vw;
     text-transform: uppercase;
     padding-bottom: 10px;
+    margin-bottom: 25px;
   }
 
-  h4 {
-    font-size: 5vw;
-    padding: 0 40px;
-    line-height: 32px;
+  .site-heading h2::before {
+    background: #ff5a6e none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    margin-left: -25px;
+    margin-bottom: 15px;
+    position: absolute;
+    width: 50px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .site-heading {
+    margin: 0;
   }
 }

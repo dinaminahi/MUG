@@ -1,5 +1,9 @@
 <div class="icons-list">
-  <span *ngFor="let cat of categories" class="icon-wrap">
+  <span
+    *ngFor="let cat of categories"
+    class="icon-wrap"
+    mdbTooltip="{{ showTooltip ? cat.label : false }}"
+  >
     <i class="{{ cat.iconClass }}"></i><b>{{ cat.label }}</b></span
   >
 </div>
