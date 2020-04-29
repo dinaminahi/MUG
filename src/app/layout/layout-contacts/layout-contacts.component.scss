@@ -6,7 +6,7 @@ h2 {
   font-size: 30px;
   text-transform: uppercase;
   padding-bottom: 5px;
-  color: #000
+  color: #000;
 }
 
 .row-news>div>div>h2 {
@@ -15,7 +15,7 @@ h2 {
 
 h4 {
   font-size: 22px;
-  color: #000
+  color: #000;
 }
 
 .site-heading h2 span {
@@ -32,7 +32,7 @@ h4 {
 .site-heading h4::before {
   background: #ff5a6e none repeat scroll 0 0;
   bottom: 0;
-  content: "";
+  content: '';
   height: 3px;
   left: 50%;
   margin-left: -25px;
@@ -56,9 +56,6 @@ h4 {
   justify-content: center;
 }
 
-.row-main {}
-
-
 // -------------
 
 .bgimage {
@@ -77,8 +74,7 @@ h4 {
   // margin-bottom: 100px;
 }
 
-// ------- 
-
+// -------
 
 // .body {
 //   display: flex;
@@ -91,7 +87,7 @@ h4 {
 
 .container-1 {
   color: #ff5a6e;
-  width: 75%;
+  width: 80%;
   background-color: #fff;
   padding: 20px;
   padding-top: 5vh;
@@ -150,15 +146,13 @@ h4 {
   pointer-events: none;
 }
 
-
-.container-1 .row100 .input-box input:focus+.email,
-.container-1 .row100 .input-box input:valid+.email,
-.container-1 .row100 .input-box input:focus+.text,
-.container-1 .row100 .input-box input:valid+.text {
+.container-1 .row100 .input-box input:focus + .email,
+.container-1 .row100 .input-box input:valid + .email,
+.container-1 .row100 .input-box input:focus + .text,
+.container-1 .row100 .input-box input:valid + .text {
   top: -35px;
   left: -10px;
 }
-
 
 .container-1 .row100 .input-box .line1,
 .container-1 .row100 .input-box .line {
@@ -173,10 +167,10 @@ h4 {
   pointer-events: none;
 }
 
-.container-1 .row100 .input-box input:focus~.line1,
-.container-1 .row100 .input-box input:valid~.line1,
-.container-1 .row100 .input-box input:focus~.line,
-.container-1 .row100 .input-box input:valid~.line {
+.container-1 .row100 .input-box input:focus ~ .line1,
+.container-1 .row100 .input-box input:valid ~ .line1,
+.container-1 .row100 .input-box input:focus ~ .line,
+.container-1 .row100 .input-box input:valid ~ .line {
   height: 100%;
 }
 
@@ -192,23 +186,21 @@ h4 {
   resize: none;
 }
 
-.container-1 .row100 .input-box textarea:focus+.email,
-.container-1 .row100 .input-box textarea:valid+.email,
-.container-1 .row100 .input-box textarea:focus+.text,
-.container-1 .row100 .input-box textarea:valid+.text {
+.container-1 .row100 .input-box textarea:focus + .email,
+.container-1 .row100 .input-box textarea:valid + .email,
+.container-1 .row100 .input-box textarea:focus + .text,
+.container-1 .row100 .input-box textarea:valid + .text {
   top: -35px;
   left: -10px;
 }
 
 // ---- tut baga
-.container-1 .row100 .input-box textarea:focus~.line1,
-.container-1 .row100 .input-box textarea:valid~.line1,
-.container-1 .row100 .input-box textarea:focus~.line,
-.container-1 .row100 .input-box textarea:valid~.line {
+.container-1 .row100 .input-box textarea:focus ~ .line1,
+.container-1 .row100 .input-box textarea:valid ~ .line1,
+.container-1 .row100 .input-box textarea:focus ~ .line,
+.container-1 .row100 .input-box textarea:valid ~ .line {
   height: 100%;
 }
-
-
 
 .submit {
   border: none;
@@ -223,11 +215,12 @@ h4 {
 
 .submit:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  transition: .5;
+  transition: 0.5;
 }
 
 
 @media screen and (max-width:760px) {
+
 
 
   .container-1 {
@@ -238,7 +231,6 @@ h4 {
     position: relative;
     width: 95%;
   }
-
 
   h2 {
     display: block;
@@ -253,7 +245,7 @@ h4 {
   .site-heading h2::before {
     background: #000 none repeat scroll 0 0;
     bottom: 0;
-    content: "";
+    content: '';
     height: 3px;
     left: 50%;
     margin-left: -25px;

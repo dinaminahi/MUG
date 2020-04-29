@@ -14,7 +14,10 @@
 
       <div class="form-group">
         <label>Game name</label>
-        <input type="text" class="form-control" formControlName="name">
+        <p [class.d-none]="name.valid || name.untouched" class=" error text-danger">Game name is
+          required</p>
+        <input type="text" [class.is-invalid]="name.invalid && name.touched" class="form-control"
+          formControlName="name">
       </div>
 
       <div class="form-group">
@@ -73,8 +76,8 @@
       </div>
       <div class="text-right">
         <button type="submit" class="create-btn my-4" [disabled]="!myForm.valid">Create</button>
-        <p [class.d-none]="myForm.valid || myForm.untouched" class="text-danger">Please, fill in the form
-          correctly</p>
+        <!-- <p [class.d-none]="myForm.valid || myForm.untouched" class="text-danger">Please, fill in the form
+          correctly</p> -->
       </div>
     </form>
   </section>

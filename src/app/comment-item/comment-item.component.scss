@@ -4,13 +4,13 @@
       width: 45px;
       height: 45px;
       border-radius: 50%;
+      object-fit: cover;
     }
   }
-  
-  h4 {
-      font-size: 18px;
-      font-weight: 500;
-      display: inline;
-  }
 
+  h4 {
+    font-size: 18px;
+    font-weight: 500;
+    display: inline;
+  }
 }

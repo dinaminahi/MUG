@@ -4,6 +4,8 @@ import { EventItem } from '../event-item/event-item';
 import { Comment } from './../comment-item/comment';
 import { DataService } from '../data.service';
 import { AuthService } from './../shared/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SigninComponent } from './../components/signin/signin.component';
 
 @Component({
   selector: 'app-event-detail-info',
@@ -16,13 +18,15 @@ export class EventDetailInfoComponent implements OnInit {
   comments: Comment[];
   eventId: string;
   organizor: any;
+  organisorCity: any;
   currUserId: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private _dataService: DataService,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +39,10 @@ export class EventDetailInfoComponent implements OnInit {
       console.log(this.expectedEvent);
       this.geo = this.expectedEvent.location.geo;
       this.organizor = res[0].organizerInfo[0];
+      this.organisorCity = res[0].organizerInfo[0].personal.location.address.substring(
+        0,
+        res[0].organizerInfo[0]?.personal.location.address.indexOf(',')
+      );
     });
 
     this._dataService.getComments(id).subscribe(res => {
@@ -44,5 +52,21 @@ export class EventDetailInfoComponent implements OnInit {
 
   gotoEvents() {
     this.router.navigate(['/events']);
+  }
+
+  redirectToUserPage(organizor) {
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(['/useraccount', organizor._id]);
+    } else {
+      this.openDialog();
+    }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SigninComponent, {
+      width: '767px',
+      height: '530px'
+    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }
