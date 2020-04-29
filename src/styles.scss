@@ -110,6 +110,7 @@ body {
       border: none !important;
       opacity: 1 !important;
       margin: 0 5px !important;
+      max-width: 50px;
 
       &.active {
         outline: $color-orange solid 2px;
