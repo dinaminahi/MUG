@@ -200,32 +200,52 @@
 }
 
 @media screen and (max-width:415px) {
-  h4 {
-    position: absolute;
-    text-align: center;
-    display: block;
-    font-weight: 700;
-    font-size: 9vw;
-    top: 140%;
-    left: 50%;
-    width: 100%;
+
+  .container {
+    padding-top: 70px;
+  }
+
+  .row {
     margin: 0;
     padding: 0;
-    transform: translate(-50%, -50%);
+
+  }
+
+  .col-md-6 {
+    max-height: 225px;
+    display: flex;
+    margin: auto;
+  }
+
+  .content {
+    border-left: 5px solid #000;
+    border-right: 5px solid #000;
+  }
+
+  h4 {
+    font-weight: 700;
+    font-size: 9vw;
+
+
     text-transform: uppercase;
+  }
+
+  .site-heading h4::before {
+    background: #000 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    position: absolute;
+    width: 50px;
   }
 
   .fas,
   .hide {
     display: none;
-  }
-
-  .col-xl-4 {
-    height: 225px;
-  }
-
-  .row-1 {
-    padding-top: 50px;
   }
 
   .box i,
