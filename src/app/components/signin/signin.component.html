@@ -6,7 +6,7 @@
       <span style="font-size: 15px;">All fields required</span>
       <input type="text" matInput placeholder="User Name" required name="name" formControlName="name"
         [class.is-invalid]="nameUp.invalid && nameUp.touched" />
-      <small [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Name is required</small>
+      <!-- <small [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Name is required</small> -->
 
       <!-- <p [class.d-none]="nameUp.valid || nameUp.untouched" class="text-danger error">Username is required</p> -->
       <input type="email" matInput placeholder="Enter Email" required name="email" formControlName="email"
@@ -18,7 +18,8 @@
       <small [class.d-none]="passwordUp.valid || passwordUp.untouched" class="text-danger error">Password is
         required</small>
 
-      <button id="submit-up" (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
+      <button id="submit-up" (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn"
+        [disabled]="!signupForm.valid">
         Sign Up
       </button>
     </form>
@@ -39,7 +40,8 @@
       <small [class.d-none]="passwordIn.valid || passwordIn.untouched" class="text-danger error">Password is
         required</small>
 
-      <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
+      <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit"
+        [disabled]="!signinForm.valid">
         Sign In
       </button>
     </form>
@@ -89,7 +91,8 @@
 
             <a href="#">Forgot your password?</a>
 
-            <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit">
+            <button mat-dialog-close mat-raised-button class="login-button sign-btn" type="submit"
+              [disabled]="!signinForm.valid">
               Sign In
             </button>
 
@@ -125,7 +128,8 @@
             <button (click)="onClickCheck()" type="submit" mat-raised-button class="login-button sign-btn">
               Sign Up
             </button>
-            <button mat-dialog-close (click)="onNoClick()" class="login-button btn btn-outline-danger waves-effect">
+            <button mat-dialog-close (click)="onNoClick()" [disabled]="!signupForm.valid"
+              class="login-button btn btn-outline-danger waves-effect">
               No, Thanks!
             </button>
           </form>

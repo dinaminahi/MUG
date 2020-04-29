@@ -82,6 +82,10 @@ section {
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    border: 2px solid transparentize($color: $color-orange, $amount: 0.6);
+  }
 }
 
 .add-category {
