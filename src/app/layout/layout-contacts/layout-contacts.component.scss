@@ -218,7 +218,11 @@ h4 {
   transition: 0.5;
 }
 
-@media screen and (max-width: 415px) {
+
+@media screen and (max-width:760px) {
+
+
+
   .container-1 {
     margin-top: 15px;
   }
@@ -251,9 +255,17 @@ h4 {
     width: 50px;
   }
 
-  .hide {
+  .hide,
+  .container-news {
     display: none;
   }
+
+
+
+  .col-xs-12 {
+    padding-top: 30px;
+  }
+
 
   .site-heading {
     margin: 0;
@@ -477,14 +489,4 @@ html {
 .card-media-link {
   color: #41C1F2;
   text-decoration: none;
-}
-
-@media (max-width:415px) {
-  .container-news {
-    display: none;
-  }
-
-  .col-xs-12 {
-    padding-top: 30px;
-  }
 }
