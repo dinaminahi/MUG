@@ -4,12 +4,15 @@
   &::-webkit-input-placeholder {
     @content;
   }
+
   &:-moz-placeholder {
     @content;
   }
+
   &::-moz-placeholder {
     @content;
   }
+
   &:-ms-input-placeholder {
     @content;
   }
@@ -126,6 +129,7 @@
       }
     }
   }
+
   .create-game-btn {
     flex: 0 0 auto;
     background-color: #fff;
@@ -157,11 +161,26 @@
       margin: 0 auto;
       width: 100%;
     }
+
     .search-wrap {
       width: 100%;
       margin: 10px 0;
     }
   }
+}
+
+@media (max-width:415px) {
+
+  .bg-img {
+    position: relative;
+  }
+
+  .text-container {
+    position: absolute;
+    top: 0%;
+  }
+
+
 }
 
 .loader {
