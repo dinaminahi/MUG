@@ -10,7 +10,8 @@
         <div class="col-sm-8 pl-sm-5 py-5 text-center text-sm-left">
             <h1 class="title mb-4">{{ expectedEvent?.eventName }}</h1>
             <p><i class="fas fa-clock event-icon mr-2 fa-lg"></i>Date and time</p>
-            <h4 class="mb-4">{{ expectedEvent?.dateTime }}</h4>
+            <h4 class="mb-4">{{ expectedEvent?.dateTime | date: "dd.MM.yyyy" }}
+                {{ expectedEvent?.dateTime | date: "HH:mm" }}</h4>
             <p><i class="fas fa-map-marker-alt event-icon mr-2 fa-lg"></i>Address</p>
             <h4>{{ expectedEvent?.location?.address }}</h4>
 
