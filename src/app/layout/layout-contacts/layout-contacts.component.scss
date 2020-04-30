@@ -146,10 +146,10 @@ h4 {
   pointer-events: none;
 }
 
-.container-1 .row100 .input-box input:focus + .email,
-.container-1 .row100 .input-box input:valid + .email,
-.container-1 .row100 .input-box input:focus + .text,
-.container-1 .row100 .input-box input:valid + .text {
+.container-1 .row100 .input-box input:focus+.email,
+.container-1 .row100 .input-box input:valid+.email,
+.container-1 .row100 .input-box input:focus+.text,
+.container-1 .row100 .input-box input:valid+.text {
   top: -35px;
   left: -10px;
 }
@@ -167,10 +167,10 @@ h4 {
   pointer-events: none;
 }
 
-.container-1 .row100 .input-box input:focus ~ .line1,
-.container-1 .row100 .input-box input:valid ~ .line1,
-.container-1 .row100 .input-box input:focus ~ .line,
-.container-1 .row100 .input-box input:valid ~ .line {
+.container-1 .row100 .input-box input:focus~.line1,
+.container-1 .row100 .input-box input:valid~.line1,
+.container-1 .row100 .input-box input:focus~.line,
+.container-1 .row100 .input-box input:valid~.line {
   height: 100%;
 }
 
@@ -186,19 +186,19 @@ h4 {
   resize: none;
 }
 
-.container-1 .row100 .input-box textarea:focus + .email,
-.container-1 .row100 .input-box textarea:valid + .email,
-.container-1 .row100 .input-box textarea:focus + .text,
-.container-1 .row100 .input-box textarea:valid + .text {
+.container-1 .row100 .input-box textarea:focus+.email,
+.container-1 .row100 .input-box textarea:valid+.email,
+.container-1 .row100 .input-box textarea:focus+.text,
+.container-1 .row100 .input-box textarea:valid+.text {
   top: -35px;
   left: -10px;
 }
 
 // ---- tut baga
-.container-1 .row100 .input-box textarea:focus ~ .line1,
-.container-1 .row100 .input-box textarea:valid ~ .line1,
-.container-1 .row100 .input-box textarea:focus ~ .line,
-.container-1 .row100 .input-box textarea:valid ~ .line {
+.container-1 .row100 .input-box textarea:focus~.line1,
+.container-1 .row100 .input-box textarea:valid~.line1,
+.container-1 .row100 .input-box textarea:focus~.line,
+.container-1 .row100 .input-box textarea:valid~.line {
   height: 100%;
 }
 
@@ -489,4 +489,8 @@ html {
 .card-media-link {
   color: #41C1F2;
   text-decoration: none;
+}
+
+.white-text h4 {
+  color: #fff;
 }
