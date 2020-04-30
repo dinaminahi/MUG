@@ -208,7 +208,9 @@ h2:before {
   content: attr(data-text);
   position: absolute;
   top: 0;
+
   left: 33.35%;
+
   color: $color-main-blue;
   width: 0;
   overflow: hidden;
