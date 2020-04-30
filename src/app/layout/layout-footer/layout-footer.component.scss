@@ -20,6 +20,7 @@ footer {
 .buttons {
   position: relative;
 
+
   .footer-btn {
     background-color: transparent;
     border-radius: 5px;
@@ -31,11 +32,13 @@ footer {
     padding: 10px 47px;
     position: absolute;
     left: 85px;
+    outline: none;
   }
 
   #sign-up-btn {
     bottom: 0px;
     padding: 10px 59px;
+    outline: none;
   }
 }
 
