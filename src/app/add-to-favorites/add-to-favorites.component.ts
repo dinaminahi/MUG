@@ -22,7 +22,6 @@ export class AddToFavoritesComponent {
     private _dataService: DataService,
     public authService: AuthService
   ) {
-    if (this.authService.isLoggedIn) {
       this.authService.getCurrentUserData().subscribe((user) => {
         this.user = user;
         if (!this.user) {
@@ -31,7 +30,6 @@ export class AddToFavoritesComponent {
         this.isDisabled = false;
         this.setIsFavorited();
       });
-    }
   }
 
   ngOnInit(): void {}
