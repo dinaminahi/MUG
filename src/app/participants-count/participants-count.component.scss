@@ -4,6 +4,7 @@
   position: relative;
   text-align: left;
   display: inline-block;
+  white-space: nowrap;
 
   .current,
   .users {
@@ -44,7 +45,8 @@
       line-height: 0;
       width: 30px;
       height: 30px;
-      margin: -2px 4px -5px -4px;
+      flex: 0 0 30px;
+      margin: -2px 2px -5px -4px;
     }
 
     i.filled {
